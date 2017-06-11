@@ -1,12 +1,17 @@
 #include "mainwindow.h"
 #include <QApplication>
+#include <QWebEngineView>
 
 int main(int argc, char *argv[])
 {
-    QApplication a(argc, argv);
-	//Testeando git
-    MainWindow w;
-    w.show();
+	QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+	QApplication app(argc, argv);
 
-    return a.exec();
+	QWebEngineView view;
+
+	view.setUrl(QUrl(QStringLiteral("http://www.qt.io")));
+	view.resize(1024, 750);
+	view.show();
+
+	return app.exec();
 }
