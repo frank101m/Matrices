@@ -37,3 +37,24 @@ Makefile*
 # QtCtreator CMake
 CMakeLists.txt.user*
 
+/Matrices/x64/Debug
+/Matrices/release
+/Matrices/Matrices.vcxproj.user
+/Matrices/Matrices.vcxproj.filters
+/Matrices/Matrices.vcxproj
+/Matrices/debug
+/Matrices/.vs/Matrices/v15
+/Matrices/.qmake.stash
+/.vs
+/Matrices/x64/Debug
+/Matrices/release
+/Matrices/Matrices.vcxproj.user
+/Matrices/Matrices.vcxproj.filters
+/Matrices/Matrices.vcxproj
+/Matrices/debug
+/Matrices/.vs/Matrices/v15
+/Matrices/.qmake.stash
+/.vs
+/Matrices/.qmake.stash
+*.vcxproj
+/Matrices/Matrices.sln
