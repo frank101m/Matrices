@@ -3,12 +3,15 @@
 #include <QWebEngineView>
 #include <QTabWidget>
 #include <QVBoxLayout>
+#include <qfile.h>
+#include <iostream>
 
 
 int main(int argc, char *argv[])
 {
 	QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 	QApplication app(argc, argv);
+	Q_INIT_RESOURCE(Resource);
 
     QWidget *window = new QWidget;
     QVBoxLayout *layout = new QVBoxLayout;
@@ -26,8 +29,11 @@ int main(int argc, char *argv[])
     tabWidget->addTab(modulo3, "Modulo 3");
 
     layout->addWidget(tabWidget);
-    display->setUrl(QUrl(QStringLiteral("https://cdn.rawgit.com/mathjax/MathJax/2.7.1/test/sample.html")));
     layout->addWidget(display);
+
+	display->setUrl(QUrl("qrc:///html/katex.htm"));
+
+	//Leer archivo HTML de recursor
 
     //Config de la pantalla principal
     window->setLayout(layout);

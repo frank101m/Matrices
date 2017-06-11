@@ -1,0 +1,35 @@
+<RCC>
+    <qresource prefix="/">
+        <file>katex/katex.min.css</file>
+        <file>katex/katex.min.js</file>
+        <file>katex/KaTeX_Main-Bold.eot</file>
+        <file>katex/KaTeX_Main-Bold.ttf</file>
+        <file>katex/KaTeX_Main-Bold.woff</file>
+        <file>katex/KaTeX_Main-Bold.woff2</file>
+        <file>katex/KaTeX_Main-Italic.eot</file>
+        <file>katex/KaTeX_Main-Italic.ttf</file>
+        <file>katex/KaTeX_Main-Italic.woff</file>
+        <file>katex/KaTeX_Main-Italic.woff2</file>
+        <file>katex/KaTeX_Main-Regular.eot</file>
+        <file>katex/KaTeX_Main-Regular.ttf</file>
+        <file>katex/KaTeX_Main-Regular.woff</file>
+        <file>katex/KaTeX_Main-Regular.woff2</file>
+        <file>katex/KaTeX_Size1-Regular.eot</file>
+        <file>katex/KaTeX_Size1-Regular.ttf</file>
+        <file>katex/KaTeX_Size1-Regular.woff</file>
+        <file>katex/KaTeX_Size1-Regular.woff2</file>
+        <file>katex/KaTeX_Size2-Regular.eot</file>
+        <file>katex/KaTeX_Size2-Regular.ttf</file>
+        <file>katex/KaTeX_Size2-Regular.woff</file>
+        <file>katex/KaTeX_Size2-Regular.woff2</file>
+        <file>katex/KaTeX_Size3-Regular.eot</file>
+        <file>katex/KaTeX_Size3-Regular.ttf</file>
+        <file>katex/KaTeX_Size3-Regular.woff</file>
+        <file>katex/KaTeX_Size3-Regular.woff2</file>
+        <file>katex/KaTeX_Size4-Regular.eot</file>
+        <file>katex/KaTeX_Size4-Regular.ttf</file>
+        <file>katex/KaTeX_Size4-Regular.woff</file>
+        <file>katex/KaTeX_Size4-Regular.woff2</file>
+        <file>html/katex.htm</file>
+    </qresource>
+</RCC>

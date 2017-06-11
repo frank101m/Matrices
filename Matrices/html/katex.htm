@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <link rel="stylesheet" href="qrc:///katex/katex.min.css">
+    <script src="qrc:///katex/katex.min.js"></script>
+    <tex>
+        A_{m,n} =
+        \begin{pmatrix}
+        a_{1,1} & a_{1,2} & \cdots & a_{1,n} \\
+        a_{2,1} & a_{2,2} & \cdots & a_{2,n} \\
+        \vdots  & \vdots  & \ddots & \vdots  \\
+        a_{m,1} & a_{m,2} & \cdots & a_{m,n}
+        \end{pmatrix}
+    </tex>
+    <tex>\int \sqrt{\tan(x)} \mathrm{d}x</tex>
+    <tex>V_{ex}\propto\int\left[\int\sin \theta_{ij}\frac{d\epsilon_{i}}{\epsilon_{\text{sum}}}\right]\frac{d\epsilon_{j}}{\epsilon_{\text{sum}}}</tex>
+    <dtex id='einstein'>E = mc^2,</dtex>
+    <dtex id='darcy'>\mathbf{u}=-K\left(\nabla p+\rho g\nabla z\right),</dtex>
+
+    <script>
+        var txlist = document.getElementsByTagName("tex");
+        for (var i = 0; i < txlist.length; i++) {
+            var tx = txlist[i];
+            var txtext = tx.textContent;
+            katex.render(txtext, tx, { displayMode: true });
+        }
+
+        txlist = document.getElementsByTagName("dtex");
+        for (var i = 0; i < txlist.length; i++) {
+            var tx = txlist[i];
+            var txtext = "\\displaystyle " + tx.textContent;
+            var html = katex.renderToString(txtext, tx, { displayMode: true });
+            tx.innerHTML = "<div class='katex-display'>" + html + "<span class=eqnum>(" + (i + 1) + ")</span></div>";
+
+            if (tx.id.length > 0) {
+                var tx2list = document.querySelectorAll("a[href='#" + tx.id + "']")
+                for (var j = 0; j < tx2list.length; j++) {
+                    tx2list[j].innerHTML = "" + (i + 1);
+                }
+            }
+
+        }
+    </script>
+</body>
+</html>
