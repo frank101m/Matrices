@@ -8,6 +8,8 @@
 #include <QLabel>
 #include <QSpinBox>
 #include <QPushButton>
+#include <QTableWidget>
+
 
 void loadModuleOne(QTabWidget*);
 
@@ -67,43 +69,54 @@ void loadModuleOne(QTabWidget *parent)
     QLabel *lblMatrixBx = new QLabel;
     QLabel *lblMatrixAy = new QLabel;
     QLabel *lblMatrixBy = new QLabel;
-    QSpinBox *aDimenX = new QSpinBox;
-    QSpinBox *bDimenX = new QSpinBox;
-    QSpinBox *aDimenY = new QSpinBox;
-    QSpinBox *bDimenY = new QSpinBox;
+    QSpinBox *aDimenr = new QSpinBox;
+    QSpinBox *bDimenr = new QSpinBox;
+    QSpinBox *aDimenc = new QSpinBox;
+    QSpinBox *bDimenc = new QSpinBox;
     QPushButton *generateMatrixA = new QPushButton;
     QPushButton *generateMatrixB = new QPushButton;
+    QTableWidget *matrixA = new QTableWidget;
+    QTableWidget *matrixB = new QTableWidget;
+    QHBoxLayout *matrixContainer = new QHBoxLayout;
 
     generateMatrixA->setText("Generar matriz A");
     generateMatrixB->setText("Generar matriz B");
-    aDimenX->setMinimum(2);
-    bDimenX->setMinimum(2);
-    aDimenY->setMinimum(2);
-    bDimenY->setMinimum(2);
-    aDimenX->setMaximum(15);
-    bDimenX->setMaximum(15);
-    aDimenY->setMaximum(15);
-    bDimenY->setMaximum(15);
-    lblMatrixAx->setText("Matriz A x");
+    aDimenr->setMinimum(2);
+    bDimenr->setMinimum(2);
+    aDimenc->setMinimum(2);
+    bDimenc->setMinimum(2);
+    aDimenr->setMaximum(15);
+    bDimenr->setMaximum(15);
+    aDimenc->setMaximum(15);
+    bDimenc->setMaximum(15);
+    lblMatrixAx->setText("Matriz A Filas");
     lblMatrixAx->setAlignment(Qt::AlignCenter);
-    lblMatrixBx->setText("Matriz B x");
+    lblMatrixBx->setText("Matriz B Filas");
     lblMatrixBx->setAlignment(Qt::AlignCenter);
-    lblMatrixAy->setText("Matriz A y");
+    lblMatrixAy->setText("Matriz A Columnas");
     lblMatrixAy->setAlignment(Qt::AlignCenter);
-    lblMatrixBy->setText("Matriz B y");
+    lblMatrixBy->setText("Matriz B Columnas");
     lblMatrixBy->setAlignment(Qt::AlignCenter);
+    matrixA->setRowCount(aDimenr->value());
+    matrixB->setRowCount(bDimenr->value());
+    matrixA->setColumnCount(aDimenc->value());
+    matrixB->setColumnCount(bDimenc->value());
+
+    matrixContainer->addWidget(matrixA);
+    matrixContainer->addWidget(matrixB);
     moduleControls->addWidget(lblMatrixAx, 0, 0);
     moduleControls->addWidget(lblMatrixAy, 0, 1);
     moduleControls->addWidget(lblMatrixBx, 0, 2);
     moduleControls->addWidget(lblMatrixBy, 0, 3);
-    moduleControls->addWidget(aDimenX, 1, 0);
-    moduleControls->addWidget(aDimenY, 1, 1);
-    moduleControls->addWidget(bDimenX, 1, 2);
-    moduleControls->addWidget(bDimenY, 1, 3);
+    moduleControls->addWidget(aDimenr, 1, 0);
+    moduleControls->addWidget(aDimenc, 1, 1);
+    moduleControls->addWidget(bDimenr, 1, 2);
+    moduleControls->addWidget(bDimenc, 1, 3);
     moduleControls->addWidget(generateMatrixA, 2, 0);
     moduleControls->addWidget(generateMatrixB, 2, 2);
     basicOperationsModule->setLayout(basicOperationsLayout);
     basicOperationsLayout->addLayout(moduleControls);
+    basicOperationsLayout->addLayout(matrixContainer);
     parent->addTab(basicOperationsModule, "Operaciones básicas con matrices");
     displayBasicOperations->setUrl(QUrl("qrc:///html/katex.htm"));
     basicOperationsLayout->addWidget(displayBasicOperations);
