@@ -105,7 +105,7 @@ void loadModuleOne(QTabWidget *parent)
     basicOperationsModule->setLayout(basicOperationsLayout);
     basicOperationsLayout->addLayout(moduleControls);
     parent->addTab(basicOperationsModule, "Operaciones básicas con matrices");
-    displayBasicOperations->setUrl(QUrl(QStringLiteral("https://cdn.rawgit.com/mathjax/MathJax/2.7.1/test/sample.html")));
+    displayBasicOperations->setUrl(QUrl("qrc:///html/katex.htm"));
     basicOperationsLayout->addWidget(displayBasicOperations);
 
 
