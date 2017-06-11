@@ -58,3 +58,5 @@ CMakeLists.txt.user*
 /Matrices/.qmake.stash
 *.vcxproj
 /Matrices/Matrices.sln
+/Matrices/mathjax_files
+/Matrices/html
