@@ -215,16 +215,6 @@
     </item>
    </layout>
   </widget>
-  <action name="actionGenerar_reporte">
-   <property name="text">
-    <string>Generar reporte</string>
-   </property>
-  </action>
-  <action name="actionSalir">
-   <property name="text">
-    <string>Salir</string>
-   </property>
-  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>

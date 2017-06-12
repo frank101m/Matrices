@@ -18,9 +18,6 @@ public:
 
 private slots:
     void on_pushButton_clicked();
-
-    void on_tableWidget_itemSelectionChanged();
-
     void on_pushButton_2_clicked();
 
 private:
