@@ -58,6 +58,7 @@ public:
     QTableWidget *tableWidget_2;
     QWidget *tab_2;
     QWebEngineView *webEngineView;
+
     QWidget *tab;
 
     void setupUi(QMainWindow *MainWindow)
@@ -244,7 +245,6 @@ public:
         MainWindow->setCentralWidget(widget);
 
         retranslateUi(MainWindow);
-
         mainTabWidget->setCurrentIndex(1);
 
 

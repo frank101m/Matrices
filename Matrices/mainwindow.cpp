@@ -7,6 +7,9 @@ MainWindow::MainWindow(QWidget *parent) :
 {
 
     ui->setupUi(this);
+    QWebEngineView *webDisplay = new QWebEngineView;
+    webDisplay->setUrl(QUrl("qrc:///html/katex.htm"));
+    ui->basicMatrixOperations->layout()->addWidget(webDisplay);
 }
 
 MainWindow::~MainWindow()
