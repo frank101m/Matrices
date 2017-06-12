@@ -1,6 +1,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include <QWebEngineView>
 #include <QMainWindow>
 
 namespace Ui {
@@ -21,6 +22,7 @@ private slots:
     void on_pushButton_2_clicked();
 
 private:
+    QWebEngineView *webDisplay;
     Ui::MainWindow *ui;
 };
 
