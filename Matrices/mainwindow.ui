@@ -20,7 +20,7 @@
       <item>
        <widget class="QTabWidget" name="mainTabWidget">
         <property name="currentIndex">
-         <number>1</number>
+         <number>0</number>
         </property>
         <widget class="QWidget" name="basicMatrixOperations">
          <attribute name="title">
@@ -223,10 +223,34 @@
          <attribute name="title">
           <string>Page</string>
          </attribute>
+         <widget class="QWebEngineView" name="webEngineView_2">
+          <property name="geometry">
+           <rect>
+            <x>170</x>
+            <y>80</y>
+            <width>300</width>
+            <height>200</height>
+           </rect>
+          </property>
+          <property name="url">
+           <url>
+            <string>about:blank</string>
+           </url>
+          </property>
+         </widget>
         </widget>
        </widget>
       </item>
      </layout>
+    </item>
+    <item>
+     <widget class="QWebEngineView" name="webEngineView_3">
+      <property name="url">
+       <url>
+        <string>about:blank</string>
+       </url>
+      </property>
+     </widget>
     </item>
    </layout>
   </widget>
