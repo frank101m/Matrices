@@ -205,7 +205,7 @@
             <item>
              <widget class="QPushButton" name="pushButton_3">
               <property name="text">
-               <string>sumar</string>
+               <string>Sumar matrices</string>
               </property>
              </widget>
             </item>

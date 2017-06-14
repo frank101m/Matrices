@@ -1,6 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-
+#include <QMessageBox>
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -61,3 +61,36 @@ void MainWindow::setTableValidatorB(){
 
 
 
+
+void MainWindow::on_pushButton_3_clicked()
+{
+    int aCol = ui->tableWidget->columnCount();
+    int aRow = ui->tableWidget->rowCount();
+    int bCol = ui->tableWidget_2->columnCount();
+    int bRow = ui->tableWidget_2->rowCount();
+    QString msg = "";
+    if(aCol == bCol && aRow == bRow){
+        double res[aRow][bCol];
+        for(int i = 0; i < aRow; i++){
+            for(int j = 0; j< aCol; j++){
+                QLineEdit *ql = (QLineEdit*) ui->tableWidget->cellWidget(i, j);
+                double a = ql->text().toDouble();
+                QLineEdit *ql2 = (QLineEdit*) ui->tableWidget_2->cellWidget(i, j);
+                double b = ql2->text().toDouble();
+                res[i][j] = a+b;
+                msg += QString::number(res[i][j])+", ";
+            }
+            msg+="\n";
+        }
+    }
+    else
+        msg+= "No se pudo realizar la suma. Revise la configuración matricial!";
+
+    QMessageBox msgBox;    
+
+    msgBox.setText(msg);
+    msgBox.setWindowTitle("Resultado:");
+    msgBox.setWindowModality(Qt::WindowModal);
+    msgBox.exec();
+
+}

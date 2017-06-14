@@ -56,10 +56,12 @@ public:
     QTableWidget *tableWidget;
     QFrame *line_4;
     QTableWidget *tableWidget_2;
+    QHBoxLayout *horizontalLayout_5;
+    QPushButton *pushButton_3;
     QWidget *tab_2;
     QWebEngineView *webEngineView;
-
     QWidget *tab;
+    QWebEngineView *webEngineView_2;
 
     void setupUi(QMainWindow *MainWindow)
     {
@@ -77,6 +79,7 @@ public:
         mainLayout->setObjectName(QStringLiteral("mainLayout"));
         mainTabWidget = new QTabWidget(widget);
         mainTabWidget->setObjectName(QStringLiteral("mainTabWidget"));
+        mainTabWidget->setTabShape(QTabWidget::Rounded);
         basicMatrixOperations = new QWidget();
         basicMatrixOperations->setObjectName(QStringLiteral("basicMatrixOperations"));
         verticalLayout_3 = new QVBoxLayout(basicMatrixOperations);
@@ -225,16 +228,31 @@ public:
 
         verticalLayout_3->addLayout(horizontalLayout_4);
 
+        horizontalLayout_5 = new QHBoxLayout();
+        horizontalLayout_5->setSpacing(6);
+        horizontalLayout_5->setObjectName(QStringLiteral("horizontalLayout_5"));
+        pushButton_3 = new QPushButton(basicMatrixOperations);
+        pushButton_3->setObjectName(QStringLiteral("pushButton_3"));
+
+        horizontalLayout_5->addWidget(pushButton_3);
+
+
+        verticalLayout_3->addLayout(horizontalLayout_5);
+
         mainTabWidget->addTab(basicMatrixOperations, QString());
         tab_2 = new QWidget();
         tab_2->setObjectName(QStringLiteral("tab_2"));
         webEngineView = new QWebEngineView(tab_2);
         webEngineView->setObjectName(QStringLiteral("webEngineView"));
         webEngineView->setGeometry(QRect(0, 0, 751, 411));
-        webEngineView->setUrl(QUrl(QStringLiteral("qrc:///html/katex.htm")));
+        webEngineView->setProperty("url", QVariant(QUrl(QStringLiteral("about:blank"))));
         mainTabWidget->addTab(tab_2, QString());
         tab = new QWidget();
         tab->setObjectName(QStringLiteral("tab"));
+        webEngineView_2 = new QWebEngineView(tab);
+        webEngineView_2->setObjectName(QStringLiteral("webEngineView_2"));
+        webEngineView_2->setGeometry(QRect(170, 80, 300, 200));
+        webEngineView_2->setProperty("url", QVariant(QUrl(QStringLiteral("about:blank"))));
         mainTabWidget->addTab(tab, QString());
 
         mainLayout->addWidget(mainTabWidget);
@@ -245,7 +263,8 @@ public:
         MainWindow->setCentralWidget(widget);
 
         retranslateUi(MainWindow);
-        mainTabWidget->setCurrentIndex(1);
+
+        mainTabWidget->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -274,6 +293,7 @@ public:
         ___qtablewidgetitem6->setText(QApplication::translate("MainWindow", "1", Q_NULLPTR));
         QTableWidgetItem *___qtablewidgetitem7 = tableWidget_2->verticalHeaderItem(1);
         ___qtablewidgetitem7->setText(QApplication::translate("MainWindow", "2", Q_NULLPTR));
+        pushButton_3->setText(QApplication::translate("MainWindow", "Sumar matrices", Q_NULLPTR));
         mainTabWidget->setTabText(mainTabWidget->indexOf(basicMatrixOperations), QApplication::translate("MainWindow", "Operaciones b\303\241sicas con matrices", Q_NULLPTR));
         mainTabWidget->setTabText(mainTabWidget->indexOf(tab_2), QApplication::translate("MainWindow", "Tab 2", Q_NULLPTR));
         mainTabWidget->setTabText(mainTabWidget->indexOf(tab), QApplication::translate("MainWindow", "Page", Q_NULLPTR));
