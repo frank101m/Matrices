@@ -69,8 +69,13 @@ void MainWindow::on_pushButton_3_clicked()
     int bCol = ui->tableWidget_2->columnCount();
     int bRow = ui->tableWidget_2->rowCount();
     QString msg = "";
+    double **res;
+    res = new double *[aRow];
+    for(int i = 0; i < aRow; i++)
+        res[i] = new double[aCol];
+
+    //res = new double[aRow][bCol];
     if(aCol == bCol && aRow == bRow){
-        double res[aRow][bCol];
         for(int i = 0; i < aRow; i++){
             for(int j = 0; j< aCol; j++){
                 QLineEdit *ql = (QLineEdit*) ui->tableWidget->cellWidget(i, j);
@@ -93,4 +98,7 @@ void MainWindow::on_pushButton_3_clicked()
     msgBox.setWindowModality(Qt::WindowModal);
     msgBox.exec();
 
+    for(int i = 0; i < aCol; i++)
+        delete[] res[i];
+    delete[] res;
 }
