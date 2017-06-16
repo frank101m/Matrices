@@ -1,6 +1,8 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QMessageBox>
+#include "Matrix.h"
+#include <iostream>
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -13,6 +15,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->basicMatrixOperations->layout()->addWidget(webDisplay);
     setTableValidatorA();
     setTableValidatorB();
+
+
 }
 
 MainWindow::~MainWindow()
