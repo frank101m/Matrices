@@ -36,6 +36,7 @@ public:
     QAction *actionSalir;
     QAction *actionGenerar_reporte;
     QAction *actionResultado;
+    QAction *actionManual;
     QWidget *widget;
     QVBoxLayout *verticalLayout_2;
     QVBoxLayout *mainLayout;
@@ -85,6 +86,8 @@ public:
         actionGenerar_reporte->setObjectName(QStringLiteral("actionGenerar_reporte"));
         actionResultado = new QAction(MainWindow);
         actionResultado->setObjectName(QStringLiteral("actionResultado"));
+        actionManual = new QAction(MainWindow);
+        actionManual->setObjectName(QStringLiteral("actionManual"));
         widget = new QWidget(MainWindow);
         widget->setObjectName(QStringLiteral("widget"));
         verticalLayout_2 = new QVBoxLayout(widget);
@@ -306,6 +309,7 @@ public:
         menuArchivo->addSeparator();
         menuArchivo->addAction(actionSalir);
         menuVer->addAction(actionResultado);
+        menuAyuda->addAction(actionManual);
 
         retranslateUi(MainWindow);
 
@@ -319,8 +323,18 @@ public:
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", Q_NULLPTR));
         actionSalir->setText(QApplication::translate("MainWindow", "Salir", Q_NULLPTR));
+#ifndef QT_NO_SHORTCUT
+        actionSalir->setShortcut(QApplication::translate("MainWindow", "Ctrl+Q", Q_NULLPTR));
+#endif // QT_NO_SHORTCUT
         actionGenerar_reporte->setText(QApplication::translate("MainWindow", "Generar reporte", Q_NULLPTR));
+#ifndef QT_NO_SHORTCUT
+        actionGenerar_reporte->setShortcut(QApplication::translate("MainWindow", "Ctrl+S", Q_NULLPTR));
+#endif // QT_NO_SHORTCUT
         actionResultado->setText(QApplication::translate("MainWindow", "Resultado", Q_NULLPTR));
+        actionManual->setText(QApplication::translate("MainWindow", "Manual", Q_NULLPTR));
+#ifndef QT_NO_SHORTCUT
+        actionManual->setShortcut(QApplication::translate("MainWindow", "F1", Q_NULLPTR));
+#endif // QT_NO_SHORTCUT
         label->setText(QApplication::translate("MainWindow", "Matriz A", Q_NULLPTR));
         label_2->setText(QApplication::translate("MainWindow", "Matriz B", Q_NULLPTR));
         pushButton->setText(QApplication::translate("MainWindow", "Generar matriz A", Q_NULLPTR));

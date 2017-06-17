@@ -300,6 +300,7 @@
     <property name="title">
      <string>Ayuda</string>
     </property>
+    <addaction name="actionManual"/>
    </widget>
    <addaction name="menuArchivo"/>
    <addaction name="menuVer"/>
@@ -309,15 +310,29 @@
    <property name="text">
     <string>Salir</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+Q</string>
+   </property>
   </action>
   <action name="actionGenerar_reporte">
    <property name="text">
     <string>Generar reporte</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
+   </property>
   </action>
   <action name="actionResultado">
    <property name="text">
     <string>Resultado</string>
+   </property>
+  </action>
+  <action name="actionManual">
+   <property name="text">
+    <string>Manual</string>
+   </property>
+   <property name="shortcut">
+    <string>F1</string>
    </property>
   </action>
  </widget>

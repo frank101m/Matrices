@@ -202,3 +202,8 @@ void MainWindow::on_actionResultado_triggered()
         webDisplay->hide();
     }
 }
+
+void MainWindow::on_actionSalir_triggered()
+{
+    QApplication::quit();
+}

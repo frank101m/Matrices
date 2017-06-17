@@ -30,6 +30,8 @@ private slots:
 
     void on_actionResultado_triggered();
 
+    void on_actionSalir_triggered();
+
 private:
     QWebEngineView *webDisplay;
     Ui::MainWindow *ui;
