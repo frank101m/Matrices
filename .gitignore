@@ -61,3 +61,10 @@ CMakeLists.txt.user*
 /Matrices/mathjax_files
 /Matrices/html
 /Matrices/deploy
+/MatrixTest/x64/Release
+/MatrixTest/targetver.h
+/MatrixTest/stdafx.h
+/MatrixTest/stdafx.cpp
+/MatrixTest/ReadMe.txt
+/MatrixTest/MatrixTest.vcxproj.filters
+/Matrices/x64/Release

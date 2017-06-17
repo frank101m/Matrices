@@ -54,6 +54,12 @@ double Matrix::at(const int i, const int j) const {
 	return mBase.at(i).at(j);
 }
 
+Matrix Matrix::getRow(const int i) {
+	Matrix t(1, getColumnsCount());
+	t.mBase.at(0) = this->mBase.at(i);
+	return t;
+}
+
 /*Matrix* Matrix::sum(const Matrix *a, const Matrix *b){
     if(validateSizes(a, b)){
         Matrix *result = new Matrix(a->getRowsCount(), b->getColumnsCount());
@@ -89,7 +95,7 @@ Matrix Matrix::operator-(const Matrix& m){
 }
 Matrix Matrix::operator*(const Matrix& m){
         Matrix res = Matrix(this->getRowsCount(), m.getColumnsCount());
-        int s;
+        double s;
         for(int i = 0; i < this->getRowsCount(); i++)
             for(int j = 0; j < m.getColumnsCount(); j++){
                 s=0;
@@ -100,7 +106,18 @@ Matrix Matrix::operator*(const Matrix& m){
 
         return res;
 
+}
 
+Matrix Matrix::operator*(const double a) {
+	Matrix t(getRowsCount(), getColumnsCount());
+
+	for (int i = 0; i < getRowsCount(); i++) {
+		for (int j = 0; j < getColumnsCount(); j++) {
+			t.set(i, j, at(i, j) * a);
+		}
+	}
+
+	return t;
 }
 /*
     Eliminacion gaussiana con sustitución hacia atras
@@ -111,7 +128,4 @@ void Matrix::gaussianElimination() {
 	int p = 0; //Pivote nulificador
 	int n = getRowsCount();
 
-	for (int i = 0; i < getRowsCount() - 1; i++) {
-
-	}
 }

@@ -18,12 +18,12 @@ public:
 	Matrix(const int, const int);
 
     int getRowsCount() const;
-
     int getColumnsCount() const;
-
 	void set(const int, const int, const double);
-
     double at(const int, const int) const;
+
+	Matrix getRow(const int);
+	Matrix getColumn(const int);
 
 	//Los métodos de Frank van acá
     static bool validateSizes(const Matrix*, const Matrix&);
@@ -31,7 +31,7 @@ public:
     Matrix operator+(const Matrix&);
     Matrix operator-(const Matrix&);
     Matrix operator*(const Matrix&);
-
+	Matrix operator*(const double a);
 
 
 	//Solucion de sistemas de ecuaciones lineales
