@@ -58,6 +58,8 @@ public:
     QTableWidget *tableWidget_2;
     QHBoxLayout *horizontalLayout_5;
     QPushButton *pushButton_3;
+    QPushButton *pushButton_4;
+    QPushButton *pushButton_5;
     QWidget *tab_2;
     QWebEngineView *webEngineView;
     QWidget *tab;
@@ -236,6 +238,16 @@ public:
 
         horizontalLayout_5->addWidget(pushButton_3);
 
+        pushButton_4 = new QPushButton(basicMatrixOperations);
+        pushButton_4->setObjectName(QStringLiteral("pushButton_4"));
+
+        horizontalLayout_5->addWidget(pushButton_4);
+
+        pushButton_5 = new QPushButton(basicMatrixOperations);
+        pushButton_5->setObjectName(QStringLiteral("pushButton_5"));
+
+        horizontalLayout_5->addWidget(pushButton_5);
+
 
         verticalLayout_3->addLayout(horizontalLayout_5);
 
@@ -294,6 +306,8 @@ public:
         QTableWidgetItem *___qtablewidgetitem7 = tableWidget_2->verticalHeaderItem(1);
         ___qtablewidgetitem7->setText(QApplication::translate("MainWindow", "2", Q_NULLPTR));
         pushButton_3->setText(QApplication::translate("MainWindow", "Sumar matrices", Q_NULLPTR));
+        pushButton_4->setText(QApplication::translate("MainWindow", "Restar matrices", Q_NULLPTR));
+        pushButton_5->setText(QApplication::translate("MainWindow", "Multiplicar matrices", Q_NULLPTR));
         mainTabWidget->setTabText(mainTabWidget->indexOf(basicMatrixOperations), QApplication::translate("MainWindow", "Operaciones b\303\241sicas con matrices", Q_NULLPTR));
         mainTabWidget->setTabText(mainTabWidget->indexOf(tab_2), QApplication::translate("MainWindow", "Tab 2", Q_NULLPTR));
         mainTabWidget->setTabText(mainTabWidget->indexOf(tab), QApplication::translate("MainWindow", "Page", Q_NULLPTR));

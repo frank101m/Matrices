@@ -16,7 +16,6 @@ MainWindow::MainWindow(QWidget *parent) :
     setTableValidatorA();
     setTableValidatorB();
 
-
 }
 
 MainWindow::~MainWindow()
@@ -68,41 +67,122 @@ void MainWindow::setTableValidatorB(){
 
 void MainWindow::on_pushButton_3_clicked()
 {
-    int aCol = ui->tableWidget->columnCount();
-    int aRow = ui->tableWidget->rowCount();
-    int bCol = ui->tableWidget_2->columnCount();
-    int bRow = ui->tableWidget_2->rowCount();
-    QString msg = "";
-    double **res;
-    res = new double *[aRow];
-    for(int i = 0; i < aRow; i++)
-        res[i] = new double[aCol];
 
-    //res = new double[aRow][bCol];
-    if(aCol == bCol && aRow == bRow){
-        for(int i = 0; i < aRow; i++){
-            for(int j = 0; j< aCol; j++){
-                QLineEdit *ql = (QLineEdit*) ui->tableWidget->cellWidget(i, j);
-                double a = ql->text().toDouble();
-                QLineEdit *ql2 = (QLineEdit*) ui->tableWidget_2->cellWidget(i, j);
-                double b = ql2->text().toDouble();
-                res[i][j] = a+b;
-                msg += QString::number(res[i][j])+", ";
+
+    QString msg = "Resultado:";
+    if(ui->tableWidget->rowCount() == ui->tableWidget_2->rowCount() && ui->tableWidget->columnCount() == ui->tableWidget_2->columnCount()){
+        Matrix a = Matrix(ui->tableWidget->rowCount(), ui->tableWidget->columnCount());
+        Matrix b = Matrix(ui->tableWidget_2->rowCount(), ui->tableWidget_2->columnCount());
+        for(int i = 0; i < ui->tableWidget->rowCount(); i++)
+            for(int j = 0; j < ui->tableWidget->columnCount(); j++){
+               QLineEdit *ql = (QLineEdit*) ui->tableWidget->cellWidget(i, j);
+               a.set(i, j, ql->text().toDouble());
+            }
+        for(int i = 0; i < ui->tableWidget_2->rowCount(); i++)
+            for(int j = 0; j < ui->tableWidget_2->columnCount(); j++){
+               QLineEdit *ql = (QLineEdit*) ui->tableWidget_2->cellWidget(i, j);
+               b.set(i, j, ql->text().toDouble());
+            }
+        Matrix res = a + b;
+        msg += "(\n";
+        for(int i = 0; i < res.getRowsCount(); i++){
+            for(int j = 0; j < res.getColumnsCount(); j++){
+                msg+=QString::number(res.at(i, j))+", ";
             }
             msg+="\n";
         }
+        msg+=")";
     }
-    else
-        msg+= "No se pudo realizar la suma. Revise la configuración matricial!";
+    else{
+        msg = "error en la configuracion matricial";
+    }
 
-    QMessageBox msgBox;    
+
+    QMessageBox msgBox;
 
     msgBox.setText(msg);
     msgBox.setWindowTitle("Resultado:");
     msgBox.setWindowModality(Qt::WindowModal);
     msgBox.exec();
 
-    for(int i = 0; i < aCol; i++)
-        delete[] res[i];
-    delete[] res;
+
+}
+
+void MainWindow::on_pushButton_4_clicked()
+{
+    QString msg = "Resultado:";
+    if(ui->tableWidget->rowCount() == ui->tableWidget_2->rowCount() && ui->tableWidget->columnCount() == ui->tableWidget_2->columnCount()){
+        Matrix a = Matrix(ui->tableWidget->rowCount(), ui->tableWidget->columnCount());
+        Matrix b = Matrix(ui->tableWidget_2->rowCount(), ui->tableWidget_2->columnCount());
+        for(int i = 0; i < ui->tableWidget->rowCount(); i++)
+            for(int j = 0; j < ui->tableWidget->columnCount(); j++){
+               QLineEdit *ql = (QLineEdit*) ui->tableWidget->cellWidget(i, j);
+               a.set(i, j, ql->text().toDouble());
+            }
+        for(int i = 0; i < ui->tableWidget_2->rowCount(); i++)
+            for(int j = 0; j < ui->tableWidget_2->columnCount(); j++){
+               QLineEdit *ql = (QLineEdit*) ui->tableWidget_2->cellWidget(i, j);
+               b.set(i, j, ql->text().toDouble());
+            }
+        Matrix res = a - b;
+        msg += "(\n";
+        for(int i = 0; i < res.getRowsCount(); i++){
+            for(int j = 0; j < res.getColumnsCount(); j++){
+                msg+=QString::number(res.at(i, j))+", ";
+            }
+            msg+="\n";
+        }
+        msg+=")";
+    }
+    else{
+        msg = "error en la configuracion matricial";
+    }
+
+
+    QMessageBox msgBox;
+
+    msgBox.setText(msg);
+    msgBox.setWindowTitle("Resultado:");
+    msgBox.setWindowModality(Qt::WindowModal);
+    msgBox.exec();
+}
+
+void MainWindow::on_pushButton_5_clicked()
+{
+    QString msg = "Resultado:";
+    if(ui->tableWidget->columnCount() == ui->tableWidget_2->rowCount()){
+        Matrix a = Matrix(ui->tableWidget->rowCount(), ui->tableWidget->columnCount());
+        Matrix b = Matrix(ui->tableWidget_2->rowCount(), ui->tableWidget_2->columnCount());
+        for(int i = 0; i < ui->tableWidget->rowCount(); i++)
+            for(int j = 0; j < ui->tableWidget->columnCount(); j++){
+               QLineEdit *ql = (QLineEdit*) ui->tableWidget->cellWidget(i, j);
+               a.set(i, j, ql->text().toDouble());
+            }
+        for(int i = 0; i < ui->tableWidget_2->rowCount(); i++)
+            for(int j = 0; j < ui->tableWidget_2->columnCount(); j++){
+               QLineEdit *ql = (QLineEdit*) ui->tableWidget_2->cellWidget(i, j);
+               b.set(i, j, ql->text().toDouble());
+            }
+        Matrix res = a * b;
+        msg += "(\n";
+        for(int i = 0; i < res.getRowsCount(); i++){
+            for(int j = 0; j < res.getColumnsCount(); j++){
+                msg+=QString::number(res.at(i, j))+", ";
+            }
+            msg+="\n";
+        }
+        msg+=")";
+    }
+    else{
+        msg = "error en la configuracion matricial";
+    }
+
+
+    QMessageBox msgBox;
+
+    msgBox.setText(msg);
+    msgBox.setWindowTitle("Resultado:");
+    msgBox.setWindowModality(Qt::WindowModal);
+    msgBox.exec();
+
 }
