@@ -28,11 +28,14 @@ private slots:
 
     void on_pushButton_5_clicked();
 
+    void on_actionResultado_triggered();
+
 private:
     QWebEngineView *webDisplay;
     Ui::MainWindow *ui;
     void setTableValidatorA();
     void setTableValidatorB();
+    void renderResult();
 };
 
 #endif // MAINWINDOW_H

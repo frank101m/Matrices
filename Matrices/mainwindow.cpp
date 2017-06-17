@@ -11,7 +11,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     ui->mainTabWidget->setCurrentIndex(0);
     webDisplay = new QWebEngineView;
-    webDisplay->setUrl(QUrl("qrc:///html/katex.htm"));
+    webDisplay->setUrl(QUrl("qrc:///html/m1.htm"));
+    webDisplay->setMaximumHeight(540);
     ui->basicMatrixOperations->layout()->addWidget(webDisplay);
     setTableValidatorA();
     setTableValidatorB();
@@ -104,7 +105,7 @@ void MainWindow::on_pushButton_3_clicked()
     msgBox.setWindowTitle("Resultado:");
     msgBox.setWindowModality(Qt::WindowModal);
     msgBox.exec();
-
+    this->renderResult();
 
 }
 
@@ -145,6 +146,7 @@ void MainWindow::on_pushButton_4_clicked()
     msgBox.setWindowTitle("Resultado:");
     msgBox.setWindowModality(Qt::WindowModal);
     msgBox.exec();
+    this->renderResult();
 }
 
 void MainWindow::on_pushButton_5_clicked()
@@ -184,5 +186,19 @@ void MainWindow::on_pushButton_5_clicked()
     msgBox.setWindowTitle("Resultado:");
     msgBox.setWindowModality(Qt::WindowModal);
     msgBox.exec();
+    this->renderResult();
 
+}
+
+void MainWindow::renderResult(){
+}
+
+void MainWindow::on_actionResultado_triggered()
+{
+    if(webDisplay->isHidden()){
+        webDisplay->show();
+    }
+    else{
+        webDisplay->hide();
+    }
 }

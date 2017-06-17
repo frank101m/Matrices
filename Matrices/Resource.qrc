@@ -31,5 +31,6 @@
         <file>katex/KaTeX_Size4-Regular.woff</file>
         <file>katex/KaTeX_Size4-Regular.woff2</file>
         <file>html/katex.htm</file>
+        <file>html/m1.htm</file>
     </qresource>
 </RCC>

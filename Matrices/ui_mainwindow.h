@@ -19,6 +19,8 @@
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
+#include <QtWidgets/QMenu>
+#include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QSpinBox>
 #include <QtWidgets/QTabWidget>
@@ -31,6 +33,9 @@ QT_BEGIN_NAMESPACE
 class Ui_MainWindow
 {
 public:
+    QAction *actionSalir;
+    QAction *actionGenerar_reporte;
+    QAction *actionResultado;
     QWidget *widget;
     QVBoxLayout *verticalLayout_2;
     QVBoxLayout *mainLayout;
@@ -64,12 +69,22 @@ public:
     QWebEngineView *webEngineView;
     QWidget *tab;
     QWebEngineView *webEngineView_2;
+    QMenuBar *menuBar;
+    QMenu *menuArchivo;
+    QMenu *menuVer;
+    QMenu *menuAyuda;
 
     void setupUi(QMainWindow *MainWindow)
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
         MainWindow->resize(771, 454);
+        actionSalir = new QAction(MainWindow);
+        actionSalir->setObjectName(QStringLiteral("actionSalir"));
+        actionGenerar_reporte = new QAction(MainWindow);
+        actionGenerar_reporte->setObjectName(QStringLiteral("actionGenerar_reporte"));
+        actionResultado = new QAction(MainWindow);
+        actionResultado->setObjectName(QStringLiteral("actionResultado"));
         widget = new QWidget(MainWindow);
         widget->setObjectName(QStringLiteral("widget"));
         verticalLayout_2 = new QVBoxLayout(widget);
@@ -273,6 +288,24 @@ public:
         verticalLayout_2->addLayout(mainLayout);
 
         MainWindow->setCentralWidget(widget);
+        menuBar = new QMenuBar(MainWindow);
+        menuBar->setObjectName(QStringLiteral("menuBar"));
+        menuBar->setGeometry(QRect(0, 0, 771, 19));
+        menuArchivo = new QMenu(menuBar);
+        menuArchivo->setObjectName(QStringLiteral("menuArchivo"));
+        menuVer = new QMenu(menuBar);
+        menuVer->setObjectName(QStringLiteral("menuVer"));
+        menuAyuda = new QMenu(menuBar);
+        menuAyuda->setObjectName(QStringLiteral("menuAyuda"));
+        MainWindow->setMenuBar(menuBar);
+
+        menuBar->addAction(menuArchivo->menuAction());
+        menuBar->addAction(menuVer->menuAction());
+        menuBar->addAction(menuAyuda->menuAction());
+        menuArchivo->addAction(actionGenerar_reporte);
+        menuArchivo->addSeparator();
+        menuArchivo->addAction(actionSalir);
+        menuVer->addAction(actionResultado);
 
         retranslateUi(MainWindow);
 
@@ -285,6 +318,9 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", Q_NULLPTR));
+        actionSalir->setText(QApplication::translate("MainWindow", "Salir", Q_NULLPTR));
+        actionGenerar_reporte->setText(QApplication::translate("MainWindow", "Generar reporte", Q_NULLPTR));
+        actionResultado->setText(QApplication::translate("MainWindow", "Resultado", Q_NULLPTR));
         label->setText(QApplication::translate("MainWindow", "Matriz A", Q_NULLPTR));
         label_2->setText(QApplication::translate("MainWindow", "Matriz B", Q_NULLPTR));
         pushButton->setText(QApplication::translate("MainWindow", "Generar matriz A", Q_NULLPTR));
@@ -311,6 +347,9 @@ public:
         mainTabWidget->setTabText(mainTabWidget->indexOf(basicMatrixOperations), QApplication::translate("MainWindow", "Operaciones b\303\241sicas con matrices", Q_NULLPTR));
         mainTabWidget->setTabText(mainTabWidget->indexOf(tab_2), QApplication::translate("MainWindow", "Tab 2", Q_NULLPTR));
         mainTabWidget->setTabText(mainTabWidget->indexOf(tab), QApplication::translate("MainWindow", "Page", Q_NULLPTR));
+        menuArchivo->setTitle(QApplication::translate("MainWindow", "Archivo", Q_NULLPTR));
+        menuVer->setTitle(QApplication::translate("MainWindow", "Ver", Q_NULLPTR));
+        menuAyuda->setTitle(QApplication::translate("MainWindow", "Ayuda", Q_NULLPTR));
     } // retranslateUi
 
 };
