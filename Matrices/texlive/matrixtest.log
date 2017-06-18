@@ -1,0 +1,145 @@
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/W32TeX) (preloaded format=pdflatex 2016.11.2)  17 JUN 2017 22:01
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**./matrixtest.tex
+(./matrixtest.tex
+LaTeX2e <2016/03/31> patch level 3
+Babel <3.9r> and hyphenation patterns for 83 language(s) loaded.
+(./article.cls
+Document Class: article 2014/09/29 v1.4h Standard LaTeX document class
+(./size10.clo
+File: size10.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
+)
+\c@part=\count79
+\c@section=\count80
+\c@subsection=\count81
+\c@subsubsection=\count82
+\c@paragraph=\count83
+\c@subparagraph=\count84
+\c@figure=\count85
+\c@table=\count86
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+) (./matrixreport.sty (./blkarray.sty
+Package: blkarray 2015/02/27 v0.07 Block array (dpc)
+\c@BAenumi=\count87
+\BA@col=\count88
+\BA@block@cnt=\count89
+\BA@final@box=\box26
+\BA@first@box=\box27
+\BA@colsep=\dimen103
+\BA@ftn=\toks14
+\BAextrarowheight=\dimen104
+\BAextraheightafterhline=\dimen105
+\BAarrayrulewidth=\dimen106
+\BAdoublerulesep=\dimen107
+\BAfootskip=\dimen108
+\BA@dashbox=\box28
+\BA@ddashbox=\box29
+) (./pgffor.sty
+(./pgfrcs.sty (./pgfutil-common.tex
+\pgfutil@everybye=\toks15
+\pgfutil@tempdima=\dimen109
+\pgfutil@tempdimb=\dimen110
+ (./pgfutil-common-lists.tex))
+(./pgfutil-latex.def
+\pgfutil@abb=\box30
+ (./everyshi.sty
+Package: everyshi 2001/05/15 v3.00 EveryShipout Package (MS)
+)) (./pgfrcs.code.tex
+Package: pgfrcs 2015/08/07 v3.0.1a (rcs-revision 1.31)
+)) (./pgfkeys.sty
+(./pgfkeys.code.tex
+\pgfkeys@pathtoks=\toks16
+\pgfkeys@temptoks=\toks17
+ (./pgfkeysfiltered.code.tex
+\pgfkeys@tmptoks=\toks18
+))) (./pgfmath.sty
+(./pgfmath.code.tex (./pgfmathcalc.code.tex (./pgfmathutil.code.tex
+\pgf@x=\dimen111
+\pgf@xa=\dimen112
+\pgf@xb=\dimen113
+\pgf@xc=\dimen114
+\pgf@y=\dimen115
+\pgf@ya=\dimen116
+\pgf@yb=\dimen117
+\pgf@yc=\dimen118
+\c@pgf@counta=\count90
+\c@pgf@countb=\count91
+\c@pgf@countc=\count92
+\c@pgf@countd=\count93
+)
+(./pgfmathparser.code.tex
+\pgfmath@dimen=\dimen119
+\pgfmath@count=\count94
+\pgfmath@box=\box31
+\pgfmath@toks=\toks19
+\pgfmath@stack@operand=\toks20
+\pgfmath@stack@operation=\toks21
+) (./pgfmathfunctions.code.tex
+(./pgfmathfunctions.basic.code.tex) (./pgfmathfunctions.trigonometric.code.tex)
+(./pgfmathfunctions.random.code.tex) (./pgfmathfunctions.comparison.code.tex)
+(./pgfmathfunctions.base.code.tex) (./pgfmathfunctions.round.code.tex)
+(./pgfmathfunctions.misc.code.tex)
+(./pgfmathfunctions.integerarithmetics.code.tex))) (./pgfmathfloat.code.tex
+\c@pgfmathroundto@lastzeros=\count95
+)))
+(./pgffor.code.tex
+Package: pgffor 2013/12/13 v3.0.1a (rcs-revision 1.25)
+ (./pgfmath.code.tex)
+\pgffor@iter=\dimen120
+\pgffor@skip=\dimen121
+\pgffor@stack=\toks22
+\pgffor@toks=\toks23
+)) (./etoolbox.sty
+Package: etoolbox 2017/01/02 v2.4 e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count96
+)
+\c@dummy=\count97
+) (./matrixtest.aux)
+\openout1 = `matrixtest.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+
+ABD: EveryShipout initializing macros
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 12.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 12.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 12.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 12.
+ [1{pdftex.map}
+
+] (./matrixtest.aux) ) 
+Here is how much of TeX's memory you used:
+ 5906 strings out of 493013
+ 111485 string characters out of 6136993
+ 145157 words of memory out of 5000000
+ 9439 multiletter control sequences out of 15000+600000
+ 5816 words of font info for 21 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 47i,7n,42p,794b,332s stack positions out of 5000i,500n,10000p,200000b,80000s
+<./cmex10.pfb><./cmmi10.pfb><./cmr10.pfb><./cmr7.pfb><./c
+msy10.pfb>
+Output written on matrixtest.pdf (1 page, 45132 bytes).
+PDF statistics:
+ 28 PDF objects out of 1000 (max. 8388607)
+ 19 compressed objects within 1 object stream
+ 0 named destinations out of 1000 (max. 500000)
+ 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+

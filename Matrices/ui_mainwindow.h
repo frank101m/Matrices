@@ -68,6 +68,7 @@ public:
     QPushButton *pushButton_5;
     QWidget *tab_2;
     QWebEngineView *webEngineView;
+    QPushButton *pushButton_6;
     QWidget *tab;
     QWebEngineView *webEngineView_2;
     QMenuBar *menuBar;
@@ -274,15 +275,18 @@ public:
         tab_2->setObjectName(QStringLiteral("tab_2"));
         webEngineView = new QWebEngineView(tab_2);
         webEngineView->setObjectName(QStringLiteral("webEngineView"));
-        webEngineView->setGeometry(QRect(0, 0, 751, 411));
-        webEngineView->setProperty("url", QVariant(QUrl(QStringLiteral("about:blank"))));
+        webEngineView->setGeometry(QRect(0, 30, 751, 381));
+        webEngineView->setUrl(QUrl(QStringLiteral("about:blank")));
+        pushButton_6 = new QPushButton(tab_2);
+        pushButton_6->setObjectName(QStringLiteral("pushButton_6"));
+        pushButton_6->setGeometry(QRect(0, 0, 75, 23));
         mainTabWidget->addTab(tab_2, QString());
         tab = new QWidget();
         tab->setObjectName(QStringLiteral("tab"));
         webEngineView_2 = new QWebEngineView(tab);
         webEngineView_2->setObjectName(QStringLiteral("webEngineView_2"));
         webEngineView_2->setGeometry(QRect(170, 80, 300, 200));
-        webEngineView_2->setProperty("url", QVariant(QUrl(QStringLiteral("about:blank"))));
+        webEngineView_2->setUrl(QUrl(QStringLiteral("about:blank")));
         mainTabWidget->addTab(tab, QString());
 
         mainLayout->addWidget(mainTabWidget);
@@ -293,7 +297,7 @@ public:
         MainWindow->setCentralWidget(widget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 771, 19));
+        menuBar->setGeometry(QRect(0, 0, 771, 21));
         menuArchivo = new QMenu(menuBar);
         menuArchivo->setObjectName(QStringLiteral("menuArchivo"));
         menuVer = new QMenu(menuBar);
@@ -313,7 +317,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        mainTabWidget->setCurrentIndex(0);
+        mainTabWidget->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -359,6 +363,7 @@ public:
         pushButton_4->setText(QApplication::translate("MainWindow", "Restar matrices", Q_NULLPTR));
         pushButton_5->setText(QApplication::translate("MainWindow", "Multiplicar matrices", Q_NULLPTR));
         mainTabWidget->setTabText(mainTabWidget->indexOf(basicMatrixOperations), QApplication::translate("MainWindow", "Operaciones b\303\241sicas con matrices", Q_NULLPTR));
+        pushButton_6->setText(QApplication::translate("MainWindow", "PushButton", Q_NULLPTR));
         mainTabWidget->setTabText(mainTabWidget->indexOf(tab_2), QApplication::translate("MainWindow", "Tab 2", Q_NULLPTR));
         mainTabWidget->setTabText(mainTabWidget->indexOf(tab), QApplication::translate("MainWindow", "Page", Q_NULLPTR));
         menuArchivo->setTitle(QApplication::translate("MainWindow", "Archivo", Q_NULLPTR));
