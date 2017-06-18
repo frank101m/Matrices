@@ -4,6 +4,7 @@
 #include "stdafx.h"
 #include <iostream>
 #include "..\Matrices\Matrix.cpp"
+#include "..\Matrices\Report.cpp"
 
 
 void printMatrix(Matrix &m) {
@@ -43,9 +44,15 @@ int main()
 	printMatrix(c);
 
 
-	Matrix d = a.getRow(0) * 2;
+	Matrix d = a.getRow(0) * (1.0/3.0);
 	std::cout << "Matriz d" << std::endl;
+
 	printMatrix(d);
 
+	Report r(10);
+	std::cout << r.generateRegularMatrixElement(c) << std::endl;
+
+
+	getchar();
 	return 0;
 }

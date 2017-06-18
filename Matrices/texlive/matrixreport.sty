@@ -1,6 +1,7 @@
 \usepackage{blkarray}
 \usepackage{pgffor}
 \usepackage{etoolbox}
+\usepackage{amsmath}
 
 \let\rowcontent\empty
 
@@ -53,6 +54,15 @@
 }
 
 %Generar la matriz augmentada
+
+\newcommand{\regmatrix}[2]
+{
+\[
+    \begin{blockarray}{(*{#1}{r})}
+        \genmatrix{#2}
+    \end{blockarray} \\
+\]
+}
 
 \newcommand{\augmatrix}[2]
 {

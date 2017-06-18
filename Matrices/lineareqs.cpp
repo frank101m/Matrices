@@ -16,10 +16,11 @@ void MainWindow::on_pushButton_6_clicked()
 	QProcess process;
 	QMessageBox pathMsg;
 
-	QString file = QCoreApplication::applicationDirPath() + "/" + "texlive/pdflatex.exe matrixtest.tex";
+	QString file = QCoreApplication::applicationDirPath() + "/" + "texlive/pdflatex.exe -interaction=nonstopmode matrixtest.tex";
 
 	process.setWorkingDirectory(QDir::currentPath().append(QDir::separator()).append("texlive"));
 	process.start(file);
+
 
 	if (!process.waitForStarted()) {
 		pathMsg.setText(file + " : " + process.errorString());
@@ -27,11 +28,11 @@ void MainWindow::on_pushButton_6_clicked()
 		pathMsg.setText("Iniciado");
 	}
 
-	if (process.waitForFinished())
-	{
+	if (process.waitForFinished()) {
 		pathMsg.setText(process.readAll());
 	}
 
 	pathMsg.exec();
+
 #endif
 }
