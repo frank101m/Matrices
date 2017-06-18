@@ -3,6 +3,9 @@
 #include <QMessageBox>
 #include "Matrix.h"
 #include <iostream>
+#include <stdarg.h>
+
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -192,8 +195,6 @@ void MainWindow::on_pushButton_5_clicked()
 
 void MainWindow::renderResult(){
     QString js = "document.removeChild(document.documentElement);";
-    webDisplay->page()->runJavaScript(js);
-    js = "var x = document.createElement('P'); \n var t = document.createTextNode('This is a paragraph.'); \n x.appendChild(t); \n document.appendChild(x);";
     webDisplay->page()->runJavaScript(js);
 
 }
