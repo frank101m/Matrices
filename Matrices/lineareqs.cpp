@@ -33,6 +33,27 @@ void MainWindow::on_pushButton_6_clicked()
 	}
 
 	pathMsg.exec();
+#elif __linux__
+    QProcess process;
+    QMessageBox pathMsg;
+
+    QString file = "pdftex -interaction=nonstopmode matrixtest.tex";
+
+    process.setWorkingDirectory(QDir::currentPath().append(QDir::separator()).append("texlive"));
+    process.start(file);
+
+
+    if (!process.waitForStarted()) {
+        pathMsg.setText(file + " : " + process.errorString());
+    } else {
+        pathMsg.setText("Iniciado");
+    }
+
+    if (process.waitForFinished()) {
+        pathMsg.setText(process.readAll());
+    }
+
+    pathMsg.exec();
 
 #endif
 }
