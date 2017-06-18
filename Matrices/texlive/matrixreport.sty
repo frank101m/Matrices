@@ -3,7 +3,6 @@
 \usepackage{etoolbox}
 
 \let\rowcontent\empty
-\let\matrixcontent\empty
 
 \newcounter{dummy}
 
@@ -13,8 +12,8 @@
   \edef#2{\arabic{dummy}}
 }
 
-%Generar la columna
-\DeclareRobustCommand{\genrow}[1]
+%Generar una única columna
+\newcommand{\genrow}[1]
 {
 \let\rowcontent\empty
 \getNoOfElements{#1}\No
@@ -29,7 +28,9 @@
 \rowcontent
 }
 
-\DeclareRobustCommand{\genmatrix}[1]
+%Generar la matriz,
+%Es imposible reusar código sin que explote latex
+\newcommand{\genmatrix}[1]
 {
 \let\rowcontent\empty
 \getNoOfElements{#1}\Ni
