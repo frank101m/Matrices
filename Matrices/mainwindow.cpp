@@ -1,9 +1,12 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QMessageBox>
+#include <QProcess>
+#include <qdir.h>
 #include "Matrix.h"
 #include <iostream>
 #include <stdarg.h>
+#include "Report.h"
 
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -19,6 +22,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->basicMatrixOperations->layout()->addWidget(webDisplay);
     setTableValidatorA();
     setTableValidatorB();
+	setLinearEqTableValidator();
 
 }
 
@@ -65,8 +69,16 @@ void MainWindow::setTableValidatorB(){
     }
 }
 
-
-
+void MainWindow::setLinearEqTableValidator()
+{
+	for (int row = 0; row < ui->augMatrix->rowCount(); row++) {
+		for (int column = 0; column < ui->augMatrix->columnCount(); column++) {
+			QLineEdit *ql = new QLineEdit;
+			ql->setValidator(new QDoubleValidator(ql));
+			ui->augMatrix->setCellWidget(row, column, ql);
+		}
+	}
+}
 
 
 void MainWindow::on_pushButton_3_clicked()
@@ -193,9 +205,96 @@ void MainWindow::on_pushButton_5_clicked()
 
 }
 
+
+void MainWindow::on_pushButton_6_clicked()
+{
+#ifdef _WIN32
+	QProcess process;
+	QMessageBox pathMsg;
+	QTableWidget *augMatrixTable = ui->augMatrix;
+
+	int n = augMatrixTable->rowCount();
+	int m = augMatrixTable->columnCount();
+
+	QLineEdit *tempLineEdit;
+
+	Matrix aug(n, m);
+	Report testReport(10);
+
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < m; j++) {
+			tempLineEdit = (QLineEdit*) augMatrixTable->cellWidget(i, j);
+			aug.set(i, j, tempLineEdit->text().toDouble());
+		}
+	}
+
+	std::vector<std::string> vars;
+
+	vars.push_back("a_1");
+	vars.push_back("a_2");
+	vars.push_back("a_3");
+	vars.push_back("a_4");
+
+	std::ostringstream body;
+	body << "\"\\def\\reportbody{";
+	body << testReport.generateAugmentedMatrixElement(vars, aug);
+	Matrix augEl = aug.getGaussianElimination();
+	body << testReport.generateAugmentedMatrixElement(vars, augEl);
+	body << "}";
+	body << "\\input{matrixtest.tex}\"";
+
+	QString file = QCoreApplication::applicationDirPath() + "/" + "texlive/pdflatex.exe " + QString::fromStdString(body.str()) + " -interaction=nonstopmode";
+
+	process.setWorkingDirectory(QDir::currentPath().append(QDir::separator()).append("texlive"));
+	process.start(file);
+
+	if (!process.waitForStarted()) {
+		pathMsg.setText(file + " : " + process.errorString());
+	}
+	else {
+		pathMsg.setText(process.readAll());
+	}
+
+	if (process.waitForFinished()) {
+		pathMsg.setText(process.readAll());
+	}
+
+	pathMsg.exec();
+#elif __linux__
+	QProcess process;
+	QMessageBox pathMsg;
+
+	QString file = "pdftex -interaction=nonstopmode matrixtest.tex";
+
+	process.setWorkingDirectory(QDir::currentPath().append(QDir::separator()).append("texlive"));
+	process.start(file);
+
+
+	if (!process.waitForStarted()) {
+		pathMsg.setText(file + " : " + process.errorString());
+	}
+	else {
+		pathMsg.setText("Iniciado");
+	}
+
+	if (process.waitForFinished()) {
+		pathMsg.setText(process.readAll());
+	}
+
+	pathMsg.exec();
+
+#endif
+}
+
+
 void MainWindow::renderResult(){
     QString js = "document.removeChild(document.documentElement);";
     webDisplay->page()->runJavaScript(js);
+
+}
+
+void MainWindow::initializeLinearEqModule()
+{
 
 }
 
@@ -212,4 +311,11 @@ void MainWindow::on_actionResultado_triggered()
 void MainWindow::on_actionSalir_triggered()
 {
     QApplication::quit();
+}
+
+void MainWindow::on_applyMatrixRange_clicked()
+{
+	ui->augMatrix->setRowCount(ui->spinnerRowCount->value());
+	ui->augMatrix->setColumnCount(ui->spinnerColumnCount->value());
+	setLinearEqTableValidator();
 }

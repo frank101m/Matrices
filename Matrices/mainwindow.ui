@@ -23,7 +23,7 @@
          <enum>QTabWidget::Rounded</enum>
         </property>
         <property name="currentIndex">
-         <number>1</number>
+         <number>2</number>
         </property>
         <widget class="QWidget" name="basicMatrixOperations">
          <attribute name="title">
@@ -246,39 +246,100 @@
            </url>
           </property>
          </widget>
-         <widget class="QPushButton" name="pushButton_6">
-          <property name="geometry">
-           <rect>
-            <x>0</x>
-            <y>0</y>
-            <width>75</width>
-            <height>23</height>
-           </rect>
-          </property>
-          <property name="text">
-           <string>PushButton</string>
-          </property>
-         </widget>
         </widget>
         <widget class="QWidget" name="tab">
          <attribute name="title">
           <string>Page</string>
          </attribute>
-         <widget class="QWebEngineView" name="webEngineView_2">
+         <widget class="QPushButton" name="pushButton_6">
           <property name="geometry">
            <rect>
-            <x>170</x>
-            <y>80</y>
-            <width>300</width>
-            <height>200</height>
+            <x>350</x>
+            <y>30</y>
+            <width>75</width>
+            <height>23</height>
            </rect>
           </property>
-          <property name="url">
-           <url>
-            <string>about:blank</string>
-           </url>
+          <property name="text">
+           <string>Generar pdf</string>
           </property>
          </widget>
+         <widget class="QTableWidget" name="augMatrix">
+          <property name="geometry">
+           <rect>
+            <x>30</x>
+            <y>90</y>
+            <width>321</width>
+            <height>291</height>
+           </rect>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>256</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="rowCount">
+           <number>2</number>
+          </property>
+          <property name="columnCount">
+           <number>2</number>
+          </property>
+          <row/>
+          <row/>
+          <column/>
+          <column/>
+         </widget>
+         <widget class="QPushButton" name="applyMatrixRange">
+          <property name="geometry">
+           <rect>
+            <x>100</x>
+            <y>60</y>
+            <width>75</width>
+            <height>23</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Aplicar</string>
+          </property>
+         </widget>
+         <widget class="QSpinBox" name="spinnerRowCount">
+          <property name="geometry">
+           <rect>
+            <x>50</x>
+            <y>10</y>
+            <width>42</width>
+            <height>22</height>
+           </rect>
+          </property>
+          <property name="minimum">
+           <number>2</number>
+          </property>
+          <property name="maximum">
+           <number>20</number>
+          </property>
+         </widget>
+         <widget class="QSpinBox" name="spinnerColumnCount">
+          <property name="geometry">
+           <rect>
+            <x>100</x>
+            <y>10</y>
+            <width>42</width>
+            <height>22</height>
+           </rect>
+          </property>
+          <property name="minimum">
+           <number>2</number>
+          </property>
+          <property name="maximum">
+           <number>20</number>
+          </property>
+         </widget>
+         <zorder>spinnerColumnCount</zorder>
+         <zorder>pushButton_6</zorder>
+         <zorder>augMatrix</zorder>
+         <zorder>applyMatrixRange</zorder>
+         <zorder>spinnerRowCount</zorder>
         </widget>
        </widget>
       </item>

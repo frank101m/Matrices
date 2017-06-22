@@ -36,24 +36,23 @@
 \let\rowcontent\empty
 \getNoOfElements{#1}\Ni
 \foreach \i [count=\ii] in #1 {
-\getNoOfElements{\i}\Ne
-\foreach \e [count=\ei] in \i
-{
-	\ifnum\Ne=\ei
-	\ifnum\ii=\Ni
-	\expandafter\gappto\expandafter\rowcontent\expandafter{\expandafter{\e}}
-	\else
-	\expandafter\gappto\expandafter\rowcontent\expandafter{\expandafter{\e}\\}
-	\fi
-	\else
-	\expandafter\gappto\expandafter\rowcontent\expandafter{\expandafter{\e} &}
-	\fi
-}
-}
-\rowcontent
+    \getNoOfElements{\i}\Ne
+    \foreach \e [count=\ei] in \i
+    {
+    	\ifnum\Ne=\ei
+    	\ifnum\ii=\Ni
+    	\expandafter\gappto\expandafter\rowcontent\expandafter{\expandafter{\e}}
+    	\else
+    	\expandafter\gappto\expandafter\rowcontent\expandafter{\expandafter{\e}\\}
+    	\fi
+    	\else
+    	\expandafter\gappto\expandafter\rowcontent\expandafter{\expandafter{\e} &}
+    	\fi
+    }
+    }
+    \rowcontent
 }
 
-%Generar la matriz augmentada
 
 \newcommand{\regmatrix}[2]
 {
@@ -64,10 +63,13 @@
 \]
 }
 
+%Generar la matriz augmentada
 \newcommand{\augmatrix}[2]
 {
-\[
+Composici\'on de la matriz aumentada $\tilde{A}$ 
 \getNoOfElements{#1}\size
+\[
+\tilde{A}=\left[A,\mathbf{b}\right]=
 \begin{blockarray} {*{\size}{r}r}
 \genrow{#1} \\
 \begin{block}{(*{\size}{r}|r)}

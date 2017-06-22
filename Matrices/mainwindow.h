@@ -32,13 +32,16 @@ private slots:
     void on_actionResultado_triggered();
 
     void on_actionSalir_triggered();
+	void on_applyMatrixRange_clicked();
 
 private:
     QWebEngineView *webDisplay;
     Ui::MainWindow *ui;
     void setTableValidatorA();
     void setTableValidatorB();
+	void setLinearEqTableValidator();
     void renderResult();
+	void initializeLinearEqModule();
 };
 
 #endif // MAINWINDOW_H

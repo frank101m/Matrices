@@ -68,9 +68,12 @@ public:
     QPushButton *pushButton_5;
     QWidget *tab_2;
     QWebEngineView *webEngineView;
-    QPushButton *pushButton_6;
     QWidget *tab;
-    QWebEngineView *webEngineView_2;
+    QPushButton *pushButton_6;
+    QTableWidget *augMatrix;
+    QPushButton *applyMatrixRange;
+    QSpinBox *spinnerRowCount;
+    QSpinBox *spinnerColumnCount;
     QMenuBar *menuBar;
     QMenu *menuArchivo;
     QMenu *menuVer;
@@ -277,17 +280,41 @@ public:
         webEngineView->setObjectName(QStringLiteral("webEngineView"));
         webEngineView->setGeometry(QRect(0, 30, 751, 381));
         webEngineView->setUrl(QUrl(QStringLiteral("about:blank")));
-        pushButton_6 = new QPushButton(tab_2);
-        pushButton_6->setObjectName(QStringLiteral("pushButton_6"));
-        pushButton_6->setGeometry(QRect(0, 0, 75, 23));
         mainTabWidget->addTab(tab_2, QString());
         tab = new QWidget();
         tab->setObjectName(QStringLiteral("tab"));
-        webEngineView_2 = new QWebEngineView(tab);
-        webEngineView_2->setObjectName(QStringLiteral("webEngineView_2"));
-        webEngineView_2->setGeometry(QRect(170, 80, 300, 200));
-        webEngineView_2->setUrl(QUrl(QStringLiteral("about:blank")));
+        pushButton_6 = new QPushButton(tab);
+        pushButton_6->setObjectName(QStringLiteral("pushButton_6"));
+        pushButton_6->setGeometry(QRect(350, 30, 75, 23));
+        augMatrix = new QTableWidget(tab);
+        if (augMatrix->columnCount() < 2)
+            augMatrix->setColumnCount(2);
+        if (augMatrix->rowCount() < 2)
+            augMatrix->setRowCount(2);
+        augMatrix->setObjectName(QStringLiteral("augMatrix"));
+        augMatrix->setGeometry(QRect(30, 90, 321, 291));
+        augMatrix->setMinimumSize(QSize(256, 0));
+        augMatrix->setRowCount(2);
+        augMatrix->setColumnCount(2);
+        applyMatrixRange = new QPushButton(tab);
+        applyMatrixRange->setObjectName(QStringLiteral("applyMatrixRange"));
+        applyMatrixRange->setGeometry(QRect(100, 60, 75, 23));
+        spinnerRowCount = new QSpinBox(tab);
+        spinnerRowCount->setObjectName(QStringLiteral("spinnerRowCount"));
+        spinnerRowCount->setGeometry(QRect(50, 10, 42, 22));
+        spinnerRowCount->setMinimum(2);
+        spinnerRowCount->setMaximum(20);
+        spinnerColumnCount = new QSpinBox(tab);
+        spinnerColumnCount->setObjectName(QStringLiteral("spinnerColumnCount"));
+        spinnerColumnCount->setGeometry(QRect(100, 10, 42, 22));
+        spinnerColumnCount->setMinimum(2);
+        spinnerColumnCount->setMaximum(20);
         mainTabWidget->addTab(tab, QString());
+        spinnerColumnCount->raise();
+        pushButton_6->raise();
+        augMatrix->raise();
+        applyMatrixRange->raise();
+        spinnerRowCount->raise();
 
         mainLayout->addWidget(mainTabWidget);
 
@@ -317,7 +344,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        mainTabWidget->setCurrentIndex(1);
+        mainTabWidget->setCurrentIndex(2);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -363,8 +390,9 @@ public:
         pushButton_4->setText(QApplication::translate("MainWindow", "Restar matrices", Q_NULLPTR));
         pushButton_5->setText(QApplication::translate("MainWindow", "Multiplicar matrices", Q_NULLPTR));
         mainTabWidget->setTabText(mainTabWidget->indexOf(basicMatrixOperations), QApplication::translate("MainWindow", "Operaciones b\303\241sicas con matrices", Q_NULLPTR));
-        pushButton_6->setText(QApplication::translate("MainWindow", "PushButton", Q_NULLPTR));
         mainTabWidget->setTabText(mainTabWidget->indexOf(tab_2), QApplication::translate("MainWindow", "Tab 2", Q_NULLPTR));
+        pushButton_6->setText(QApplication::translate("MainWindow", "Generar pdf", Q_NULLPTR));
+        applyMatrixRange->setText(QApplication::translate("MainWindow", "Aplicar", Q_NULLPTR));
         mainTabWidget->setTabText(mainTabWidget->indexOf(tab), QApplication::translate("MainWindow", "Page", Q_NULLPTR));
         menuArchivo->setTitle(QApplication::translate("MainWindow", "Archivo", Q_NULLPTR));
         menuVer->setTitle(QApplication::translate("MainWindow", "Ver", Q_NULLPTR));

@@ -1,6 +1,7 @@
 ﻿  MatrixTest.cpp
-c:\users\laptop\source\repos\matrices\matrixtest\..\Matrices\Report.cpp(5): warning C4129: 'o': secuencia de escape de carácter no reconocida
   Generando código
-  All 339 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  91 of 450 functions (20.2%) were compiled, the rest were copied from previous compilation.
+    66 functions were new in current compilation
+    37 functions had inline decision re-evaluated but remain unchanged
   Generación de código finalizada
   MatrixTest.vcxproj -> C:\Users\Laptop\Source\Repos\Matrices\Matrices\x64\Release\MatrixTest.exe

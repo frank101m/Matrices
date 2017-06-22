@@ -54,10 +54,19 @@ double Matrix::at(const int i, const int j) const {
 	return mBase.at(i).at(j);
 }
 
-Matrix Matrix::getRow(const int i) {
+Matrix Matrix::getRow(const int i) const {
 	Matrix t(1, getColumnsCount());
 	t.mBase.at(0) = this->mBase.at(i);
 	return t;
+}
+
+std::vector<double> Matrix::getRowVector(const int rowIndex) const
+{
+	return mBase.at(rowIndex);
+}
+
+void Matrix::setRow(const int rowIndex, const Matrix &m) {
+	mBase.at(rowIndex) = m.getRowVector(0);
 }
 
 /*Matrix* Matrix::sum(const Matrix *a, const Matrix *b){
@@ -91,7 +100,6 @@ Matrix Matrix::operator-(const Matrix& m){
             for(int j = 0; j < m.getColumnsCount(); j++)
                 res.set(i, j, this->at(i, j) - m.at(i, j));
         return res;
-
 }
 Matrix Matrix::operator*(const Matrix& m){
         Matrix res = Matrix(this->getRowsCount(), m.getColumnsCount());
@@ -105,7 +113,6 @@ Matrix Matrix::operator*(const Matrix& m){
             }
 
         return res;
-
 }
 
 Matrix Matrix::operator*(const double a) {
@@ -123,9 +130,55 @@ Matrix Matrix::operator*(const double a) {
     Eliminacion gaussiana con sustitución hacia atras
 */
 
-void Matrix::gaussianElimination() {
+void Matrix::swapRows(const int a, const int b) {
+	std::vector<double> rowT = mBase.at(a);
 
-	int p = 0; //Pivote nulificador
+	mBase.at(a) = mBase.at(b);
+	mBase.at(b) = rowT;
+}
+
+int Matrix::rowNonZeroElementIndex(const int initialIndex, const int columnIndex, const Matrix &m)
+{
+	int p;
+
+	for (p = initialIndex; p < m.getRowsCount(); p++) {
+		if (m.at(p, columnIndex) != 0.0) {
+			return p;
+		}
+	}
+
+	return -1;
+}
+
+Matrix Matrix::getGaussianElimination() {
+	Matrix t = *this;
+	Matrix currentRow(0,0);
+	int p = 0; //Indice del pivote
 	int n = getRowsCount();
+	double m;
+
+	for (int i = 0; i < n-1; i++) {
+		p = i;
+
+		if (t.at(p, i) == 0.0) {
+			p = rowNonZeroElementIndex(i,i,t);
+		}
+
+		//Solucion multiple
+		if (p == -1) {
+			return t;
+		} else if (p != i) {
+			t.swapRows(p, i);
+		}
+
+		for (int j = i + 1; j < n; j++) {
+			m = t.at(j, i) / t.at(i, i);
+			currentRow = t.getRow(j) - t.getRow(i) * m;
+			t.setRow(j, currentRow);
+		}
+
+	}
+
+	return t;
 
 }

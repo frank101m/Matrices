@@ -12,6 +12,10 @@ private:
 
 	void initialize(const int, const int);
 
+	int rowNonZeroElementIndex(const int, const int, const Matrix &);
+
+	void swapRows(const int, const int);
+
 public:
 
 	//Métodos generales
@@ -22,8 +26,11 @@ public:
 	void set(const int, const int, const double);
     double at(const int, const int) const;
 
-	Matrix getRow(const int);
-	Matrix getColumn(const int);
+	Matrix getRow(const int) const;
+	std::vector<double> getRowVector(const int) const;
+	Matrix getColumn(const int) const;
+
+	void setRow(const int, const Matrix &m);
 
 	//Los métodos de Frank van acá
     static bool validateSizes(const Matrix*, const Matrix&);
@@ -36,5 +43,5 @@ public:
 
 	//Solucion de sistemas de ecuaciones lineales
 
-	void gaussianElimination();
+	Matrix getGaussianElimination();
 };
