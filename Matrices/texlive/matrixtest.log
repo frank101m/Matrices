@@ -1,9 +1,10 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/W32TeX) (preloaded format=pdflatex 2016.11.2)  22 JUN 2017 16:49
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/W32TeX) (preloaded format=pdflatex 2016.11.2)  23 JUN 2017 06:37
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**\def\reportbody{\[\left(E_1-12314.8 E_2\right) \quad \rightarrow \quad E_1\]}
-\input{matrixtest.tex} -interaction=nonstopmode
+**\def\reportbody{\augmatrix{{a_1,a_2,a_3,a_4}}{{{87,788,5,5678},{5,57,0.5,4},{
+54,0.475,5785,545},{487,78,87,54}}}}\input{matrixtest.tex} -interaction=nonstop
+mode
 (./matrixtest.tex (./article.cls
 Document Class: article 2014/09/29 v1.4h Standard LaTeX document class
 (./size10.clo
@@ -171,18 +172,19 @@ LaTeX Font Info:    ... okay on input line 14.
 ]
 (./matrixtest.aux) ) 
 Here is how much of TeX's memory you used:
- 6380 strings out of 493013
- 115512 string characters out of 6136993
- 148973 words of memory out of 5000000
- 9903 multiletter control sequences out of 15000+600000
- 4447 words of font info for 17 fonts, out of 8000000 for 9000
+ 6506 strings out of 493013
+ 117607 string characters out of 6136993
+ 151031 words of memory out of 5000000
+ 10017 multiletter control sequences out of 15000+600000
+ 8268 words of font info for 30 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 48i,4n,42p,922b,142s stack positions out of 5000i,500n,10000p,200000b,80000s
-<./cmmi10.pfb><./cmr10.pfb><./cmr7.pfb><./cmsy10.pfb>
-Output written on matrixtest.pdf (1 page, 31946 bytes).
+ 48i,6n,42p,958b,353s stack positions out of 5000i,500n,10000p,200000b,80000s
+<./cmbx10.pfb><./cmex10.pfb><./cmmi10.pfb><./cmr10.pfb><./c
+mr7.pfb>
+Output written on matrixtest.pdf (1 page, 46967 bytes).
 PDF statistics:
- 24 PDF objects out of 1000 (max. 8388607)
- 16 compressed objects within 1 object stream
+ 28 PDF objects out of 1000 (max. 8388607)
+ 19 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

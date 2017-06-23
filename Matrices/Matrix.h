@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 
+
 class Matrix
 {
 
@@ -43,5 +44,5 @@ public:
 
 	//Solucion de sistemas de ecuaciones lineales
 
-	Matrix getGaussianElimination();
+	//Matrix getGaussianElimination(const std::vector<std::string> &, Report &);
 };

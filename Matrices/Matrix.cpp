@@ -1,5 +1,5 @@
+#pragma once
 #include "Matrix.h"
-
 /*
 	Métodos privados
 */
@@ -150,35 +150,57 @@ int Matrix::rowNonZeroElementIndex(const int initialIndex, const int columnIndex
 	return -1;
 }
 
-Matrix Matrix::getGaussianElimination() {
-	Matrix t = *this;
-	Matrix currentRow(0,0);
-	int p = 0; //Indice del pivote
-	int n = getRowsCount();
-	double m;
-
-	for (int i = 0; i < n-1; i++) {
-		p = i;
-
-		if (t.at(p, i) == 0.0) {
-			p = rowNonZeroElementIndex(i,i,t);
-		}
-
-		//Solucion multiple
-		if (p == -1) {
-			return t;
-		} else if (p != i) {
-			t.swapRows(p, i);
-		}
-
-		for (int j = i + 1; j < n; j++) {
-			m = t.at(j, i) / t.at(i, i);
-			currentRow = t.getRow(j) - t.getRow(i) * m;
-			t.setRow(j, currentRow);
-		}
-
-	}
-
-	return t;
-
-}
+//Matrix Matrix::getGaussianElimination(
+//	const std::vector<std::string> &vars,
+//	Report &report) {
+//	Matrix t = *this;
+//	Matrix currentRow(0,0);
+//	int p = 0; //Indice del pivote
+//	int n = getRowsCount();
+//	double m;
+//
+//
+//	for (int i = 0; i < n-1; i++) {
+//		std::vector<RowOperationParameter> params;
+//
+//		for (int paramIndex = 0; paramIndex < n; paramIndex++) {
+//			RowOperationParameter tempParam;
+//			tempParam.skip = true;
+//			params.push_back(tempParam);
+//		}
+//
+//		p = i;
+//
+//		if (t.at(p, i) == 0.0) {
+//			p = rowNonZeroElementIndex(i,i,t);
+//		}
+//
+//		//Solucion multiple
+//		if (p == -1) {
+//			return t;
+//		} else if (p != i) {
+//			t.swapRows(p, i);
+//		}
+//
+//		for (int j = i + 1; j < n; j++) {
+//			m = t.at(j, i) / t.at(i, i);
+//
+//#include "Report.h"
+//			params.at(j).i = i + 1;
+//			params.at(j).j = j + 1;
+//			params.at(j).m = m;
+//			params.at(j).skip = false;
+//
+//			currentRow = t.getRow(j) - t.getRow(i) * m;
+//			t.setRow(j, currentRow);
+//		}
+//
+//		report.addGaussOpMatrix(i + 1, vars, params, t);
+//
+//
+//	}
+//
+//
+//	return t;
+//
+//}

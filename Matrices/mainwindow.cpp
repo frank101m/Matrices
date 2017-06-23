@@ -238,8 +238,8 @@ void MainWindow::on_pushButton_6_clicked()
 	std::ostringstream body;
 	body << "\"\\def\\reportbody{";
 	body << testReport.generateAugmentedMatrixElement(vars, aug);
-	Matrix augEl = aug.getGaussianElimination();
-	body << testReport.generateAugmentedMatrixElement(vars, augEl);
+	//Matrix augEl = aug.getGaussianElimination();
+	//body << testReport.generateAugmentedMatrixElement(vars, augEl);
 	body << "}";
 	body << "\\input{matrixtest.tex}\"";
 

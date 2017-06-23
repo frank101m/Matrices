@@ -6,6 +6,8 @@ const std::string Report::MATRIX_GAUSSIAN_REDUCTION_COMMAND = "\\opmatrix";
 const std::string Report::MATRIX_SEPARATOR = ",";
 const std::string Report::ARRAY_END = "}";
 const std::string Report::ARRAY_START = "{";
+const std::string Report::REPORT_BODY_START = "\\def\\reportbody{";
+const std::string Report::REPORT_BODY_END = "}";
 
 
 Report::Report(const int precision)
@@ -13,18 +15,113 @@ Report::Report(const int precision)
 	this->precision = precision;
 }
 
-std::string Report::generateRowOperation(const int i, const int j, const double m) {
+std::string Report::getReportBody() {
+	return this->reportBodyStream.str();
+}
+
+void Report::initializeReportBody()
+{
+	if (this->initialized = true) {
+		this->reportBodyStream.clear();
+	} else {
+		this->reportBodyStream << REPORT_BODY_START;
+	}
+
+	this->initialized = true;
+}
+
+void Report::endReportBody()
+{
+	if (this->initialized) {
+		reportBodyStream << REPORT_BODY_END;
+	}
+}
+
+void Report::addGaussOpMatrix(
+	const int index,
+	const std::vector<std::string> &vars,
+	const std::vector<RowOperationParameter> &params,
+	const Matrix & m)
+{
+	reportBodyStream << generateGaussOpMatrixElement(index, vars, params, m);
+}
+
+std::string Report::generateRowOperation(const RowOperationParameter &param) {
 	std::ostringstream rowOpStream;
-	rowOpStream << "\\left(";
-	rowOpStream << "E_" << i;
-	rowOpStream << "-";
-	rowOpStream << m << std::setprecision(precision);
-	rowOpStream << "E_" << j;
-	rowOpStream << "\\right)";
-	rowOpStream << " \\quad \\rightarrow \\quad ";
-	rowOpStream << "E_" << i;
+
+	if (!param.skip) {
+		rowOpStream << "\\quad ";
+		//rowOpStream << "\\left(";
+		rowOpStream << "E_" << param.i;
+		rowOpStream << "-";
+		rowOpStream << "\\left(";
+		rowOpStream << param.m << std::setprecision(precision);
+		rowOpStream << "\\right)";
+		rowOpStream << "E_" << param.j;
+		//rowOpStream << "\\right)";
+		rowOpStream << " \\quad \\rightarrow \\quad ";
+		rowOpStream << "E_" << param.i;
+	}
 
 	return rowOpStream.str();
+}
+
+std::string Report::generateGaussOpMatrixArray(
+	const std::vector<RowOperationParameter> &params,
+	const Matrix &m
+)
+{
+	std::ostringstream gaussOpMatrixArrayStream;
+
+	gaussOpMatrixArrayStream << ARRAY_START;
+
+	for (int i = 0; i < m.getRowsCount(); i++) {
+		gaussOpMatrixArrayStream << ARRAY_START;
+		gaussOpMatrixArrayStream << generateRowSeq(m, i, MATRIX_SEPARATOR);
+
+		//Se agrega el parametro estilizado de la operacion
+		gaussOpMatrixArrayStream << MATRIX_SEPARATOR;
+		gaussOpMatrixArrayStream << generateRowOperation(params.at(i));
+		gaussOpMatrixArrayStream << ARRAY_END;
+
+		if (i != m.getRowsCount() - 1) {
+			gaussOpMatrixArrayStream << MATRIX_SEPARATOR;
+		}
+	}
+
+	gaussOpMatrixArrayStream << ARRAY_END;
+
+	return gaussOpMatrixArrayStream.str();
+}
+
+std::string Report::generateGaussOpMatrixElement(
+	const int index,
+	const std::vector<std::string> &vars,
+	const std::vector<RowOperationParameter> &params,
+	const Matrix & m
+)
+{
+	std::ostringstream gaussOpMatrixStream;
+
+	//Encabezado
+	gaussOpMatrixStream << MATRIX_GAUSSIAN_REDUCTION_COMMAND;
+
+	//Parametro de indice de la matriz
+	gaussOpMatrixStream << ARRAY_START;
+	gaussOpMatrixStream << index;
+	gaussOpMatrixStream << ARRAY_END;
+
+	//Parametro de variables
+	gaussOpMatrixStream << ARRAY_START;
+	gaussOpMatrixStream << generateVarArray(vars);
+	gaussOpMatrixStream << ARRAY_END;
+
+	//Parametro de matriz
+	gaussOpMatrixStream << ARRAY_START;
+	gaussOpMatrixStream << generateGaussOpMatrixArray(params, m);
+	gaussOpMatrixStream << ARRAY_END;
+
+	return gaussOpMatrixStream.str();
 }
 
 
