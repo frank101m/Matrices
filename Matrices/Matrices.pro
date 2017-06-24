@@ -27,8 +27,7 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
         Matrix.cpp \
-        Report.cpp \
-        lineareqs.cpp
+        Report.cpp
 
 HEADERS += \
         mainwindow.h \

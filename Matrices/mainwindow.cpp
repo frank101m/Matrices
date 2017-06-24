@@ -3,10 +3,10 @@
 #include <QMessageBox>
 #include <QProcess>
 #include <qdir.h>
-#include "Matrix.h"
+#include "Matrix.cpp"
 #include <iostream>
 #include <stdarg.h>
-#include "Report.h"
+#include "Report.cpp"
 
 
 MainWindow::MainWindow(QWidget *parent) :

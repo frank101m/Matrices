@@ -9,7 +9,6 @@ const std::string Report::ARRAY_START = "{";
 const std::string Report::REPORT_BODY_START = "\\def\\reportbody{";
 const std::string Report::REPORT_BODY_END = "}";
 
-
 Report::Report(const int precision)
 {
 	this->precision = precision;
