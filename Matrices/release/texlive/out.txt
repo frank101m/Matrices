@@ -1,0 +1,26 @@
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/W32TeX) (preloaded format=pdflatex)
+ restricted \write18 enabled.
+entering extended mode
+LaTeX2e <2016/03/31> patch level 3
+Babel <3.9r> and hyphenation patterns for 83 language(s) loaded.
+(./matrixtest.tex (./article.cls
+Document Class: article 2014/09/29 v1.4h Standard LaTeX document class
+(./size10.clo)) (./matrixreport.sty (./blkarray.sty) (./pgffor.sty
+(./pgfrcs.sty (./pgfutil-common.tex (./pgfutil-common-lists.tex))
+(./pgfutil-latex.def (./everyshi.sty)) (./pgfrcs.code.tex)) (./pgfkeys.sty
+(./pgfkeys.code.tex (./pgfkeysfiltered.code.tex))) (./pgfmath.sty
+(./pgfmath.code.tex (./pgfmathcalc.code.tex (./pgfmathutil.code.tex)
+(./pgfmathparser.code.tex) (./pgfmathfunctions.code.tex
+(./pgfmathfunctions.basic.code.tex) (./pgfmathfunctions.trigonometric.code.tex)
+(./pgfmathfunctions.random.code.tex) (./pgfmathfunctions.comparison.code.tex)
+(./pgfmathfunctions.base.code.tex) (./pgfmathfunctions.round.code.tex)
+(./pgfmathfunctions.misc.code.tex)
+(./pgfmathfunctions.integerarithmetics.code.tex))) (./pgfmathfloat.code.tex)))
+(./pgffor.code.tex (./pgfmath.code.tex))) (./etoolbox.sty) (./amsmath.sty
+For additional information on amsmath, use the `?' option.
+(./amstext.sty (./amsgen.sty)) (./amsbsy.sty) (./amsopn.sty)))
+(./matrixtest.aux) ABD: EveryShipout initializing macros [1{pdftex.map}]
+(./matrixtest.aux) )<./cmex10.pfb><./cmmi10.pfb><./cmr10.pfb><./cmr7.pfb><./cms
+y10.pfb><./cmsy7.pfb>
+Output written on matrixtest.pdf (1 page, 53058 bytes).
+Transcript written on matrixtest.log.

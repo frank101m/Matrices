@@ -1,0 +1,94 @@
+\usepackage{blkarray}
+\usepackage{pgffor}
+\usepackage{etoolbox}
+\usepackage{amsmath}
+
+\let\rowcontent\empty
+
+\newcounter{dummy}
+
+\def\getNoOfElements#1#2{%
+  \setcounter{dummy}{0}% 
+  \foreach\dummy in #1{\stepcounter{dummy}}%
+  \edef#2{\arabic{dummy}}
+}
+
+%Generar una única columna
+\newcommand{\genrow}[1]
+{
+\let\rowcontent\empty
+\getNoOfElements{#1}\No
+\foreach \e [count=\ei] in #1
+{
+	\ifnum\No=\ei
+	\expandafter\gappto\expandafter\rowcontent\expandafter{\expandafter{\e}}
+	\else
+	\expandafter\gappto\expandafter\rowcontent\expandafter{\expandafter{\e} &}
+	\fi
+}
+\rowcontent
+}
+
+%Generar la matriz,
+%Es imposible reusar código sin que explote latex
+\newcommand{\genmatrix}[1]
+{
+\let\rowcontent\empty
+\getNoOfElements{#1}\Ni
+\foreach \i [count=\ii] in #1 {
+    \getNoOfElements{\i}\Ne
+    \foreach \e [count=\ei] in \i
+    {
+    	\ifnum\Ne=\ei
+    	\ifnum\ii=\Ni
+    	\expandafter\gappto\expandafter\rowcontent\expandafter{\expandafter{\e}}
+    	\else
+    	\expandafter\gappto\expandafter\rowcontent\expandafter{\expandafter{\e}\\}
+    	\fi
+    	\else
+    	\expandafter\gappto\expandafter\rowcontent\expandafter{\expandafter{\e} &}
+    	\fi
+    }
+    }
+    \rowcontent
+}
+
+
+\newcommand{\regmatrix}[2]
+{
+\[
+    \begin{blockarray}{(*{#1}{r})}
+        \genmatrix{#2}
+    \end{blockarray} \\
+\]
+}
+
+%Generar la matriz augmentada
+\newcommand{\augmatrix}[2]
+{
+Composici\'on de la matriz aumentada $\tilde{A}$ 
+\getNoOfElements{#1}\size
+\[
+\tilde{A}=\left[A,\mathbf{b}\right]=
+\begin{blockarray} {*{\size}{r}r}
+\genrow{#1} \\
+\begin{block}{(*{\size}{r}|r)}
+\genmatrix{#2} \\
+\end{block}
+\end{blockarray}
+\]
+}
+
+\newcommand{\opmatrix}[3]
+{
+\[
+\getNoOfElements{#2}\size
+\tilde{A}^{(#1)} = 
+\begin{blockarray}{*{\size}{r}rr}
+\genrow{#2} &  & \mbox{Operaci\'on realizada}\\
+\begin{block}{(*{\size}{r}|r)r}
+\genmatrix{#3} \\
+\end{block}
+\end{blockarray}
+\]
+}
