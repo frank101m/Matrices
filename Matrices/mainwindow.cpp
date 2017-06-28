@@ -3,10 +3,11 @@
 #include <QMessageBox>
 #include <QProcess>
 #include <qdir.h>
-#include "Matrix.cpp"
 #include <iostream>
 #include <stdarg.h>
-#include "Report.cpp"
+
+//Partes numericas
+#include "LinearSolver.h"
 
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -23,13 +24,22 @@ MainWindow::MainWindow(QWidget *parent) :
     setTableValidatorA();
     setTableValidatorB();
 	setLinearEqTableValidator();
+	setUpVarsValidation();
 
 }
+
+
 
 MainWindow::~MainWindow()
 {
     delete webDisplay;
     delete ui;
+}
+void MainWindow::setUpVarsValidation(){
+	ui->acceptVars->setEnabled(false);
+	QRegExp re("^(([a-z]|[A-Z])|([a-z]_[0-9]|[A-Z]_[0-9]))(,(([a-z]|[A-Z])|([a-z]_[0-9]|[A-Z]_[0-9])))*$");
+	QRegExpValidator *regVal = new QRegExpValidator(re);
+	ui->lineEditVars->setValidator(regVal);
 }
 
 void MainWindow::on_pushButton_clicked()
@@ -219,7 +229,7 @@ void MainWindow::on_pushButton_6_clicked()
 	QLineEdit *tempLineEdit;
 
 	Matrix aug(n, m);
-	Report testReport(10);
+	Report testReport(6);
 
 	for (int i = 0; i < n; i++) {
 		for (int j = 0; j < m; j++) {
@@ -235,15 +245,30 @@ void MainWindow::on_pushButton_6_clicked()
 	vars.push_back("a_3");
 	vars.push_back("a_4");
 
+	testReport.addAugmentMatrixElement(vars, aug);
+	Matrix augEl = LinearSolver::getGaussianElimination(aug, vars, testReport);
+
+	std::vector<RowOperationParameter> ops;
+
+	for (int i = 0; i < aug.getRowsCount(); i++) {
+		RowOperationParameter tempOp;
+
+		tempOp.i = i;
+		tempOp.j = i + 1;
+		tempOp.m = 1.0;
+		tempOp.skip = false;
+
+		ops.push_back(tempOp);
+	}
+
 	std::ostringstream body;
 	body << "\"\\def\\reportbody{";
-	body << testReport.generateAugmentedMatrixElement(vars, aug);
-	//Matrix augEl = aug.getGaussianElimination();
-	//body << testReport.generateAugmentedMatrixElement(vars, augEl);
+	body << testReport.getReportBody();
 	body << "}";
 	body << "\\input{matrixtest.tex}\"";
 
 	QString file = QCoreApplication::applicationDirPath() + "/" + "texlive/pdflatex.exe " + QString::fromStdString(body.str()) + " -interaction=nonstopmode";
+	//pathMsg.setText(QString::fromStdString(body.str()));
 
 	process.setWorkingDirectory(QDir::currentPath().append(QDir::separator()).append("texlive"));
 	process.start(file);
@@ -318,4 +343,15 @@ void MainWindow::on_applyMatrixRange_clicked()
 	ui->augMatrix->setRowCount(ui->spinnerRowCount->value());
 	ui->augMatrix->setColumnCount(ui->spinnerColumnCount->value());
 	setLinearEqTableValidator();
+}
+
+void MainWindow::on_acceptVars_clicked()
+{
+}
+
+void MainWindow::on_lineEditVars_editingFinished()
+{
+	QMessageBox msg;
+	msg.setText("Validated");
+	msg.exec();
 }

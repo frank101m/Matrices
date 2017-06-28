@@ -11,11 +11,6 @@ private:
 
 	std::vector<std::vector<double>> mBase;
 
-	void initialize(const int, const int);
-
-	int rowNonZeroElementIndex(const int, const int, const Matrix &);
-
-	void swapRows(const int, const int);
 
 public:
 
@@ -43,6 +38,11 @@ public:
 
 
 	//Solucion de sistemas de ecuaciones lineales
+	void initialize(const int, const int);
+
+	int rowNonZeroElementIndex(const int, const int, const Matrix &);
+
+	void swapRows(const int, const int);
 
 	//Matrix getGaussianElimination(const std::vector<std::string> &, Report &);
 };

@@ -18,6 +18,7 @@
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
+#include <QtWidgets/QLineEdit>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
@@ -74,6 +75,8 @@ public:
     QPushButton *applyMatrixRange;
     QSpinBox *spinnerRowCount;
     QSpinBox *spinnerColumnCount;
+    QPushButton *acceptVars;
+    QLineEdit *lineEditVars;
     QMenuBar *menuBar;
     QMenu *menuArchivo;
     QMenu *menuVer;
@@ -309,12 +312,20 @@ public:
         spinnerColumnCount->setGeometry(QRect(100, 10, 42, 22));
         spinnerColumnCount->setMinimum(2);
         spinnerColumnCount->setMaximum(20);
+        acceptVars = new QPushButton(tab);
+        acceptVars->setObjectName(QStringLiteral("acceptVars"));
+        acceptVars->setGeometry(QRect(650, 100, 75, 23));
+        lineEditVars = new QLineEdit(tab);
+        lineEditVars->setObjectName(QStringLiteral("lineEditVars"));
+        lineEditVars->setGeometry(QRect(370, 70, 361, 20));
         mainTabWidget->addTab(tab, QString());
         spinnerColumnCount->raise();
         pushButton_6->raise();
         augMatrix->raise();
         applyMatrixRange->raise();
         spinnerRowCount->raise();
+        acceptVars->raise();
+        lineEditVars->raise();
 
         mainLayout->addWidget(mainTabWidget);
 
@@ -393,6 +404,7 @@ public:
         mainTabWidget->setTabText(mainTabWidget->indexOf(tab_2), QApplication::translate("MainWindow", "Tab 2", Q_NULLPTR));
         pushButton_6->setText(QApplication::translate("MainWindow", "Generar pdf", Q_NULLPTR));
         applyMatrixRange->setText(QApplication::translate("MainWindow", "Aplicar", Q_NULLPTR));
+        acceptVars->setText(QApplication::translate("MainWindow", "Aceptar", Q_NULLPTR));
         mainTabWidget->setTabText(mainTabWidget->indexOf(tab), QApplication::translate("MainWindow", "Page", Q_NULLPTR));
         menuArchivo->setTitle(QApplication::translate("MainWindow", "Archivo", Q_NULLPTR));
         menuVer->setTitle(QApplication::translate("MainWindow", "Ver", Q_NULLPTR));

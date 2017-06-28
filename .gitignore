@@ -69,3 +69,4 @@ CMakeLists.txt.user*
 /MatrixTest/MatrixTest.vcxproj.filters
 /Matrices/x64/Release
 /x64/Release/MatrixTest.log
+/MatrixTest/x64/Debug

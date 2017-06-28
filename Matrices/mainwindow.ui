@@ -335,11 +335,36 @@
            <number>20</number>
           </property>
          </widget>
+         <widget class="QPushButton" name="acceptVars">
+          <property name="geometry">
+           <rect>
+            <x>650</x>
+            <y>100</y>
+            <width>75</width>
+            <height>23</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Aceptar</string>
+          </property>
+         </widget>
+         <widget class="QLineEdit" name="lineEditVars">
+          <property name="geometry">
+           <rect>
+            <x>370</x>
+            <y>70</y>
+            <width>361</width>
+            <height>20</height>
+           </rect>
+          </property>
+         </widget>
          <zorder>spinnerColumnCount</zorder>
          <zorder>pushButton_6</zorder>
          <zorder>augMatrix</zorder>
          <zorder>applyMatrixRange</zorder>
          <zorder>spinnerRowCount</zorder>
+         <zorder>acceptVars</zorder>
+         <zorder>lineEditVars</zorder>
         </widget>
        </widget>
       </item>

@@ -10,6 +10,7 @@
 
 struct RowOperationParameter {
 	bool skip = false;
+	bool swap = false;
 	int i;
 	int j;
 	double m;
@@ -58,6 +59,11 @@ public:
 
 	void initializeReportBody();
 	void endReportBody();
+
+	void addAugmentMatrixElement(
+		const std::vector<std::string> &vars,
+		const Matrix &m
+	);
 
 	void addGaussOpMatrix(
 		const int,

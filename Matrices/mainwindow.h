@@ -33,6 +33,8 @@ private slots:
 
     void on_actionSalir_triggered();
 	void on_applyMatrixRange_clicked();
+	void on_acceptVars_clicked();
+	void on_lineEditVars_editingFinished();
 
 private:
     QWebEngineView *webDisplay;
@@ -42,6 +44,7 @@ private:
 	void setLinearEqTableValidator();
     void renderResult();
 	void initializeLinearEqModule();
+	void setUpVarsValidation();
 };
 
 #endif // MAINWINDOW_H

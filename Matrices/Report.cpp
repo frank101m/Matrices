@@ -32,8 +32,13 @@ void Report::initializeReportBody()
 void Report::endReportBody()
 {
 	if (this->initialized) {
-		reportBodyStream << REPORT_BODY_END;
+		this->reportBodyStream << REPORT_BODY_END;
 	}
+}
+
+void Report::addAugmentMatrixElement(const std::vector<std::string>& vars, const Matrix & m)
+{
+	this->reportBodyStream << generateAugmentedMatrixElement(vars, m);
 }
 
 void Report::addGaussOpMatrix(
@@ -42,24 +47,34 @@ void Report::addGaussOpMatrix(
 	const std::vector<RowOperationParameter> &params,
 	const Matrix & m)
 {
-	reportBodyStream << generateGaussOpMatrixElement(index, vars, params, m);
+	this->reportBodyStream << generateGaussOpMatrixElement(index, vars, params, m);
 }
 
 std::string Report::generateRowOperation(const RowOperationParameter &param) {
 	std::ostringstream rowOpStream;
 
 	if (!param.skip) {
-		rowOpStream << "\\quad ";
-		//rowOpStream << "\\left(";
-		rowOpStream << "E_" << param.i;
-		rowOpStream << "-";
-		rowOpStream << "\\left(";
-		rowOpStream << param.m << std::setprecision(precision);
-		rowOpStream << "\\right)";
-		rowOpStream << "E_" << param.j;
-		//rowOpStream << "\\right)";
-		rowOpStream << " \\quad \\rightarrow \\quad ";
-		rowOpStream << "E_" << param.i;
+
+		if (param.swap) {
+			rowOpStream << "\\quad ";
+			//rowOpStream << "\\left(";
+			rowOpStream << "E_" << param.j;
+			rowOpStream << " \\quad \\longleftrightarrow \\quad ";
+			rowOpStream << "E_" << param.i;
+		} else {
+			rowOpStream << "\\quad ";
+			//rowOpStream << "\\left(";
+			rowOpStream << "E_" << param.j;
+			rowOpStream << "-";
+			rowOpStream << "\\left(";
+			rowOpStream << param.m << std::setprecision(precision);
+			rowOpStream << "\\right)";
+			rowOpStream << "E_" << param.i;
+			//rowOpStream << "\\right)";
+			rowOpStream << " \\quad \\rightarrow \\quad ";
+			rowOpStream << "E_" << param.j;
+		}
+
 	}
 
 	return rowOpStream.str();
