@@ -67,6 +67,15 @@ public:
     QPushButton *pushButton_3;
     QPushButton *pushButton_4;
     QPushButton *pushButton_5;
+    QVBoxLayout *verticalLayout_4;
+    QPushButton *pushButton_9;
+    QPushButton *pushButton_10;
+    QVBoxLayout *verticalLayout_5;
+    QPushButton *pushButton_11;
+    QPushButton *pushButton_12;
+    QVBoxLayout *verticalLayout;
+    QPushButton *pushButton_7;
+    QPushButton *pushButton_8;
     QWidget *tab_2;
     QWebEngineView *webEngineView;
     QWidget *tab;
@@ -273,6 +282,54 @@ public:
 
         horizontalLayout_5->addWidget(pushButton_5);
 
+        verticalLayout_4 = new QVBoxLayout();
+        verticalLayout_4->setSpacing(6);
+        verticalLayout_4->setObjectName(QStringLiteral("verticalLayout_4"));
+        pushButton_9 = new QPushButton(basicMatrixOperations);
+        pushButton_9->setObjectName(QStringLiteral("pushButton_9"));
+
+        verticalLayout_4->addWidget(pushButton_9);
+
+        pushButton_10 = new QPushButton(basicMatrixOperations);
+        pushButton_10->setObjectName(QStringLiteral("pushButton_10"));
+
+        verticalLayout_4->addWidget(pushButton_10);
+
+
+        horizontalLayout_5->addLayout(verticalLayout_4);
+
+        verticalLayout_5 = new QVBoxLayout();
+        verticalLayout_5->setSpacing(6);
+        verticalLayout_5->setObjectName(QStringLiteral("verticalLayout_5"));
+        pushButton_11 = new QPushButton(basicMatrixOperations);
+        pushButton_11->setObjectName(QStringLiteral("pushButton_11"));
+
+        verticalLayout_5->addWidget(pushButton_11);
+
+        pushButton_12 = new QPushButton(basicMatrixOperations);
+        pushButton_12->setObjectName(QStringLiteral("pushButton_12"));
+
+        verticalLayout_5->addWidget(pushButton_12);
+
+
+        horizontalLayout_5->addLayout(verticalLayout_5);
+
+        verticalLayout = new QVBoxLayout();
+        verticalLayout->setSpacing(6);
+        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
+        pushButton_7 = new QPushButton(basicMatrixOperations);
+        pushButton_7->setObjectName(QStringLiteral("pushButton_7"));
+
+        verticalLayout->addWidget(pushButton_7);
+
+        pushButton_8 = new QPushButton(basicMatrixOperations);
+        pushButton_8->setObjectName(QStringLiteral("pushButton_8"));
+
+        verticalLayout->addWidget(pushButton_8);
+
+
+        horizontalLayout_5->addLayout(verticalLayout);
+
 
         verticalLayout_3->addLayout(horizontalLayout_5);
 
@@ -282,7 +339,7 @@ public:
         webEngineView = new QWebEngineView(tab_2);
         webEngineView->setObjectName(QStringLiteral("webEngineView"));
         webEngineView->setGeometry(QRect(0, 30, 751, 381));
-        webEngineView->setUrl(QUrl(QStringLiteral("about:blank")));
+        webEngineView->setProperty("url", QVariant(QUrl(QStringLiteral("about:blank"))));
         mainTabWidget->addTab(tab_2, QString());
         tab = new QWidget();
         tab->setObjectName(QStringLiteral("tab"));
@@ -335,7 +392,7 @@ public:
         MainWindow->setCentralWidget(widget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 771, 21));
+        menuBar->setGeometry(QRect(0, 0, 771, 19));
         menuArchivo = new QMenu(menuBar);
         menuArchivo->setObjectName(QStringLiteral("menuArchivo"));
         menuVer = new QMenu(menuBar);
@@ -355,7 +412,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        mainTabWidget->setCurrentIndex(2);
+        mainTabWidget->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -400,6 +457,12 @@ public:
         pushButton_3->setText(QApplication::translate("MainWindow", "Sumar matrices", Q_NULLPTR));
         pushButton_4->setText(QApplication::translate("MainWindow", "Restar matrices", Q_NULLPTR));
         pushButton_5->setText(QApplication::translate("MainWindow", "Multiplicar matrices", Q_NULLPTR));
+        pushButton_9->setText(QApplication::translate("MainWindow", "Transponer matriz A", Q_NULLPTR));
+        pushButton_10->setText(QApplication::translate("MainWindow", "Transponer matriz B", Q_NULLPTR));
+        pushButton_11->setText(QApplication::translate("MainWindow", "Inversa de A", Q_NULLPTR));
+        pushButton_12->setText(QApplication::translate("MainWindow", "Inversa de B", Q_NULLPTR));
+        pushButton_7->setText(QApplication::translate("MainWindow", "Determinante de matriz A", Q_NULLPTR));
+        pushButton_8->setText(QApplication::translate("MainWindow", "Determinante de matriz B", Q_NULLPTR));
         mainTabWidget->setTabText(mainTabWidget->indexOf(basicMatrixOperations), QApplication::translate("MainWindow", "Operaciones b\303\241sicas con matrices", Q_NULLPTR));
         mainTabWidget->setTabText(mainTabWidget->indexOf(tab_2), QApplication::translate("MainWindow", "Tab 2", Q_NULLPTR));
         pushButton_6->setText(QApplication::translate("MainWindow", "Generar pdf", Q_NULLPTR));

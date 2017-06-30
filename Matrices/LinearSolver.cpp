@@ -72,7 +72,7 @@ namespace LinearSolver {
 		return t;
 	}
 
-	Matrix LinearSolver::getJacobiMethod(const Matrix & A, const Matrix &C, const Matrix &X0)
+   /* Matrix LinearSolver::getJacobiMethod(const Matrix & A, const Matrix &C, const Matrix &X0)
 	{
 		size_t n = A.getRowsCount();
 
@@ -85,6 +85,6 @@ namespace LinearSolver {
 		}
 
 		return x;
-	}
+    }*/
 
 }

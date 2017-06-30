@@ -27,12 +27,14 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
         Matrix.cpp \
-        Report.cpp
+        Report.cpp \
+        LinearSolver.cpp
 
 HEADERS += \
         mainwindow.h \
         Matrix.h \
-        Report.h
+        Report.h \
+        LinearSolver.h
 FORMS += \
         mainwindow.ui
 

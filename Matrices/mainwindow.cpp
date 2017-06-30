@@ -315,7 +315,43 @@ void MainWindow::on_pushButton_6_clicked()
 	QProcess process;
 	QMessageBox pathMsg;
 
-	QString file = "pdftex -interaction=nonstopmode matrixtest.tex";
+
+
+    QTableWidget *augMatrixTable = ui->augMatrix;
+
+    int n = augMatrixTable->rowCount();
+    int m = augMatrixTable->columnCount();
+
+    QLineEdit *tempLineEdit;
+
+    Matrix aug(n, m);
+    Report testReport(10);
+
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            tempLineEdit = (QLineEdit*) augMatrixTable->cellWidget(i, j);
+            aug.set(i, j, tempLineEdit->text().toDouble());
+        }
+    }
+
+    std::vector<std::string> vars;
+
+    vars.push_back("a_1");
+    vars.push_back("a_2");
+    vars.push_back("a_3");
+    vars.push_back("a_4");
+
+    std::ostringstream body;
+    body << "\"\\def\\reportbody{";
+    body << testReport.generateAugmentedMatrixElement(vars, aug);
+    //Matrix augEl = aug.getGaussianElimination();
+    //body << testReport.generateAugmentedMatrixElement(vars, augEl);
+    body << "}";
+    body << "\\input{matrixtest.tex}\"";
+
+
+
+    QString file = "./pdflatex -interaction=nonstopmode "+ QString::fromStdString(body.str());
 
 	process.setWorkingDirectory(QDir::currentPath().append(QDir::separator()).append("texlive"));
 	process.start(file);
@@ -380,4 +416,184 @@ void MainWindow::on_lineEditVars_editingFinished()
 	QMessageBox msg;
 	msg.setText("Validated");
 	msg.exec();
+}
+void MainWindow::on_pushButton_7_clicked()
+{
+    QString msg = "Resultado:";
+    if(ui->tableWidget->columnCount() == ui->tableWidget->rowCount()){
+        Matrix *a = new Matrix(ui->tableWidget->rowCount(), ui->tableWidget->columnCount());
+
+        for(int i = 0; i < ui->tableWidget->rowCount(); i++)
+            for(int j = 0; j < ui->tableWidget->columnCount(); j++){
+               QLineEdit *ql = (QLineEdit*) ui->tableWidget->cellWidget(i, j);
+               a->set(i, j, ql->text().toDouble());
+            }
+
+
+        msg += "\n";
+        double det = Matrix::detGauss(a);
+        msg += QString::number(det);
+
+    }
+    else{
+        msg = "error en la configuracion matricial";
+    }
+
+
+    QMessageBox msgBox;
+
+    msgBox.setText(msg);
+    msgBox.setWindowTitle("Resultado:");
+    msgBox.setWindowModality(Qt::WindowModal);
+    msgBox.exec();
+    this->renderResult();
+
+}
+
+void MainWindow::on_pushButton_8_clicked()
+{
+
+
+    QString msg = "Resultado:";
+    if(ui->tableWidget_2->columnCount() == ui->tableWidget_2->rowCount()){
+        Matrix *a = new Matrix(ui->tableWidget_2->rowCount(), ui->tableWidget_2->columnCount());
+
+        for(int i = 0; i < ui->tableWidget_2->rowCount(); i++)
+            for(int j = 0; j < ui->tableWidget_2->columnCount(); j++){
+               QLineEdit *ql = (QLineEdit*) ui->tableWidget_2->cellWidget(i, j);
+               a->set(i, j, ql->text().toDouble());
+            }
+
+
+        msg += "\n";
+        double det = Matrix::detGauss(a);
+        msg += QString::number(det);
+
+    }
+    else{
+        msg = "error en la configuracion matricial";
+    }
+
+
+    QMessageBox msgBox;
+
+    msgBox.setText(msg);
+    msgBox.setWindowTitle("Resultado:");
+    msgBox.setWindowModality(Qt::WindowModal);
+    msgBox.exec();
+    this->renderResult();
+
+
+}
+
+void MainWindow::on_pushButton_9_clicked()
+{
+    QString msg = "Resultado:";
+    msg += "\n";
+    Matrix a = Matrix(ui->tableWidget->rowCount(), ui->tableWidget->columnCount());
+    for(int i = 0; i < ui->tableWidget->rowCount(); i++)
+        for(int j = 0; j < ui->tableWidget->columnCount(); j++){
+           QLineEdit *ql = (QLineEdit*) ui->tableWidget->cellWidget(i, j);
+           a.set(i, j, ql->text().toDouble());
+        }
+    Matrix t = a.transpose();
+    for(int i = 0; i < t.getRowsCount(); i++){
+        for(int j = 0; j < t.getColumnsCount(); j++){
+            msg+=QString::number(t.at(i, j)) + ", ";
+        }
+        msg+="\n";
+    }
+    QMessageBox msgBox;
+
+    msgBox.setText(msg);
+    msgBox.setWindowTitle("Resultado:");
+    msgBox.setWindowModality(Qt::WindowModal);
+    msgBox.exec();
+    this->renderResult();
+}
+
+void MainWindow::on_pushButton_10_clicked()
+{
+    QString msg = "Resultado:";
+    msg += "\n";
+    Matrix a = Matrix(ui->tableWidget_2->rowCount(), ui->tableWidget_2->columnCount());
+    for(int i = 0; i < ui->tableWidget_2->rowCount(); i++)
+        for(int j = 0; j < ui->tableWidget_2->columnCount(); j++){
+           QLineEdit *ql = (QLineEdit*) ui->tableWidget_2->cellWidget(i, j);
+           a.set(i, j, ql->text().toDouble());
+        }
+    Matrix t = a.transpose();
+    for(int i = 0; i < t.getRowsCount(); i++){
+        for(int j = 0; j < t.getColumnsCount(); j++){
+            msg+=QString::number(t.at(i, j)) +", ";
+        }
+        msg+="\n";
+    }
+    QMessageBox msgBox;
+
+    msgBox.setText(msg);
+    msgBox.setWindowTitle("Resultado:");
+    msgBox.setWindowModality(Qt::WindowModal);
+    msgBox.exec();
+    this->renderResult();
+}
+
+void MainWindow::on_pushButton_11_clicked()
+{
+    if(ui->tableWidget->rowCount() == ui->tableWidget->columnCount()){
+
+    QString msg = "Resultado:";
+    msg += "\n";
+    Matrix a = Matrix(ui->tableWidget->rowCount(), ui->tableWidget->columnCount());
+    for(int i = 0; i < ui->tableWidget->rowCount(); i++)
+        for(int j = 0; j < ui->tableWidget->columnCount(); j++){
+           QLineEdit *ql = (QLineEdit*) ui->tableWidget->cellWidget(i, j);
+           a.set(i, j, ql->text().toDouble());
+        }
+    Matrix b = a.inverse();
+    for(int i = 0; i < b.getRowsCount(); i++){
+        for(int j = 0; j < b.getColumnsCount(); j++){
+            msg+=QString::number(b.at(i, j))+", ";
+        }
+        msg+="\n";
+    }
+    QMessageBox msgBox;
+
+    msgBox.setText(msg);
+    msgBox.setWindowTitle("Resultado:");
+    msgBox.setWindowModality(Qt::WindowModal);
+    msgBox.exec();
+    this->renderResult();
+
+    }
+}
+
+void MainWindow::on_pushButton_12_clicked()
+{
+    if(ui->tableWidget_2->rowCount() == ui->tableWidget_2->columnCount()){
+
+    QString msg = "Resultado:";
+    msg += "\n";
+    Matrix a = Matrix(ui->tableWidget_2->rowCount(), ui->tableWidget_2->columnCount());
+    for(int i = 0; i < ui->tableWidget_2->rowCount(); i++)
+        for(int j = 0; j < ui->tableWidget_2->columnCount(); j++){
+           QLineEdit *ql = (QLineEdit*) ui->tableWidget_2->cellWidget(i, j);
+           a.set(i, j, ql->text().toDouble());
+        }
+    Matrix b = a.inverse();
+    for(int i = 0; i < b.getRowsCount(); i++){
+        for(int j = 0; j < b.getColumnsCount(); j++){
+            msg+=QString::number(b.at(i, j))+", ";
+        }
+        msg+="\n";
+    }
+    QMessageBox msgBox;
+//
+    msgBox.setText(msg);
+    msgBox.setWindowTitle("Resultado:");
+    msgBox.setWindowModality(Qt::WindowModal);
+    msgBox.exec();
+    this->renderResult();
+
+    }
 }
