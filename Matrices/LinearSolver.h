@@ -9,7 +9,8 @@ namespace LinearSolver {
 	);
 
 	Matrix getJacobiMethod(
-		const Matrix &srcMatrix,
-		const Matrix &initialGuess
+		const Matrix &A,
+		const Matrix &C,
+		const Matrix &X0
 	);
 };

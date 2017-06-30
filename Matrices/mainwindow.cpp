@@ -9,6 +9,11 @@
 //Partes numericas
 #include "LinearSolver.h"
 
+#ifdef _WIN32
+#include "windows.h"
+#endif // 
+
+
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -240,10 +245,13 @@ void MainWindow::on_pushButton_6_clicked()
 
 	std::vector<std::string> vars;
 
-	vars.push_back("a_1");
-	vars.push_back("a_2");
-	vars.push_back("a_3");
-	vars.push_back("a_4");
+	for (int i = 0; i < n; i++) {
+		std::ostringstream tempVar;
+		tempVar << "a_";
+		tempVar << i;
+
+		vars.push_back(tempVar.str());
+	}
 
 	testReport.addAugmentMatrixElement(vars, aug);
 	Matrix augEl = LinearSolver::getGaussianElimination(aug, vars, testReport);
@@ -267,10 +275,27 @@ void MainWindow::on_pushButton_6_clicked()
 	body << "}";
 	body << "\\input{matrixtest.tex}\"";
 
+
+	std::ostringstream catStream;
+	catStream << "echo ";
+	catStream << body.str();
+	catStream << " > outstream.txt";
+
+	std::cout << body.str() << std::endl;
+
+	QString outputCat = QString::fromStdString(catStream.str());
+
+
+
 	QString file = QCoreApplication::applicationDirPath() + "/" + "texlive/pdflatex.exe " + QString::fromStdString(body.str()) + " -interaction=nonstopmode";
+
 	//pathMsg.setText(QString::fromStdString(body.str()));
+	QProcess processCat;
 
 	process.setWorkingDirectory(QDir::currentPath().append(QDir::separator()).append("texlive"));
+	processCat.setWorkingDirectory(process.workingDirectory());
+	processCat.start(outputCat);
+
 	process.start(file);
 
 	if (!process.waitForStarted()) {
@@ -283,6 +308,7 @@ void MainWindow::on_pushButton_6_clicked()
 	if (process.waitForFinished()) {
 		pathMsg.setText(process.readAll());
 	}
+
 
 	pathMsg.exec();
 #elif __linux__
