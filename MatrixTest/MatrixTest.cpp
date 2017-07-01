@@ -1,7 +1,10 @@
 // MatrixTest.cpp: define el punto de entrada de la aplicación de consola.
 //
 
+#ifdef _WIN32
 #include "stdafx.h"
+#endif // 
+
 #include <iostream>
 #include "..\Matrices\LinearSolver.cpp"
 #include "..\Matrices\Matrix.cpp"
@@ -49,7 +52,8 @@ int main()
 	Report r(10);
 
 	std::vector<std::string> vars;
-	for (int i = 0; i < 4; i++) {
+
+	for (int i = 0; i < n; i++) {
 		std::ostringstream var;
 		var << "a_";
 		var << (i + 1);
