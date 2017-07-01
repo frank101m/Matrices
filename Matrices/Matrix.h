@@ -37,8 +37,10 @@ public:
     Matrix operator-(const Matrix&);
     Matrix operator*(const Matrix&);
 	Matrix operator*(const double a);
+    static double detGauss( Matrix *);
 
-
+    Matrix transpose();
+    Matrix inverse();
 	//Solucion de sistemas de ecuaciones lineales
 	void initialize(const int, const int);
 

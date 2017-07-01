@@ -1,5 +1,6 @@
 #pragma once
 #include "Matrix.h"
+#include <stdlib.h>
 #include <math.h>
 #include <algorithm>
 /*
@@ -103,12 +104,9 @@ double Matrix::infNorm()
     }
     return nullptr;
 
-}*/
 
 
-bool Matrix::validateSizes(const Matrix *a, const Matrix &b){
-    return(a->columnsCount == b.columnsCount && a->rowsCount == b.rowsCount);
-}
+
 
 Matrix Matrix::operator+(const Matrix& m){
         Matrix res = Matrix(m.getRowsCount(), m.getColumnsCount());
@@ -161,6 +159,17 @@ void Matrix::swapRows(const int a, const int b) {
 	mBase.at(b) = rowT;
 }
 
+Matrix Matrix::transpose(){
+    Matrix m = Matrix(this->getColumnsCount(), this->getRowsCount());
+    for(int i = 0; i < this->getColumnsCount(); i++){
+        for(int j = 0; j < this->getRowsCount(); j++){
+           m.set(i, j, this->at(j, i));
+        }
+    }
+    return m;
+
+}
+
 int Matrix::rowNonZeroElementIndex(const int initialIndex, const int columnIndex, const Matrix &m)
 {
 	int p;
@@ -173,6 +182,136 @@ int Matrix::rowNonZeroElementIndex(const int initialIndex, const int columnIndex
 
 	return -1;
 }
+
+
+
+
+
+
+
+
+double Matrix::detGauss( Matrix  *a){
+    int n, i, j, k;
+
+    Matrix m = Matrix(a->getRowsCount(), a->getColumnsCount());
+    for(int p = 0; p < m.getColumnsCount(); p++){
+        for(int q = 0; q < m.getRowsCount(); q++){
+            m.set(p, q, a->at(p, q));
+        }
+    }
+    n=m.getColumnsCount();
+    double det = 1;
+    int flag = 0;
+    for(i = 0; i < n; i++)
+        for(k=i; k<n; k++)
+        if(abs(m.at(i, i)) < abs(m.at(k, i))){
+            flag++;
+            for(j = 0; j < n; j++){
+                double temp = m.at(i, j);
+                m.set(i, j, m.at(k, j));
+                m.set(k, j, temp);
+            }
+        }
+    for(i = 0; i < n-1; i++)
+        for(k=i+1; k<n;k++){
+            double t = m.at(k, i) / m.at(i, i);
+            for(j = 0; j < n; j++)
+                m.set(k, j, (m.at(k, j)- t * m.at(i, j)));
+
+        }
+    for(i = 0; i < n; i++){
+        det = det*m.at(i, i);
+    }
+    if(flag%2 ==0){
+        det = det;
+    }
+    else{
+        det = -det;
+    }
+    return det;
+}
+
+
+Matrix Matrix::inverse(){
+
+    //checking if determinant is a number and if the matrix is not singular
+    //using compiler standart (nan!=nan) in order to determine the matrix has ivnerse
+    //tambien podemos usar el isnan de cmath ahi vean
+    int n = this->getColumnsCount();
+    Matrix inv = Matrix(n, n);
+
+    if(detGauss(this) != 0  && detGauss(this)==detGauss(this)){
+
+
+
+    double ratio, a;
+    int i, j, k;
+
+    Matrix *adj = new Matrix(n, 2*n);
+
+    for(int row = 0; row < n; row++){
+        for(int col = 0; col < n; col++){
+            adj->set(row, col, this->at(row, col));
+        }
+    }
+
+
+
+    for(i = 0; i < n; i++){
+            for(j = n; j < 2*n; j++){
+                if(i==(j-n))
+                    adj->set(i, j, 1);
+
+                else
+                    adj->set(i, j, 0);
+
+            }
+        }
+
+    for(i = 0; i < n; i++){
+            for(j = 0; j < n; j++){
+                if(i!=j){
+                    ratio = adj->at(j, i) / adj->at(i, i);
+
+                    for(k = 0; k < 2*n; k++){
+                        adj->set(j, k, (adj->at(j, k)- ratio * adj->at(i, k)));
+
+                    }
+                }
+            }
+        }
+    for(i = 0; i < n; i++){
+            a = adj->at(i, i);
+
+            for(j = 0; j < 2*n; j++){
+
+                adj->set(i, j, (adj->at(i, j) / a));
+            }
+        }
+
+    for(int row = 0; row < n; row++){
+        for(int col = 0; col < n; col++ ){
+            inv.set(row, col, adj->at(row, col+n));
+        }
+    }
+
+
+
+
+    }else{
+        for(int row = 0; row < n; row++){
+            for(int col = 0; col < n; col++ ){
+                inv.set(row, col, 0);
+            }
+        }
+    }
+
+
+
+    return inv;
+
+}
+
 
 //Matrix Matrix::getGaussianElimination(
 //	const std::vector<std::string> &vars,
