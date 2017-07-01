@@ -220,6 +220,8 @@ public:
         horizontalLayout_4 = new QHBoxLayout();
         horizontalLayout_4->setSpacing(6);
         horizontalLayout_4->setObjectName(QStringLiteral("horizontalLayout_4"));
+        horizontalLayout_4->setSizeConstraint(QLayout::SetDefaultConstraint);
+        horizontalLayout_4->setContentsMargins(0, -1, -1, -1);
         tableWidget = new QTableWidget(basicMatrixOperations);
         if (tableWidget->columnCount() < 2)
             tableWidget->setColumnCount(2);
@@ -412,7 +414,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        mainTabWidget->setCurrentIndex(0);
+        mainTabWidget->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(MainWindow);

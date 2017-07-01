@@ -24,7 +24,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->mainTabWidget->setCurrentIndex(0);
     webDisplay = new QWebEngineView;
     webDisplay->setUrl(QUrl("qrc:///html/m1.htm"));
-    webDisplay->setMaximumHeight(540);
+    webDisplay->setMaximumHeight(500);
+
     ui->basicMatrixOperations->layout()->addWidget(webDisplay);
     setTableValidatorA();
     setTableValidatorB();
@@ -100,7 +101,6 @@ void MainWindow::on_pushButton_3_clicked()
 {
 
 
-    QString msg = "Resultado:";
     if(ui->tableWidget->rowCount() == ui->tableWidget_2->rowCount() && ui->tableWidget->columnCount() == ui->tableWidget_2->columnCount()){
         Matrix a = Matrix(ui->tableWidget->rowCount(), ui->tableWidget->columnCount());
         Matrix b = Matrix(ui->tableWidget_2->rowCount(), ui->tableWidget_2->columnCount());
@@ -115,33 +115,30 @@ void MainWindow::on_pushButton_3_clicked()
                b.set(i, j, ql->text().toDouble());
             }
         Matrix res = a + b;
-        msg += "(\n";
         for(int i = 0; i < res.getRowsCount(); i++){
             for(int j = 0; j < res.getColumnsCount(); j++){
-                msg+=QString::number(res.at(i, j))+", ";
             }
-            msg+="\n";
         }
-        msg+=")";
+        this->renderResult(a, b, res, 0, 0);
+
     }
     else{
-        msg = "error en la configuracion matricial";
+        QString msg = "error en la configuracion matricial";
+        QMessageBox msgBox;
+
+        msgBox.setText(msg);
+        msgBox.setWindowTitle("Resultado:");
+        msgBox.setWindowModality(Qt::WindowModal);
+        msgBox.exec();
+
     }
 
 
-    QMessageBox msgBox;
-
-    msgBox.setText(msg);
-    msgBox.setWindowTitle("Resultado:");
-    msgBox.setWindowModality(Qt::WindowModal);
-    msgBox.exec();
-    this->renderResult();
 
 }
 
 void MainWindow::on_pushButton_4_clicked()
 {
-    QString msg = "Resultado:";
     if(ui->tableWidget->rowCount() == ui->tableWidget_2->rowCount() && ui->tableWidget->columnCount() == ui->tableWidget_2->columnCount()){
         Matrix a = Matrix(ui->tableWidget->rowCount(), ui->tableWidget->columnCount());
         Matrix b = Matrix(ui->tableWidget_2->rowCount(), ui->tableWidget_2->columnCount());
@@ -156,32 +153,29 @@ void MainWindow::on_pushButton_4_clicked()
                b.set(i, j, ql->text().toDouble());
             }
         Matrix res = a - b;
-        msg += "(\n";
         for(int i = 0; i < res.getRowsCount(); i++){
             for(int j = 0; j < res.getColumnsCount(); j++){
-                msg+=QString::number(res.at(i, j))+", ";
             }
-            msg+="\n";
         }
-        msg+=")";
+         this->renderResult(a, b, res, 1, 0);
+
     }
     else{
-        msg = "error en la configuracion matricial";
+        QString msg = "error en la configuracion matricial";
+        QMessageBox msgBox;
+
+        msgBox.setText(msg);
+        msgBox.setWindowTitle("Resultado:");
+        msgBox.setWindowModality(Qt::WindowModal);
+        msgBox.exec();
     }
 
 
-    QMessageBox msgBox;
 
-    msgBox.setText(msg);
-    msgBox.setWindowTitle("Resultado:");
-    msgBox.setWindowModality(Qt::WindowModal);
-    msgBox.exec();
-    this->renderResult();
 }
 
 void MainWindow::on_pushButton_5_clicked()
 {
-    QString msg = "Resultado:";
     if(ui->tableWidget->columnCount() == ui->tableWidget_2->rowCount()){
         Matrix a = Matrix(ui->tableWidget->rowCount(), ui->tableWidget->columnCount());
         Matrix b = Matrix(ui->tableWidget_2->rowCount(), ui->tableWidget_2->columnCount());
@@ -196,27 +190,26 @@ void MainWindow::on_pushButton_5_clicked()
                b.set(i, j, ql->text().toDouble());
             }
         Matrix res = a * b;
-        msg += "(\n";
         for(int i = 0; i < res.getRowsCount(); i++){
             for(int j = 0; j < res.getColumnsCount(); j++){
-                msg+=QString::number(res.at(i, j))+", ";
             }
-            msg+="\n";
         }
-        msg+=")";
+
+        this->renderResult(a, b, res, 2, 0);
+
     }
     else{
-        msg = "error en la configuracion matricial";
+        QString msg = "error en la configuracion matricial";
+        QMessageBox msgBox;
+
+        msgBox.setText(msg);
+        msgBox.setWindowTitle("Resultado:");
+        msgBox.setWindowModality(Qt::WindowModal);
+        msgBox.exec();
     }
 
 
-    QMessageBox msgBox;
 
-    msgBox.setText(msg);
-    msgBox.setWindowTitle("Resultado:");
-    msgBox.setWindowModality(Qt::WindowModal);
-    msgBox.exec();
-    this->renderResult();
 
 }
 
@@ -373,11 +366,565 @@ void MainWindow::on_pushButton_6_clicked()
 #endif
 }
 
-
-void MainWindow::renderResult(){
-    QString js = "document.removeChild(document.documentElement);";
+void MainWindow::clearWebDisplay(){
+    QString js = "document.body.innerHTML = '"
+                 "';";
     webDisplay->page()->runJavaScript(js);
 
+}
+
+void MainWindow::renderResult(Matrix a, Matrix b, Matrix c, int code, double d){
+
+    QString js = "document.body.innerHTML = '"
+                 "';";
+    webDisplay->page()->runJavaScript(js);
+
+    switch (code) {
+    case 0:
+        js = "var tex = document.createElement('tex');";
+        webDisplay->page()->runJavaScript(js);
+        js ="var content = document.createTextNode('";
+
+
+        //js+="A_{m,n} = \\\\begin{pmatrix} a_{1,1} & a_{1,2} & \\\\cdots & a_{1,n} \\\\\\\\\\\\\\\\ ";
+        //js+="a_{2,1} & a_{2,2} & \\\\cdots & a_{2,n} \\\\\\\\\\\\\\\\ \\\\vdots  & \\\\vdots  & \\\\ddots & \\\\vdots  \\\\\\\\\\\\\\\\ ";
+        //js+="a_{m,1} & a_{m,2} & \\\\cdots & a_{m,n} \\\\end{pmatrix}";
+
+        js += "\\\\begin{bmatrix}";
+        for(int i = 0; i < a.getRowsCount(); i++)
+            for(int j = 0; j < a.getColumnsCount(); j++){
+
+                if(j != a.getColumnsCount()-1)
+                    js += QString::number(a.at(i, j)) + "&";
+                else{
+                    if(i != a.getRowsCount()-1)
+                    js += QString::number(a.at(i, j)) + "\\\\\\\\\\\\\\\\";
+                    else
+                        js += QString::number(a.at(i, j));
+                }
+
+
+        }
+        js += "\\\\end{bmatrix} + ";
+
+        js+="');";
+        webDisplay->page()->runJavaScript(js);
+        js ="tex.appendChild(content);";
+        webDisplay->page()->runJavaScript(js);
+        js = "document.body.appendChild(tex);";
+        webDisplay->page()->runJavaScript(js);
+
+
+
+        js ="var content = document.createTextNode('";
+
+
+        //js+="A_{m,n} = \\\\begin{pmatrix} a_{1,1} & a_{1,2} & \\\\cdots & a_{1,n} \\\\\\\\\\\\\\\\ ";
+        //js+="a_{2,1} & a_{2,2} & \\\\cdots & a_{2,n} \\\\\\\\\\\\\\\\ \\\\vdots  & \\\\vdots  & \\\\ddots & \\\\vdots  \\\\\\\\\\\\\\\\ ";
+        //js+="a_{m,1} & a_{m,2} & \\\\cdots & a_{m,n} \\\\end{pmatrix}";
+
+        js += "\\\\begin{bmatrix}";
+        for(int i = 0; i < b.getRowsCount(); i++)
+            for(int j = 0; j < b.getColumnsCount(); j++){
+
+                if(j != b.getColumnsCount()-1)
+                    js += QString::number(b.at(i, j)) + "&";
+                else{
+                    if(i != c.getRowsCount()-1)
+                    js += QString::number(b.at(i, j)) + "\\\\\\\\\\\\\\\\";
+                    else
+                        js += QString::number(b.at(i, j));
+                }
+
+
+        }
+        js += "\\\\end{bmatrix} = ";
+
+        js+="') 	 ;";
+        webDisplay->page()->runJavaScript(js);
+        js ="tex.appendChild(content);";
+        webDisplay->page()->runJavaScript(js);
+        js = "document.body.appendChild(tex);";
+        webDisplay->page()->runJavaScript(js);
+
+
+
+
+        js ="var content = document.createTextNode('";
+
+
+        //js+="A_{m,n} = \\\\begin{pmatrix} a_{1,1} & a_{1,2} & \\\\cdots & a_{1,n} \\\\\\\\\\\\\\\\ ";
+        //js+="a_{2,1} & a_{2,2} & \\\\cdots & a_{2,n} \\\\\\\\\\\\\\\\ \\\\vdots  & \\\\vdots  & \\\\ddots & \\\\vdots  \\\\\\\\\\\\\\\\ ";
+        //js+="a_{m,1} & a_{m,2} & \\\\cdots & a_{m,n} \\\\end{pmatrix}";
+
+        js += "\\\\begin{bmatrix}";
+        for(int i = 0; i < c.getRowsCount(); i++)
+            for(int j = 0; j < c.getColumnsCount(); j++){
+
+                if(j != c.getColumnsCount()-1)
+                    js += QString::number(c.at(i, j)) + "&";
+                else{
+                    if(i != a.getRowsCount()-1)
+                    js += QString::number(c.at(i, j)) + "\\\\\\\\\\\\\\\\";
+                    else
+                        js += QString::number(c.at(i, j));
+                }
+
+
+        }
+        js += "\\\\end{bmatrix}";
+
+        js+="');";
+        webDisplay->page()->runJavaScript(js);
+        js ="tex.appendChild(content);";
+        webDisplay->page()->runJavaScript(js);
+        js = "document.body.appendChild(tex);";
+        webDisplay->page()->runJavaScript(js);
+
+
+        //rendering
+        js = "var txlist = document.getElementsByTagName('tex');";
+        webDisplay->page()->runJavaScript(js);
+        js = "for (var i = 0; i < txlist.length; i++) { var tx = txlist[i]; var txtext = tx.textContent; katex.render(txtext, tx, { displayMode: true }); }";
+        webDisplay->page()->runJavaScript(js);
+        break;
+
+    case 1:
+        js = "var tex = document.createElement('tex');";
+        webDisplay->page()->runJavaScript(js);
+        js ="var content = document.createTextNode('";
+
+
+        //js+="A_{m,n} = \\\\begin{pmatrix} a_{1,1} & a_{1,2} & \\\\cdots & a_{1,n} \\\\\\\\\\\\\\\\ ";
+        //js+="a_{2,1} & a_{2,2} & \\\\cdots & a_{2,n} \\\\\\\\\\\\\\\\ \\\\vdots  & \\\\vdots  & \\\\ddots & \\\\vdots  \\\\\\\\\\\\\\\\ ";
+        //js+="a_{m,1} & a_{m,2} & \\\\cdots & a_{m,n} \\\\end{pmatrix}";
+
+        js += "\\\\begin{bmatrix}";
+        for(int i = 0; i < a.getRowsCount(); i++)
+            for(int j = 0; j < a.getColumnsCount(); j++){
+
+                if(j != a.getColumnsCount()-1)
+                    js += QString::number(a.at(i, j)) + "&";
+                else{
+                    if(i != a.getRowsCount()-1)
+                    js += QString::number(a.at(i, j)) + "\\\\\\\\\\\\\\\\";
+                    else
+                        js += QString::number(a.at(i, j));
+                }
+
+
+        }
+        js += "\\\\end{bmatrix} - ";
+
+        js+="');";
+        webDisplay->page()->runJavaScript(js);
+        js ="tex.appendChild(content);";
+        webDisplay->page()->runJavaScript(js);
+        js = "document.body.appendChild(tex);";
+        webDisplay->page()->runJavaScript(js);
+
+
+
+        js ="var content = document.createTextNode('";
+
+
+        //js+="A_{m,n} = \\\\begin{pmatrix} a_{1,1} & a_{1,2} & \\\\cdots & a_{1,n} \\\\\\\\\\\\\\\\ ";
+        //js+="a_{2,1} & a_{2,2} & \\\\cdots & a_{2,n} \\\\\\\\\\\\\\\\ \\\\vdots  & \\\\vdots  & \\\\ddots & \\\\vdots  \\\\\\\\\\\\\\\\ ";
+        //js+="a_{m,1} & a_{m,2} & \\\\cdots & a_{m,n} \\\\end{pmatrix}";
+
+        js += "\\\\begin{bmatrix}";
+        for(int i = 0; i < b.getRowsCount(); i++)
+            for(int j = 0; j < b.getColumnsCount(); j++){
+
+                if(j != b.getColumnsCount()-1)
+                    js += QString::number(b.at(i, j)) + "&";
+                else{
+                    if(i != c.getRowsCount()-1)
+                    js += QString::number(b.at(i, j)) + "\\\\\\\\\\\\\\\\";
+                    else
+                        js += QString::number(b.at(i, j));
+                }
+
+
+        }
+        js += "\\\\end{bmatrix} = ";
+
+        js+="') 	 ;";
+        webDisplay->page()->runJavaScript(js);
+        js ="tex.appendChild(content);";
+        webDisplay->page()->runJavaScript(js);
+        js = "document.body.appendChild(tex);";
+        webDisplay->page()->runJavaScript(js);
+
+
+
+
+        js ="var content = document.createTextNode('";
+
+
+        //js+="A_{m,n} = \\\\begin{pmatrix} a_{1,1} & a_{1,2} & \\\\cdots & a_{1,n} \\\\\\\\\\\\\\\\ ";
+        //js+="a_{2,1} & a_{2,2} & \\\\cdots & a_{2,n} \\\\\\\\\\\\\\\\ \\\\vdots  & \\\\vdots  & \\\\ddots & \\\\vdots  \\\\\\\\\\\\\\\\ ";
+        //js+="a_{m,1} & a_{m,2} & \\\\cdots & a_{m,n} \\\\end{pmatrix}";
+
+        js += "\\\\begin{bmatrix}";
+        for(int i = 0; i < c.getRowsCount(); i++)
+            for(int j = 0; j < c.getColumnsCount(); j++){
+
+                if(j != c.getColumnsCount()-1)
+                    js += QString::number(c.at(i, j)) + "&";
+                else{
+                    if(i != a.getRowsCount()-1)
+                    js += QString::number(c.at(i, j)) + "\\\\\\\\\\\\\\\\";
+                    else
+                        js += QString::number(c.at(i, j));
+                }
+
+
+        }
+        js += "\\\\end{bmatrix}";
+
+        js+="');";
+        webDisplay->page()->runJavaScript(js);
+        js ="tex.appendChild(content);";
+        webDisplay->page()->runJavaScript(js);
+        js = "document.body.appendChild(tex);";
+        webDisplay->page()->runJavaScript(js);
+
+
+        //rendering
+        js = "var txlist = document.getElementsByTagName('tex');";
+        webDisplay->page()->runJavaScript(js);
+        js = "for (var i = 0; i < txlist.length; i++) { var tx = txlist[i]; var txtext = tx.textContent; katex.render(txtext, tx, { displayMode: true }); }";
+        webDisplay->page()->runJavaScript(js);
+        break;
+
+    case 2:
+
+        js = "var tex = document.createElement('tex');";
+        webDisplay->page()->runJavaScript(js);
+        js ="var content = document.createTextNode('";
+
+
+        //js+="A_{m,n} = \\\\begin{pmatrix} a_{1,1} & a_{1,2} & \\\\cdots & a_{1,n} \\\\\\\\\\\\\\\\ ";
+        //js+="a_{2,1} & a_{2,2} & \\\\cdots & a_{2,n} \\\\\\\\\\\\\\\\ \\\\vdots  & \\\\vdots  & \\\\ddots & \\\\vdots  \\\\\\\\\\\\\\\\ ";
+        //js+="a_{m,1} & a_{m,2} & \\\\cdots & a_{m,n} \\\\end{pmatrix}";
+
+        js += "\\\\begin{bmatrix}";
+        for(int i = 0; i < a.getRowsCount(); i++)
+            for(int j = 0; j < a.getColumnsCount(); j++){
+
+                if(j != a.getColumnsCount()-1)
+                    js += QString::number(a.at(i, j)) + "&";
+                else{
+                    if(i != a.getRowsCount()-1)
+                    js += QString::number(a.at(i, j)) + "\\\\\\\\\\\\\\\\";
+                    else
+                        js += QString::number(a.at(i, j));
+                }
+
+
+        }
+        js += "\\\\end{bmatrix} \\\\times ";
+
+        js+="');";
+        webDisplay->page()->runJavaScript(js);
+        js ="tex.appendChild(content);";
+        webDisplay->page()->runJavaScript(js);
+        js = "document.body.appendChild(tex);";
+        webDisplay->page()->runJavaScript(js);
+
+
+
+        js ="var content = document.createTextNode('";
+
+
+        //js+="A_{m,n} = \\\\begin{pmatrix} a_{1,1} & a_{1,2} & \\\\cdots & a_{1,n} \\\\\\\\\\\\\\\\ ";
+        //js+="a_{2,1} & a_{2,2} & \\\\cdots & a_{2,n} \\\\\\\\\\\\\\\\ \\\\vdots  & \\\\vdots  & \\\\ddots & \\\\vdots  \\\\\\\\\\\\\\\\ ";
+        //js+="a_{m,1} & a_{m,2} & \\\\cdots & a_{m,n} \\\\end{pmatrix}";
+
+        js += "\\\\begin{bmatrix}";
+        for(int i = 0; i < b.getRowsCount(); i++)
+            for(int j = 0; j < b.getColumnsCount(); j++){
+
+                if(j != b.getColumnsCount()-1)
+                    js += QString::number(b.at(i, j)) + "&";
+                else{
+                    if(i != b.getRowsCount()-1)
+                    js += QString::number(b.at(i, j)) + "\\\\\\\\\\\\\\\\";
+                    else
+                        js += QString::number(b.at(i, j));
+                }
+
+
+        }
+        js += "\\\\end{bmatrix} = ";
+
+        js+="') 	 ;";
+        webDisplay->page()->runJavaScript(js);
+        js ="tex.appendChild(content);";
+        webDisplay->page()->runJavaScript(js);
+        js = "document.body.appendChild(tex);";
+        webDisplay->page()->runJavaScript(js);
+
+
+
+
+        js ="var content = document.createTextNode('";
+
+
+        //js+="A_{m,n} = \\\\begin{pmatrix} a_{1,1} & a_{1,2} & \\\\cdots & a_{1,n} \\\\\\\\\\\\\\\\ ";
+        //js+="a_{2,1} & a_{2,2} & \\\\cdots & a_{2,n} \\\\\\\\\\\\\\\\ \\\\vdots  & \\\\vdots  & \\\\ddots & \\\\vdots  \\\\\\\\\\\\\\\\ ";
+        //js+="a_{m,1} & a_{m,2} & \\\\cdots & a_{m,n} \\\\end{pmatrix}";
+
+        js += "\\\\begin{bmatrix}";
+        for(int i = 0; i < c.getRowsCount(); i++)
+            for(int j = 0; j < c.getColumnsCount(); j++){
+
+                if(j != c.getColumnsCount()-1)
+                    js += QString::number(c.at(i, j)) + "&";
+                else{
+                    if(i != a.getRowsCount()-1)
+                    js += QString::number(c.at(i, j)) + "\\\\\\\\\\\\\\\\";
+                    else
+                        js += QString::number(c.at(i, j));
+                }
+
+
+        }
+        js += "\\\\end{bmatrix}";
+
+        js+="');";
+        webDisplay->page()->runJavaScript(js);
+        js ="tex.appendChild(content);";
+        webDisplay->page()->runJavaScript(js);
+        js = "document.body.appendChild(tex);";
+        webDisplay->page()->runJavaScript(js);
+
+
+        //rendering
+        js = "var txlist = document.getElementsByTagName('tex');";
+        webDisplay->page()->runJavaScript(js);
+        js = "for (var i = 0; i < txlist.length; i++) { var tx = txlist[i]; var txtext = tx.textContent; katex.render(txtext, tx, { displayMode: true }); }";
+        webDisplay->page()->runJavaScript(js);
+        break;
+
+    case 3:
+
+        js = "var tex = document.createElement('tex');";
+        webDisplay->page()->runJavaScript(js);
+        js ="var content = document.createTextNode('";
+
+
+        //js+="A_{m,n} = \\\\begin{pmatrix} a_{1,1} & a_{1,2} & \\\\cdots & a_{1,n} \\\\\\\\\\\\\\\\ ";
+        //js+="a_{2,1} & a_{2,2} & \\\\cdots & a_{2,n} \\\\\\\\\\\\\\\\ \\\\vdots  & \\\\vdots  & \\\\ddots & \\\\vdots  \\\\\\\\\\\\\\\\ ";
+        //js+="a_{m,1} & a_{m,2} & \\\\cdots & a_{m,n} \\\\end{pmatrix}";
+
+        js += " { \\\\begin{bmatrix}";
+        for(int i = 0; i < a.getRowsCount(); i++)
+            for(int j = 0; j < a.getColumnsCount(); j++){
+
+                if(j != a.getColumnsCount()-1)
+                    js += QString::number(a.at(i, j)) + "&";
+                else{
+                    if(i != a.getRowsCount()-1)
+                    js += QString::number(a.at(i, j)) + "\\\\\\\\\\\\\\\\";
+                    else
+                        js += QString::number(a.at(i, j));
+                }
+
+
+        }
+        js += "\\\\end{bmatrix} }^{T} =  ";
+
+        js+=" ');";
+        webDisplay->page()->runJavaScript(js);
+        js ="tex.appendChild(content);";
+        webDisplay->page()->runJavaScript(js);
+        js = "document.body.appendChild(tex);";
+        webDisplay->page()->runJavaScript(js);
+
+
+
+        js ="var content = document.createTextNode('";
+
+
+        //js+="A_{m,n} = \\\\begin{pmatrix} a_{1,1} & a_{1,2} & \\\\cdots & a_{1,n} \\\\\\\\\\\\\\\\ ";
+        //js+="a_{2,1} & a_{2,2} & \\\\cdots & a_{2,n} \\\\\\\\\\\\\\\\ \\\\vdots  & \\\\vdots  & \\\\ddots & \\\\vdots  \\\\\\\\\\\\\\\\ ";
+        //js+="a_{m,1} & a_{m,2} & \\\\cdots & a_{m,n} \\\\end{pmatrix}";
+
+        js += "\\\\begin{bmatrix}";
+        for(int i = 0; i < b.getRowsCount(); i++)
+            for(int j = 0; j < b.getColumnsCount(); j++){
+
+                if(j != b.getColumnsCount()-1)
+                    js += QString::number(b.at(i, j)) + "&";
+                else{
+                    if(i != c.getRowsCount()-1)
+                    js += QString::number(b.at(i, j)) + "\\\\\\\\\\\\\\\\";
+                    else
+                        js += QString::number(b.at(i, j));
+                }
+
+
+        }
+        js += "\\\\end{bmatrix}";
+
+        js+="') 	 ;";
+        webDisplay->page()->runJavaScript(js);
+        js ="tex.appendChild(content);";
+        webDisplay->page()->runJavaScript(js);
+        js = "document.body.appendChild(tex);";
+        webDisplay->page()->runJavaScript(js);
+
+        //rendering
+        js = "var txlist = document.getElementsByTagName('tex');";
+        webDisplay->page()->runJavaScript(js);
+        js = "for (var i = 0; i < txlist.length; i++) { var tx = txlist[i]; var txtext = tx.textContent; katex.render(txtext, tx, { displayMode: true }); }";
+        webDisplay->page()->runJavaScript(js);
+
+        break;
+
+    case 4:
+
+
+        js = "var tex = document.createElement('tex');";
+        webDisplay->page()->runJavaScript(js);
+        js ="var content = document.createTextNode('";
+
+
+        //js+="A_{m,n} = \\\\begin{pmatrix} a_{1,1} & a_{1,2} & \\\\cdots & a_{1,n} \\\\\\\\\\\\\\\\ ";
+        //js+="a_{2,1} & a_{2,2} & \\\\cdots & a_{2,n} \\\\\\\\\\\\\\\\ \\\\vdots  & \\\\vdots  & \\\\ddots & \\\\vdots  \\\\\\\\\\\\\\\\ ";
+        //js+="a_{m,1} & a_{m,2} & \\\\cdots & a_{m,n} \\\\end{pmatrix}";
+
+        js += "  \\\\begin{vmatrix}";
+        for(int i = 0; i < a.getRowsCount(); i++)
+            for(int j = 0; j < a.getColumnsCount(); j++){
+
+                if(j != a.getColumnsCount()-1)
+                    js += QString::number(a.at(i, j)) + "&";
+                else{
+                    if(i != a.getRowsCount()-1)
+                    js += QString::number(a.at(i, j)) + "\\\\\\\\\\\\\\\\";
+                    else
+                        js += QString::number(a.at(i, j));
+                }
+
+
+        }
+        js += "\\\\end{vmatrix}  =  ";
+
+        js+=" ');";
+        webDisplay->page()->runJavaScript(js);
+        js ="tex.appendChild(content);";
+        webDisplay->page()->runJavaScript(js);
+        js = "document.body.appendChild(tex);";
+        webDisplay->page()->runJavaScript(js);
+
+
+
+        js ="var content = document.createTextNode('";
+
+
+        //js+="A_{m,n} = \\\\begin{pmatrix} a_{1,1} & a_{1,2} & \\\\cdots & a_{1,n} \\\\\\\\\\\\\\\\ ";
+        //js+="a_{2,1} & a_{2,2} & \\\\cdots & a_{2,n} \\\\\\\\\\\\\\\\ \\\\vdots  & \\\\vdots  & \\\\ddots & \\\\vdots  \\\\\\\\\\\\\\\\ ";
+        //js+="a_{m,1} & a_{m,2} & \\\\cdots & a_{m,n} \\\\end{pmatrix}";
+
+        js += QString::number(d);
+        js+="') 	 ;";
+        webDisplay->page()->runJavaScript(js);
+        js ="tex.appendChild(content);";
+        webDisplay->page()->runJavaScript(js);
+        js = "document.body.appendChild(tex);";
+        webDisplay->page()->runJavaScript(js);
+
+        //rendering
+        js = "var txlist = document.getElementsByTagName('tex');";
+        webDisplay->page()->runJavaScript(js);
+        js = "for (var i = 0; i < txlist.length; i++) { var tx = txlist[i]; var txtext = tx.textContent; katex.render(txtext, tx, { displayMode: true }); }";
+        webDisplay->page()->runJavaScript(js);
+
+        break;
+
+
+
+
+    case 5:
+        js = "var tex = document.createElement('tex');";
+        webDisplay->page()->runJavaScript(js);
+        js ="var content = document.createTextNode('";
+
+
+        //js+="A_{m,n} = \\\\begin{pmatrix} a_{1,1} & a_{1,2} & \\\\cdots & a_{1,n} \\\\\\\\\\\\\\\\ ";
+        //js+="a_{2,1} & a_{2,2} & \\\\cdots & a_{2,n} \\\\\\\\\\\\\\\\ \\\\vdots  & \\\\vdots  & \\\\ddots & \\\\vdots  \\\\\\\\\\\\\\\\ ";
+        //js+="a_{m,1} & a_{m,2} & \\\\cdots & a_{m,n} \\\\end{pmatrix}";
+
+        js += " { \\\\begin{bmatrix}";
+        for(int i = 0; i < a.getRowsCount(); i++)
+            for(int j = 0; j < a.getColumnsCount(); j++){
+
+                if(j != a.getColumnsCount()-1)
+                    js += QString::number(a.at(i, j)) + "&";
+                else{
+                    if(i != a.getRowsCount()-1)
+                    js += QString::number(a.at(i, j)) + "\\\\\\\\\\\\\\\\";
+                    else
+                        js += QString::number(a.at(i, j));
+                }
+
+
+        }
+        js += "\\\\end{bmatrix} }^{-1} =  ";
+
+        js+=" ');";
+        webDisplay->page()->runJavaScript(js);
+        js ="tex.appendChild(content);";
+        webDisplay->page()->runJavaScript(js);
+        js = "document.body.appendChild(tex);";
+        webDisplay->page()->runJavaScript(js);
+
+
+
+        js ="var content = document.createTextNode('";
+
+
+        //js+="A_{m,n} = \\\\begin{pmatrix} a_{1,1} & a_{1,2} & \\\\cdots & a_{1,n} \\\\\\\\\\\\\\\\ ";
+        //js+="a_{2,1} & a_{2,2} & \\\\cdots & a_{2,n} \\\\\\\\\\\\\\\\ \\\\vdots  & \\\\vdots  & \\\\ddots & \\\\vdots  \\\\\\\\\\\\\\\\ ";
+        //js+="a_{m,1} & a_{m,2} & \\\\cdots & a_{m,n} \\\\end{pmatrix}";
+
+        js += "\\\\begin{bmatrix}";
+        for(int i = 0; i < b.getRowsCount(); i++)
+            for(int j = 0; j < b.getColumnsCount(); j++){
+
+                if(j != b.getColumnsCount()-1)
+                    js += QString::number(b.at(i, j)) + "&";
+                else{
+                    if(i != c.getRowsCount()-1)
+                    js += QString::number(b.at(i, j)) + "\\\\\\\\\\\\\\\\";
+                    else
+                        js += QString::number(b.at(i, j));
+                }
+
+
+        }
+        js += "\\\\end{bmatrix}";
+
+        js+="') 	 ;";
+        webDisplay->page()->runJavaScript(js);
+        js ="tex.appendChild(content);";
+        webDisplay->page()->runJavaScript(js);
+        js = "document.body.appendChild(tex);";
+        webDisplay->page()->runJavaScript(js);
+
+        //rendering
+        js = "var txlist = document.getElementsByTagName('tex');";
+        webDisplay->page()->runJavaScript(js);
+        js = "for (var i = 0; i < txlist.length; i++) { var tx = txlist[i]; var txtext = tx.textContent; katex.render(txtext, tx, { displayMode: true }); }";
+        webDisplay->page()->runJavaScript(js);
+
+
+
+        break;
+    }
 }
 
 void MainWindow::initializeLinearEqModule()
@@ -419,7 +966,7 @@ void MainWindow::on_lineEditVars_editingFinished()
 }
 void MainWindow::on_pushButton_7_clicked()
 {
-    QString msg = "Resultado:";
+
     if(ui->tableWidget->columnCount() == ui->tableWidget->rowCount()){
         Matrix *a = new Matrix(ui->tableWidget->rowCount(), ui->tableWidget->columnCount());
 
@@ -430,23 +977,28 @@ void MainWindow::on_pushButton_7_clicked()
             }
 
 
-        msg += "\n";
-        double det = Matrix::detGauss(a);
-        msg += QString::number(det);
 
+        double det = Matrix::detGauss(a);
+
+        Matrix b = Matrix(a->getRowsCount(), a->getColumnsCount());
+        for(int i = 0; i < b.getRowsCount(); i++)
+            for(int j = 0; j < b.getRowsCount(); j++)
+                b.set(i, j, a->at(i, j));
+
+        this->renderResult(b, b, b, 4, det);
     }
     else{
-        msg = "error en la configuracion matricial";
+        QString msg = "error en la configuracion matricial";
+
+        QMessageBox msgBox;
+
+        msgBox.setText(msg);
+        msgBox.setWindowTitle("Resultado:");
+        msgBox.setWindowModality(Qt::WindowModal);
+        msgBox.exec();
     }
 
-
-    QMessageBox msgBox;
-
-    msgBox.setText(msg);
-    msgBox.setWindowTitle("Resultado:");
-    msgBox.setWindowModality(Qt::WindowModal);
-    msgBox.exec();
-    this->renderResult();
+   // this->renderResult();
 
 }
 
@@ -454,7 +1006,6 @@ void MainWindow::on_pushButton_8_clicked()
 {
 
 
-    QString msg = "Resultado:";
     if(ui->tableWidget_2->columnCount() == ui->tableWidget_2->rowCount()){
         Matrix *a = new Matrix(ui->tableWidget_2->rowCount(), ui->tableWidget_2->columnCount());
 
@@ -465,31 +1016,36 @@ void MainWindow::on_pushButton_8_clicked()
             }
 
 
-        msg += "\n";
         double det = Matrix::detGauss(a);
-        msg += QString::number(det);
+
+        Matrix b = Matrix(a->getRowsCount(), a->getColumnsCount());
+        for(int i = 0; i < b.getRowsCount(); i++)
+            for(int j = 0; j < b.getRowsCount(); j++)
+                b.set(i, j, a->at(i, j));
+
+        this->renderResult(b, b, b, 4, det);
 
     }
     else{
-        msg = "error en la configuracion matricial";
+        QString msg = "error en la configuracion matricial";
+
+        QMessageBox msgBox;
+
+        msgBox.setText(msg);
+        msgBox.setWindowTitle("Resultado:");
+        msgBox.setWindowModality(Qt::WindowModal);
+        msgBox.exec();
     }
 
 
-    QMessageBox msgBox;
 
-    msgBox.setText(msg);
-    msgBox.setWindowTitle("Resultado:");
-    msgBox.setWindowModality(Qt::WindowModal);
-    msgBox.exec();
-    this->renderResult();
+    //this->renderResult();
 
 
 }
 
 void MainWindow::on_pushButton_9_clicked()
 {
-    QString msg = "Resultado:";
-    msg += "\n";
     Matrix a = Matrix(ui->tableWidget->rowCount(), ui->tableWidget->columnCount());
     for(int i = 0; i < ui->tableWidget->rowCount(); i++)
         for(int j = 0; j < ui->tableWidget->columnCount(); j++){
@@ -499,23 +1055,14 @@ void MainWindow::on_pushButton_9_clicked()
     Matrix t = a.transpose();
     for(int i = 0; i < t.getRowsCount(); i++){
         for(int j = 0; j < t.getColumnsCount(); j++){
-            msg+=QString::number(t.at(i, j)) + ", ";
         }
-        msg+="\n";
     }
-    QMessageBox msgBox;
 
-    msgBox.setText(msg);
-    msgBox.setWindowTitle("Resultado:");
-    msgBox.setWindowModality(Qt::WindowModal);
-    msgBox.exec();
-    this->renderResult();
+   this->renderResult(a, t, a, 3 ,0);
 }
 
 void MainWindow::on_pushButton_10_clicked()
 {
-    QString msg = "Resultado:";
-    msg += "\n";
     Matrix a = Matrix(ui->tableWidget_2->rowCount(), ui->tableWidget_2->columnCount());
     for(int i = 0; i < ui->tableWidget_2->rowCount(); i++)
         for(int j = 0; j < ui->tableWidget_2->columnCount(); j++){
@@ -525,25 +1072,20 @@ void MainWindow::on_pushButton_10_clicked()
     Matrix t = a.transpose();
     for(int i = 0; i < t.getRowsCount(); i++){
         for(int j = 0; j < t.getColumnsCount(); j++){
-            msg+=QString::number(t.at(i, j)) +", ";
         }
-        msg+="\n";
     }
-    QMessageBox msgBox;
 
-    msgBox.setText(msg);
-    msgBox.setWindowTitle("Resultado:");
-    msgBox.setWindowModality(Qt::WindowModal);
-    msgBox.exec();
-    this->renderResult();
+    this->renderResult(a, t, a, 3 ,0);
 }
 
 void MainWindow::on_pushButton_11_clicked()
 {
+    this->clearWebDisplay();
+
+    QString msg;
+
     if(ui->tableWidget->rowCount() == ui->tableWidget->columnCount()){
 
-    QString msg = "Resultado:";
-    msg += "\n";
     Matrix a = Matrix(ui->tableWidget->rowCount(), ui->tableWidget->columnCount());
     for(int i = 0; i < ui->tableWidget->rowCount(); i++)
         for(int j = 0; j < ui->tableWidget->columnCount(); j++){
@@ -553,27 +1095,49 @@ void MainWindow::on_pushButton_11_clicked()
     Matrix b = a.inverse();
     for(int i = 0; i < b.getRowsCount(); i++){
         for(int j = 0; j < b.getColumnsCount(); j++){
-            msg+=QString::number(b.at(i, j))+", ";
         }
-        msg+="\n";
     }
-    QMessageBox msgBox;
 
-    msgBox.setText(msg);
-    msgBox.setWindowTitle("Resultado:");
-    msgBox.setWindowModality(Qt::WindowModal);
-    msgBox.exec();
-    this->renderResult();
+    bool f = true;
+    for(int i = 0; i < a.getRowsCount(); i++)
+        for(int j = 0; j < a.getColumnsCount(); j++)
+            if(b.at(i, j) == 0 || b.at(i, j) != b.at(i, j))
+                f=false;
+    if(f){
+        this->renderResult(a, b, a, 5, 0);
+    }else{
+        msg = "La matriz no posee inversa";
+        QMessageBox msgBox;
+
+        msgBox.setText(msg);
+        msgBox.setWindowTitle("Resultado:");
+        msgBox.setWindowModality(Qt::WindowModal);
+        msgBox.exec();
+    }
+
 
     }
+    else{
+        msg = "Error en la configuracion matricial";
+        QMessageBox msgBox;
+
+        msgBox.setText(msg);
+        msgBox.setWindowTitle("Resultado:");
+        msgBox.setWindowModality(Qt::WindowModal);
+        msgBox.exec();
+    }
+
+
+
 }
 
 void MainWindow::on_pushButton_12_clicked()
 {
+    this->clearWebDisplay();
+    QString msg;
+
     if(ui->tableWidget_2->rowCount() == ui->tableWidget_2->columnCount()){
 
-    QString msg = "Resultado:";
-    msg += "\n";
     Matrix a = Matrix(ui->tableWidget_2->rowCount(), ui->tableWidget_2->columnCount());
     for(int i = 0; i < ui->tableWidget_2->rowCount(); i++)
         for(int j = 0; j < ui->tableWidget_2->columnCount(); j++){
@@ -583,17 +1147,38 @@ void MainWindow::on_pushButton_12_clicked()
     Matrix b = a.inverse();
     for(int i = 0; i < b.getRowsCount(); i++){
         for(int j = 0; j < b.getColumnsCount(); j++){
-            msg+=QString::number(b.at(i, j))+", ";
         }
-        msg+="\n";
     }
-    QMessageBox msgBox;
-//
-    msgBox.setText(msg);
-    msgBox.setWindowTitle("Resultado:");
-    msgBox.setWindowModality(Qt::WindowModal);
-    msgBox.exec();
-    this->renderResult();
+    bool f = true;
+    for(int i = 0; i < a.getRowsCount(); i++)
+        for(int j = 0; j < a.getColumnsCount(); j++)
+            if(b.at(i, j) == 0 || b.at(i, j) != b.at(i, j))
+                f=false;
+    if(f){
+        this->renderResult(a, b, a, 5, 0);
+    }else{
+        msg = "La matriz no posee inversa";
+        QMessageBox msgBox;
+
+        msgBox.setText(msg);
+        msgBox.setWindowTitle("Resultado:");
+        msgBox.setWindowModality(Qt::WindowModal);
+        msgBox.exec();
+    }
+
 
     }
-}
+    else{
+        msg = "Error en la configuracion matricial";
+        QMessageBox msgBox;
+
+        msgBox.setText(msg);
+        msgBox.setWindowTitle("Resultado:");
+        msgBox.setWindowModality(Qt::WindowModal);
+        msgBox.exec();
+    }
+
+
+
+    }
+

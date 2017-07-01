@@ -4,6 +4,7 @@
 #include <QWebEngineView>
 #include <QMainWindow>
 #include <QLineEdit>
+#include <Matrix.h>
 
 namespace Ui {
 class MainWindow;
@@ -54,7 +55,8 @@ private:
     void setTableValidatorA();
     void setTableValidatorB();
 	void setLinearEqTableValidator();
-    void renderResult();
+    void renderResult(Matrix, Matrix, Matrix, int, double);
+    void clearWebDisplay();
 	void initializeLinearEqModule();
 	void setUpVarsValidation();
 };

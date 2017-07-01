@@ -159,13 +159,19 @@ int Matrix::rowNonZeroElementIndex(const int initialIndex, const int columnIndex
 
 double Matrix::detGauss( Matrix  *a){
     int n, i, j, k;
-
+    bool zeroM = false;
     Matrix m = Matrix(a->getRowsCount(), a->getColumnsCount());
     for(int p = 0; p < m.getColumnsCount(); p++){
         for(int q = 0; q < m.getRowsCount(); q++){
+
             m.set(p, q, a->at(p, q));
+            if(m.at(p, q) == 0)
+                zeroM = true;
         }
     }
+
+    if(!zeroM){
+
     n=m.getColumnsCount();
     double det = 1;
     int flag = 0;
@@ -196,6 +202,9 @@ double Matrix::detGauss( Matrix  *a){
         det = -det;
     }
     return det;
+    }
+
+    return 0;
 }
 
 
