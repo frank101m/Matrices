@@ -1,6 +1,8 @@
 #pragma once
 #include "Matrix.h"
 #include <stdlib.h>
+#include <math.h>
+#include <algorithm>
 /*
 	Métodos privados
 */
@@ -70,9 +72,27 @@ void Matrix::setRow(const int rowIndex, const Matrix &m) {
 	mBase.at(rowIndex) = m.getRowVector(0);
 }
 
+double Matrix::infNorm()
+{
+
+	std::vector<double> subNorms;
+
+	double rowAcu;
+
+	for (int i = 0; i < rowsCount; i++) {
+
+		rowAcu = 0.0;
+
+		for (int j = 0; j < columnsCount; j++) {
+			rowAcu += abs(at(i,j));
+		}
+
+		subNorms.push_back(rowAcu);
+	}
 
 
-
+	return *std::max_element(subNorms.begin(), subNorms.end());
+}
 
 
 Matrix Matrix::operator+(const Matrix& m){
@@ -115,6 +135,7 @@ Matrix Matrix::operator*(const double a) {
 
 	return t;
 }
+
 /*
     Eliminacion gaussiana con sustitución hacia atras
 */

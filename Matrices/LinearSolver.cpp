@@ -72,19 +72,36 @@ namespace LinearSolver {
 		return t;
 	}
 
-   /* Matrix LinearSolver::getJacobiMethod(const Matrix & A, const Matrix &C, const Matrix &X0)
+	//Método de Jacobi para solución de ecuaciones lineales
+	Matrix LinearSolver::getJacobiMethod(
+		const Matrix & A,
+		const Matrix &CO,
+		const Matrix &X0,
+		const double tol,
+		const size_t NMax)
 	{
 		size_t n = A.getRowsCount();
 
-		Matrix t(n,n);
-		Matrix x(n,1);
-		Matrix c(n,1);
+		Matrix T(n, n);
+		Matrix X(n, 1);
+		Matrix C(n, 1);
 
 		for (int i = 0; i < n; i++) {
-			x.set(i, 0, X0.at(i, 0));
+			X.set(i, 0, X0.at(i, 0));
 		}
 
-		return x;
-    }*/
+		for (int i = 0; i < n; i++) {
+			T.setRow(i, A.getRow(i)*(-1.0 / A.at(i, i)));
+			T.set(i, i, 0);
+			C.setRow(i, CO.getRow(i)*(-1.0 / A.at(i, i)));
+		}
+
+		for (int i = 0; i < NMax; i++) {
+			Matrix X_p = X;
+			X = (T*X) + C;
+		}
+
+		return X;
+	}
 
 }

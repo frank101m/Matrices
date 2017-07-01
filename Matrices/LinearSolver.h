@@ -10,7 +10,9 @@ namespace LinearSolver {
 
 	Matrix getJacobiMethod(
 		const Matrix &A,
-		const Matrix &C,
-		const Matrix &X0
+		const Matrix &CO,
+		const Matrix &XO,
+		const double tol,
+		const size_t NMax
 	);
 };

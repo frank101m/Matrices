@@ -28,6 +28,8 @@ public:
 
 	void setRow(const int, const Matrix &m);
 
+	double infNorm();
+
 	//Los métodos de Frank van acá
     static bool validateSizes(const Matrix*, const Matrix&);
     //static Matrix* sum(const Matrix *, const Matrix *);
