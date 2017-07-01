@@ -77,12 +77,12 @@ namespace LinearSolver {
 	}
 
 	//Método de Jacobi para solución de ecuaciones lineales
-	Matrix getJacobiMethod(
+    Matrix getJacobiMethod(
 		const Matrix & A,
 		const Matrix &CO,
 		const Matrix &XO,
 		const double tol,
-		const size_t NMax,
+        const int NMax,
 		const std::vector<std::string> &vars,
 		Report &report)
 	{
@@ -118,7 +118,7 @@ namespace LinearSolver {
 			X = (T*X) + C;
 			XN.push_back(X);
 
-			if (std::abs(X_p.infNorm() - X.infNorm()) < tol) {
+            if (abs(X_p.infNorm() - X.infNorm()) < tol) {
 				break;
 			}
 		}
@@ -127,4 +127,7 @@ namespace LinearSolver {
 
 		return X;
 	}
-}
+    }
+
+
+

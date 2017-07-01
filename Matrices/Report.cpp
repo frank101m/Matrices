@@ -86,7 +86,7 @@ std::string Report::generateLinEqElement(
 	for (int i = 0; i < n - 1; i++) {
 		currentEq = A.getRow(i);
 
-		linEqElementStream << generateEq(vars, currentEq, C.at(i, 0));
+        linEqElementStream << generateEq(vars, currentEq, C.at(i, 0));
 		linEqElementStream << REPORT_NEWLINE;
 		linEqElementStream << std::endl;
 	}
@@ -117,7 +117,7 @@ std::string Report::generateEq(
 		//No obviar
 		if (currentX != 0) {
 			//No colocar el numero 1
-			if (std::abs(currentX) == 1.0) {
+            if (abs(currentX) == 1.0) {
 				if (currentX == -1.0) {
 					eqStream << "-";
 				}
@@ -509,3 +509,4 @@ std::string Report::generateAugmentedMatrixElement(
 
 	return augmentedMatrixCommand.str();
 }
+
