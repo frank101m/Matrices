@@ -94,19 +94,6 @@ double Matrix::infNorm()
 	return *std::max_element(subNorms.begin(), subNorms.end());
 }
 
-/*Matrix* Matrix::sum(const Matrix *a, const Matrix *b){
-    if(validateSizes(a, b)){
-        Matrix *result = new Matrix(a->getRowsCount(), b->getColumnsCount());
-        for(int i = 0; i < a->getRowsCount(); i++)
-            for(int j = 0; j < a->getColumnsCount(); j++)
-                result->set(i, j, (a->at(i, j) + b->at(i, j)));
-        return result;
-    }
-    return nullptr;
-
-
-
-
 
 Matrix Matrix::operator+(const Matrix& m){
         Matrix res = Matrix(m.getRowsCount(), m.getColumnsCount());
@@ -148,6 +135,7 @@ Matrix Matrix::operator*(const double a) {
 
 	return t;
 }
+
 /*
     Eliminacion gaussiana con sustitución hacia atras
 */
