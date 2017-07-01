@@ -21,42 +21,61 @@ int main()
 {
 	static double jacobiTest[4][4] = { {10,-1,2,0}, {-1,11,-1,3}, {2,-1,10,-1}, {0,3,-1,8}};
 	static double jacobiC[4][1] = { {6}, {25}, {-11}, {15} };
-	static double jacobiInitialGuess[4][1] = { {0}, {0}, {0}, {0} };
+	static double jacobiInitialGuess[4][1] = { {1}, {1}, {1}, {1} };
 
 	size_t n = 4;
-	Matrix a(n, n);
-	Matrix x(n, 1);
-	Matrix t(n, 4);
-	Matrix c(n, 1);
+
+	Matrix A(n, n);
+	Matrix C(n, 1);
+	Matrix X(n, 1);
+
 
 	for (int i = 0; i < n; i++) {
 		for (int j = 0; j < n; j++) {
-			a.set(i, j, jacobiTest[i][j]);
+			A.set(i, j, jacobiTest[i][j]);
 		}
 	}
 
-	for (int i = 0; i < n; i++) {
-		x.set(i, 0, jacobiInitialGuess[i][0]);
-		c.set(i, 0, jacobiC[i][0]);
-	}
-
-	printMatrix(a);
-
-	std::cout << "Matriz T:" << std::endl;
+	std::cout << "Matriz A:" << std::endl;
+	printMatrix(A);
+	std::cout << std::endl;
+	std::cout << "Norma matricial infinita: " << A.infNorm() << std::endl;
 
 	for (int i = 0; i < n; i++) {
-		t.setRow(i, a.getRow(i)* (-1.0/a.at(i, i)));
-		c.setRow(i, c.getRow(i)* (-1.0/a.at(i, i)));
-		t.set(i, i, 0);
+		C.set(i, 0, jacobiC[i][0]);
 	}
 
+
+	for (int i = 0; i < n; i++) {
+		X.set(i, 0, jacobiInitialGuess[i][0]);
+	}
+
+	std::cout << "Matriz C:" << std::endl;
+	printMatrix(C);
 	std::cout << std::endl;
 
-	for (int i = 0; i < n; i++) {
-		std::cout << "Iteracion: " << (i + 1) << std::endl;
-		x = (t*x) + c;
-		printMatrix(x);
+	std::cout << "Matriz X:" << std::endl;
+	printMatrix(X);
+	std::cout << std::endl;
+
+
+	Matrix XN = LinearSolver::getJacobiMethod(A, C, X, 0.0001, 10);
+
+	Report r(10);
+
+	std::vector<std::string> vars;
+
+	for (int i = 0; i < 4; i++) {
+		std::ostringstream var;
+		var << "a_";
+		var << (i + 1);
+		vars.push_back(var.str());
 	}
+
+	std::cout << r.generateLinEqElement(vars, A, C) << std::endl;
+	std::cout << r.generateMatrixEl(std::string("A"), A) << std::endl;
+
+	printMatrix(XN);
 
 	system("pause");
 	return 0;

@@ -36,6 +36,12 @@ public:
 	static const std::string ARRAY_END;
 	static const std::string REPORT_BODY_START;
 	static const std::string REPORT_BODY_END;
+	static const std::string REPORT_NEWLINE;
+	static const std::string SEL_START;
+	static const std::string SEL_END;
+	static const std::string BMATRIX_PRE_VAR;
+	static const std::string BMATRIX_POST_VAR;
+	static const std::string BMATRIX_END;
 
 	std::string generateRowSwap(const int, const int);
 	std::string generateSeq(const std::vector<std::string> &, const std::string);
@@ -70,6 +76,24 @@ public:
 		const std::vector<std::string> &,
 		const std::vector<RowOperationParameter> &,
 		const Matrix &
+	);
+
+	//Generacion de sistema de ecuaciones lineales
+	std::string generateLinEqElement(
+		std::vector<std::string> &vars,
+		Matrix &A,
+		Matrix &C
+	);
+
+	std::string generateEq(
+		std::vector<std::string> &vars,
+		Matrix &E,
+		const double c
+	);
+
+	std::string generateMatrixEl(
+		std::string &var,
+		const Matrix &M
 	);
 };
 

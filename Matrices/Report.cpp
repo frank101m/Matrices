@@ -8,6 +8,12 @@ const std::string Report::ARRAY_END = "}";
 const std::string Report::ARRAY_START = "{";
 const std::string Report::REPORT_BODY_START = "\\def\\reportbody{";
 const std::string Report::REPORT_BODY_END = "}";
+const std::string Report::REPORT_NEWLINE = "\\\\";
+const std::string Report::SEL_START = "\\[\\begin{alignedat}";
+const std::string Report::SEL_END = "\\end{alignedat}\\]";
+const std::string Report::BMATRIX_PRE_VAR = "\\[\\mathbf{";
+const std::string Report::BMATRIX_POST_VAR = "}=\\begin{bmatrix}";
+const std::string Report::BMATRIX_END = "\\end{bmatrix}\\]";
 
 Report::Report(const int precision)
 {
@@ -48,6 +54,101 @@ void Report::addGaussOpMatrix(
 	const Matrix & m)
 {
 	this->reportBodyStream << generateGaussOpMatrixElement(index, vars, params, m);
+}
+
+std::string Report::generateLinEqElement(
+	std::vector<std::string>& vars,
+	Matrix & A,
+	Matrix & C)
+{
+	std::ostringstream linEqElementStream;
+
+	size_t n = vars.size();
+	Matrix currentEq(0, 0);
+
+	linEqElementStream << SEL_START;
+	linEqElementStream << "{" << (n + 1) << "}";
+	linEqElementStream << std::endl;
+
+	for (int i = 0; i < n - 1; i++) {
+		currentEq = A.getRow(i);
+
+		linEqElementStream << generateEq(vars, currentEq, C.at(i, 0));
+		linEqElementStream << REPORT_NEWLINE;
+		linEqElementStream << std::endl;
+	}
+
+
+
+	currentEq = A.getRow(n - 1);
+	linEqElementStream << generateEq(vars, currentEq, C.at(n-1,0));
+	linEqElementStream << std::endl;
+
+	linEqElementStream << SEL_END;
+
+	return linEqElementStream.str();
+}
+
+std::string Report::generateEq(
+	std::vector<std::string>& vars,
+	Matrix & E,
+	const double c)
+{
+	std::ostringstream eqStream;
+	size_t n = vars.size();
+
+	for (int i = 0; i < n; i++) {
+		double currentX = E.at(0, i);
+		if (currentX > 0 && i != 0) {
+			eqStream << "+";
+		}
+
+		//No obviar
+		if (currentX != 0) {
+			//No colocar el numero 1
+			if (std::abs(currentX) == 1.0) {
+				if (currentX == -1.0) {
+					eqStream << "-";
+				}
+			} else {
+				eqStream << currentX << std::setprecision(precision);
+			}
+
+			eqStream << vars.at(i) << "&";
+
+		} else {
+			eqStream << " &";
+		}
+	}
+
+	eqStream << "\\;&=&\\;" << c << std::setprecision(precision);
+
+	return eqStream.str();
+}
+
+std::string Report::generateMatrixEl(std::string & var, const Matrix & M)
+{
+	std::ostringstream matrixElStream;
+
+	matrixElStream << BMATRIX_PRE_VAR;
+	matrixElStream << var;
+	matrixElStream << BMATRIX_POST_VAR;
+	matrixElStream << std::endl;
+
+	size_t n = M.getRowsCount();
+
+	for (int i = 0; i < n -1; i++) {
+		matrixElStream << generateRowSeq(M, i, "&");
+		matrixElStream << REPORT_NEWLINE;
+		matrixElStream << std::endl;
+		
+	}
+
+	matrixElStream << generateRowSeq(M, n - 1, "&");
+	matrixElStream << std::endl;
+
+	matrixElStream << BMATRIX_END;
+	return matrixElStream.str();
 }
 
 std::string Report::generateRowOperation(const RowOperationParameter &param) {
