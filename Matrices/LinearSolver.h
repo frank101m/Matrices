@@ -13,6 +13,8 @@ namespace LinearSolver {
 		const Matrix &CO,
 		const Matrix &XO,
 		const double tol,
-		const size_t NMax
+		const size_t NMax,
+		const std::vector<std::string> &vars,
+		Report &report
 	);
 };

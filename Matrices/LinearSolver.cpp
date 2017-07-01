@@ -76,9 +76,11 @@ namespace LinearSolver {
 	Matrix LinearSolver::getJacobiMethod(
 		const Matrix & A,
 		const Matrix &CO,
-		const Matrix &X0,
+		const Matrix &XO,
 		const double tol,
-		const size_t NMax)
+		const size_t NMax,
+		const std::vector<std::string> &vars,
+		Report &report)
 	{
 		size_t n = A.getRowsCount();
 
@@ -87,21 +89,38 @@ namespace LinearSolver {
 		Matrix C(n, 1);
 
 		for (int i = 0; i < n; i++) {
-			X.set(i, 0, X0.at(i, 0));
+			X.set(i, 0, XO.at(i, 0));
 		}
+
 
 		for (int i = 0; i < n; i++) {
 			T.setRow(i, A.getRow(i)*(-1.0 / A.at(i, i)));
 			T.set(i, i, 0);
-			C.setRow(i, CO.getRow(i)*(-1.0 / A.at(i, i)));
+			C.setRow(i, CO.getRow(i)*(1.0 / A.at(i, i)));
 		}
+
+		std::vector<Matrix> XN;
+
+		report.addLinEq(Report::DEF_JACOBI_SEL, vars, A, CO);
+		report.addMatrix(Report::DEF_JACOBI_MATRIX_A, A);
+		report.addMatrix(Report::DEF_JACOBI_MATRIX_T, T);
+		report.addMatrix(Report::DEF_JACOBI_MATRIX_C, C);
+		report.addMatrix(Report::DEF_JACOBI_MATRIX_XO, XO);
+
+		XN.push_back(XO);
 
 		for (int i = 0; i < NMax; i++) {
 			Matrix X_p = X;
 			X = (T*X) + C;
+			XN.push_back(X);
+
+			if (std::abs(X_p.infNorm() - X.infNorm()) < tol) {
+				break;
+			}
 		}
+
+		report.addJacobiTables(vars, XN);
 
 		return X;
 	}
-
 }
