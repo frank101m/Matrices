@@ -226,8 +226,6 @@ std::string Report::generateJacobiTableRow(
 {
 	std::ostringstream jacobiTableRow;
 
-	size_t n = row.getColumnsCount();
-
 	jacobiTableRow << "$";
 	jacobiTableRow << var;
 	jacobiTableRow << "^{(k)}$ &";
@@ -243,7 +241,6 @@ void Report::addJacobiTables(
 	std::ostringstream jacobiTablesStream;
 
 	size_t m = Xvec.size();
-	size_t n = vars.size();
 
 	jacobiTablesStream << DEF_JACOBI_TABLES_PRE;
 	jacobiTablesStream << std::endl;

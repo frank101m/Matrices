@@ -1,7 +1,11 @@
 #include "LinearSolver.h"
 
 namespace LinearSolver {
-	Matrix getGaussianElimination(Matrix srcMatrix, const std::vector<std::string>& vars, Report & report)
+	Matrix getGaussianElimination(
+		Matrix srcMatrix,
+		const std::vector<std::string>& vars,
+		Report & report
+	)
 	{
 		Matrix t = srcMatrix;
 
@@ -73,7 +77,7 @@ namespace LinearSolver {
 	}
 
 	//Método de Jacobi para solución de ecuaciones lineales
-	Matrix LinearSolver::getJacobiMethod(
+	Matrix getJacobiMethod(
 		const Matrix & A,
 		const Matrix &CO,
 		const Matrix &XO,
