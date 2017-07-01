@@ -147,7 +147,7 @@ void Matrix::swapRows(const int a, const int b) {
 	mBase.at(b) = rowT;
 }
 
-Matrix Matrix::transpose(){
+Matrix Matrix::transpose() const{
     Matrix m = Matrix(this->getColumnsCount(), this->getRowsCount());
     for(int i = 0; i < this->getColumnsCount(); i++){
         for(int j = 0; j < this->getRowsCount(); j++){

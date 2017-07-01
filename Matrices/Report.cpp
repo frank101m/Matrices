@@ -9,11 +9,24 @@ const std::string Report::ARRAY_START = "{";
 const std::string Report::REPORT_BODY_START = "\\def\\reportbody{";
 const std::string Report::REPORT_BODY_END = "}";
 const std::string Report::REPORT_NEWLINE = "\\\\";
-const std::string Report::SEL_START = "\\[\\begin{alignedat}";
-const std::string Report::SEL_END = "\\end{alignedat}\\]";
-const std::string Report::BMATRIX_PRE_VAR = "\\[\\mathbf{";
-const std::string Report::BMATRIX_POST_VAR = "}=\\begin{bmatrix}";
-const std::string Report::BMATRIX_END = "\\end{bmatrix}\\]";
+const std::string Report::SEL_START = "\\begin{alignedat}";
+const std::string Report::SEL_END = "\\end{alignedat}";
+const std::string Report::BMATRIX_START = "\\begin{bmatrix}";
+const std::string Report::BMATRIX_END = "\\end{bmatrix}";
+const std::string Report::TABLE_PRE_FORMAT = "\\begin{tabular}{";
+const std::string Report::TABLE_POST_FORMAT = "}";
+const std::string Report::TABLE_END = "\\end{tabular}";
+const std::string Report::TABLE_VSPACE = "\\vspace{0.5cm}";
+const std::string Report::DEF_JACOBI_TABLES_PRE = "\\def\\jacobitables{";
+const std::string Report::DEF_JACOBI_TABLES_POST = "}";
+
+const std::string Report::DEF_JACOBI_SEL = "\\def\\jacobisel{";
+const std::string Report::DEF_JACOBI_MATRIX_A = "\\def\\jacobimatrixA{";
+const std::string Report::DEF_JACOBI_MATRIX_T = "\\def\\jacobimatrixT{";
+const std::string Report::DEF_JACOBI_MATRIX_C = "\\def\\jacobimatrixC{";
+const std::string Report::DEF_JACOBI_MATRIX_XO = "\\def\\jacobimatrixXO{";
+
+const std::string Report::DEF_END = "}";
 
 Report::Report(const int precision)
 {
@@ -57,9 +70,9 @@ void Report::addGaussOpMatrix(
 }
 
 std::string Report::generateLinEqElement(
-	std::vector<std::string>& vars,
-	Matrix & A,
-	Matrix & C)
+	const std::vector<std::string>& vars,
+	const Matrix & A,
+	const Matrix & C)
 {
 	std::ostringstream linEqElementStream;
 
@@ -78,8 +91,6 @@ std::string Report::generateLinEqElement(
 		linEqElementStream << std::endl;
 	}
 
-
-
 	currentEq = A.getRow(n - 1);
 	linEqElementStream << generateEq(vars, currentEq, C.at(n-1,0));
 	linEqElementStream << std::endl;
@@ -90,7 +101,7 @@ std::string Report::generateLinEqElement(
 }
 
 std::string Report::generateEq(
-	std::vector<std::string>& vars,
+	const std::vector<std::string>& vars,
 	Matrix & E,
 	const double c)
 {
@@ -126,29 +137,186 @@ std::string Report::generateEq(
 	return eqStream.str();
 }
 
-std::string Report::generateMatrixEl(std::string & var, const Matrix & M)
+//*********************************
+// Generacion de una matriz regular
+//*********************************
+std::string Report::generateMatrixEl(const Matrix & M)
 {
 	std::ostringstream matrixElStream;
 
-	matrixElStream << BMATRIX_PRE_VAR;
-	matrixElStream << var;
-	matrixElStream << BMATRIX_POST_VAR;
+	matrixElStream << BMATRIX_START;
 	matrixElStream << std::endl;
-
 	size_t n = M.getRowsCount();
 
 	for (int i = 0; i < n -1; i++) {
 		matrixElStream << generateRowSeq(M, i, "&");
 		matrixElStream << REPORT_NEWLINE;
 		matrixElStream << std::endl;
-		
 	}
 
 	matrixElStream << generateRowSeq(M, n - 1, "&");
 	matrixElStream << std::endl;
-
 	matrixElStream << BMATRIX_END;
+
 	return matrixElStream.str();
+}
+
+std::string Report::generateJacobiTable(
+	const std::vector<std::string>& vars,
+	const std::vector<Matrix>& Xvec,
+	const size_t initialIndex)
+{
+	size_t n = vars.size();
+	size_t m = Xvec.size();
+
+	std::ostringstream jacobiTableStream;
+
+	jacobiTableStream << TABLE_PRE_FORMAT;
+
+	for (int i = 0; i < m+1; i++) {
+
+		jacobiTableStream << "c";
+
+		if (i != m) {
+			jacobiTableStream << "|";
+		}
+	}
+
+	jacobiTableStream << TABLE_POST_FORMAT;
+	jacobiTableStream << std::endl;
+	jacobiTableStream << "\\hline" << std::endl;
+	jacobiTableStream << "$k$ &";
+
+	for (int i = 0; i < m; i++) {
+		jacobiTableStream << (i + initialIndex);
+
+		if (i != m - 1) {
+			jacobiTableStream << "&";
+		}
+	}
+
+	jacobiTableStream << REPORT_NEWLINE;
+	jacobiTableStream << std::endl;
+	jacobiTableStream << "\\hline";
+	jacobiTableStream << std::endl;
+
+	for (int i = 0; i < n; i++) {
+		Matrix currentRowM(1, m);
+
+		for (int j = 0; j < m; j++) {
+			currentRowM.set(0, j, Xvec.at(j).at(i,0));
+		}
+
+		jacobiTableStream << generateJacobiTableRow(vars.at(i), currentRowM);
+		jacobiTableStream << REPORT_NEWLINE;
+		jacobiTableStream << std::endl;
+
+		jacobiTableStream << "\\hline" << std::endl;
+	}
+
+	jacobiTableStream << TABLE_END;
+
+	return jacobiTableStream.str();
+}
+
+std::string Report::generateJacobiTableRow(
+	const std::string &var,
+	const Matrix & row
+)
+{
+	std::ostringstream jacobiTableRow;
+
+	size_t n = row.getColumnsCount();
+
+	jacobiTableRow << "$";
+	jacobiTableRow << var;
+	jacobiTableRow << "^{(k)}$ &";
+	jacobiTableRow << generateRowSeq(row, 0, std::string("&"));
+
+	return jacobiTableRow.str();
+}
+
+void Report::addJacobiTables(
+	const std::vector<std::string>& vars,
+	const std::vector<Matrix>& Xvec)
+{
+	std::ostringstream jacobiTablesStream;
+
+	size_t m = Xvec.size();
+	size_t n = vars.size();
+
+	jacobiTablesStream << DEF_JACOBI_TABLES_PRE;
+	jacobiTablesStream << std::endl;
+	size_t step = m / 7 + 1;
+	if (m <= 7) {
+		jacobiTablesStream << generateJacobiTable(vars, Xvec, 1);
+	} else {
+
+		size_t itr_start_offset = 0;
+		size_t itr_end_offset = 7;
+
+		for (int i = 0; i < step; i++) {
+
+			if (itr_start_offset >= m) {
+				break;
+			}
+
+			std::vector <Matrix> tableSlice;
+
+			if (itr_end_offset < m) {
+				//Trozo del vector de matrices
+				tableSlice = std::vector<Matrix>(
+					Xvec.begin() + itr_start_offset,
+					Xvec.begin() + itr_end_offset
+				);
+			} else {
+				//Ultimo trozo
+				tableSlice = std::vector<Matrix>(
+					Xvec.begin() + itr_start_offset,
+					Xvec.end()
+				);
+			}
+					
+			jacobiTablesStream << generateJacobiTable(vars,tableSlice,itr_start_offset + 1);
+			jacobiTablesStream << std::endl;
+
+			if (i != step - 1) {
+				jacobiTablesStream << REPORT_NEWLINE;
+				jacobiTablesStream << std::endl;
+				jacobiTablesStream << TABLE_VSPACE;
+				jacobiTablesStream << std::endl;
+			}
+			itr_start_offset += 7;
+			itr_end_offset += 7;
+		}
+	}
+
+
+
+	jacobiTablesStream << std::endl;
+	jacobiTablesStream << DEF_JACOBI_TABLES_POST;
+
+	reportBodyStream << std::endl;
+	reportBodyStream << jacobiTablesStream.str();
+	reportBodyStream << std::endl;
+}
+
+void Report::addLinEq(const std::string & tag, const std::vector<std::string> &vars, const Matrix & A, const Matrix & C)
+{
+	reportBodyStream << std::endl;
+	reportBodyStream << tag;
+	reportBodyStream << generateLinEqElement(vars, A, C);
+	reportBodyStream << std::endl;
+	reportBodyStream << DEF_END;
+}
+
+void Report::addMatrix(const std::string & tag, const Matrix & M)
+{
+	reportBodyStream << std::endl;
+	reportBodyStream << tag;
+	reportBodyStream << generateMatrixEl(M);
+	reportBodyStream << std::endl;
+	reportBodyStream << DEF_END;
 }
 
 std::string Report::generateRowOperation(const RowOperationParameter &param) {
@@ -275,6 +443,7 @@ std::string Report::generateRowSeq(
 
 	for (int j = 0; j < m.getColumnsCount() - 1; j++)
 	{
+		//seq << std::fixed;
 		seq << std::setprecision(precision) << m.at(rowIndex, j);
 		seq << separator;
 	}

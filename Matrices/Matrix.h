@@ -10,8 +10,6 @@ private:
 	int columnsCount;
 
 	std::vector<std::vector<double>> mBase;
-
-
 public:
 
 	//Métodos generales
@@ -39,7 +37,7 @@ public:
 	Matrix operator*(const double a);
     static double detGauss( Matrix *);
 
-    Matrix transpose();
+    Matrix transpose() const;
     Matrix inverse();
 	//Solucion de sistemas de ecuaciones lineales
 	void initialize(const int, const int);

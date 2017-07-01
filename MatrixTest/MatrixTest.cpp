@@ -21,7 +21,7 @@ int main()
 {
 	static double jacobiTest[4][4] = { {10,-1,2,0}, {-1,11,-1,3}, {2,-1,10,-1}, {0,3,-1,8}};
 	static double jacobiC[4][1] = { {6}, {25}, {-11}, {15} };
-	static double jacobiInitialGuess[4][1] = { {1}, {1}, {1}, {1} };
+	static double jacobiInitialGuess[4][1] = { {10000000}, {1003243240}, {1234000}, {123142000} };
 
 	size_t n = 4;
 
@@ -36,11 +36,6 @@ int main()
 		}
 	}
 
-	std::cout << "Matriz A:" << std::endl;
-	printMatrix(A);
-	std::cout << std::endl;
-	std::cout << "Norma matricial infinita: " << A.infNorm() << std::endl;
-
 	for (int i = 0; i < n; i++) {
 		C.set(i, 0, jacobiC[i][0]);
 	}
@@ -50,21 +45,10 @@ int main()
 		X.set(i, 0, jacobiInitialGuess[i][0]);
 	}
 
-	std::cout << "Matriz C:" << std::endl;
-	printMatrix(C);
-	std::cout << std::endl;
-
-	std::cout << "Matriz X:" << std::endl;
-	printMatrix(X);
-	std::cout << std::endl;
-
-
-	Matrix XN = LinearSolver::getJacobiMethod(A, C, X, 0.0001, 10);
 
 	Report r(10);
 
 	std::vector<std::string> vars;
-
 	for (int i = 0; i < 4; i++) {
 		std::ostringstream var;
 		var << "a_";
@@ -72,11 +56,10 @@ int main()
 		vars.push_back(var.str());
 	}
 
-	std::cout << r.generateLinEqElement(vars, A, C) << std::endl;
-	std::cout << r.generateMatrixEl(std::string("A"), A) << std::endl;
+	Matrix XN = LinearSolver::getJacobiMethod(A, C, X, 0.0001, 100, vars, r);
 
-	printMatrix(XN);
+	std::vector<Matrix> XI;
+	std::cout << r.getReportBody() << std::endl;
 
-	system("pause");
 	return 0;
 }
