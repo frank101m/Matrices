@@ -1,11 +1,9 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.11.2)  1 JUL 2017 14:50
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/W32TeX) (preloaded format=pdflatex 2016.11.2)  1 JUL 2017 21:59
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**\def\reportbody{\augmatrix{{a_1,a_2,a_3,a_4}}{{{0,0,0,0,0,0,0,0,0,0},{0,0,0,0
-,0,0,0,0,0,0},{0,0,0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0,0,0}
-,{0,0,0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0,0,0},{0,0,0,0,0,0
-,0,0,0,0},{0,0,0,0,0,0,0,0,0,0}}}}\input{matrixtest.tex}
+**\def\reportbody{\augmatrix{{a_0,a_1}}{{{0,0},{0,0}}}}\input{matrixtest.tex} -
+interaction=nonstopmode
 (./matrixtest.tex (./article.cls
 Document Class: article 2014/09/29 v1.4h Standard LaTeX document class
 (./size10.clo
@@ -254,57 +252,4 @@ Package grfext Info: Graphics extension search list:
 G,.JBIG2,.JB2,.eps]
 (grfext)             \AppendGraphicsExtensions on input line 456.
 )
-*geometry* driver: auto-detecting
-*geometry* detected driver: pdftex
-*geometry* verbose mode - [ preamble ] result:
-* driver: pdftex
-* paper: a4paper
-* layout: <same size as paper>
-* layoutoffset:(h,v)=(0.0pt,0.0pt)
-* modes: landscape 
-* h-part:(L,W,R)=(18.06749pt, 808.91187pt, 18.06749pt)
-* v-part:(T,H,B)=(18.06749pt, 561.3729pt, 18.06749pt)
-* \paperwidth=845.04684pt
-* \paperheight=597.50787pt
-* \textwidth=808.91187pt
-* \textheight=561.3729pt
-* \oddsidemargin=-54.2025pt
-* \evensidemargin=-54.2025pt
-* \topmargin=-91.2025pt
-* \headheight=12.0pt
-* \headsep=25.0pt
-* \topskip=10.0pt
-* \footskip=30.0pt
-* \marginparwidth=144.0pt
-* \marginparsep=11.0pt
-* \columnsep=10.0pt
-* \skip\footins=9.0pt plus 4.0pt minus 2.0pt
-* \hoffset=0.0pt
-* \voffset=0.0pt
-* \mag=1000
-* \@twocolumnfalse
-* \@twosidefalse
-* \@mparswitchfalse
-* \@reversemarginfalse
-* (1in=72.27pt=25.4mm, 1cm=28.453pt)
-
-[1{pdftex.map}
-
-] (./matrixtest.aux) ) 
-Here is how much of TeX's memory you used:
- 7973 strings out of 493013
- 137727 string characters out of 6136993
- 188943 words of memory out of 5000000
- 11421 multiletter control sequences out of 15000+600000
- 8268 words of font info for 30 fonts, out of 8000000 for 9000
- 1141 hyphenation exceptions out of 8191
- 48i,6n,42p,1094b,353s stack positions out of 5000i,500n,10000p,200000b,80000s
-<./cmbx10.pfb><./cmex10.pfb><./cmmi10.pfb><./cmr10.pfb><.
-/cmr7.pfb>
-Output written on matrixtest.pdf (1 page, 45613 bytes).
-PDF statistics:
- 28 PDF objects out of 1000 (max. 8388607)
- 19 compressed objects within 1 object stream
- 0 named destinations out of 1000 (max. 500000)
- 1 words of extra memory for PDF output out of 10000 (max. 10000000)
-
+*geometry* driver

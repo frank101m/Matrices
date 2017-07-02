@@ -39,6 +39,8 @@ public:
 	static const std::string REPORT_NEWLINE;
 	static const std::string SEL_START;
 	static const std::string SEL_END;
+	static const std::string MATRIX_START;
+	static const std::string MATRIX_END;
 	static const std::string BMATRIX_START;
 	static const std::string BMATRIX_END;
 	static const std::string TABLE_PRE_FORMAT;
@@ -53,6 +55,14 @@ public:
 	static const std::string DEF_JACOBI_MATRIX_T;
 	static const std::string DEF_JACOBI_MATRIX_C;
 	static const std::string DEF_JACOBI_MATRIX_XO;
+
+
+	static const std::string DEF_GAUSS_SEL;
+	static const std::string DEF_GAUSS_MATRICES;
+
+	static const std::string GAUSS_MATRIX_PRE_INDEX;
+	static const std::string GAUSS_MATRIX_POST_INDEX;
+	static const std::string GAUSS_MATRIX_SEGMENT_END;
 
 	static const std::string DEF_END;
 
@@ -108,10 +118,28 @@ public:
 		const Matrix &M
 	);
 
+	std::string generateAugmentedMatrixEl(
+		const Matrix &M
+	);
+
+	std::string generateOperationMatrixEl(
+		const std::vector<RowOperationParameter> &params
+	);
+
+	std::string generateGaussReduction(
+		const std::vector<Matrix> &Mvec,
+		const std::vector<std::vector<RowOperationParameter> > &paramsM
+	);
+
 	std::string generateJacobiTable(
 		const std::vector<std::string> &vars,
 		const std::vector<Matrix> &Xvec,
 		const size_t initialIndex
+	);
+
+	std::string generateGaussTable(
+		const std::vector<std::string> &vars,
+		const Matrix resultVec
 	);
 
 	std::string generateJacobiTableRow(
@@ -129,6 +157,11 @@ public:
 		const std::vector<std::string> &vars,
 		const Matrix &A,
 		const Matrix &C
+	);
+
+	void addGaussMatrices(
+		const std::vector<Matrix> &Mvec,
+		const std::vector<std::vector<RowOperationParameter> > &params
 	);
 
 	void addMatrix(

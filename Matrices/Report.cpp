@@ -13,6 +13,8 @@ const std::string Report::REPORT_BODY_END = "}";
 const std::string Report::REPORT_NEWLINE = "\\\\";
 const std::string Report::SEL_START = "\\begin{alignedat}";
 const std::string Report::SEL_END = "\\end{alignedat}";
+const std::string Report::MATRIX_START = "\\begin{matrix}";
+const std::string Report::MATRIX_END = "\\end{matrix}";
 const std::string Report::BMATRIX_START = "\\begin{bmatrix}";
 const std::string Report::BMATRIX_END = "\\end{bmatrix}";
 const std::string Report::TABLE_PRE_FORMAT = "\\begin{tabular}{";
@@ -27,6 +29,13 @@ const std::string Report::DEF_JACOBI_MATRIX_A = "\\def\\jacobimatrixA{";
 const std::string Report::DEF_JACOBI_MATRIX_T = "\\def\\jacobimatrixT{";
 const std::string Report::DEF_JACOBI_MATRIX_C = "\\def\\jacobimatrixC{";
 const std::string Report::DEF_JACOBI_MATRIX_XO = "\\def\\jacobimatrixXO{";
+
+const std::string Report::DEF_GAUSS_SEL = "\\def\\gausssel{";
+const std::string Report::DEF_GAUSS_MATRICES = "\\def\\gaussmatrices{";
+
+const std::string Report::GAUSS_MATRIX_PRE_INDEX = "\\tilde{A}^{(";
+const std::string Report::GAUSS_MATRIX_POST_INDEX = ")}=";
+const std::string Report::GAUSS_MATRIX_SEGMENT_END = "\\\\ \\vspace{0.5cm} \\\\";
 
 const std::string Report::DEF_END = "}";
 
@@ -163,6 +172,82 @@ std::string Report::generateMatrixEl(const Matrix & M)
 	return matrixElStream.str();
 }
 
+std::string Report::generateAugmentedMatrixEl(const Matrix & M)
+{
+	std::ostringstream augmentedMatrixElStream;
+
+	size_t n = M.getRowsCount();
+	size_t m = M.getColumnsCount();
+
+	augmentedMatrixElStream << BMATRIX_START;
+
+	augmentedMatrixElStream << "[";
+
+	for (int i = 0; i < n; i++) {
+		augmentedMatrixElStream << "r";
+	}
+
+	augmentedMatrixElStream << "|r";
+	augmentedMatrixElStream << "]";
+	augmentedMatrixElStream << std::endl;
+
+	for (int i = 0; i < n; i++) {
+		augmentedMatrixElStream << generateRowSeq(M, i, "&");
+		augmentedMatrixElStream << REPORT_NEWLINE;
+		augmentedMatrixElStream << std::endl;
+	}
+
+	augmentedMatrixElStream << BMATRIX_END;
+
+	return augmentedMatrixElStream.str();
+}
+
+std::string Report::generateOperationMatrixEl(
+	const std::vector<RowOperationParameter>& params
+)
+{
+	std::ostringstream operationMatrixElStream;
+	operationMatrixElStream << MATRIX_START;
+	operationMatrixElStream << std::endl;
+
+	for (int i = 0; i < params.size(); i++) {
+		operationMatrixElStream << generateRowOperation(params.at(i));
+		operationMatrixElStream << REPORT_NEWLINE;
+		operationMatrixElStream << std::endl;
+	}
+
+	operationMatrixElStream << MATRIX_END;
+
+	return operationMatrixElStream.str();
+}
+
+std::string Report::generateGaussReduction(
+	const std::vector<Matrix> & Mvec,
+	const std::vector<std::vector<RowOperationParameter> > &paramsM
+)
+{
+	std::ostringstream gaussReductionStream;
+	
+	for (int i = 0; i < Mvec.size(); i++) {
+		gaussReductionStream << GAUSS_MATRIX_PRE_INDEX;
+		gaussReductionStream << (i + 1);
+		gaussReductionStream << GAUSS_MATRIX_POST_INDEX;
+		gaussReductionStream << std::endl;
+		gaussReductionStream << generateAugmentedMatrixEl(Mvec.at(i));
+		gaussReductionStream << "\\quad";
+		gaussReductionStream << std::endl;
+		gaussReductionStream << generateOperationMatrixEl(paramsM.at(i));
+
+		if (i != Mvec.size() - 1) {
+			gaussReductionStream << std::endl;
+			gaussReductionStream << GAUSS_MATRIX_SEGMENT_END;
+			gaussReductionStream << std::endl;
+		} 
+	}
+
+	return gaussReductionStream.str();
+}
+
 std::string Report::generateJacobiTable(
 	const std::vector<std::string>& vars,
 	const std::vector<Matrix>& Xvec,
@@ -219,6 +304,13 @@ std::string Report::generateJacobiTable(
 	jacobiTableStream << TABLE_END;
 
 	return jacobiTableStream.str();
+}
+
+std::string Report::generateGaussTable(const std::vector<std::string>& vars, const Matrix resultVec)
+{
+	std::ostringstream gaussTableStream;
+
+	return gaussTableStream.str();
 }
 
 std::string Report::generateJacobiTableRow(
@@ -305,6 +397,15 @@ void Report::addLinEq(const std::string & tag, const std::vector<std::string> &v
 	reportBodyStream << std::endl;
 	reportBodyStream << tag;
 	reportBodyStream << generateLinEqElement(vars, A, C);
+	reportBodyStream << std::endl;
+	reportBodyStream << DEF_END;
+}
+
+void Report::addGaussMatrices(const std::vector<Matrix>& Mvec, const std::vector<std::vector<RowOperationParameter>>& params)
+{
+	reportBodyStream << std::endl;
+	reportBodyStream << DEF_GAUSS_MATRICES;
+	reportBodyStream << generateGaussReduction(Mvec, params);
 	reportBodyStream << std::endl;
 	reportBodyStream << DEF_END;
 }
@@ -511,4 +612,3 @@ std::string Report::generateAugmentedMatrixElement(
 
 	return augmentedMatrixCommand.str();
 }
-

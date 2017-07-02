@@ -54,14 +54,72 @@ int main()
 
 	std::vector<std::string> vars;
 
-	for (int i = 0; i < n; i++) {
+
+
+	size_t randomOrder = 20;
+
+	for (int i = 0; i < randomOrder; i++) {
 		std::ostringstream var;
 		var << "a_";
 		var << (i + 1);
 		vars.push_back(var.str());
 	}
 
-	Matrix XN = LinearSolver::getJacobiMethod(A, C, X, 0.0001, 100, vars, r);
+	Matrix CO(randomOrder, 1);
+
+	for (int i = 0; i < randomOrder; i++) {
+		double randVal = (std::rand()) / (std::rand() + 1.0)*pow(-1, std::rand());
+		CO.set(i, 0, randVal);
+	}
+
+	std::vector<Matrix> gaussmvec;
+	std::vector<std::vector<RowOperationParameter> > ops;
+
+	for (int k = 0; k < randomOrder; k++) {
+		Matrix randM(randomOrder, randomOrder);
+
+		for (int i = 0; i < randomOrder ; i++) {
+			for (int j = 0; j < randomOrder; j++) {
+				double randVal = (std::rand()) / (std::rand() + 1.0)*pow(-1, std::rand());
+				randM.set(i, j, randVal);
+			}
+		}
+
+		std::vector<RowOperationParameter>  rowOps;
+
+		for (int i = 0; i < randomOrder; i++) {
+			double randVal = (std::rand())*pow(-1, std::rand());
+			RowOperationParameter tempOp;
+			tempOp.i = i + 1;
+			tempOp.j = k + 1;
+			tempOp.m = randVal;
+			tempOp.skip = false;
+
+			rowOps.push_back(tempOp);
+
+		}
+
+		gaussmvec.push_back(randM);
+		ops.push_back(rowOps);
+	}
+
+	Matrix gaussTest(randomOrder, randomOrder + 1);
+
+	for (int i = 0; i < randomOrder; i++) {
+		for (int j = 0; j < randomOrder + 1; j++ ) {
+			double randVal = (std::rand());
+			gaussTest.set(i, j, randVal);
+		}
+	}
+
+	//Matrix XN = LinearSolver::getJacobiMethod(A, C, X, 0.0001, 100, vars, r);
+
+	//std::cout << r.getReportBody() << std::endl;
+
+	r.addLinEq(Report::DEF_GAUSS_SEL, vars, gaussmvec.at(0), CO);
+
+	Matrix gaussReduc = LinearSolver::getGaussianElimination(gaussTest, vars, r);
+	LinearSolver::getBackSubstitution(gaussReduc, vars, r);
 
 	std::cout << r.getReportBody() << std::endl;
 

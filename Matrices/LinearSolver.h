@@ -17,4 +17,10 @@ namespace LinearSolver {
 		const std::vector<std::string> &vars,
 		Report &report
 	);
+
+	std::vector<double> getBackSubstitution(
+		const Matrix &gaussReduc,
+		const std::vector<std::string> &vars,
+		Report &report
+	);
 };

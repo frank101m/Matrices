@@ -15,7 +15,19 @@ namespace LinearSolver {
 		int p = 0; //Fila del pivote
 		int n = t.getRowsCount();
 		double m; //Valor del pivote
-		int reportOpIndex = 1;
+		
+		std::vector<Matrix> itrMatrices;
+		itrMatrices.push_back(srcMatrix);
+		std::vector<std::vector<RowOperationParameter> > paramsMat;
+
+		std::vector<RowOperationParameter> blank;
+
+		for (int i = 0; i < n; i++) {
+			RowOperationParameter temp;
+			temp.skip = true;
+			blank.push_back(temp);
+		}
+		paramsMat.push_back(blank);
 
 		for (int i = 0; i < n; i++) {
 			std::vector<RowOperationParameter> params;
@@ -35,6 +47,7 @@ namespace LinearSolver {
 			//Solucion multiple
 			if (p == -1) {
 				return t;
+				report.addGaussMatrices(itrMatrices, paramsMat);
 			}
 
 			//Intercamio con pivote no nulo
@@ -54,8 +67,9 @@ namespace LinearSolver {
 
 				t.swapRows(p,i);
 
-				report.addGaussOpMatrix(reportOpIndex, vars, swapRowParams, t);
-				reportOpIndex++;
+				paramsMat.push_back(swapRowParams);
+				itrMatrices.push_back(t);
+
 			}
 
 			for (int j = i + 1; j < n; j++) {
@@ -68,14 +82,40 @@ namespace LinearSolver {
 
 				currentRow = t.getRow(j) - t.getRow(i) * m;
 				t.setRow(j, currentRow);
+				t.set(j, i, 0);
 			}
 
-			//if (i != n - 1) {
-				report.addGaussOpMatrix(reportOpIndex, vars, params, t);
-			//}
-			reportOpIndex++;
+			if (i != n - 1) {
+				itrMatrices.push_back(t);
+				paramsMat.push_back(params);
+			}
 		}
+
+		report.addGaussMatrices(itrMatrices, paramsMat);
 		return t;
+	}
+
+	std::vector<double> getBackSubstitution(const Matrix & gaussReduc, const std::vector<std::string>& vars, Report & report)
+	{
+		std::vector<double> xn;
+		size_t n = gaussReduc.getRowsCount();
+		Matrix resVec(1, n);
+
+		resVec.set(0,n-1,(gaussReduc.at(n-1,n)/gaussReduc.at(n-1, n-1)));
+
+		for (int i = n - 2; i >= 0; i--) {
+			double sum_acu = 0 ;
+
+			for (int j = i + 1; j < n; j++) {
+				sum_acu += gaussReduc.at(i, j) * resVec.at(0, j);
+			}
+
+			resVec.set(0, i, (gaussReduc.at(i,n) - sum_acu)/gaussReduc.at(i,i) );
+		}
+
+		report.addMatrix(Report::DEF_JACOBI_MATRIX_A, resVec);
+
+		return xn;
 	}
 
 	//Método de Jacobi para solución de ecuaciones lineales
