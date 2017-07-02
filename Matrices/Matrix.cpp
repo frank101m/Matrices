@@ -1,7 +1,6 @@
 #pragma once
 #include "Matrix.h"
-#include <stdlib.h>
-#include <math.h>
+#include <cmath>
 #include <algorithm>
 /*
 	Métodos privados
@@ -84,7 +83,7 @@ double Matrix::infNorm()
 		rowAcu = 0.0;
 
 		for (int j = 0; j < columnsCount; j++) {
-			rowAcu += abs(at(i,j));
+            rowAcu += std::abs(at(i,j));
 		}
 
 		subNorms.push_back(rowAcu);
@@ -198,7 +197,7 @@ double Matrix::detGauss( Matrix  *a){
     int flag = 0;
     for(i = 0; i < n; i++)
         for(k=i; k<n; k++)
-        if(abs(m.at(i, i)) < abs(m.at(k, i))){
+        if(std::abs(m.at(i, i)) < std::abs(m.at(k, i))){
             flag++;
             for(j = 0; j < n; j++){
                 double temp = m.at(i, j);

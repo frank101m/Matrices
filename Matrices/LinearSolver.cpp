@@ -1,4 +1,6 @@
 #include "LinearSolver.h"
+#include <cmath>
+
 
 namespace LinearSolver {
 	Matrix getGaussianElimination(
@@ -124,7 +126,8 @@ namespace LinearSolver {
 
 			ninfX_p = X_p.infNorm();
 			ninfX = X.infNorm();
-			error = abs(ninfX_p - ninfX);
+            //error = abs(ninfX_p - ninfX);
+            error = std::abs(ninfX_p - ninfX);
 
 			std::cout << "I: " << i << std::endl;
 			std::cout << "ninfX_p: " << ninfX_p << std::endl;

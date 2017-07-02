@@ -1,4 +1,6 @@
 #include "Report.h"
+#include <cmath>
+
 
 const std::string Report::MATRIX_REGULAR_COMMAND = "\\regmatrix";
 const std::string Report::MATRIX_AUGMENTED_COMMAND = "\\augmatrix";
@@ -117,7 +119,7 @@ std::string Report::generateEq(
 		//No obviar
 		if (currentX != 0) {
 			//No colocar el numero 1
-            if (abs(currentX) == 1.0) {
+            if (std::abs(currentX) == 1.0) {
 				if (currentX == -1.0) {
 					eqStream << "-";
 				}
