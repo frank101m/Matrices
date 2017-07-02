@@ -31,7 +31,7 @@ namespace LinearSolver {
 		double m; //Valor del pivote
 		
 		std::vector<Matrix> itrMatrices;
-		itrMatrices.push_back(srcMatrix);
+		itrMatrices.push_back(t);
 		std::vector<std::vector<RowOperationParameter> > paramsMat;
 
 		std::vector<RowOperationParameter> blank;
@@ -60,8 +60,9 @@ namespace LinearSolver {
 
 			//Solucion multiple
 			if (p == -1) {
-				return t;
 				report.addGaussMatrices(itrMatrices, paramsMat);
+				report.addDefinition(Report::DEF_ERROR, std::string("1"));
+				return t;
 			}
 
 			//Intercamio con pivote no nulo

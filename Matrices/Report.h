@@ -42,6 +42,8 @@ public:
 	static const std::string TABLE_END;
 	static const std::string TABLE_VSPACE;
 
+	//Tags de error
+	static const std::string DEF_ERROR;
 
 	//Para las operaciones basicas
 	static const std::string DEF_OP_MATRIX_A;
@@ -49,6 +51,12 @@ public:
 	static const std::string DEF_OP_MATRIX_DET_A;
 	static const std::string DEF_OP_VAL_DET_A;
 	static const std::string DEF_OP_MATRIX_INV_A;
+
+	static const std::string DEF_OP_MATRIX_B;
+	static const std::string DEF_OP_MATRIX_A_P_B;
+	static const std::string DEF_OP_MATRIX_A_M_B;
+	static const std::string DEF_OP_MATRIX_A_X_B;
+	static const std::string DEF_OP_MATRIX_B_X_A;
 
 	//Para los reportes de sistemas de ecuaciones lineales
 

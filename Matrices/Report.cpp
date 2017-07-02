@@ -16,6 +16,8 @@ const std::string Report::TABLE_POST_FORMAT = "}";
 const std::string Report::TABLE_END = "\\end{tabular}";
 const std::string Report::TABLE_VSPACE = "\\vspace{0.5cm}";
 
+const std::string Report::DEF_ERROR = "\\def\\errormsg{";
+
 //Para las operaciones basicas
 
 const std::string Report::DEF_OP_MATRIX_A = "\\def\\opmatrixA{";

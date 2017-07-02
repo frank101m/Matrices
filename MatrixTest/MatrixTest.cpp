@@ -124,7 +124,7 @@ int main()
 	r.addDefinition(Report::DEF_OP_VAL_DET_A, std::string("123"));
 	r.addBMatrix(Report::DEF_OP_MATRIX_INV_A, gaussTest);
 
-	Matrix XN = LinearSolver::getJacobiMethod(gaussTest, CO, X, 0.0001, 100, vars, r);
+	//Matrix XN = LinearSolver::getJacobiMethod(gaussTest, CO, X, 0.0001, 100, vars, r);
 	Matrix gaussReduc = LinearSolver::getGaussianElimination(gaussTest,CO, vars, r);
 	Matrix Xvec = LinearSolver::getBackSubstitution(gaussReduc, vars, r);
 

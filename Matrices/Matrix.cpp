@@ -179,12 +179,6 @@ int Matrix::rowNonZeroElementIndex(const int initialIndex, const int columnIndex
 }
 
 
-
-
-
-
-
-
 double Matrix::detGauss( Matrix  *a){
     int n, i, j, k;
     bool zeroM = false;
