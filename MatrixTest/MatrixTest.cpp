@@ -25,7 +25,7 @@ int main()
 {
 	static double jacobiTest[4][4] = { {10,-1,2,0}, {-1,11,-1,3}, {2,-1,10,-1}, {0,3,-1,8}};
 	static double jacobiC[4][1] = { {6}, {25}, {-11}, {15} };
-	static double jacobiInitialGuess[4][1] = { {10000000}, {1003243240}, {1234000}, {123142000} };
+	static double jacobiInitialGuess[4][1] = { {0}, {0}, {0}, {0} };
 
 	size_t n = 4;
 
@@ -56,7 +56,7 @@ int main()
 
 
 
-	size_t randomOrder = 20;
+	size_t randomOrder = 4;
 
 	for (int i = 0; i < randomOrder; i++) {
 		std::ostringstream var;
@@ -103,23 +103,30 @@ int main()
 		ops.push_back(rowOps);
 	}
 
-	Matrix gaussTest(randomOrder, randomOrder + 1);
+	Matrix gaussTest(randomOrder, randomOrder);
 
 	for (int i = 0; i < randomOrder; i++) {
-		for (int j = 0; j < randomOrder + 1; j++ ) {
+		for (int j = 0; j < randomOrder; j++ ) {
 			double randVal = (std::rand());
 			gaussTest.set(i, j, randVal);
 		}
 	}
 
-	//Matrix XN = LinearSolver::getJacobiMethod(A, C, X, 0.0001, 100, vars, r);
+	for (int i = 0; i < randomOrder; i++) {
+		double randVal = (std::rand())*pow(-1, std::rand());
+		CO.set(i, 0, randVal);
+	}
 
-	//std::cout << r.getReportBody() << std::endl;
 
-	r.addLinEq(Report::DEF_GAUSS_SEL, vars, gaussmvec.at(0), CO);
+	r.addBMatrix(Report::DEF_OP_MATRIX_A, gaussTest);
+	r.addBMatrix(Report::DEF_OP_MATRIX_AT, gaussTest);
+	r.addVMatrix(Report::DEF_OP_MATRIX_DET_A, gaussTest);
+	r.addDefinition(Report::DEF_OP_VAL_DET_A, std::string("123"));
+	r.addBMatrix(Report::DEF_OP_MATRIX_INV_A, gaussTest);
 
-	Matrix gaussReduc = LinearSolver::getGaussianElimination(gaussTest, vars, r);
-	LinearSolver::getBackSubstitution(gaussReduc, vars, r);
+	Matrix XN = LinearSolver::getJacobiMethod(gaussTest, CO, X, 0.0001, 100, vars, r);
+	Matrix gaussReduc = LinearSolver::getGaussianElimination(gaussTest,CO, vars, r);
+	Matrix Xvec = LinearSolver::getBackSubstitution(gaussReduc, vars, r);
 
 	std::cout << r.getReportBody() << std::endl;
 

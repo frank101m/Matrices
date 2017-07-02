@@ -239,93 +239,93 @@ void MainWindow::on_pushButton_5_clicked()
 void MainWindow::on_pushButton_6_clicked()
 {
 #ifdef _WIN32
-	QProcess process;
-	QMessageBox pathMsg;
-	QTableWidget *augMatrixTable = ui->augMatrix;
-
-	int n = augMatrixTable->rowCount();
-	int m = augMatrixTable->columnCount();
-
-	QLineEdit *tempLineEdit;
-
-	Matrix aug(n, m);
-	Report testReport(6);
-
-	for (int i = 0; i < n; i++) {
-		for (int j = 0; j < m; j++) {
-			tempLineEdit = (QLineEdit*) augMatrixTable->cellWidget(i, j);
-			aug.set(i, j, tempLineEdit->text().toDouble());
-		}
-	}
-
-	std::vector<std::string> vars;
-
-	for (int i = 0; i < n; i++) {
-		std::ostringstream tempVar;
-		tempVar << "a_";
-		tempVar << i;
-
-		vars.push_back(tempVar.str());
-	}
-
-	testReport.addAugmentMatrixElement(vars, aug);
-	Matrix augEl = LinearSolver::getGaussianElimination(aug, vars, testReport);
-
-	std::vector<RowOperationParameter> ops;
-
-	for (int i = 0; i < aug.getRowsCount(); i++) {
-		RowOperationParameter tempOp;
-
-		tempOp.i = i;
-		tempOp.j = i + 1;
-		tempOp.m = 1.0;
-		tempOp.skip = false;
-
-		ops.push_back(tempOp);
-	}
-
-	std::ostringstream body;
-	body << "\"\\def\\reportbody{";
-	body << testReport.getReportBody();
-	body << "}";
-	body << "\\input{matrixtest.tex}\"";
-
-
-	std::ostringstream catStream;
-	catStream << "echo ";
-	catStream << body.str();
-	catStream << " > outstream.txt";
-
-	std::cout << body.str() << std::endl;
-
-	QString outputCat = QString::fromStdString(catStream.str());
-
-
-
-	QString file = QCoreApplication::applicationDirPath() + "/" + "texlive/pdflatex.exe " + QString::fromStdString(body.str()) + " -interaction=nonstopmode";
-
-	//pathMsg.setText(QString::fromStdString(body.str()));
-	QProcess processCat;
-
-	process.setWorkingDirectory(QDir::currentPath().append(QDir::separator()).append("texlive"));
-	processCat.setWorkingDirectory(process.workingDirectory());
-	processCat.start(outputCat);
-
-	process.start(file);
-
-	if (!process.waitForStarted()) {
-		pathMsg.setText(file + " : " + process.errorString());
-	}
-	else {
-		pathMsg.setText(process.readAll());
-	}
-
-	if (process.waitForFinished()) {
-		pathMsg.setText(process.readAll());
-	}
-
-
-	pathMsg.exec();
+//	QProcess process;
+//	QMessageBox pathMsg;
+//	QTableWidget *augMatrixTable = ui->augMatrix;
+//
+//	int n = augMatrixTable->rowCount();
+//	int m = augMatrixTable->columnCount();
+//
+//	QLineEdit *tempLineEdit;
+//
+//	Matrix aug(n, m);
+//	Report testReport(6);
+//
+//	for (int i = 0; i < n; i++) {
+//		for (int j = 0; j < m; j++) {
+//			tempLineEdit = (QLineEdit*) augMatrixTable->cellWidget(i, j);
+//			aug.set(i, j, tempLineEdit->text().toDouble());
+//		}
+//	}
+//
+//	std::vector<std::string> vars;
+//
+//	for (int i = 0; i < n; i++) {
+//		std::ostringstream tempVar;
+//		tempVar << "a_";
+//		tempVar << i;
+//
+//		vars.push_back(tempVar.str());
+//	}
+//
+//	testReport.addAugmentMatrixElement(vars, aug);
+//	//Matrix augEl = LinearSolver::getGaussianElimination(aug, vars, testReport);
+//
+//	std::vector<RowOperationParameter> ops;
+//
+//	for (int i = 0; i < aug.getRowsCount(); i++) {
+//		RowOperationParameter tempOp;
+//
+//		tempOp.i = i;
+//		tempOp.j = i + 1;
+//		tempOp.m = 1.0;
+//		tempOp.skip = false;
+//
+//		ops.push_back(tempOp);
+//	}
+//
+//	std::ostringstream body;
+//	body << "\"\\def\\reportbody{";
+//	body << testReport.getReportBody();
+//	body << "}";
+//	body << "\\input{matrixtest.tex}\"";
+//
+//
+//	std::ostringstream catStream;
+//	catStream << "echo ";
+//	catStream << body.str();
+//	catStream << " > outstream.txt";
+//
+//	std::cout << body.str() << std::endl;
+//
+//	QString outputCat = QString::fromStdString(catStream.str());
+//
+//
+//
+//	QString file = QCoreApplication::applicationDirPath() + "/" + "texlive/pdflatex.exe " + QString::fromStdString(body.str()) + " -interaction=nonstopmode";
+//
+//	//pathMsg.setText(QString::fromStdString(body.str()));
+//	QProcess processCat;
+//
+//	process.setWorkingDirectory(QDir::currentPath().append(QDir::separator()).append("texlive"));
+//	processCat.setWorkingDirectory(process.workingDirectory());
+//	processCat.start(outputCat);
+//
+//	process.start(file);
+//
+//	if (!process.waitForStarted()) {
+//		pathMsg.setText(file + " : " + process.errorString());
+//	}
+//	else {
+//		pathMsg.setText(process.readAll());
+//	}
+//
+//	if (process.waitForFinished()) {
+//		pathMsg.setText(process.readAll());
+//	}
+//
+//
+//	pathMsg.exec();
 #elif __linux__
 	QProcess process;
 	QMessageBox pathMsg;

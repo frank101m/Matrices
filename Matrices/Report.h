@@ -28,14 +28,6 @@ private:
 public:
 	Report(const int);
 	//Constantes del reporte en Latex
-	static const std::string MATRIX_REGULAR_COMMAND;
-	static const std::string MATRIX_AUGMENTED_COMMAND;
-	static const std::string MATRIX_GAUSSIAN_REDUCTION_COMMAND;
-	static const std::string MATRIX_SEPARATOR;
-	static const std::string ARRAY_START;
-	static const std::string ARRAY_END;
-	static const std::string REPORT_BODY_START;
-	static const std::string REPORT_BODY_END;
 	static const std::string REPORT_NEWLINE;
 	static const std::string SEL_START;
 	static const std::string SEL_END;
@@ -43,22 +35,36 @@ public:
 	static const std::string MATRIX_END;
 	static const std::string BMATRIX_START;
 	static const std::string BMATRIX_END;
+	static const std::string VMATRIX_START;
+	static const std::string VMATRIX_END;
 	static const std::string TABLE_PRE_FORMAT;
 	static const std::string TABLE_POST_FORMAT;
 	static const std::string TABLE_END;
 	static const std::string TABLE_VSPACE;
+
+
+	//Para las operaciones basicas
+	static const std::string DEF_OP_MATRIX_A;
+	static const std::string DEF_OP_MATRIX_AT;
+	static const std::string DEF_OP_MATRIX_DET_A;
+	static const std::string DEF_OP_VAL_DET_A;
+	static const std::string DEF_OP_MATRIX_INV_A;
+
+	//Para los reportes de sistemas de ecuaciones lineales
+
+	//Metodo de jacobi
 	static const std::string DEF_JACOBI_TABLES_PRE;
 	static const std::string DEF_JACOBI_TABLES_POST;
-
 	static const std::string DEF_JACOBI_SEL;
 	static const std::string DEF_JACOBI_MATRIX_A;
 	static const std::string DEF_JACOBI_MATRIX_T;
 	static const std::string DEF_JACOBI_MATRIX_C;
 	static const std::string DEF_JACOBI_MATRIX_XO;
 
-
+	//Reduccion gaussiana
 	static const std::string DEF_GAUSS_SEL;
 	static const std::string DEF_GAUSS_MATRICES;
+	static const std::string DEF_GAUSS_TABLE;
 
 	static const std::string GAUSS_MATRIX_PRE_INDEX;
 	static const std::string GAUSS_MATRIX_POST_INDEX;
@@ -66,40 +72,11 @@ public:
 
 	static const std::string DEF_END;
 
-	std::string generateRowSwap(const int, const int);
 	std::string generateSeq(const std::vector<std::string> &, const std::string);
-	std::string generateVarArray(const std::vector<std::string> &);
 	std::string generateRowSeq(const Matrix &, const int, const std::string);
-	std::string generateRowArray(const Matrix &, const int);
-	std::string generateRegularMatrixArray(const Matrix &);
-	std::string generateGaussOpMatrixArray(const std::vector<RowOperationParameter> &, const Matrix &);
 	std::string generateRowOperation(const RowOperationParameter &);
 
-	std::string generateGaussOpMatrixElement(
-		const int,
-		const std::vector<std::string> &,
-		const std::vector<RowOperationParameter> &, 
-		const Matrix &m);
-
-	std::string generateRegularMatrixElement(const Matrix &);
-	std::string generateAugmentedMatrixElement(const std::vector<std::string> &, const Matrix&);
-
 	std::string getReportBody();
-
-	void initializeReportBody();
-	void endReportBody();
-
-	void addAugmentMatrixElement(
-		const std::vector<std::string> &vars,
-		const Matrix &m
-	);
-
-	void addGaussOpMatrix(
-		const int,
-		const std::vector<std::string> &,
-		const std::vector<RowOperationParameter> &,
-		const Matrix &
-	);
 
 	//Generacion de sistema de ecuaciones lineales
 	std::string generateLinEqElement(
@@ -114,7 +91,11 @@ public:
 		const double c
 	);
 
-	std::string generateMatrixEl(
+	std::string generateBMatrixEl(
+		const Matrix &M
+	);
+
+	std::string generateVMatrixEl(
 		const Matrix &M
 	);
 
@@ -147,6 +128,13 @@ public:
 		const Matrix &row
 	);
 
+	//Agregacion
+
+	void addDefinition(
+		const std::string &tag,
+		const std::string &value
+	);
+
 	void addJacobiTables(
 		const std::vector<std::string> &vars,
 		const std::vector<Matrix> &Xvec
@@ -164,7 +152,18 @@ public:
 		const std::vector<std::vector<RowOperationParameter> > &params
 	);
 
-	void addMatrix(
+	void addGaussTable(
+		const std::vector<std::string> &vars,
+		const Matrix &xvec
+	);
+
+	//Reporte de Frank
+	void addBMatrix(
+		const std::string &tag,
+		const Matrix &M
+	);
+
+	void addVMatrix(
 		const std::string &tag,
 		const Matrix &M
 	);

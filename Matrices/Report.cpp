@@ -2,14 +2,6 @@
 #include <cmath>
 
 
-const std::string Report::MATRIX_REGULAR_COMMAND = "\\regmatrix";
-const std::string Report::MATRIX_AUGMENTED_COMMAND = "\\augmatrix";
-const std::string Report::MATRIX_GAUSSIAN_REDUCTION_COMMAND = "\\opmatrix";
-const std::string Report::MATRIX_SEPARATOR = ",";
-const std::string Report::ARRAY_END = "}";
-const std::string Report::ARRAY_START = "{";
-const std::string Report::REPORT_BODY_START = "\\def\\reportbody{";
-const std::string Report::REPORT_BODY_END = "}";
 const std::string Report::REPORT_NEWLINE = "\\\\";
 const std::string Report::SEL_START = "\\begin{alignedat}";
 const std::string Report::SEL_END = "\\end{alignedat}";
@@ -17,13 +9,23 @@ const std::string Report::MATRIX_START = "\\begin{matrix}";
 const std::string Report::MATRIX_END = "\\end{matrix}";
 const std::string Report::BMATRIX_START = "\\begin{bmatrix}";
 const std::string Report::BMATRIX_END = "\\end{bmatrix}";
+const std::string Report::VMATRIX_START = "\\begin{vmatrix}";
+const std::string Report::VMATRIX_END = "\\end{vmatrix}";
 const std::string Report::TABLE_PRE_FORMAT = "\\begin{tabular}{";
 const std::string Report::TABLE_POST_FORMAT = "}";
 const std::string Report::TABLE_END = "\\end{tabular}";
 const std::string Report::TABLE_VSPACE = "\\vspace{0.5cm}";
+
+//Para las operaciones basicas
+
+const std::string Report::DEF_OP_MATRIX_A = "\\def\\opmatrixA{";
+const std::string Report::DEF_OP_MATRIX_AT = "\\def\\opmatrixAT{";
+const std::string Report::DEF_OP_MATRIX_DET_A = "\\def\\opmatrixdetA{";
+const std::string Report::DEF_OP_VAL_DET_A = "\\def\\opvaldetA{";
+const std::string Report::DEF_OP_MATRIX_INV_A = "\\def\\opmatrixinvA{";
+
 const std::string Report::DEF_JACOBI_TABLES_PRE = "\\def\\jacobitables{";
 const std::string Report::DEF_JACOBI_TABLES_POST = "}";
-
 const std::string Report::DEF_JACOBI_SEL = "\\def\\jacobisel{";
 const std::string Report::DEF_JACOBI_MATRIX_A = "\\def\\jacobimatrixA{";
 const std::string Report::DEF_JACOBI_MATRIX_T = "\\def\\jacobimatrixT{";
@@ -32,6 +34,7 @@ const std::string Report::DEF_JACOBI_MATRIX_XO = "\\def\\jacobimatrixXO{";
 
 const std::string Report::DEF_GAUSS_SEL = "\\def\\gausssel{";
 const std::string Report::DEF_GAUSS_MATRICES = "\\def\\gaussmatrices{";
+const std::string Report::DEF_GAUSS_TABLE = "\\def\\gausstable{";
 
 const std::string Report::GAUSS_MATRIX_PRE_INDEX = "\\tilde{A}^{(";
 const std::string Report::GAUSS_MATRIX_POST_INDEX = ")}=";
@@ -43,42 +46,74 @@ Report::Report(const int precision)
 {
 	this->precision = precision;
 }
+std::string Report::generateRowOperation(const RowOperationParameter &param) {
+	std::ostringstream rowOpStream;
 
+	if (!param.skip) {
+
+		if (param.swap) {
+			rowOpStream << "\\quad ";
+			//rowOpStream << "\\left(";
+			rowOpStream << "E_" << param.j;
+			rowOpStream << " \\quad \\longleftrightarrow \\quad ";
+			rowOpStream << "E_" << param.i;
+		} else {
+			rowOpStream << "\\quad ";
+			//rowOpStream << "\\left(";
+			rowOpStream << "E_" << param.j;
+			rowOpStream << "-";
+			rowOpStream << "\\left(";
+			rowOpStream << param.m << std::setprecision(precision);
+			rowOpStream << "\\right)";
+			rowOpStream << "E_" << param.i;
+			//rowOpStream << "\\right)";
+			rowOpStream << " \\quad \\rightarrow \\quad ";
+			rowOpStream << "E_" << param.j;
+		}
+
+	}
+
+	return rowOpStream.str();
+}
+
+std::string Report::generateSeq(const std::vector<std::string> &src, const std::string separator)
+{
+	std::ostringstream seq;
+
+	for (int i = 0; i < src.size() - 1; i++) {
+		seq << src.at(i) << separator;
+	}
+
+	seq << src.at(src.size() - 1);
+
+	return seq.str();
+
+}
+
+
+std::string Report::generateRowSeq(
+	const Matrix &m, //Matriz base
+	const int rowIndex, //Indice de la fila a generar
+	const std::string separator //Separado
+)
+{
+	std::ostringstream seq;
+
+	for (int j = 0; j < m.getColumnsCount() - 1; j++)
+	{
+		//seq << std::fixed;
+		seq << std::setprecision(precision) << m.at(rowIndex, j);
+		seq << separator;
+	}
+
+	seq << m.at(rowIndex, m.getColumnsCount() - 1);
+
+	return seq.str();
+}
 std::string Report::getReportBody() {
 	return this->reportBodyStream.str();
 }
 
-void Report::initializeReportBody()
-{
-	if (this->initialized = true) {
-		this->reportBodyStream.clear();
-	} else {
-		this->reportBodyStream << REPORT_BODY_START;
-	}
-
-	this->initialized = true;
-}
-
-void Report::endReportBody()
-{
-	if (this->initialized) {
-		this->reportBodyStream << REPORT_BODY_END;
-	}
-}
-
-void Report::addAugmentMatrixElement(const std::vector<std::string>& vars, const Matrix & m)
-{
-	this->reportBodyStream << generateAugmentedMatrixElement(vars, m);
-}
-
-void Report::addGaussOpMatrix(
-	const int index,
-	const std::vector<std::string> &vars,
-	const std::vector<RowOperationParameter> &params,
-	const Matrix & m)
-{
-	this->reportBodyStream << generateGaussOpMatrixElement(index, vars, params, m);
-}
 
 std::string Report::generateLinEqElement(
 	const std::vector<std::string>& vars,
@@ -151,7 +186,7 @@ std::string Report::generateEq(
 //*********************************
 // Generacion de una matriz regular
 //*********************************
-std::string Report::generateMatrixEl(const Matrix & M)
+std::string Report::generateBMatrixEl(const Matrix & M)
 {
 	std::ostringstream matrixElStream;
 
@@ -168,6 +203,27 @@ std::string Report::generateMatrixEl(const Matrix & M)
 	matrixElStream << generateRowSeq(M, n - 1, "&");
 	matrixElStream << std::endl;
 	matrixElStream << BMATRIX_END;
+
+	return matrixElStream.str();
+}
+
+std::string Report::generateVMatrixEl(const Matrix & M)
+{
+	std::ostringstream matrixElStream;
+
+	matrixElStream << VMATRIX_START;
+	matrixElStream << std::endl;
+	size_t n = M.getRowsCount();
+
+	for (int i = 0; i < n -1; i++) {
+		matrixElStream << generateRowSeq(M, i, "&");
+		matrixElStream << REPORT_NEWLINE;
+		matrixElStream << std::endl;
+	}
+
+	matrixElStream << generateRowSeq(M, n - 1, "&");
+	matrixElStream << std::endl;
+	matrixElStream << VMATRIX_END;
 
 	return matrixElStream.str();
 }
@@ -309,6 +365,34 @@ std::string Report::generateJacobiTable(
 std::string Report::generateGaussTable(const std::vector<std::string>& vars, const Matrix resultVec)
 {
 	std::ostringstream gaussTableStream;
+	gaussTableStream << TABLE_PRE_FORMAT;
+	size_t n = vars.size();
+
+	for (int i = 0; i < n; i++) {
+		gaussTableStream << "c";
+		if (i != n - 1) {
+			gaussTableStream << "|";
+		}
+	}
+
+	gaussTableStream << TABLE_POST_FORMAT;
+	gaussTableStream << std::endl;
+
+	for (int i = 0; i < n; i++) {
+		gaussTableStream << "$";
+		gaussTableStream << vars.at(i);
+		gaussTableStream << "$";
+		if (i != n - 1) {
+			gaussTableStream << "&";
+		}
+	}
+
+	gaussTableStream << REPORT_NEWLINE;
+	gaussTableStream << " \\hline";
+	gaussTableStream << std::endl;
+	gaussTableStream << generateRowSeq(resultVec, 0, "&");
+	gaussTableStream << std::endl;
+	gaussTableStream << TABLE_END;
 
 	return gaussTableStream.str();
 }
@@ -326,6 +410,16 @@ std::string Report::generateJacobiTableRow(
 	jacobiTableRow << generateRowSeq(row, 0, std::string("&"));
 
 	return jacobiTableRow.str();
+}
+
+void Report::addDefinition(const std::string & tag, const std::string & value)
+{
+	reportBodyStream << std::endl;
+	reportBodyStream << tag;
+	reportBodyStream << std::endl;
+	reportBodyStream << value;
+	reportBodyStream << DEF_END;
+	reportBodyStream << std::endl;
 }
 
 void Report::addJacobiTables(
@@ -410,205 +504,21 @@ void Report::addGaussMatrices(const std::vector<Matrix>& Mvec, const std::vector
 	reportBodyStream << DEF_END;
 }
 
-void Report::addMatrix(const std::string & tag, const Matrix & M)
+void Report::addGaussTable(const std::vector<std::string>& vars, const Matrix & xvec)
 {
 	reportBodyStream << std::endl;
-	reportBodyStream << tag;
-	reportBodyStream << generateMatrixEl(M);
+	reportBodyStream << DEF_GAUSS_TABLE;
+	reportBodyStream << generateGaussTable(vars, xvec);
 	reportBodyStream << std::endl;
 	reportBodyStream << DEF_END;
 }
 
-std::string Report::generateRowOperation(const RowOperationParameter &param) {
-	std::ostringstream rowOpStream;
-
-	if (!param.skip) {
-
-		if (param.swap) {
-			rowOpStream << "\\quad ";
-			//rowOpStream << "\\left(";
-			rowOpStream << "E_" << param.j;
-			rowOpStream << " \\quad \\longleftrightarrow \\quad ";
-			rowOpStream << "E_" << param.i;
-		} else {
-			rowOpStream << "\\quad ";
-			//rowOpStream << "\\left(";
-			rowOpStream << "E_" << param.j;
-			rowOpStream << "-";
-			rowOpStream << "\\left(";
-			rowOpStream << param.m << std::setprecision(precision);
-			rowOpStream << "\\right)";
-			rowOpStream << "E_" << param.i;
-			//rowOpStream << "\\right)";
-			rowOpStream << " \\quad \\rightarrow \\quad ";
-			rowOpStream << "E_" << param.j;
-		}
-
-	}
-
-	return rowOpStream.str();
+void Report::addBMatrix(const std::string & tag, const Matrix & M)
+{
+	addDefinition(tag, generateBMatrixEl(M));
 }
 
-std::string Report::generateGaussOpMatrixArray(
-	const std::vector<RowOperationParameter> &params,
-	const Matrix &m
-)
+void Report::addVMatrix(const std::string & tag, const Matrix & M)
 {
-	std::ostringstream gaussOpMatrixArrayStream;
-
-	gaussOpMatrixArrayStream << ARRAY_START;
-
-	for (int i = 0; i < m.getRowsCount(); i++) {
-		gaussOpMatrixArrayStream << ARRAY_START;
-		gaussOpMatrixArrayStream << generateRowSeq(m, i, MATRIX_SEPARATOR);
-
-		//Se agrega el parametro estilizado de la operacion
-		gaussOpMatrixArrayStream << MATRIX_SEPARATOR;
-		gaussOpMatrixArrayStream << generateRowOperation(params.at(i));
-		gaussOpMatrixArrayStream << ARRAY_END;
-
-		if (i != m.getRowsCount() - 1) {
-			gaussOpMatrixArrayStream << MATRIX_SEPARATOR;
-		}
-	}
-
-	gaussOpMatrixArrayStream << ARRAY_END;
-
-	return gaussOpMatrixArrayStream.str();
-}
-
-std::string Report::generateGaussOpMatrixElement(
-	const int index,
-	const std::vector<std::string> &vars,
-	const std::vector<RowOperationParameter> &params,
-	const Matrix & m
-)
-{
-	std::ostringstream gaussOpMatrixStream;
-
-	//Encabezado
-	gaussOpMatrixStream << MATRIX_GAUSSIAN_REDUCTION_COMMAND;
-
-	//Parametro de indice de la matriz
-	gaussOpMatrixStream << ARRAY_START;
-	gaussOpMatrixStream << index;
-	gaussOpMatrixStream << ARRAY_END;
-
-	//Parametro de variables
-	gaussOpMatrixStream << ARRAY_START;
-	gaussOpMatrixStream << generateVarArray(vars);
-	gaussOpMatrixStream << ARRAY_END;
-
-	//Parametro de matriz
-	gaussOpMatrixStream << ARRAY_START;
-	gaussOpMatrixStream << generateGaussOpMatrixArray(params, m);
-	gaussOpMatrixStream << ARRAY_END;
-
-	return gaussOpMatrixStream.str();
-}
-
-
-std::string Report::generateSeq(const std::vector<std::string> &src, const std::string separator)
-{
-	std::ostringstream seq;
-
-	for (int i = 0; i < src.size() - 1; i++) {
-		seq << src.at(i) << separator;
-	}
-
-	seq << src.at(src.size() - 1);
-
-	return seq.str();
-
-}
-
-std::string Report::generateVarArray(const std::vector<std::string> &src)
-{
-	std::ostringstream arrayStr;
-
-	arrayStr << ARRAY_START;
-	arrayStr << generateSeq(src, MATRIX_SEPARATOR);
-	arrayStr << ARRAY_END;
-
-	return arrayStr.str();
-}
-
-std::string Report::generateRowSeq(
-	const Matrix &m, //Matriz base
-	const int rowIndex, //Indice de la fila a generar
-	const std::string separator //Separado
-)
-{
-	std::ostringstream seq;
-
-	for (int j = 0; j < m.getColumnsCount() - 1; j++)
-	{
-		//seq << std::fixed;
-		seq << std::setprecision(precision) << m.at(rowIndex, j);
-		seq << separator;
-	}
-
-	seq << m.at(rowIndex, m.getColumnsCount() - 1);
-
-	return seq.str();
-}
-
-std::string Report::generateRowArray(const Matrix &m, const int rowIndex)
-{
-	std::ostringstream arrayStr;
-
-	arrayStr << ARRAY_START;
-	arrayStr << generateRowSeq(m, rowIndex, MATRIX_SEPARATOR);
-	arrayStr << ARRAY_END;
-
-	return arrayStr.str();
-}
-
-std::string Report::generateRegularMatrixArray(const Matrix &m)
-{
-	std::ostringstream arrayStr;
-
-	arrayStr << ARRAY_START;
-	arrayStr << ARRAY_START;
-	for (int i = 0; i < m.getRowsCount() - 1; i++)
-	{
-		arrayStr << generateRowArray(m, i);
-		arrayStr << MATRIX_SEPARATOR;
-	}
-
-	arrayStr << generateRowArray(m, m.getRowsCount() - 1);
-	arrayStr << ARRAY_END;
-	arrayStr << ARRAY_END;
-
-	return arrayStr.str();
-}
-
-std::string Report::generateRegularMatrixElement(const Matrix &m)
-{
-	std::ostringstream regularMatrixCommand;
-
-	regularMatrixCommand << MATRIX_REGULAR_COMMAND;
-	regularMatrixCommand << ARRAY_START;
-	regularMatrixCommand << m.getColumnsCount();
-	regularMatrixCommand << ARRAY_END;
-	regularMatrixCommand << generateRegularMatrixArray(m);
-
-	return regularMatrixCommand.str();
-
-}
-
-std::string Report::generateAugmentedMatrixElement(
-	const std::vector<std::string> &vars,
-	const Matrix &m)
-{
-	std::ostringstream augmentedMatrixCommand;
-
-	augmentedMatrixCommand << MATRIX_AUGMENTED_COMMAND;
-	augmentedMatrixCommand << ARRAY_START;
-	augmentedMatrixCommand << generateVarArray(vars);
-	augmentedMatrixCommand << ARRAY_END;
-
-	augmentedMatrixCommand << generateRegularMatrixArray(m);
-
-	return augmentedMatrixCommand.str();
+	addDefinition(tag, generateVMatrixEl(M));
 }
