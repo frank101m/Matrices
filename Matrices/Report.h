@@ -59,6 +59,7 @@ public:
 
 	static const std::string DEF_GAUSS_SEL;
 	static const std::string DEF_GAUSS_MATRICES;
+	static const std::string DEF_GAUSS_TABLE;
 
 	static const std::string GAUSS_MATRIX_PRE_INDEX;
 	static const std::string GAUSS_MATRIX_POST_INDEX;
@@ -162,6 +163,11 @@ public:
 	void addGaussMatrices(
 		const std::vector<Matrix> &Mvec,
 		const std::vector<std::vector<RowOperationParameter> > &params
+	);
+
+	void addGaussTable(
+		const std::vector<std::string> &vars,
+		const Matrix &xvec
 	);
 
 	void addMatrix(

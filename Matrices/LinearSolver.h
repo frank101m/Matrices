@@ -3,7 +3,8 @@
 
 namespace LinearSolver {
 	Matrix getGaussianElimination(
-		Matrix srcMatrix,
+		const Matrix &srcMatrix,
+		const Matrix &CO,
 		const std::vector<std::string> &vars,
 		Report &report
 	);
@@ -18,7 +19,7 @@ namespace LinearSolver {
 		Report &report
 	);
 
-	std::vector<double> getBackSubstitution(
+	Matrix getBackSubstitution(
 		const Matrix &gaussReduc,
 		const std::vector<std::string> &vars,
 		Report &report
