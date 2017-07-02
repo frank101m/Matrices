@@ -1202,12 +1202,12 @@ void MainWindow::on_pushButton_11_clicked()
         }
     }
 
-    bool f = true;
+    int f = 0;
     for(int i = 0; i < a.getRowsCount(); i++)
         for(int j = 0; j < a.getColumnsCount(); j++)
             if(b.at(i, j) == 0 || b.at(i, j) != b.at(i, j))
-                f=false;
-    if(f){
+                f++;
+    if(f!=(a.getColumnsCount()*a.getRowsCount())){
         this->renderResult(a, b, a, 5, 0);
     }else{
         msg = "La matriz no posee inversa";
@@ -1253,12 +1253,12 @@ void MainWindow::on_pushButton_12_clicked()
         for(int j = 0; j < b.getColumnsCount(); j++){
         }
     }
-    bool f = true;
+    int f = 0;
     for(int i = 0; i < a.getRowsCount(); i++)
         for(int j = 0; j < a.getColumnsCount(); j++)
             if(b.at(i, j) == 0 || b.at(i, j) != b.at(i, j))
-                f=false;
-    if(f){
+                f++;
+    if(f!=(a.getColumnsCount()*a.getRowsCount())){
         this->renderResult(a, b, a, 5, 0);
     }else{
         msg = "La matriz no posee inversa";
@@ -1269,6 +1269,7 @@ void MainWindow::on_pushButton_12_clicked()
         msgBox.setWindowModality(Qt::WindowModal);
         msgBox.exec();
     }
+
 
 
     }

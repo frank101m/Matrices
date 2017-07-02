@@ -193,9 +193,8 @@ double Matrix::detGauss( Matrix  *a){
         for(int q = 0; q < m.getRowsCount(); q++){
 
             m.set(p, q, a->at(p, q));
-            if(m.at(p, q) == 0)
-                zeroM = true;
-        }
+
+    }
     }
 
     if(!zeroM){
@@ -229,7 +228,8 @@ double Matrix::detGauss( Matrix  *a){
     else{
         det = -det;
     }
-    return det;
+    if(det==det)
+        return det;
     }
 
     return 0;
@@ -244,7 +244,7 @@ Matrix Matrix::inverse(){
     int n = this->getColumnsCount();
     Matrix inv = Matrix(n, n);
 
-    if(detGauss(this) != 0  && detGauss(this)==detGauss(this)){
+    if(detGauss(this) != 0){
 
 
 

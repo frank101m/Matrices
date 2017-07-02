@@ -515,7 +515,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        mainTabWidget->setCurrentIndex(0);
+        mainTabWidget->setCurrentIndex(2);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -579,7 +579,7 @@ public:
         pushButton_6->setText(QApplication::translate("MainWindow", "Generar pdf", Q_NULLPTR));
         applyMatrixRange->setText(QApplication::translate("MainWindow", "Aplicar", Q_NULLPTR));
         acceptVars->setText(QApplication::translate("MainWindow", "Aceptar", Q_NULLPTR));
-        mainTabWidget->setTabText(mainTabWidget->indexOf(tab), QApplication::translate("MainWindow", "Page", Q_NULLPTR));
+        mainTabWidget->setTabText(mainTabWidget->indexOf(tab), QApplication::translate("MainWindow", "Resolucion de sistemas de ecuaciones", Q_NULLPTR));
         menuArchivo->setTitle(QApplication::translate("MainWindow", "Archivo", Q_NULLPTR));
         menuVer->setTitle(QApplication::translate("MainWindow", "Ver", Q_NULLPTR));
         menuAyuda->setTitle(QApplication::translate("MainWindow", "Ayuda", Q_NULLPTR));
