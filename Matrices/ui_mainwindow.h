@@ -17,7 +17,6 @@
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
-#include <QtWidgets/QLineEdit>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
@@ -86,13 +85,21 @@ public:
     QPushButton *pushButton_15;
     QTableWidget *tableWidget_3;
     QWidget *tab;
-    QPushButton *pushButton_6;
+    QVBoxLayout *verticalLayout_10;
+    QVBoxLayout *verticalLayout_9;
+    QHBoxLayout *horizontalLayout_12;
     QTableWidget *augMatrix;
-    QPushButton *applyMatrixRange;
+    QTableWidget *tableWidget_4;
+    QTableWidget *tableWidget_5;
+    QVBoxLayout *verticalLayout_8;
+    QHBoxLayout *horizontalLayout_10;
+    QPushButton *pushButton_6;
     QSpinBox *spinnerRowCount;
-    QSpinBox *spinnerColumnCount;
+    QPushButton *applyMatrixRange;
     QPushButton *acceptVars;
-    QLineEdit *lineEditVars;
+    QPushButton *pushButton_16;
+    QVBoxLayout *verticalLayout_7;
+    QHBoxLayout *horizontalLayout_9;
     QMenuBar *menuBar;
     QMenu *menuArchivo;
     QMenu *menuVer;
@@ -446,46 +453,124 @@ public:
         mainTabWidget->addTab(tab_2, QString());
         tab = new QWidget();
         tab->setObjectName(QStringLiteral("tab"));
-        pushButton_6 = new QPushButton(tab);
-        pushButton_6->setObjectName(QStringLiteral("pushButton_6"));
-        pushButton_6->setGeometry(QRect(350, 30, 75, 23));
+        verticalLayout_10 = new QVBoxLayout(tab);
+        verticalLayout_10->setSpacing(6);
+        verticalLayout_10->setContentsMargins(11, 11, 11, 11);
+        verticalLayout_10->setObjectName(QStringLiteral("verticalLayout_10"));
+        verticalLayout_9 = new QVBoxLayout();
+        verticalLayout_9->setSpacing(6);
+        verticalLayout_9->setObjectName(QStringLiteral("verticalLayout_9"));
+
+        verticalLayout_10->addLayout(verticalLayout_9);
+
+        horizontalLayout_12 = new QHBoxLayout();
+        horizontalLayout_12->setSpacing(6);
+        horizontalLayout_12->setObjectName(QStringLiteral("horizontalLayout_12"));
         augMatrix = new QTableWidget(tab);
         if (augMatrix->columnCount() < 2)
             augMatrix->setColumnCount(2);
         if (augMatrix->rowCount() < 2)
             augMatrix->setRowCount(2);
         augMatrix->setObjectName(QStringLiteral("augMatrix"));
-        augMatrix->setGeometry(QRect(30, 90, 321, 291));
-        augMatrix->setMinimumSize(QSize(256, 0));
+        sizePolicy.setHeightForWidth(augMatrix->sizePolicy().hasHeightForWidth());
+        augMatrix->setSizePolicy(sizePolicy);
+        augMatrix->setMinimumSize(QSize(256, 200));
         augMatrix->setRowCount(2);
         augMatrix->setColumnCount(2);
-        applyMatrixRange = new QPushButton(tab);
-        applyMatrixRange->setObjectName(QStringLiteral("applyMatrixRange"));
-        applyMatrixRange->setGeometry(QRect(100, 60, 75, 23));
+
+        horizontalLayout_12->addWidget(augMatrix);
+
+        tableWidget_4 = new QTableWidget(tab);
+        if (tableWidget_4->columnCount() < 1)
+            tableWidget_4->setColumnCount(1);
+        QTableWidgetItem *__qtablewidgetitem10 = new QTableWidgetItem();
+        tableWidget_4->setHorizontalHeaderItem(0, __qtablewidgetitem10);
+        if (tableWidget_4->rowCount() < 2)
+            tableWidget_4->setRowCount(2);
+        QTableWidgetItem *__qtablewidgetitem11 = new QTableWidgetItem();
+        tableWidget_4->setVerticalHeaderItem(0, __qtablewidgetitem11);
+        QTableWidgetItem *__qtablewidgetitem12 = new QTableWidgetItem();
+        tableWidget_4->setVerticalHeaderItem(1, __qtablewidgetitem12);
+        QTableWidgetItem *__qtablewidgetitem13 = new QTableWidgetItem();
+        tableWidget_4->setItem(1, 0, __qtablewidgetitem13);
+        tableWidget_4->setObjectName(QStringLiteral("tableWidget_4"));
+        tableWidget_4->setMinimumSize(QSize(120, 200));
+        tableWidget_4->setMaximumSize(QSize(120, 16777215));
+
+        horizontalLayout_12->addWidget(tableWidget_4);
+
+        tableWidget_5 = new QTableWidget(tab);
+        if (tableWidget_5->columnCount() < 1)
+            tableWidget_5->setColumnCount(1);
+        QTableWidgetItem *__qtablewidgetitem14 = new QTableWidgetItem();
+        tableWidget_5->setHorizontalHeaderItem(0, __qtablewidgetitem14);
+        if (tableWidget_5->rowCount() < 2)
+            tableWidget_5->setRowCount(2);
+        QTableWidgetItem *__qtablewidgetitem15 = new QTableWidgetItem();
+        tableWidget_5->setVerticalHeaderItem(0, __qtablewidgetitem15);
+        QTableWidgetItem *__qtablewidgetitem16 = new QTableWidgetItem();
+        tableWidget_5->setVerticalHeaderItem(1, __qtablewidgetitem16);
+        tableWidget_5->setObjectName(QStringLiteral("tableWidget_5"));
+        tableWidget_5->setMinimumSize(QSize(120, 200));
+        tableWidget_5->setMaximumSize(QSize(120, 16777215));
+
+        horizontalLayout_12->addWidget(tableWidget_5);
+
+
+        verticalLayout_10->addLayout(horizontalLayout_12);
+
+        verticalLayout_8 = new QVBoxLayout();
+        verticalLayout_8->setSpacing(6);
+        verticalLayout_8->setObjectName(QStringLiteral("verticalLayout_8"));
+        horizontalLayout_10 = new QHBoxLayout();
+        horizontalLayout_10->setSpacing(6);
+        horizontalLayout_10->setObjectName(QStringLiteral("horizontalLayout_10"));
+        pushButton_6 = new QPushButton(tab);
+        pushButton_6->setObjectName(QStringLiteral("pushButton_6"));
+
+        horizontalLayout_10->addWidget(pushButton_6);
+
         spinnerRowCount = new QSpinBox(tab);
         spinnerRowCount->setObjectName(QStringLiteral("spinnerRowCount"));
-        spinnerRowCount->setGeometry(QRect(50, 10, 42, 22));
         spinnerRowCount->setMinimum(2);
         spinnerRowCount->setMaximum(20);
-        spinnerColumnCount = new QSpinBox(tab);
-        spinnerColumnCount->setObjectName(QStringLiteral("spinnerColumnCount"));
-        spinnerColumnCount->setGeometry(QRect(100, 10, 42, 22));
-        spinnerColumnCount->setMinimum(2);
-        spinnerColumnCount->setMaximum(20);
+
+        horizontalLayout_10->addWidget(spinnerRowCount);
+
+        applyMatrixRange = new QPushButton(tab);
+        applyMatrixRange->setObjectName(QStringLiteral("applyMatrixRange"));
+
+        horizontalLayout_10->addWidget(applyMatrixRange);
+
         acceptVars = new QPushButton(tab);
         acceptVars->setObjectName(QStringLiteral("acceptVars"));
-        acceptVars->setGeometry(QRect(650, 100, 75, 23));
-        lineEditVars = new QLineEdit(tab);
-        lineEditVars->setObjectName(QStringLiteral("lineEditVars"));
-        lineEditVars->setGeometry(QRect(370, 70, 361, 20));
+
+        horizontalLayout_10->addWidget(acceptVars);
+
+        pushButton_16 = new QPushButton(tab);
+        pushButton_16->setObjectName(QStringLiteral("pushButton_16"));
+
+        horizontalLayout_10->addWidget(pushButton_16);
+
+
+        verticalLayout_8->addLayout(horizontalLayout_10);
+
+
+        verticalLayout_10->addLayout(verticalLayout_8);
+
+        verticalLayout_7 = new QVBoxLayout();
+        verticalLayout_7->setSpacing(6);
+        verticalLayout_7->setObjectName(QStringLiteral("verticalLayout_7"));
+        horizontalLayout_9 = new QHBoxLayout();
+        horizontalLayout_9->setSpacing(6);
+        horizontalLayout_9->setObjectName(QStringLiteral("horizontalLayout_9"));
+
+        verticalLayout_7->addLayout(horizontalLayout_9);
+
+
+        verticalLayout_10->addLayout(verticalLayout_7);
+
         mainTabWidget->addTab(tab, QString());
-        spinnerColumnCount->raise();
-        pushButton_6->raise();
-        augMatrix->raise();
-        applyMatrixRange->raise();
-        spinnerRowCount->raise();
-        acceptVars->raise();
-        lineEditVars->raise();
 
         mainLayout->addWidget(mainTabWidget);
 
@@ -576,9 +661,27 @@ public:
         QTableWidgetItem *___qtablewidgetitem9 = tableWidget_3->verticalHeaderItem(0);
         ___qtablewidgetitem9->setText(QApplication::translate("MainWindow", "1", Q_NULLPTR));
         mainTabWidget->setTabText(mainTabWidget->indexOf(tab_2), QApplication::translate("MainWindow", "Normas vectoriales", Q_NULLPTR));
+        QTableWidgetItem *___qtablewidgetitem10 = tableWidget_4->horizontalHeaderItem(0);
+        ___qtablewidgetitem10->setText(QApplication::translate("MainWindow", "1", Q_NULLPTR));
+        QTableWidgetItem *___qtablewidgetitem11 = tableWidget_4->verticalHeaderItem(0);
+        ___qtablewidgetitem11->setText(QApplication::translate("MainWindow", "1", Q_NULLPTR));
+        QTableWidgetItem *___qtablewidgetitem12 = tableWidget_4->verticalHeaderItem(1);
+        ___qtablewidgetitem12->setText(QApplication::translate("MainWindow", "2", Q_NULLPTR));
+
+        const bool __sortingEnabled = tableWidget_4->isSortingEnabled();
+        tableWidget_4->setSortingEnabled(false);
+        tableWidget_4->setSortingEnabled(__sortingEnabled);
+
+        QTableWidgetItem *___qtablewidgetitem13 = tableWidget_5->horizontalHeaderItem(0);
+        ___qtablewidgetitem13->setText(QApplication::translate("MainWindow", "1", Q_NULLPTR));
+        QTableWidgetItem *___qtablewidgetitem14 = tableWidget_5->verticalHeaderItem(0);
+        ___qtablewidgetitem14->setText(QApplication::translate("MainWindow", "1", Q_NULLPTR));
+        QTableWidgetItem *___qtablewidgetitem15 = tableWidget_5->verticalHeaderItem(1);
+        ___qtablewidgetitem15->setText(QApplication::translate("MainWindow", "2", Q_NULLPTR));
         pushButton_6->setText(QApplication::translate("MainWindow", "Generar pdf", Q_NULLPTR));
-        applyMatrixRange->setText(QApplication::translate("MainWindow", "Aplicar", Q_NULLPTR));
-        acceptVars->setText(QApplication::translate("MainWindow", "Aceptar", Q_NULLPTR));
+        applyMatrixRange->setText(QApplication::translate("MainWindow", "Establecer n\303\272mero de variables", Q_NULLPTR));
+        acceptVars->setText(QApplication::translate("MainWindow", "Jacobi", Q_NULLPTR));
+        pushButton_16->setText(QApplication::translate("MainWindow", "PushButton", Q_NULLPTR));
         mainTabWidget->setTabText(mainTabWidget->indexOf(tab), QApplication::translate("MainWindow", "Resolucion de sistemas de ecuaciones", Q_NULLPTR));
         menuArchivo->setTitle(QApplication::translate("MainWindow", "Archivo", Q_NULLPTR));
         menuVer->setTitle(QApplication::translate("MainWindow", "Ver", Q_NULLPTR));

@@ -32,8 +32,12 @@ MainWindow::MainWindow(QWidget *parent) :
     setTableValidatorA();
     setTableValidatorB();
 	setLinearEqTableValidator();
-	setUpVarsValidation();
+    //setUpVarsValidation();
     setTableValidatorV();
+    webDisplay3 = new QWebEngineView;
+    webDisplay3->setUrl(QUrl("qrc:///html/m1.htm"));
+    webDisplay3->setMaximumHeight(500);
+    ui->tab->layout()->addWidget(webDisplay3);
 }
 
 
@@ -43,12 +47,12 @@ MainWindow::~MainWindow()
     delete webDisplay;
     delete ui;
 }
-void MainWindow::setUpVarsValidation(){
+/*void MainWindow::setUpVarsValidation(){
 	ui->acceptVars->setEnabled(false);
 	QRegExp re("^(([a-z]|[A-Z])|([a-z]_[0-9]|[A-Z]_[0-9]))(,(([a-z]|[A-Z])|([a-z]_[0-9]|[A-Z]_[0-9])))*$");
 	QRegExpValidator *regVal = new QRegExpValidator(re);
 	ui->lineEditVars->setValidator(regVal);
-}
+}*/
 
 void MainWindow::on_pushButton_clicked()
 {
@@ -103,6 +107,14 @@ void MainWindow::setLinearEqTableValidator()
 			ql->setValidator(new QDoubleValidator(ql));
 			ui->augMatrix->setCellWidget(row, column, ql);
 		}
+        QLineEdit *ql = new QLineEdit;
+        ql->setValidator(new QDoubleValidator(ql));
+        ui->tableWidget_4->setCellWidget(row, 0, ql);
+
+        QLineEdit *ql2 = new QLineEdit;
+        ql2->setValidator(new QDoubleValidator(ql2));
+        ui->tableWidget_5->setCellWidget(row, 0, ql2);
+
 	}
 }
 
@@ -1053,7 +1065,9 @@ void MainWindow::on_actionSalir_triggered()
 void MainWindow::on_applyMatrixRange_clicked()
 {
 	ui->augMatrix->setRowCount(ui->spinnerRowCount->value());
-	ui->augMatrix->setColumnCount(ui->spinnerColumnCount->value());
+    ui->augMatrix->setColumnCount(ui->spinnerRowCount->value());
+    ui->tableWidget_4->setRowCount(ui->spinnerRowCount->value());
+    ui->tableWidget_5->setRowCount(ui->spinnerRowCount->value());
 	setLinearEqTableValidator();
 }
 
@@ -1064,9 +1078,49 @@ void MainWindow::on_acceptVars_clicked()
 
 void MainWindow::on_lineEditVars_editingFinished()
 {
-	QMessageBox msg;
-	msg.setText("Validated");
-	msg.exec();
+    if(ui->augMatrix->rowCount() == ui->augMatrix->columnCount()){
+
+    std::vector<std::string> vars;
+    Matrix g =  Matrix(ui->augMatrix->rowCount(), ui->augMatrix->columnCount());
+    Matrix c = Matrix(g.getRowsCount(), g.getColumnsCount());
+    Matrix o = Matrix(g.getRowsCount(), g.getColumnsCount());
+
+
+    for(int i = 0; i < g.getRowsCount(); i++){
+        for(int j = 0; j < g.getColumnsCount(); j++){
+            QLineEdit *ql = (QLineEdit*) ui->augMatrix->cellWidget(i, j);
+            g.set(i, j, ql->text().toDouble());
+        }
+
+        vars.push_back("a_"+std::to_string(i));
+
+        QLineEdit *ql = (QLineEdit*) ui->tableWidget_4->cellWidget(i, 0);
+        c.set(i, 0, ql->text().toDouble());
+
+        QLineEdit *ql2 = (QLineEdit*) ui->tableWidget_5->cellWidget(i, 0);
+        o.set(i, 0, ql2->text().toDouble());
+    }
+
+
+    Report r = Report(0);
+
+    Matrix res = LinearSolver::getJacobiMethod(g, c, o, 0.0001, 10, vars, r);
+
+    QString msag = "";
+    for(int i = 0; i < res.getRowsCount(); i++){
+        for(int j = 0; j < res.getColumnsCount(); j++){
+            msag+= QString::number(res.at(i, j)) + ", ";
+        }
+        msag +="\n";
+    }
+
+    QMessageBox msg;
+    msg.setText(msag);
+    msg.exec();
+
+}
+    //filling matrix:
+
 }
 void MainWindow::on_pushButton_7_clicked()
 {

@@ -58,6 +58,8 @@ private slots:
 private:
     QWebEngineView *webDisplay;
     QWebEngineView *webDisplay2;
+    QWebEngineView *webDisplay3;
+
     Ui::MainWindow *ui;
     void setTableValidatorA();
     void setTableValidatorB();
