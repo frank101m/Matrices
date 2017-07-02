@@ -70,3 +70,4 @@ CMakeLists.txt.user*
 /Matrices/x64/Release
 /x64/Release/MatrixTest.log
 /MatrixTest/x64/Debug
+/MatrixTest/Debug

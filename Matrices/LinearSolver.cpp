@@ -114,11 +114,24 @@ namespace LinearSolver {
 		XN.push_back(XO);
 
 		for (int i = 0; i < NMax; i++) {
+			double error;
+			double ninfX_p;
+			double ninfX;
+
 			Matrix X_p = X;
 			X = (T*X) + C;
 			XN.push_back(X);
 
-            if (abs(X_p.infNorm() - X.infNorm()) < tol) {
+			ninfX_p = X_p.infNorm();
+			ninfX = X.infNorm();
+			error = abs(ninfX_p - ninfX);
+
+			std::cout << "I: " << i << std::endl;
+			std::cout << "ninfX_p: " << ninfX_p << std::endl;
+			std::cout << "ninfX: " << ninfX << std::endl;
+			std::cout << "error: " << error << std::endl;
+
+            if (error < tol) {
 				break;
 			}
 		}
@@ -127,7 +140,4 @@ namespace LinearSolver {
 
 		return X;
 	}
-    }
-
-
-
+}
