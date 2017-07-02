@@ -23,15 +23,17 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     ui->mainTabWidget->setCurrentIndex(0);
     webDisplay = new QWebEngineView;
+    webDisplay2 = new QWebEngineView;
     webDisplay->setUrl(QUrl("qrc:///html/m1.htm"));
     webDisplay->setMaximumHeight(500);
-
+    webDisplay2->setUrl(QUrl("qrc:///html/m1.htm"));
     ui->basicMatrixOperations->layout()->addWidget(webDisplay);
+    ui->tab_2->layout()->addWidget(webDisplay2);
     setTableValidatorA();
     setTableValidatorB();
 	setLinearEqTableValidator();
 	setUpVarsValidation();
-
+    setTableValidatorV();
 }
 
 
@@ -82,6 +84,14 @@ void MainWindow::setTableValidatorB(){
             ql->setValidator(new QDoubleValidator(ql));
             ui->tableWidget_2->setCellWidget(row, column, ql);
         }
+    }
+}
+
+void MainWindow::setTableValidatorV(){
+    for(int i = 0; i < ui->tableWidget_3->rowCount(); i++){
+        QLineEdit *ql = new QLineEdit;
+        ql->setValidator(new QDoubleValidator(ql));
+        ui->tableWidget_3->setCellWidget(i, 0, ql);
     }
 }
 
@@ -371,6 +381,97 @@ void MainWindow::clearWebDisplay(){
                  "';";
     webDisplay->page()->runJavaScript(js);
 
+}
+
+
+void MainWindow::renderResult2(Matrix a, double d, int code){
+    QString js = "document.body.innerHTML = '"
+                 "';";
+    webDisplay2->page()->runJavaScript(js);
+    switch (code) {
+    case 0:
+        js = "var tex = document.createElement('tex');";
+        webDisplay2->page()->runJavaScript(js);
+        js ="var content = document.createTextNode('";
+        js += " \\\\left| \\\\left| \\\\begin{bmatrix}";
+        for(int i = 0; i < a.getRowsCount(); i++)
+            for(int j = 0; j < a.getColumnsCount(); j++){
+
+                if(j != a.getColumnsCount()-1)
+                    js += QString::number(a.at(i, j)) + "&";
+                else{
+                    if(i != a.getRowsCount()-1)
+                    js += QString::number(a.at(i, j)) + "\\\\\\\\\\\\\\\\";
+                    else
+                        js += QString::number(a.at(i, j));
+                }
+
+
+        }
+        js += " \\\\end{bmatrix} \\\\right| \\\\right| _{2} = ";
+        js+= QString::number(d);
+
+        js+="');";
+        webDisplay2->page()->runJavaScript(js);
+        js ="tex.appendChild(content);";
+        webDisplay2->page()->runJavaScript(js);
+        js = "document.body.appendChild(tex);";
+        webDisplay2->page()->runJavaScript(js);
+
+
+        break;
+
+    case 1:
+        js = "var tex = document.createElement('tex');";
+        webDisplay2->page()->runJavaScript(js);
+        js ="var content = document.createTextNode('";
+        js += " \\\\left| \\\\left| \\\\begin{bmatrix}";
+        for(int i = 0; i < a.getRowsCount(); i++)
+            for(int j = 0; j < a.getColumnsCount(); j++){
+
+                if(j != a.getColumnsCount()-1)
+                    js += QString::number(a.at(i, j)) + "&";
+                else{
+                    if(i != a.getRowsCount()-1)
+                    js += QString::number(a.at(i, j)) + "\\\\\\\\\\\\\\\\";
+                    else
+                        js += QString::number(a.at(i, j));
+                }
+
+
+        }
+        js += " \\\\end{bmatrix} \\\\right| \\\\right| _{\\\\infty} = ";
+        js+= QString::number(d);
+
+        js+="');";
+        webDisplay2->page()->runJavaScript(js);
+        js ="tex.appendChild(content);";
+        webDisplay2->page()->runJavaScript(js);
+        js = "document.body.appendChild(tex);";
+        webDisplay2->page()->runJavaScript(js);
+
+
+        break;
+
+
+
+
+    }
+    js = "var txlist = document.getElementsByTagName('tex');";
+    webDisplay2->page()->runJavaScript(js);
+    js = "for (var i = 0; i < txlist.length; i++) { var tx = txlist[i]; var txtext = tx.textContent; katex.render(txtext, tx, { displayMode: true }); }";
+    webDisplay2->page()->runJavaScript(js);
+
+}
+
+
+
+
+
+void MainWindow::clearWebDisplay2(){
+    QString js = "document.body.innerHTML = '"
+                 "';";
+    webDisplay->page()->runJavaScript(js);
 }
 
 void MainWindow::renderResult(Matrix a, Matrix b, Matrix c, int code, double d){
@@ -936,9 +1037,11 @@ void MainWindow::on_actionResultado_triggered()
 {
     if(webDisplay->isHidden()){
         webDisplay->show();
+        webDisplay2->show();
     }
     else{
         webDisplay->hide();
+        webDisplay2->hide();
     }
 }
 
@@ -956,6 +1059,7 @@ void MainWindow::on_applyMatrixRange_clicked()
 
 void MainWindow::on_acceptVars_clicked()
 {
+
 }
 
 void MainWindow::on_lineEditVars_editingFinished()
@@ -1098,12 +1202,12 @@ void MainWindow::on_pushButton_11_clicked()
         }
     }
 
-    bool f = true;
+    int f = 0;
     for(int i = 0; i < a.getRowsCount(); i++)
         for(int j = 0; j < a.getColumnsCount(); j++)
             if(b.at(i, j) == 0 || b.at(i, j) != b.at(i, j))
-                f=false;
-    if(f){
+                f++;
+    if(f!=(a.getColumnsCount()*a.getRowsCount())){
         this->renderResult(a, b, a, 5, 0);
     }else{
         msg = "La matriz no posee inversa";
@@ -1149,12 +1253,12 @@ void MainWindow::on_pushButton_12_clicked()
         for(int j = 0; j < b.getColumnsCount(); j++){
         }
     }
-    bool f = true;
+    int f = 0;
     for(int i = 0; i < a.getRowsCount(); i++)
         for(int j = 0; j < a.getColumnsCount(); j++)
             if(b.at(i, j) == 0 || b.at(i, j) != b.at(i, j))
-                f=false;
-    if(f){
+                f++;
+    if(f!=(a.getColumnsCount()*a.getRowsCount())){
         this->renderResult(a, b, a, 5, 0);
     }else{
         msg = "La matriz no posee inversa";
@@ -1165,6 +1269,7 @@ void MainWindow::on_pushButton_12_clicked()
         msgBox.setWindowModality(Qt::WindowModal);
         msgBox.exec();
     }
+
 
 
     }
@@ -1182,3 +1287,41 @@ void MainWindow::on_pushButton_12_clicked()
 
     }
 
+
+void MainWindow::on_pushButton_13_clicked()
+{
+    ui->tableWidget_3->setRowCount(ui->spinBox_5->value());
+    setTableValidatorV();
+}
+
+void MainWindow::on_pushButton_14_clicked()
+{
+    //remember to clear webdisplay
+    Matrix a = Matrix(ui->tableWidget_3->rowCount(), 1);
+    for(int i = 0; i < a.getRowsCount(); i++){
+        QLineEdit *ql = (QLineEdit*) ui->tableWidget_3->cellWidget(i, 0);
+        a.set(i, 0, ql->text().toDouble());
+    }
+
+    double normInf = a.infNorm();
+
+    this->renderResult2(a, normInf, 1);
+
+
+}
+
+
+void MainWindow::on_pushButton_15_clicked()
+{
+    //remember to clear webdisplay
+    Matrix a = Matrix(ui->tableWidget_3->rowCount(), 1);
+    for(int i = 0; i < a.getRowsCount(); i++){
+        QLineEdit *ql = (QLineEdit*) ui->tableWidget_3->cellWidget(i, 0);
+        a.set(i, 0, ql->text().toDouble());
+    }
+
+    double normEuc = a.eucNorm();
+
+    this->renderResult2(a, normEuc, 0);
+
+}

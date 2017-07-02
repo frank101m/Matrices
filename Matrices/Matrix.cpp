@@ -93,6 +93,14 @@ double Matrix::infNorm()
 	return *std::max_element(subNorms.begin(), subNorms.end());
 }
 
+double Matrix::eucNorm(){
+    //vectors only
+    double norm = 0;
+    for(int i = 0; i < rowsCount; i++)
+        norm += at(i, 0)*at(i, 0);
+    return sqrt(norm);
+}
+
 
 Matrix Matrix::operator+(const Matrix& m){
         Matrix res = Matrix(m.getRowsCount(), m.getColumnsCount());
@@ -185,9 +193,8 @@ double Matrix::detGauss( Matrix  *a){
         for(int q = 0; q < m.getRowsCount(); q++){
 
             m.set(p, q, a->at(p, q));
-            if(m.at(p, q) == 0)
-                zeroM = true;
-        }
+
+    }
     }
 
     if(!zeroM){
@@ -221,7 +228,8 @@ double Matrix::detGauss( Matrix  *a){
     else{
         det = -det;
     }
-    return det;
+    if(det==det)
+        return det;
     }
 
     return 0;
@@ -236,7 +244,7 @@ Matrix Matrix::inverse(){
     int n = this->getColumnsCount();
     Matrix inv = Matrix(n, n);
 
-    if(detGauss(this) != 0  && detGauss(this)==detGauss(this)){
+    if(detGauss(this) != 0){
 
 
 

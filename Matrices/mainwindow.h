@@ -49,16 +49,27 @@ private slots:
 
     void on_pushButton_12_clicked();
 
+    void on_pushButton_13_clicked();
+
+    void on_pushButton_14_clicked();
+
+    void on_pushButton_15_clicked();
+
 private:
     QWebEngineView *webDisplay;
+    QWebEngineView *webDisplay2;
     Ui::MainWindow *ui;
     void setTableValidatorA();
     void setTableValidatorB();
 	void setLinearEqTableValidator();
     void renderResult(Matrix, Matrix, Matrix, int, double);
+    void renderResult2(Matrix, double, int);
     void clearWebDisplay();
 	void initializeLinearEqModule();
 	void setUpVarsValidation();
+    void setTableValidatorV();
+    void clearWebDisplay2();
+
 };
 
 #endif // MAINWINDOW_H

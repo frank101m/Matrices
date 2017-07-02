@@ -27,6 +27,8 @@ public:
 	void setRow(const int, const Matrix &m);
 
 	double infNorm();
+    double eucNorm();
+
 
 	//Los métodos de Frank van acá
     static bool validateSizes(const Matrix*, const Matrix&);
