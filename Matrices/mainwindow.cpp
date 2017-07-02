@@ -237,7 +237,7 @@ void MainWindow::on_pushButton_5_clicked()
 
 
 void MainWindow::on_pushButton_6_clicked()
-{
+{/*
 #ifdef _WIN32
 //	QProcess process;
 //	QMessageBox pathMsg;
@@ -385,7 +385,7 @@ void MainWindow::on_pushButton_6_clicked()
 
 	pathMsg.exec();
 
-#endif
+#endif*/
 }
 
 void MainWindow::clearWebDisplay(){
