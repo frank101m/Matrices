@@ -126,14 +126,10 @@ namespace LinearSolver {
 
 			ninfX_p = X_p.infNorm();
 			ninfX = X.infNorm();
+
+			//CANDADO
             //error = abs(ninfX_p - ninfX);
             error = std::abs(ninfX_p - ninfX);
-
-			std::cout << "I: " << i << std::endl;
-			std::cout << "ninfX_p: " << ninfX_p << std::endl;
-			std::cout << "ninfX: " << ninfX << std::endl;
-			std::cout << "error: " << error << std::endl;
-
             if (error < tol) {
 				break;
 			}

@@ -63,8 +63,7 @@ int main()
 
 	Matrix XN = LinearSolver::getJacobiMethod(A, C, X, 0.0001, 100, vars, r);
 
-	std::vector<Matrix> XI;
-	//std::cout << r.getReportBody() << std::endl;
+	std::cout << r.getReportBody() << std::endl;
 
 	return 0;
 }
