@@ -1102,7 +1102,7 @@ void MainWindow::on_lineEditVars_editingFinished()
     }
 
 
-    Report r = Report(0);
+    Report r = Report(1);
 
     Matrix res = LinearSolver::getJacobiMethod(g, c, o, 0.0001, 10, vars, r);
 
