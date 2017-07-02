@@ -1,12 +1,30 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/W32TeX) (preloaded format=pdflatex 2016.11.2)  2 JUL 2017 13:56
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/W32TeX) (preloaded format=pdflatex 2016.11.2)  2 JUL 2017 17:01
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**./gauss.tex
-(./gauss.tex
-LaTeX2e <2016/03/31> patch level 3
-Babel <3.9r> and hyphenation patterns for 83 language(s) loaded.
-(./article.cls
+**\def\gausssel{\begin{alignedat}{5} 545797a_0&+895a_1&+985a_2&+95a_3&\;&=&\;45
+\\ 95a_0&+54a_1&+5a_2&+456a_3&\;&=&\;423\\ 45a_0&+5454a_1&+5454a_2&+52a_3&\;&=&
+\;1236\\ 451a_0&+24121a_1&+21a_2&+892a_3&\;&=&\;456 \end{alignedat} } \def\gaus
+smatrices{\tilde{A}^{(1)}= \begin{bmatrix}[rrrr|r] 545797&895&985&95\\ 95&54&5&
+456\\ 45&5454&5454&52\\ 451&24121&21&892\\ \end{bmatrix}\quad \begin{matrix} \\
+ \\ \\ \\ \end{matrix} \\ \vspace{0.5cm} \\ \tilde{A}^{(2)}= \begin{bmatrix}[rr
+rr|r] 545797&895&985&95&45\\ 0&53.8442&4.82855&455.983&422.992\\ 0&5453.93&5453
+.92&51.9922&1236\\ 0&24120.3&20.1861&891.922&455.963\\ \end{bmatrix}\quad \begi
+n{matrix} \\ \quad E_2-\left(0.000174057\right)E_1 \quad \rightarrow \quad E_2\
+\ \quad E_3-\left(8.24482e-05\right)E_1 \quad \rightarrow \quad E_3\\ \quad E_4
+-\left(0.000826315\right)E_1 \quad \rightarrow \quad E_4\\ \end{matrix} \\ \vsp
+ace{0.5cm} \\ \tilde{A}^{(3)}= \begin{bmatrix}[rrrr|r] 545797&895&985&95&45\\ 0
+&53.8442&4.82855&455.983&422.992\\ 0&0&4964.83&-46135&-41609.2\\ 0&0&-2142.83&-
+203372&-189029\\ \end{bmatrix}\quad \begin{matrix} \\ \\ \quad E_3-\left(101.29
+1\right)E_2 \quad \rightarrow \quad E_3\\ \quad E_4-\left(447.964\right)E_2 \qu
+ad \rightarrow \quad E_4\\ \end{matrix} \\ \vspace{0.5cm} \\ \tilde{A}^{(4)}= \
+begin{bmatrix}[rrrr|r] 545797&895&985&95&45\\ 0&53.8442&4.82855&455.983&422.992
+\\ 0&0&4964.83&-46135&-41609.2\\ 0&0&0&-223284&-206988\\ \end{bmatrix}\quad \be
+gin{matrix} \\ \\ \\ \quad E_4-\left(-0.431602\right)E_3 \quad \rightarrow \qua
+d E_4\\ \end{matrix} } \def\gausstable{\begin{tabular}{c|c|c|c} $a_0$&$a_1$&$a_
+2$&$a_3$\\ \hline -0.000474516&-0.0155708&0.233359&0.927016 \end{tabular} } \in
+put{gauss.tex} -interaction=nonstopmode
+(./gauss.tex (./article.cls
 Document Class: article 2014/09/29 v1.4h Standard LaTeX document class
 (./size10.clo
 File: size10.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
@@ -142,18 +160,18 @@ LaTeX Warning: Unused global option(s):
 (./gauss.aux)
 \openout1 = `gauss.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 99.
-LaTeX Font Info:    ... okay on input line 99.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 99.
-LaTeX Font Info:    ... okay on input line 99.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 99.
-LaTeX Font Info:    ... okay on input line 99.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 99.
-LaTeX Font Info:    ... okay on input line 99.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 99.
-LaTeX Font Info:    ... okay on input line 99.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 99.
-LaTeX Font Info:    ... okay on input line 99.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -228,15 +246,15 @@ G,.JBIG2,.JB2,.eps]
 <logo.jpg, id=1, 301.125pt x 377.41pt>
 File: logo.jpg Graphic file (type jpg)
 <use logo.jpg>
-Package pdftex.def Info: logo.jpg used on input line 110.
+Package pdftex.def Info: logo.jpg used on input line 39.
 (pdftex.def)             Requested size: 55.65138pt x 69.74489pt.
 
-Overfull \hbox (6.79999pt too wide) in paragraph at lines 118--120
+Overfull \hbox (6.79999pt too wide) in paragraph at lines 47--49
 [][]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 121--122
+Underfull \hbox (badness 10000) in paragraph at lines 50--51
 
  []
 
@@ -245,15 +263,15 @@ Underfull \hbox (badness 10000) in paragraph at lines 121--122
 {pdftex.map} <./logo.jpg>] (./gauss.aux) ) 
 Here is how much of TeX's memory you used:
  2353 strings out of 493013
- 28979 string characters out of 6136993
- 113035 words of memory out of 5000000
+ 28977 string characters out of 6136993
+ 112821 words of memory out of 5000000
  5891 multiletter control sequences out of 15000+600000
  6837 words of font info for 25 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 40i,9n,32p,239b,348s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 41i,9n,32p,1924b,348s stack positions out of 5000i,500n,10000p,200000b,80000s
 <./cmbx10.pfb><./cmbx12.pfb><./cmex10
 .pfb><./cmmi10.pfb><./cmr10.pfb><./cmr12.pfb><./cmr7.pfb><./cmsy10.pfb>
-Output written on gauss.pdf (1 page, 97920 bytes).
+Output written on gauss.pdf (1 page, 98174 bytes).
 PDF statistics:
  41 PDF objects out of 1000 (max. 8388607)
  28 compressed objects within 1 object stream

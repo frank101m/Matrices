@@ -50,6 +50,12 @@ public:
 	static const std::string DEF_OP_VAL_DET_A;
 	static const std::string DEF_OP_MATRIX_INV_A;
 
+	static const std::string DEF_OP_MATRIX_B;
+	static const std::string DEF_OP_MATRIX_A_P_B;
+	static const std::string DEF_OP_MATRIX_A_M_B;
+	static const std::string DEF_OP_MATRIX_A_X_B;
+	static const std::string DEF_OP_MATRIX_B_X_A;
+
 	//Para los reportes de sistemas de ecuaciones lineales
 
 	//Metodo de jacobi
