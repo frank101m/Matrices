@@ -2,14 +2,6 @@
 #include <cmath>
 
 
-const std::string Report::MATRIX_REGULAR_COMMAND = "\\regmatrix";
-const std::string Report::MATRIX_AUGMENTED_COMMAND = "\\augmatrix";
-const std::string Report::MATRIX_GAUSSIAN_REDUCTION_COMMAND = "\\opmatrix";
-const std::string Report::MATRIX_SEPARATOR = ",";
-const std::string Report::ARRAY_END = "}";
-const std::string Report::ARRAY_START = "{";
-const std::string Report::REPORT_BODY_START = "\\def\\reportbody{";
-const std::string Report::REPORT_BODY_END = "}";
 const std::string Report::REPORT_NEWLINE = "\\\\";
 const std::string Report::SEL_START = "\\begin{alignedat}";
 const std::string Report::SEL_END = "\\end{alignedat}";
@@ -49,37 +41,6 @@ std::string Report::getReportBody() {
 	return this->reportBodyStream.str();
 }
 
-void Report::initializeReportBody()
-{
-	if (this->initialized = true) {
-		this->reportBodyStream.clear();
-	} else {
-		this->reportBodyStream << REPORT_BODY_START;
-	}
-
-	this->initialized = true;
-}
-
-void Report::endReportBody()
-{
-	if (this->initialized) {
-		this->reportBodyStream << REPORT_BODY_END;
-	}
-}
-
-void Report::addAugmentMatrixElement(const std::vector<std::string>& vars, const Matrix & m)
-{
-	this->reportBodyStream << generateAugmentedMatrixElement(vars, m);
-}
-
-void Report::addGaussOpMatrix(
-	const int index,
-	const std::vector<std::string> &vars,
-	const std::vector<RowOperationParameter> &params,
-	const Matrix & m)
-{
-	this->reportBodyStream << generateGaussOpMatrixElement(index, vars, params, m);
-}
 
 std::string Report::generateLinEqElement(
 	const std::vector<std::string>& vars,
@@ -487,65 +448,6 @@ std::string Report::generateRowOperation(const RowOperationParameter &param) {
 	return rowOpStream.str();
 }
 
-std::string Report::generateGaussOpMatrixArray(
-	const std::vector<RowOperationParameter> &params,
-	const Matrix &m
-)
-{
-	std::ostringstream gaussOpMatrixArrayStream;
-
-	gaussOpMatrixArrayStream << ARRAY_START;
-
-	for (int i = 0; i < m.getRowsCount(); i++) {
-		gaussOpMatrixArrayStream << ARRAY_START;
-		gaussOpMatrixArrayStream << generateRowSeq(m, i, MATRIX_SEPARATOR);
-
-		//Se agrega el parametro estilizado de la operacion
-		gaussOpMatrixArrayStream << MATRIX_SEPARATOR;
-		gaussOpMatrixArrayStream << generateRowOperation(params.at(i));
-		gaussOpMatrixArrayStream << ARRAY_END;
-
-		if (i != m.getRowsCount() - 1) {
-			gaussOpMatrixArrayStream << MATRIX_SEPARATOR;
-		}
-	}
-
-	gaussOpMatrixArrayStream << ARRAY_END;
-
-	return gaussOpMatrixArrayStream.str();
-}
-
-std::string Report::generateGaussOpMatrixElement(
-	const int index,
-	const std::vector<std::string> &vars,
-	const std::vector<RowOperationParameter> &params,
-	const Matrix & m
-)
-{
-	std::ostringstream gaussOpMatrixStream;
-
-	//Encabezado
-	gaussOpMatrixStream << MATRIX_GAUSSIAN_REDUCTION_COMMAND;
-
-	//Parametro de indice de la matriz
-	gaussOpMatrixStream << ARRAY_START;
-	gaussOpMatrixStream << index;
-	gaussOpMatrixStream << ARRAY_END;
-
-	//Parametro de variables
-	gaussOpMatrixStream << ARRAY_START;
-	gaussOpMatrixStream << generateVarArray(vars);
-	gaussOpMatrixStream << ARRAY_END;
-
-	//Parametro de matriz
-	gaussOpMatrixStream << ARRAY_START;
-	gaussOpMatrixStream << generateGaussOpMatrixArray(params, m);
-	gaussOpMatrixStream << ARRAY_END;
-
-	return gaussOpMatrixStream.str();
-}
-
-
 std::string Report::generateSeq(const std::vector<std::string> &src, const std::string separator)
 {
 	std::ostringstream seq;
@@ -560,16 +462,6 @@ std::string Report::generateSeq(const std::vector<std::string> &src, const std::
 
 }
 
-std::string Report::generateVarArray(const std::vector<std::string> &src)
-{
-	std::ostringstream arrayStr;
-
-	arrayStr << ARRAY_START;
-	arrayStr << generateSeq(src, MATRIX_SEPARATOR);
-	arrayStr << ARRAY_END;
-
-	return arrayStr.str();
-}
 
 std::string Report::generateRowSeq(
 	const Matrix &m, //Matriz base
@@ -589,64 +481,4 @@ std::string Report::generateRowSeq(
 	seq << m.at(rowIndex, m.getColumnsCount() - 1);
 
 	return seq.str();
-}
-
-std::string Report::generateRowArray(const Matrix &m, const int rowIndex)
-{
-	std::ostringstream arrayStr;
-
-	arrayStr << ARRAY_START;
-	arrayStr << generateRowSeq(m, rowIndex, MATRIX_SEPARATOR);
-	arrayStr << ARRAY_END;
-
-	return arrayStr.str();
-}
-
-std::string Report::generateRegularMatrixArray(const Matrix &m)
-{
-	std::ostringstream arrayStr;
-
-	arrayStr << ARRAY_START;
-	arrayStr << ARRAY_START;
-	for (int i = 0; i < m.getRowsCount() - 1; i++)
-	{
-		arrayStr << generateRowArray(m, i);
-		arrayStr << MATRIX_SEPARATOR;
-	}
-
-	arrayStr << generateRowArray(m, m.getRowsCount() - 1);
-	arrayStr << ARRAY_END;
-	arrayStr << ARRAY_END;
-
-	return arrayStr.str();
-}
-
-std::string Report::generateRegularMatrixElement(const Matrix &m)
-{
-	std::ostringstream regularMatrixCommand;
-
-	regularMatrixCommand << MATRIX_REGULAR_COMMAND;
-	regularMatrixCommand << ARRAY_START;
-	regularMatrixCommand << m.getColumnsCount();
-	regularMatrixCommand << ARRAY_END;
-	regularMatrixCommand << generateRegularMatrixArray(m);
-
-	return regularMatrixCommand.str();
-
-}
-
-std::string Report::generateAugmentedMatrixElement(
-	const std::vector<std::string> &vars,
-	const Matrix &m)
-{
-	std::ostringstream augmentedMatrixCommand;
-
-	augmentedMatrixCommand << MATRIX_AUGMENTED_COMMAND;
-	augmentedMatrixCommand << ARRAY_START;
-	augmentedMatrixCommand << generateVarArray(vars);
-	augmentedMatrixCommand << ARRAY_END;
-
-	augmentedMatrixCommand << generateRegularMatrixArray(m);
-
-	return augmentedMatrixCommand.str();
 }
