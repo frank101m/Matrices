@@ -10,7 +10,6 @@
 #define UI_MAINWINDOW_H
 
 #include <QtCore/QVariant>
-#include <QtWebEngineWidgets/QWebEngineView>
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
@@ -77,7 +76,15 @@ public:
     QPushButton *pushButton_7;
     QPushButton *pushButton_8;
     QWidget *tab_2;
-    QWebEngineView *webEngineView;
+    QHBoxLayout *horizontalLayout_7;
+    QHBoxLayout *horizontalLayout_6;
+    QVBoxLayout *verticalLayout_6;
+    QLabel *label_3;
+    QSpinBox *spinBox_5;
+    QPushButton *pushButton_13;
+    QPushButton *pushButton_14;
+    QPushButton *pushButton_15;
+    QTableWidget *tableWidget_3;
     QWidget *tab;
     QPushButton *pushButton_6;
     QTableWidget *augMatrix;
@@ -95,7 +102,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(771, 454);
+        MainWindow->resize(716, 500);
         actionSalir = new QAction(MainWindow);
         actionSalir->setObjectName(QStringLiteral("actionSalir"));
         actionGenerar_reporte = new QAction(MainWindow);
@@ -115,6 +122,11 @@ public:
         mainLayout->setObjectName(QStringLiteral("mainLayout"));
         mainTabWidget = new QTabWidget(widget);
         mainTabWidget->setObjectName(QStringLiteral("mainTabWidget"));
+        QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(mainTabWidget->sizePolicy().hasHeightForWidth());
+        mainTabWidget->setSizePolicy(sizePolicy);
         mainTabWidget->setTabShape(QTabWidget::Rounded);
         basicMatrixOperations = new QWidget();
         basicMatrixOperations->setObjectName(QStringLiteral("basicMatrixOperations"));
@@ -338,10 +350,97 @@ public:
         mainTabWidget->addTab(basicMatrixOperations, QString());
         tab_2 = new QWidget();
         tab_2->setObjectName(QStringLiteral("tab_2"));
-        webEngineView = new QWebEngineView(tab_2);
-        webEngineView->setObjectName(QStringLiteral("webEngineView"));
-        webEngineView->setGeometry(QRect(0, 30, 751, 381));
-        webEngineView->setProperty("url", QVariant(QUrl(QStringLiteral("about:blank"))));
+        horizontalLayout_7 = new QHBoxLayout(tab_2);
+        horizontalLayout_7->setSpacing(6);
+        horizontalLayout_7->setContentsMargins(11, 11, 11, 11);
+        horizontalLayout_7->setObjectName(QStringLiteral("horizontalLayout_7"));
+        horizontalLayout_6 = new QHBoxLayout();
+        horizontalLayout_6->setSpacing(6);
+        horizontalLayout_6->setObjectName(QStringLiteral("horizontalLayout_6"));
+        verticalLayout_6 = new QVBoxLayout();
+        verticalLayout_6->setSpacing(6);
+        verticalLayout_6->setObjectName(QStringLiteral("verticalLayout_6"));
+        verticalLayout_6->setSizeConstraint(QLayout::SetDefaultConstraint);
+        label_3 = new QLabel(tab_2);
+        label_3->setObjectName(QStringLiteral("label_3"));
+        QSizePolicy sizePolicy1(QSizePolicy::Fixed, QSizePolicy::Preferred);
+        sizePolicy1.setHorizontalStretch(0);
+        sizePolicy1.setVerticalStretch(0);
+        sizePolicy1.setHeightForWidth(label_3->sizePolicy().hasHeightForWidth());
+        label_3->setSizePolicy(sizePolicy1);
+        label_3->setMinimumSize(QSize(120, 0));
+        label_3->setMaximumSize(QSize(120, 16777215));
+        label_3->setAlignment(Qt::AlignCenter);
+
+        verticalLayout_6->addWidget(label_3);
+
+        spinBox_5 = new QSpinBox(tab_2);
+        spinBox_5->setObjectName(QStringLiteral("spinBox_5"));
+        QSizePolicy sizePolicy2(QSizePolicy::Fixed, QSizePolicy::Fixed);
+        sizePolicy2.setHorizontalStretch(0);
+        sizePolicy2.setVerticalStretch(0);
+        sizePolicy2.setHeightForWidth(spinBox_5->sizePolicy().hasHeightForWidth());
+        spinBox_5->setSizePolicy(sizePolicy2);
+        spinBox_5->setMinimumSize(QSize(120, 0));
+        spinBox_5->setMaximumSize(QSize(120, 16777215));
+        spinBox_5->setMinimum(1);
+        spinBox_5->setMaximum(30);
+
+        verticalLayout_6->addWidget(spinBox_5);
+
+        pushButton_13 = new QPushButton(tab_2);
+        pushButton_13->setObjectName(QStringLiteral("pushButton_13"));
+        sizePolicy2.setHeightForWidth(pushButton_13->sizePolicy().hasHeightForWidth());
+        pushButton_13->setSizePolicy(sizePolicy2);
+        pushButton_13->setMinimumSize(QSize(120, 0));
+        pushButton_13->setMaximumSize(QSize(120, 16777215));
+
+        verticalLayout_6->addWidget(pushButton_13);
+
+        pushButton_14 = new QPushButton(tab_2);
+        pushButton_14->setObjectName(QStringLiteral("pushButton_14"));
+        sizePolicy2.setHeightForWidth(pushButton_14->sizePolicy().hasHeightForWidth());
+        pushButton_14->setSizePolicy(sizePolicy2);
+        pushButton_14->setMinimumSize(QSize(120, 0));
+        pushButton_14->setMaximumSize(QSize(120, 16777215));
+
+        verticalLayout_6->addWidget(pushButton_14);
+
+        pushButton_15 = new QPushButton(tab_2);
+        pushButton_15->setObjectName(QStringLiteral("pushButton_15"));
+        sizePolicy2.setHeightForWidth(pushButton_15->sizePolicy().hasHeightForWidth());
+        pushButton_15->setSizePolicy(sizePolicy2);
+        pushButton_15->setMinimumSize(QSize(120, 0));
+        pushButton_15->setMaximumSize(QSize(120, 16777215));
+
+        verticalLayout_6->addWidget(pushButton_15);
+
+        tableWidget_3 = new QTableWidget(tab_2);
+        if (tableWidget_3->columnCount() < 1)
+            tableWidget_3->setColumnCount(1);
+        QTableWidgetItem *__qtablewidgetitem8 = new QTableWidgetItem();
+        tableWidget_3->setHorizontalHeaderItem(0, __qtablewidgetitem8);
+        if (tableWidget_3->rowCount() < 1)
+            tableWidget_3->setRowCount(1);
+        QTableWidgetItem *__qtablewidgetitem9 = new QTableWidgetItem();
+        tableWidget_3->setVerticalHeaderItem(0, __qtablewidgetitem9);
+        tableWidget_3->setObjectName(QStringLiteral("tableWidget_3"));
+        QSizePolicy sizePolicy3(QSizePolicy::Fixed, QSizePolicy::Expanding);
+        sizePolicy3.setHorizontalStretch(0);
+        sizePolicy3.setVerticalStretch(0);
+        sizePolicy3.setHeightForWidth(tableWidget_3->sizePolicy().hasHeightForWidth());
+        tableWidget_3->setSizePolicy(sizePolicy3);
+        tableWidget_3->setMinimumSize(QSize(120, 0));
+        tableWidget_3->setMaximumSize(QSize(120, 16777215));
+
+        verticalLayout_6->addWidget(tableWidget_3);
+
+
+        horizontalLayout_6->addLayout(verticalLayout_6);
+
+
+        horizontalLayout_7->addLayout(horizontalLayout_6);
+
         mainTabWidget->addTab(tab_2, QString());
         tab = new QWidget();
         tab->setObjectName(QStringLiteral("tab"));
@@ -394,7 +493,7 @@ public:
         MainWindow->setCentralWidget(widget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 771, 19));
+        menuBar->setGeometry(QRect(0, 0, 716, 19));
         menuArchivo = new QMenu(menuBar);
         menuArchivo->setObjectName(QStringLiteral("menuArchivo"));
         menuVer = new QMenu(menuBar);
@@ -466,7 +565,15 @@ public:
         pushButton_7->setText(QApplication::translate("MainWindow", "Determinante de matriz A", Q_NULLPTR));
         pushButton_8->setText(QApplication::translate("MainWindow", "Determinante de matriz B", Q_NULLPTR));
         mainTabWidget->setTabText(mainTabWidget->indexOf(basicMatrixOperations), QApplication::translate("MainWindow", "Operaciones b\303\241sicas con matrices", Q_NULLPTR));
-        mainTabWidget->setTabText(mainTabWidget->indexOf(tab_2), QApplication::translate("MainWindow", "Tab 2", Q_NULLPTR));
+        label_3->setText(QApplication::translate("MainWindow", "Vector", Q_NULLPTR));
+        pushButton_13->setText(QApplication::translate("MainWindow", "Generar vector", Q_NULLPTR));
+        pushButton_14->setText(QApplication::translate("MainWindow", "Norma infinita", Q_NULLPTR));
+        pushButton_15->setText(QApplication::translate("MainWindow", "Norma euclideana", Q_NULLPTR));
+        QTableWidgetItem *___qtablewidgetitem8 = tableWidget_3->horizontalHeaderItem(0);
+        ___qtablewidgetitem8->setText(QApplication::translate("MainWindow", "1", Q_NULLPTR));
+        QTableWidgetItem *___qtablewidgetitem9 = tableWidget_3->verticalHeaderItem(0);
+        ___qtablewidgetitem9->setText(QApplication::translate("MainWindow", "1", Q_NULLPTR));
+        mainTabWidget->setTabText(mainTabWidget->indexOf(tab_2), QApplication::translate("MainWindow", "Normas vectoriales", Q_NULLPTR));
         pushButton_6->setText(QApplication::translate("MainWindow", "Generar pdf", Q_NULLPTR));
         applyMatrixRange->setText(QApplication::translate("MainWindow", "Aplicar", Q_NULLPTR));
         acceptVars->setText(QApplication::translate("MainWindow", "Aceptar", Q_NULLPTR));

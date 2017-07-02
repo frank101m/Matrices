@@ -93,6 +93,14 @@ double Matrix::infNorm()
 	return *std::max_element(subNorms.begin(), subNorms.end());
 }
 
+double Matrix::eucNorm(){
+    //vectors only
+    double norm = 0;
+    for(int i = 0; i < rowsCount; i++)
+        norm += at(i, 0)*at(i, 0);
+    return sqrt(norm);
+}
+
 
 Matrix Matrix::operator+(const Matrix& m){
         Matrix res = Matrix(m.getRowsCount(), m.getColumnsCount());
