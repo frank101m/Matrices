@@ -4,16 +4,28 @@
 
 namespace LinearSolver {
 	Matrix getGaussianElimination(
-		Matrix srcMatrix,
+		const Matrix &srcMatrix,
+		const Matrix &CO,
 		const std::vector<std::string>& vars,
 		Report & report
 	)
 	{
-		Matrix t = srcMatrix;
 
 		Matrix currentRow(0, 0);
 		int p = 0; //Fila del pivote
-		int n = t.getRowsCount();
+		int n = srcMatrix.getRowsCount();
+
+		Matrix t(n, n + 1);
+
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < n; j++) {
+				t.set(i, j,srcMatrix.at(i,j));
+			}
+		}
+		for (int i = 0; i < n; i++) {
+			t.set(i,n, CO.at(i,0));
+		}
+
 		double m; //Valor del pivote
 		
 		std::vector<Matrix> itrMatrices;
@@ -95,9 +107,8 @@ namespace LinearSolver {
 		return t;
 	}
 
-	std::vector<double> getBackSubstitution(const Matrix & gaussReduc, const std::vector<std::string>& vars, Report & report)
+	Matrix getBackSubstitution(const Matrix & gaussReduc, const std::vector<std::string>& vars, Report & report)
 	{
-		std::vector<double> xn;
 		size_t n = gaussReduc.getRowsCount();
 		Matrix resVec(1, n);
 
@@ -113,9 +124,9 @@ namespace LinearSolver {
 			resVec.set(0, i, (gaussReduc.at(i,n) - sum_acu)/gaussReduc.at(i,i) );
 		}
 
-		report.addMatrix(Report::DEF_JACOBI_MATRIX_A, resVec);
 
-		return xn;
+		report.addGaussTable(vars, resVec);
+		return resVec;
 	}
 
 	//Método de Jacobi para solución de ecuaciones lineales
@@ -124,7 +135,7 @@ namespace LinearSolver {
 		const Matrix &CO,
 		const Matrix &XO,
 		const double tol,
-        const int NMax,
+        const size_t NMax,
 		const std::vector<std::string> &vars,
 		Report &report)
 	{

@@ -32,6 +32,7 @@ const std::string Report::DEF_JACOBI_MATRIX_XO = "\\def\\jacobimatrixXO{";
 
 const std::string Report::DEF_GAUSS_SEL = "\\def\\gausssel{";
 const std::string Report::DEF_GAUSS_MATRICES = "\\def\\gaussmatrices{";
+const std::string Report::DEF_GAUSS_TABLE = "\\def\\gausstable{";
 
 const std::string Report::GAUSS_MATRIX_PRE_INDEX = "\\tilde{A}^{(";
 const std::string Report::GAUSS_MATRIX_POST_INDEX = ")}=";
@@ -309,6 +310,34 @@ std::string Report::generateJacobiTable(
 std::string Report::generateGaussTable(const std::vector<std::string>& vars, const Matrix resultVec)
 {
 	std::ostringstream gaussTableStream;
+	gaussTableStream << TABLE_PRE_FORMAT;
+	size_t n = vars.size();
+
+	for (int i = 0; i < n; i++) {
+		gaussTableStream << "c";
+		if (i != n - 1) {
+			gaussTableStream << "|";
+		}
+	}
+
+	gaussTableStream << TABLE_POST_FORMAT;
+	gaussTableStream << std::endl;
+
+	for (int i = 0; i < n; i++) {
+		gaussTableStream << "$";
+		gaussTableStream << vars.at(i);
+		gaussTableStream << "$";
+		if (i != n - 1) {
+			gaussTableStream << "&";
+		}
+	}
+
+	gaussTableStream << REPORT_NEWLINE;
+	gaussTableStream << " \\hline";
+	gaussTableStream << std::endl;
+	gaussTableStream << generateRowSeq(resultVec, 0, "&");
+	gaussTableStream << std::endl;
+	gaussTableStream << TABLE_END;
 
 	return gaussTableStream.str();
 }
@@ -406,6 +435,15 @@ void Report::addGaussMatrices(const std::vector<Matrix>& Mvec, const std::vector
 	reportBodyStream << std::endl;
 	reportBodyStream << DEF_GAUSS_MATRICES;
 	reportBodyStream << generateGaussReduction(Mvec, params);
+	reportBodyStream << std::endl;
+	reportBodyStream << DEF_END;
+}
+
+void Report::addGaussTable(const std::vector<std::string>& vars, const Matrix & xvec)
+{
+	reportBodyStream << std::endl;
+	reportBodyStream << DEF_GAUSS_TABLE;
+	reportBodyStream << generateGaussTable(vars, xvec);
 	reportBodyStream << std::endl;
 	reportBodyStream << DEF_END;
 }

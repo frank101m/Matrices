@@ -56,7 +56,7 @@ int main()
 
 
 
-	size_t randomOrder = 20;
+	size_t randomOrder = 4;
 
 	for (int i = 0; i < randomOrder; i++) {
 		std::ostringstream var;
@@ -106,20 +106,24 @@ int main()
 	Matrix gaussTest(randomOrder, randomOrder + 1);
 
 	for (int i = 0; i < randomOrder; i++) {
-		for (int j = 0; j < randomOrder + 1; j++ ) {
+		for (int j = 0; j < randomOrder; j++ ) {
 			double randVal = (std::rand());
 			gaussTest.set(i, j, randVal);
 		}
+	}
+
+	for (int i = 0; i < randomOrder; i++) {
+		double randVal = (std::rand())*pow(-1, std::rand());
+		CO.set(i, 0, randVal);
 	}
 
 	//Matrix XN = LinearSolver::getJacobiMethod(A, C, X, 0.0001, 100, vars, r);
 
 	//std::cout << r.getReportBody() << std::endl;
 
-	r.addLinEq(Report::DEF_GAUSS_SEL, vars, gaussmvec.at(0), CO);
-
-	Matrix gaussReduc = LinearSolver::getGaussianElimination(gaussTest, vars, r);
-	LinearSolver::getBackSubstitution(gaussReduc, vars, r);
+	r.addLinEq(Report::DEF_GAUSS_SEL, vars, gaussTest, CO);
+	Matrix gaussReduc = LinearSolver::getGaussianElimination(gaussTest,CO, vars, r);
+	Matrix Xvec = LinearSolver::getBackSubstitution(gaussReduc, vars, r);
 
 	std::cout << r.getReportBody() << std::endl;
 
