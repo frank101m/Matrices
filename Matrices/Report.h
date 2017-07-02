@@ -35,20 +35,33 @@ public:
 	static const std::string MATRIX_END;
 	static const std::string BMATRIX_START;
 	static const std::string BMATRIX_END;
+	static const std::string VMATRIX_START;
+	static const std::string VMATRIX_END;
 	static const std::string TABLE_PRE_FORMAT;
 	static const std::string TABLE_POST_FORMAT;
 	static const std::string TABLE_END;
 	static const std::string TABLE_VSPACE;
+
+
+	//Para las operaciones basicas
+	static const std::string DEF_OP_MATRIX_A;
+	static const std::string DEF_OP_MATRIX_AT;
+	static const std::string DEF_OP_MATRIX_DET_A;
+	static const std::string DEF_OP_VAL_DET_A;
+	static const std::string DEF_OP_MATRIX_INV_A;
+
+	//Para los reportes de sistemas de ecuaciones lineales
+
+	//Metodo de jacobi
 	static const std::string DEF_JACOBI_TABLES_PRE;
 	static const std::string DEF_JACOBI_TABLES_POST;
-
 	static const std::string DEF_JACOBI_SEL;
 	static const std::string DEF_JACOBI_MATRIX_A;
 	static const std::string DEF_JACOBI_MATRIX_T;
 	static const std::string DEF_JACOBI_MATRIX_C;
 	static const std::string DEF_JACOBI_MATRIX_XO;
 
-
+	//Reduccion gaussiana
 	static const std::string DEF_GAUSS_SEL;
 	static const std::string DEF_GAUSS_MATRICES;
 	static const std::string DEF_GAUSS_TABLE;
@@ -78,7 +91,11 @@ public:
 		const double c
 	);
 
-	std::string generateMatrixEl(
+	std::string generateBMatrixEl(
+		const Matrix &M
+	);
+
+	std::string generateVMatrixEl(
 		const Matrix &M
 	);
 
@@ -111,6 +128,13 @@ public:
 		const Matrix &row
 	);
 
+	//Agregacion
+
+	void addDefinition(
+		const std::string &tag,
+		const std::string &value
+	);
+
 	void addJacobiTables(
 		const std::vector<std::string> &vars,
 		const std::vector<Matrix> &Xvec
@@ -133,7 +157,13 @@ public:
 		const Matrix &xvec
 	);
 
-	void addMatrix(
+	//Reporte de Frank
+	void addBMatrix(
+		const std::string &tag,
+		const Matrix &M
+	);
+
+	void addVMatrix(
 		const std::string &tag,
 		const Matrix &M
 	);

@@ -161,10 +161,10 @@ namespace LinearSolver {
 		std::vector<Matrix> XN;
 
 		report.addLinEq(Report::DEF_JACOBI_SEL, vars, A, CO);
-		report.addMatrix(Report::DEF_JACOBI_MATRIX_A, A);
-		report.addMatrix(Report::DEF_JACOBI_MATRIX_T, T);
-		report.addMatrix(Report::DEF_JACOBI_MATRIX_C, C);
-		report.addMatrix(Report::DEF_JACOBI_MATRIX_XO, XO);
+		report.addBMatrix(Report::DEF_JACOBI_MATRIX_A, A);
+		report.addBMatrix(Report::DEF_JACOBI_MATRIX_T, T);
+		report.addBMatrix(Report::DEF_JACOBI_MATRIX_C, C);
+		report.addBMatrix(Report::DEF_JACOBI_MATRIX_XO, XO);
 
 		XN.push_back(XO);
 

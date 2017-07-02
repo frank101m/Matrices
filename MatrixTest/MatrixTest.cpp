@@ -103,7 +103,7 @@ int main()
 		ops.push_back(rowOps);
 	}
 
-	Matrix gaussTest(randomOrder, randomOrder + 1);
+	Matrix gaussTest(randomOrder, randomOrder);
 
 	for (int i = 0; i < randomOrder; i++) {
 		for (int j = 0; j < randomOrder; j++ ) {
@@ -118,8 +118,11 @@ int main()
 	}
 
 
-	//std::cout << r.getReportBody() << std::endl;
-
+	r.addBMatrix(Report::DEF_OP_MATRIX_A, gaussTest);
+	r.addBMatrix(Report::DEF_OP_MATRIX_AT, gaussTest);
+	r.addVMatrix(Report::DEF_OP_MATRIX_DET_A, gaussTest);
+	r.addDefinition(Report::DEF_OP_VAL_DET_A, std::string("123"));
+	r.addBMatrix(Report::DEF_OP_MATRIX_INV_A, gaussTest);
 
 	Matrix XN = LinearSolver::getJacobiMethod(gaussTest, CO, X, 0.0001, 100, vars, r);
 	Matrix gaussReduc = LinearSolver::getGaussianElimination(gaussTest,CO, vars, r);
