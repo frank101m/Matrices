@@ -117,10 +117,11 @@ int main()
 		CO.set(i, 0, randVal);
 	}
 
-	//Matrix XN = LinearSolver::getJacobiMethod(A, C, X, 0.0001, 100, vars, r);
 
 	//std::cout << r.getReportBody() << std::endl;
 
+
+	Matrix XN = LinearSolver::getJacobiMethod(A, C, X, 0.0001, 100, vars, r);
 	Matrix gaussReduc = LinearSolver::getGaussianElimination(gaussTest,CO, vars, r);
 	Matrix Xvec = LinearSolver::getBackSubstitution(gaussReduc, vars, r);
 
