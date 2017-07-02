@@ -1059,6 +1059,7 @@ void MainWindow::on_applyMatrixRange_clicked()
 
 void MainWindow::on_acceptVars_clicked()
 {
+
 }
 
 void MainWindow::on_lineEditVars_editingFinished()

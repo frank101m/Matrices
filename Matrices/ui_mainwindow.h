@@ -102,7 +102,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(716, 500);
+        MainWindow->resize(716, 600);
         actionSalir = new QAction(MainWindow);
         actionSalir->setObjectName(QStringLiteral("actionSalir"));
         actionGenerar_reporte = new QAction(MainWindow);
@@ -248,6 +248,7 @@ public:
         QTableWidgetItem *__qtablewidgetitem3 = new QTableWidgetItem();
         tableWidget->setVerticalHeaderItem(1, __qtablewidgetitem3);
         tableWidget->setObjectName(QStringLiteral("tableWidget"));
+        tableWidget->setMinimumSize(QSize(0, 200));
 
         horizontalLayout_4->addWidget(tableWidget);
 
@@ -272,6 +273,7 @@ public:
         QTableWidgetItem *__qtablewidgetitem7 = new QTableWidgetItem();
         tableWidget_2->setVerticalHeaderItem(1, __qtablewidgetitem7);
         tableWidget_2->setObjectName(QStringLiteral("tableWidget_2"));
+        tableWidget_2->setMinimumSize(QSize(0, 200));
 
         horizontalLayout_4->addWidget(tableWidget_2);
 
@@ -513,7 +515,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        mainTabWidget->setCurrentIndex(1);
+        mainTabWidget->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -521,7 +523,7 @@ public:
 
     void retranslateUi(QMainWindow *MainWindow)
     {
-        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", Q_NULLPTR));
+        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "Gauss", Q_NULLPTR));
         actionSalir->setText(QApplication::translate("MainWindow", "Salir", Q_NULLPTR));
 #ifndef QT_NO_SHORTCUT
         actionSalir->setShortcut(QApplication::translate("MainWindow", "Ctrl+Q", Q_NULLPTR));
