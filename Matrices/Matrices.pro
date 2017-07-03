@@ -43,3 +43,5 @@ FORMS += \
 
 RESOURCES += \
     Resource.qrc
+
+RC_FILE = myico.rc

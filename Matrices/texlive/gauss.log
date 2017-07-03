@@ -1,33 +1,40 @@
-<<<<<<< Updated upstream
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/W32TeX) (preloaded format=pdflatex 2016.11.2)  3 JUL 2017 07:22
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.11.2)  3 JUL 2017 08:09
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**\def\gausssel{\begin{alignedat}{3} & &\;&=&\;0\\ & &\;&=&\;0 \end{alignedat} 
-} \def\gaussmatrices{\tilde{A}^{(1)}= \begin{bmatrix}[rr|r] 0&0&0\\ 0&0&0\\ \en
-d{bmatrix}\quad \begin{matrix} \\ \\ \end{matrix} } \def\errormsg{ 1} \def\gaus
-stable{\begin{tabular}{c|c} $a_0$&$a_1$\\ \hline -nan(ind)&-nan(ind) \end{tabul
-ar} } \input{gauss.tex} -interaction=nonstopmode
-=======
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.11.2)  3 JUL 2017 07:21
-entering extended mode
- restricted \write18 enabled.
- %&-line parsing enabled.
-**\def\gausssel{\begin{alignedat}{4} 0.45a_0&+1.32a_1&+5a_2&\;&=&\;56.32\\ 2.56
-a_0&+0.809a_1&+0.005a_2&\;&=&\;90.5\\ 162a_0&+146a_1&+0.023a_2&\;&=&\;31.6 \end
-{alignedat} } \def\gaussmatrices{\tilde{A}^{(1)}= \begin{bmatrix}[rrr|r] 0.45&1
-.32&5&56.32\\ 2.56&0.809&0.005&90.5\\ 162&146&0.023&31.6\\ \end{bmatrix}\quad \
-begin{matrix} \\ \\ \\ \end{matrix} \\ \vspace{0.5cm} \\ \tilde{A}^{(2)}= \begi
-n{bmatrix}[rrr|r] 0.45&1.32&5&56.32\\ 0&-6.70033&-28.4394&-229.898\\ 0&-329.2&-
-1799.98&-20243.6\\ \end{bmatrix}\quad \begin{matrix} \\ \quad E_2-\left(5.68889
-\right)E_1 \quad \rightarrow \quad E_2\\ \quad E_3-\left(360\right)E_1 \quad \r
-ightarrow \quad E_3\\ \end{matrix} \\ \vspace{0.5cm} \\ \tilde{A}^{(3)}= \begin
-{bmatrix}[rrr|r] 0.45&1.32&5&56.32\\ 0&-6.70033&-28.4394&-229.898\\ 0&0&-402.69
-4&-8948.27\\ \end{bmatrix}\quad \begin{matrix} \\ \\ \quad E_3-\left(49.1319\ri
-ght)E_2 \quad \rightarrow \quad E_3\\ \end{matrix} } \def\gausstable{\begin{tab
-ular}{c|c|c} $a_0$&$a_1$&$a_2$\\ \hline 54.2708&-60.0053&22.221 \end{tabular} }
- \input{gauss.tex}
->>>>>>> Stashed changes
+**\def\gausssel{\begin{alignedat}{6} 6.86877e+10a_0&+678686a_1&+7686a_2&+7878a_
+3&+67a_4&\;&=&\;567576\\ 7a_0&+678a_1&+678a_2&+67867a_3&+8a_4&\;&=&\;567\\ 6867
+a_0&+8678a_1&+678a_2&+67a_3&+68a_4&\;&=&\;567\\ 678a_0&+678a_1&+687a_2&+6786a_3
+&+786a_4&\;&=&\;5765\\ 7867a_0&+86a_1&+78678a_2&+678a_3&+678a_4&\;&=&\;675 \end
+{alignedat} } \def\gaussmatrices{\tilde{A}^{(1)}= \begin{bmatrix}[rrrrr|r] 6.86
+877e+10&678686&7686&7878&67&567576\\ 7&678&678&67867&8&567\\ 6867&8678&678&67&6
+8&567\\ 678&678&687&6786&786&5765\\ 7867&86&78678&678&678&675\\ \end{bmatrix}\q
+uad \begin{matrix} \\ \\ \\ \\ \\ \end{matrix} \\ \vspace{0.5cm} \\ \tilde{A}^{
+(2)}= \begin{bmatrix}[rrrrr|r] 6.86877e+10&678686&7686&7878&67&567576\\ 0&678&6
+78&67867&8&567\\ 0&8677.93&677.999&66.9992&68&566.943\\ 0&677.993&687&6786&786&
+5764.99\\ 0&85.9223&78678&677.999&678&674.935\\ \end{bmatrix}\quad \begin{matri
+x} \\ \quad E_2-\left(1.01911e-10\right)E_1 \quad \rightarrow \quad E_2\\ \quad
+ E_3-\left(9.99743e-08\right)E_1 \quad \rightarrow \quad E_3\\ \quad E_4-\left(
+9.87077e-09\right)E_1 \quad \rightarrow \quad E_4\\ \quad E_5-\left(1.14533e-07
+\right)E_1 \quad \rightarrow \quad E_5\\ \end{matrix} \\ \vspace{0.5cm} \\ \til
+de{A}^{(3)}= \begin{bmatrix}[rrrrr|r] 6.86877e+10&678686&7686&7878&67&567576\\ 
+0&678&678&67867&8&567\\ 0&0&-7999.93&-868584&-34.3945&-6690.27\\ 0&0&9.00655&-6
+1080.3&778&5198\\ 0&0&78592.1&-7922.72&676.986&603.08\\ \end{bmatrix}\quad \beg
+in{matrix} \\ \\ \quad E_3-\left(12.7993\right)E_2 \quad \rightarrow \quad E_3\
+\ \quad E_4-\left(0.99999\right)E_2 \quad \rightarrow \quad E_4\\ \quad E_5-\le
+ft(0.126729\right)E_2 \quad \rightarrow \quad E_5\\ \end{matrix} \\ \vspace{0.5
+cm} \\ \tilde{A}^{(4)}= \begin{bmatrix}[rrrrr|r] 6.86877e+10&678686&7686&7878&6
+7&567576\\ 0&678&678&67867&8&567\\ 0&0&-7999.93&-868584&-34.3945&-6690.27\\ 0&0
+&0&-62058.2&777.961&5190.47\\ 0&0&0&-8.54097e+06&339.091&-65122.7\\ \end{bmatri
+x}\quad \begin{matrix} \\ \\ \\ \quad E_4-\left(-0.00112583\right)E_3 \quad \ri
+ghtarrow \quad E_4\\ \quad E_5-\left(-9.82409\right)E_3 \quad \rightarrow \quad
+ E_5\\ \end{matrix} \\ \vspace{0.5cm} \\ \tilde{A}^{(5)}= \begin{bmatrix}[rrrrr
+|r] 6.86877e+10&678686&7686&7878&67&567576\\ 0&678&678&67867&8&567\\ 0&0&-7999.
+93&-868584&-34.3945&-6690.27\\ 0&0&0&-62058.2&777.961&5190.47\\ 0&0&0&0&-106730
+&-779478\\ \end{bmatrix}\quad \begin{matrix} \\ \\ \\ \\ \quad E_5-\left(137.62
+8\right)E_4 \quad \rightarrow \quad E_5\\ \end{matrix} } \def\gausstable{\begin
+{tabular}{c|c|c|c|c} $a_0$&$a_1$&$a_2$&$a_3$&$a_4$\\ \hline 8.13971e-06&0.01229
+57&-0.0544382&0.00791469&7.30324 \end{tabular} } \input{gauss.tex}
 (./gauss.tex (./article.cls
 Document Class: article 2014/09/29 v1.4h Standard LaTeX document class
 (./size10.clo
@@ -266,29 +273,16 @@ Underfull \hbox (badness 10000) in paragraph at lines 50--51
 
 {pdftex.map} <./logo.jpg>] (./gauss.aux) ) 
 Here is how much of TeX's memory you used:
-<<<<<<< Updated upstream
- 2352 strings out of 493013
- 28952 string characters out of 6136993
- 102819 words of memory out of 5000000
- 5890 multiletter control sequences out of 15000+600000
- 6232 words of font info for 23 fonts, out of 8000000 for 9000
- 1141 hyphenation exceptions out of 8191
- 41i,9n,32p,590b,348s stack positions out of 5000i,500n,10000p,200000b,80000s
-<./cmbx10.pfb><./cmbx12.pfb><./cmex10
-.pfb><./cmmi10.pfb><./cmr10.pfb><./cmr12.pfb><./cmr7.pfb>
-Output written on gauss.pdf (1 page, 85681 bytes).
-=======
  2353 strings out of 493013
  28970 string characters out of 6136993
- 108349 words of memory out of 5000000
+ 120547 words of memory out of 5000000
  5891 multiletter control sequences out of 15000+600000
  6837 words of font info for 25 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 41i,9n,32p,1271b,348s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 41i,9n,32p,2820b,348s stack positions out of 5000i,500n,10000p,200000b,80000s
 <./cmbx10.pfb><./cmbx12.pfb><./cmex10
 .pfb><./cmmi10.pfb><./cmr10.pfb><./cmr12.pfb><./cmr7.pfb><./cmsy10.pfb>
-Output written on gauss.pdf (1 page, 97102 bytes).
->>>>>>> Stashed changes
+Output written on gauss.pdf (1 page, 99031 bytes).
 PDF statistics:
  41 PDF objects out of 1000 (max. 8388607)
  28 compressed objects within 1 object stream
