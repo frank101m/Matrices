@@ -64,6 +64,14 @@ private slots:
 
     void on_action2_Matrices_triggered();
 
+    void on_actionInfinita_triggered();
+
+    void on_actionEuclideana_triggered();
+
+    void on_actionGauss_triggered();
+
+    void on_actionJacobi_triggered();
+
 private:
     QWebEngineView *webDisplay;
     QWebEngineView *webDisplay2;
