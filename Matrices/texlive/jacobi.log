@@ -1,12 +1,28 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/W32TeX) (preloaded format=pdflatex 2016.11.2)  2 JUL 2017 22:43
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/W32TeX) (preloaded format=pdflatex 2016.11.2)  2 JUL 2017 22:40
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**./test.tex
-(./test.tex
-LaTeX2e <2016/03/31> patch level 3
-Babel <3.9r> and hyphenation patterns for 83 language(s) loaded.
-(./gauss.tex (./article.cls
+**\def\jacobisel{\begin{alignedat}{5} 10a_0&-a_1&+2a_2& &\;&=&\;6\\ -a_0&+11a_1
+&-a_2&+3a_3&\;&=&\;25\\ 2a_0&-a_1&+10a_2&-a_3&\;&=&\;-11\\ &+3a_1&-a_2&+8a_3&\;
+&=&\;15 \end{alignedat} } \def\jacobimatrixA{ \begin{bmatrix} 10&-1&2&0\\ -1&11
+&-1&3\\ 2&-1&10&-1\\ 0&3&-1&8 \end{bmatrix}} \def\jacobimatrixT{ \begin{bmatrix
+} 0&0.1&-0.2&-0\\ 0.0909091&0&0.0909091&-0.272727\\ -0.2&0.1&0&0.1\\ -0&-0.375&
+0.125&0 \end{bmatrix}} \def\jacobimatrixC{ \begin{bmatrix} 0.6\\ 2.27273\\ -1.1
+\\ 1.875 \end{bmatrix}} \def\jacobimatrixXO{ \begin{bmatrix} 0\\ 0\\ 0\\ 0 \end
+{bmatrix}} \def\jacobitables{ \begin{tabular}{c|c|c|c|c|c|c|c} \hline $k$ &1&2&
+3&4&5&6&7\\ \hline $a_0^{(k)}$ &0&0.6&1.04727&0.932636&1.0152&0.988991&1.0032\\
+ \hline $a_1^{(k)}$ &0&2.27273&1.71591&2.05331&1.9537&2.01141&1.99224\\ \hline 
+$a_2^{(k)}$ &0&-1.1&-0.805227&-1.04934&-0.968109&-1.01029&-0.994522\\ \hline $a
+_3^{(k)}$ &0&1.875&0.885227&1.13088&0.973843&1.02135&0.994434\\ \hline \end{tab
+ular} \\ \vspace{0.5cm} \begin{tabular}{c|c|c|c|c|c|c|c} \hline $k$ &8&9&10&11&
+12&13&14\\ \hline $a_0^{(k)}$ &0.998128&1.00063&0.999674&1.00012&0.999942&1.000
+02&0.99999\\ \hline $a_1^{(k)}$ &2.00231&1.99867&2.00045&1.99977&2.00008&1.9999
+6&2.00002\\ \hline $a_2^{(k)}$ &-1.00197&-0.999036&-1.00037&-0.999828&-1.00007&
+-0.999969&-1.00001\\ \hline $a_3^{(k)}$ &1.00359&0.998888&1.00062&0.999786&1.00
+011&0.99996&1.00002\\ \hline \end{tabular} \\ \vspace{0.5cm} } \input{jacobi.te
+x} -interaction=nonstopmode -output-dir=C:/Users/Laptop/Source/Repos/Matrices/M
+atrices\reports
+(./jacobi.tex (./article.cls
 Document Class: article 2014/09/29 v1.4h Standard LaTeX document class
 (./size10.clo
 File: size10.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
@@ -134,21 +150,21 @@ LaTeX Info: Redefining \[ on input line 2739.
 LaTeX Info: Redefining \] on input line 2740.
 )
 \fmbox=\box29
- (./test.aux)
-\openout1 = `test.aux'.
+ (./jacobi.aux)
+\openout1 = `jacobi.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -157,13 +173,13 @@ LaTeX Font Info:    ... okay on input line 28.
 * paper: <default>
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
-* modes: landscape 
-* h-part:(L,W,R)=(28.90755pt, 737.15489pt, 28.90755pt)
-* v-part:(T,H,B)=(28.90755pt, 556.4799pt, 28.90755pt)
-* \paperwidth=794.96999pt
-* \paperheight=614.295pt
-* \textwidth=737.15489pt
-* \textheight=556.4799pt
+* modes: 
+* h-part:(L,W,R)=(28.90755pt, 556.4799pt, 28.90755pt)
+* v-part:(T,H,B)=(28.90755pt, 737.15489pt, 28.90755pt)
+* \paperwidth=614.295pt
+* \paperheight=794.96999pt
+* \textwidth=556.4799pt
+* \textheight=737.15489pt
 * \oddsidemargin=-43.36244pt
 * \evensidemargin=-43.36244pt
 * \topmargin=-80.36244pt
@@ -171,7 +187,7 @@ LaTeX Font Info:    ... okay on input line 28.
 * \headsep=25.0pt
 * \topskip=10.0pt
 * \footskip=30.0pt
-* \marginparwidth=144.0pt
+* \marginparwidth=65.0pt
 * \marginparsep=11.0pt
 * \columnsep=10.0pt
 * \skip\footins=9.0pt plus 4.0pt minus 2.0pt
@@ -223,35 +239,31 @@ G,.JBIG2,.JB2,.eps]
 <logo.jpg, id=1, 301.125pt x 377.41pt>
 File: logo.jpg Graphic file (type jpg)
 <use logo.jpg>
-Package pdftex.def Info: logo.jpg used on input line 39.
-(pdftex.def)             Requested size: 73.71999pt x 92.39427pt.
+Package pdftex.def Info: logo.jpg used on input line 23.
+(pdftex.def)             Requested size: 55.65138pt x 69.74489pt.
 
-Overfull \hbox (6.79999pt too wide) in paragraph at lines 47--49
+Overfull \hbox (6.79999pt too wide) in paragraph at lines 31--33
 [][]
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 50--51
-
  []
 
 [1
 
-{pdftex.map} <./logo.jpg>] (./test.aux) ) ) 
+{pdftex.map} <./logo.jpg>] (./jacobi.aux) ) 
 Here is how much of TeX's memory you used:
- 2354 strings out of 493013
- 28964 string characters out of 6136993
- 105947 words of memory out of 5000000
- 5889 multiletter control sequences out of 15000+600000
+ 2350 strings out of 493013
+ 28959 string characters out of 6136993
+ 112700 words of memory out of 5000000
+ 5888 multiletter control sequences out of 15000+600000
  6232 words of font info for 23 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 42i,9n,32p,256b,348s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 41i,9n,32p,1742b,348s stack positions out of 5000i,500n,10000p,200000b,80000s
 <./cmbx10.pfb><./cmbx12.pfb><./cmex1
-0.pfb><./cmmi10.pfb><./cmr10.pfb><./cmr12.pfb><./cmr7.pfb>
-Output written on test.pdf (1 page, 86080 bytes).
+0.pfb><./cmmi10.pfb><./cmmi7.pfb><./cmr10.pfb><./cmr12.pfb><./cmr7.pfb><./cmsy1
+0.pfb><./cmsy7.pfb>
+Output written on jacobi.pdf (1 page, 111603 bytes).
 PDF statistics:
- 37 PDF objects out of 1000 (max. 8388607)
- 25 compressed objects within 1 object stream
+ 49 PDF objects out of 1000 (max. 8388607)
+ 34 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  6 words of extra memory for PDF output out of 10000 (max. 10000000)
 

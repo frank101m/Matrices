@@ -5,6 +5,7 @@
 #include <qdir.h>
 #include <iostream>
 #include <stdarg.h>
+#include <ctime>
 
 //Partes numericas
 #include "LinearSolver.h"
@@ -1532,14 +1533,29 @@ void MainWindow::on_action2_Matrices_triggered()
 	generateReport(reportBodyEnd.str());
 }
 
-void MainWindow::generateReport(const std::string & body)
+void MainWindow::generateReport(const std::string & bodyOrig)
 {
 	QProcess process;
 	QMessageBox pathMsg;
 
+	time_t rawtime;
+	struct tm * timeinfo;
+	char buffer[80];
+
+	time(&rawtime);
+	timeinfo = localtime(&rawtime);
+
+	strftime(buffer, sizeof(buffer), "%d-%m-%Y_%I-%M-%S", timeinfo);
+	std::string str(buffer);
+
+	std::ostringstream bodyStream;
+	bodyStream << bodyOrig;
+	std::string body = bodyStream.str();
 #ifdef _WIN32
 	OutputDebugStringA(body.c_str());
-	QString file = QCoreApplication::applicationDirPath() + "/" + "texlive/pdflatex.exe " + QString::fromStdString(body) + " -interaction=nonstopmode";
+	QString file = QCoreApplication::applicationDirPath() + "/" + "texlive/pdflatex.exe " +
+		QString::fromStdString(body) + " -interaction=nonstopmode -output-dir=" + 
+		QDir::currentPath().append(QDir::separator()).append("reports");
 
 #elif __linux__
     QString file = "./pdflatex -interaction=nonstopmode "+ QString::fromStdString(body);
@@ -1621,8 +1637,50 @@ void MainWindow::on_actionGauss_triggered()
 
 void MainWindow::on_actionJacobi_triggered()
 {
-    //SEL Jacobi
-    int m;
+	Report jacobiReport(6);
+	QTableWidget *augMatrixTable = ui->augMatrix;
+
+	int n = augMatrixTable->rowCount();
+
+	Matrix A(n, n);
+	Matrix C(n, 1);
+	Matrix XO(n, 1);
+
+	QLineEdit *tempLineEdit;
+
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < n; j++) {
+			tempLineEdit = (QLineEdit*)augMatrixTable->cellWidget(i, j);
+			A.set(i, j, tempLineEdit->text().toDouble());
+		}
+	}
+
+	for (int i = 0; i < n; i++) {
+		tempLineEdit = (QLineEdit*)ui->tableWidget_4->cellWidget(i, 0);
+		C.set(i, 0, tempLineEdit->text().toDouble());
+	}
+
+	for (int i = 0; i < n; i++) {
+		tempLineEdit = (QLineEdit*)ui->tableWidget_5->cellWidget(i, 0);
+		XO.set(i, 0, tempLineEdit->text().toDouble());
+	}
+	std::vector<std::string> vars;
+
+	for (int i = 0; i < n; i++) {
+		std::ostringstream tempVar;
+		tempVar << "a_";
+		tempVar << i;
+
+		vars.push_back(tempVar.str());
+	};
+
+	Matrix res = LinearSolver::getJacobiMethod(A, C, XO, 0.0001, 100, vars, jacobiReport);
+
+	std::ostringstream reportBodyEnd;
+	reportBodyEnd << jacobiReport.getReportBody();
+	reportBodyEnd << std::endl;
+	reportBodyEnd << "\\input{jacobi.tex}";
+	generateReport(reportBodyEnd.str());
 }
 
 void MainWindow::on_actionNormas_vectoriales_triggered()

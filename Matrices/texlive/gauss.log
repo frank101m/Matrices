@@ -1,40 +1,22 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/W32TeX) (preloaded format=pdflatex 2016.11.2)  2 JUL 2017 21:44
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/W32TeX) (preloaded format=pdflatex 2016.11.2)  2 JUL 2017 21:51
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**\def\gausssel{\begin{alignedat}{6} 54548a_0&+4a_1&+a_2&+245a_3&+48a_4&\;&=&\;
--55\\ 7a_0&+84a_1&+51a_2&+7a_3&+8a_4&\;&=&\;4\\ 5a_0&+15a_1&+7a_2&+48a_3&+89a_4
-&\;&=&\;54057\\ 89a_0&+123a_1&+298a_2&+95a_3&+64616a_4&\;&=&\;1\\ 6a_0&+16a_1&+
-798768a_2&+7a_3&+59a_4&\;&=&\;57 \end{alignedat} } \def\gaussmatrices{\tilde{A}
-^{(1)}= \begin{bmatrix}[rrrrr|r] 54548&4&1&245&48&-55\\ 7&84&51&7&8&4\\ 5&15&7&
-48&89&54057\\ 89&123&298&95&64616&1\\ 6&16&798768&7&59&57\\ \end{bmatrix}\quad 
-\begin{matrix} \\ \\ \\ \\ \\ \end{matrix} \\ \vspace{0.5cm} \\ \tilde{A}^{(2)}
-= \begin{bmatrix}[rrrrr|r] 54548&4&1&245&48&-55\\ 0&83.9995&50.9999&6.96856&7.9
-9384&4.00706\\ 0&14.9996&6.99991&47.9775&88.9956&54057\\ 0&122.993&297.998&94.6
-003&64615.9&1.08974\\ 0&15.9996&798768&6.97305&58.9947&57.006\\ \end{bmatrix}\q
-uad \begin{matrix} \\ \quad E_2-\left(0.000128327\right)E_1 \quad \rightarrow \
-quad E_2\\ \quad E_3-\left(9.16624e-05\right)E_1 \quad \rightarrow \quad E_3\\ 
-\quad E_4-\left(0.00163159\right)E_1 \quad \rightarrow \quad E_4\\ \quad E_5-\l
-eft(0.000109995\right)E_1 \quad \rightarrow \quad E_5\\ \end{matrix} \\ \vspace
-{0.5cm} \\ \tilde{A}^{(3)}= \begin{bmatrix}[rrrrr|r] 54548&4&1&245&48&-55\\ 0&8
-3.9995&50.9999&6.96856&7.99384&4.00706\\ 0&0&-2.10704&46.7332&87.5682&54056.3\\
- 0&0&223.323&84.3968&64604.2&-4.77746\\ 0&0&798758&5.64573&57.4721&56.2428\\ \e
-nd{bmatrix}\quad \begin{matrix} \\ \\ \quad E_3-\left(0.178568\right)E_2 \quad 
-\rightarrow \quad E_3\\ \quad E_4-\left(1.46422\right)E_2 \quad \rightarrow \qu
-ad E_4\\ \quad E_5-\left(0.190472\right)E_2 \quad \rightarrow \quad E_5\\ \end{
-matrix} \\ \vspace{0.5cm} \\ \tilde{A}^{(4)}= \begin{bmatrix}[rrrrr|r] 54548&4&
-1&245&48&-55\\ 0&83.9995&50.9999&6.96856&7.99384&4.00706\\ 0&0&-2.10704&46.7332
-&87.5682&54056.3\\ 0&0&0&5037.6&73885.5&5.72937e+06\\ 0&0&0&1.77161e+07&3.31962
-e+07&2.04922e+10\\ \end{bmatrix}\quad \begin{matrix} \\ \\ \\ \quad E_4-\left(-
-105.989\right)E_3 \quad \rightarrow \quad E_4\\ \quad E_5-\left(-379089\right)E
-_3 \quad \rightarrow \quad E_5\\ \end{matrix} \\ \vspace{0.5cm} \\ \tilde{A}^{(
-5)}= \begin{bmatrix}[rrrrr|r] 54548&4&1&245&48&-55\\ 0&83.9995&50.9999&6.96856&
-7.99384&4.00706\\ 0&0&-2.10704&46.7332&87.5682&54056.3\\ 0&0&0&5037.6&73885.5&5
-.72937e+06\\ 0&0&0&0&-2.26642e+08&3.43323e+08\\ \end{bmatrix}\quad \begin{matri
-x} \\ \\ \\ \\ \quad E_5-\left(3516.77\right)E_4 \quad \rightarrow \quad E_5\\ 
-\end{matrix} } \def\gausstable{\begin{tabular}{c|c|c|c|c} $a_0$&$a_1$&$a_2$&$a_
-3$&$a_4$\\ \hline -5.20065&-95.9981&-0.00801637&1159.54&-1.51483 \end{tabular} 
-} \input{gauss.tex} -interaction=nonstopmode
+**\def\gausssel{\begin{alignedat}{4} 3.333a_0&+15920a_1&-10.333a_2&\;&=&\;15913
+\\ 2.222a_0&+16.71a_1&+9.612a_2&\;&=&\;28.544\\ 1.5611a_0&+5.1791a_1&+1.6852a_2
+&\;&=&\;8.4254 \end{alignedat} } \def\gaussmatrices{\tilde{A}^{(1)}= \begin{bma
+trix}[rrr|r] 3.333&15920&-10.333&15913\\ 2.222&16.71&9.612&28.544\\ 1.5611&5.17
+91&1.6852&8.4254\\ \end{bmatrix}\quad \begin{matrix} \\ \\ \\ \end{matrix} \\ \
+vspace{0.5cm} \\ \tilde{A}^{(2)}= \begin{bmatrix}[rrr|r] 3.333&15920&-10.333&15
+913\\ 0&-10596.6&16.5007&-10580.1\\ 0&-7451.38&6.52494&-7444.86\\ \end{bmatrix}
+\quad \begin{matrix} \\ \quad E_2-\left(0.666667\right)E_1 \quad \rightarrow \q
+uad E_2\\ \quad E_3-\left(0.468377\right)E_1 \quad \rightarrow \quad E_3\\ \end
+{matrix} \\ \vspace{0.5cm} \\ \tilde{A}^{(3)}= \begin{bmatrix}[rrr|r] 3.333&159
+20&-10.333&15913\\ 0&-10596.6&16.5007&-10580.1\\ 0&0&-5.07807&-5.07807\\ \end{b
+matrix}\quad \begin{matrix} \\ \\ \quad E_3-\left(0.703184\right)E_2 \quad \rig
+htarrow \quad E_3\\ \end{matrix} } \def\gausstable{\begin{tabular}{c|c|c} $a_0$
+&$a_1$&$a_2$\\ \hline 1&1&1 \end{tabular} } \input{gauss.tex} -interaction=nons
+topmode
 (./gauss.tex (./article.cls
 Document Class: article 2014/09/29 v1.4h Standard LaTeX document class
 (./size10.clo
@@ -275,14 +257,14 @@ Underfull \hbox (badness 10000) in paragraph at lines 50--51
 Here is how much of TeX's memory you used:
  2353 strings out of 493013
  28977 string characters out of 6136993
- 120500 words of memory out of 5000000
+ 108392 words of memory out of 5000000
  5891 multiletter control sequences out of 15000+600000
  6837 words of font info for 25 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 41i,9n,32p,2798b,348s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 41i,9n,32p,1339b,348s stack positions out of 5000i,500n,10000p,200000b,80000s
 <./cmbx10.pfb><./cmbx12.pfb><./cmex10
 .pfb><./cmmi10.pfb><./cmr10.pfb><./cmr12.pfb><./cmr7.pfb><./cmsy10.pfb>
-Output written on gauss.pdf (1 page, 99264 bytes).
+Output written on gauss.pdf (1 page, 97027 bytes).
 PDF statistics:
  41 PDF objects out of 1000 (max. 8388607)
  28 compressed objects within 1 object stream

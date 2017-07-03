@@ -1,26 +1,27 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/W32TeX) (preloaded format=pdflatex 2016.11.2)  2 JUL 2017 19:03
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/W32TeX) (preloaded format=pdflatex 2016.11.2)  2 JUL 2017 22:24
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**\def\opmatrixA{ \begin{bmatrix} 0&0\\ 0&0 \end{bmatrix}} \def\opmatrixAT{ \be
-gin{bmatrix} 0&0\\ 0&0 \end{bmatrix}} \def\opmatrixdetA{ \begin{vmatrix} 0&0\\ 
-0&0 \end{vmatrix}} \def\opmatrixinvA{ \begin{bmatrix} 0&0\\ 0&0 \end{bmatrix}} 
-\def\opvaldetA{ 0} \input{pos1.tex} -interaction=nonstopmode^^M
+**%& -job-name=somename \def\opmatrixA{ \begin{bmatrix} 0&0\\ 0&0 \end{bmatrix}
+} \def\opmatrixAT{ \begin{bmatrix} 0&0\\ 0&0 \end{bmatrix}} \def\opmatrixdetA{ 
+\begin{vmatrix} 0&0\\ 0&0 \end{vmatrix}} \def\opmatrixdetA{ \begin{vmatrix} 0&0
+\\ 0&0 \end{vmatrix}} \def\opvaldetA{ 0} \def\opmatrixinvA{ \not\exists} \input
+{ops1.tex} -interaction=nonstopmode -output-dir=C:/Users/Laptop/Source/Repos/Ma
+trices/Matrices\reports
 
+*
 ! Emergency stop.
-<read *> 
-         
-<*> ...atrix}} \def\opvaldetA{ 0} \input{pos1.tex}
-                                                   -interaction=nonstopmode^^M
+<*> ...ptop/Source/Repos/Matrices/Matrices\reports
+                                                  
 End of file on the terminal!
 
  
 Here is how much of TeX's memory you used:
- 8 strings out of 493013
- 158 string characters out of 6136993
+ 2 strings out of 493013
+ 102 string characters out of 6136993
  53632 words of memory out of 5000000
- 3654 multiletter control sequences out of 15000+600000
+ 3649 multiletter control sequences out of 15000+600000
  3640 words of font info for 14 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 4i,0n,3p,1b,8s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 0i,0n,0p,1b,6s stack positions out of 5000i,500n,10000p,200000b,80000s
 !  ==> Fatal error occurred, no output PDF file produced!
