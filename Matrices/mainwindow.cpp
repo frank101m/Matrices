@@ -1432,9 +1432,11 @@ void MainWindow::on_actionManual_triggered()
 void MainWindow::on_action1_Matriz_triggered()
 {
     //una matriz
+    int i = 0;
 }
 
 void MainWindow::on_action2_Matrices_triggered()
 {
     //dos matrices
+    int j = 0;
 }
