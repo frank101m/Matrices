@@ -37,6 +37,9 @@ public:
     QAction *actionManual;
     QAction *action1_Matriz;
     QAction *action2_Matrices;
+    QAction *actionGauss;
+    QAction *actionJacobi;
+    QAction *actionNormas_vectoriales;
     QWidget *widget;
     QVBoxLayout *verticalLayout_2;
     QVBoxLayout *mainLayout;
@@ -109,6 +112,7 @@ public:
     QMenu *menuArchivo;
     QMenu *menuGenerar_reporte;
     QMenu *menuOperaciones_basicas;
+    QMenu *menuSEL;
     QMenu *menuVer;
     QMenu *menuAyuda;
 
@@ -127,6 +131,12 @@ public:
         action1_Matriz->setObjectName(QStringLiteral("action1_Matriz"));
         action2_Matrices = new QAction(MainWindow);
         action2_Matrices->setObjectName(QStringLiteral("action2_Matrices"));
+        actionGauss = new QAction(MainWindow);
+        actionGauss->setObjectName(QStringLiteral("actionGauss"));
+        actionJacobi = new QAction(MainWindow);
+        actionJacobi->setObjectName(QStringLiteral("actionJacobi"));
+        actionNormas_vectoriales = new QAction(MainWindow);
+        actionNormas_vectoriales->setObjectName(QStringLiteral("actionNormas_vectoriales"));
         widget = new QWidget(MainWindow);
         widget->setObjectName(QStringLiteral("widget"));
         verticalLayout_2 = new QVBoxLayout(widget);
@@ -631,6 +641,8 @@ public:
         menuGenerar_reporte->setObjectName(QStringLiteral("menuGenerar_reporte"));
         menuOperaciones_basicas = new QMenu(menuGenerar_reporte);
         menuOperaciones_basicas->setObjectName(QStringLiteral("menuOperaciones_basicas"));
+        menuSEL = new QMenu(menuGenerar_reporte);
+        menuSEL->setObjectName(QStringLiteral("menuSEL"));
         menuVer = new QMenu(menuBar);
         menuVer->setObjectName(QStringLiteral("menuVer"));
         menuAyuda = new QMenu(menuBar);
@@ -644,14 +656,18 @@ public:
         menuArchivo->addSeparator();
         menuArchivo->addAction(actionSalir);
         menuGenerar_reporte->addAction(menuOperaciones_basicas->menuAction());
+        menuGenerar_reporte->addAction(actionNormas_vectoriales);
+        menuGenerar_reporte->addAction(menuSEL->menuAction());
         menuOperaciones_basicas->addAction(action1_Matriz);
         menuOperaciones_basicas->addAction(action2_Matrices);
+        menuSEL->addAction(actionGauss);
+        menuSEL->addAction(actionJacobi);
         menuVer->addAction(actionResultado);
         menuAyuda->addAction(actionManual);
 
         retranslateUi(MainWindow);
 
-        mainTabWidget->setCurrentIndex(2);
+        mainTabWidget->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -671,6 +687,9 @@ public:
 #endif // QT_NO_SHORTCUT
         action1_Matriz->setText(QApplication::translate("MainWindow", "1 Matriz", Q_NULLPTR));
         action2_Matrices->setText(QApplication::translate("MainWindow", "2 Matrices", Q_NULLPTR));
+        actionGauss->setText(QApplication::translate("MainWindow", "Gauss", Q_NULLPTR));
+        actionJacobi->setText(QApplication::translate("MainWindow", "Jacobi", Q_NULLPTR));
+        actionNormas_vectoriales->setText(QApplication::translate("MainWindow", "Normas vectoriales", Q_NULLPTR));
         label->setText(QApplication::translate("MainWindow", "Matriz A", Q_NULLPTR));
         label_2->setText(QApplication::translate("MainWindow", "Matriz B", Q_NULLPTR));
         pushButton->setText(QApplication::translate("MainWindow", "Generar matriz A", Q_NULLPTR));
@@ -738,6 +757,7 @@ public:
         menuArchivo->setTitle(QApplication::translate("MainWindow", "Archivo", Q_NULLPTR));
         menuGenerar_reporte->setTitle(QApplication::translate("MainWindow", "Generar reporte", Q_NULLPTR));
         menuOperaciones_basicas->setTitle(QApplication::translate("MainWindow", "Operaciones basicas", Q_NULLPTR));
+        menuSEL->setTitle(QApplication::translate("MainWindow", "SEL", Q_NULLPTR));
         menuVer->setTitle(QApplication::translate("MainWindow", "Ver", Q_NULLPTR));
         menuAyuda->setTitle(QApplication::translate("MainWindow", "Ayuda", Q_NULLPTR));
     } // retranslateUi

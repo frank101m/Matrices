@@ -72,6 +72,8 @@ private slots:
 
     void on_actionJacobi_triggered();
 
+    void on_actionNormas_vectoriales_triggered();
+
 private:
     QWebEngineView *webDisplay;
     QWebEngineView *webDisplay2;

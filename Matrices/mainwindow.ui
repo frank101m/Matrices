@@ -749,13 +749,6 @@
       <addaction name="action1_Matriz"/>
       <addaction name="action2_Matrices"/>
      </widget>
-     <widget class="QMenu" name="menuNormas_vectoriales">
-      <property name="title">
-       <string>Normas vectoriales</string>
-      </property>
-      <addaction name="actionInfinita"/>
-      <addaction name="actionEuclideana"/>
-     </widget>
      <widget class="QMenu" name="menuSEL">
       <property name="title">
        <string>SEL</string>
@@ -764,7 +757,7 @@
       <addaction name="actionJacobi"/>
      </widget>
      <addaction name="menuOperaciones_basicas"/>
-     <addaction name="menuNormas_vectoriales"/>
+     <addaction name="actionNormas_vectoriales"/>
      <addaction name="menuSEL"/>
     </widget>
     <addaction name="menuGenerar_reporte"/>
@@ -818,16 +811,6 @@
     <string>2 Matrices</string>
    </property>
   </action>
-  <action name="actionInfinita">
-   <property name="text">
-    <string>Infinita</string>
-   </property>
-  </action>
-  <action name="actionEuclideana">
-   <property name="text">
-    <string>Euclideana</string>
-   </property>
-  </action>
   <action name="actionGauss">
    <property name="text">
     <string>Gauss</string>
@@ -836,6 +819,11 @@
   <action name="actionJacobi">
    <property name="text">
     <string>Jacobi</string>
+   </property>
+  </action>
+  <action name="actionNormas_vectoriales">
+   <property name="text">
+    <string>Normas vectoriales</string>
    </property>
   </action>
  </widget>

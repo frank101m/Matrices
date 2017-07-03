@@ -1586,3 +1586,9 @@ void MainWindow::on_actionJacobi_triggered()
     //SEL Jacobi
     int m;
 }
+
+void MainWindow::on_actionNormas_vectoriales_triggered()
+{
+    //normas
+    int sa;
+}
