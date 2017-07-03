@@ -1645,7 +1645,7 @@ void MainWindow::generateReport(const std::string & bodyOrig, const std::string 
     QString file = "./pdflatex -interaction=nonstopmode "+ QString::fromStdString(body);
 
     QString cpReportCommand = "cp ./texlive/" + QString::fromStdString(tag) +".pdf ./reports/" + QString::fromStdString(tag) + QString::fromStdString(str) + ".pdf ";
-    QString openReportCommand = /*"cmd /Q /C start .\\reports\\" +*/ QString::fromStdString(tag) + QString::fromStdString(str) + ".pdf";
+    QString openReportCommand = "evince ./reports/" + QString::fromStdString(tag) + QString::fromStdString(str) + ".pdf";
     //OutputDebugStringA(openReportCommand.toStdString().c_str());
     //QString file = QCoreApplication::applicationDirPath() + "/" + "texlive/pdflatex.exe " + QString::fromStdString(body) + " -interaction=nonstopmode";
 

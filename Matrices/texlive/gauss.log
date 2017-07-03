@@ -1,40 +1,58 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.11.2)  3 JUL 2017 08:09
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.11.2)  3 JUL 2017 08:30
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**\def\gausssel{\begin{alignedat}{6} 6.86877e+10a_0&+678686a_1&+7686a_2&+7878a_
-3&+67a_4&\;&=&\;567576\\ 7a_0&+678a_1&+678a_2&+67867a_3&+8a_4&\;&=&\;567\\ 6867
-a_0&+8678a_1&+678a_2&+67a_3&+68a_4&\;&=&\;567\\ 678a_0&+678a_1&+687a_2&+6786a_3
-&+786a_4&\;&=&\;5765\\ 7867a_0&+86a_1&+78678a_2&+678a_3&+678a_4&\;&=&\;675 \end
-{alignedat} } \def\gaussmatrices{\tilde{A}^{(1)}= \begin{bmatrix}[rrrrr|r] 6.86
-877e+10&678686&7686&7878&67&567576\\ 7&678&678&67867&8&567\\ 6867&8678&678&67&6
-8&567\\ 678&678&687&6786&786&5765\\ 7867&86&78678&678&678&675\\ \end{bmatrix}\q
-uad \begin{matrix} \\ \\ \\ \\ \\ \end{matrix} \\ \vspace{0.5cm} \\ \tilde{A}^{
-(2)}= \begin{bmatrix}[rrrrr|r] 6.86877e+10&678686&7686&7878&67&567576\\ 0&678&6
-78&67867&8&567\\ 0&8677.93&677.999&66.9992&68&566.943\\ 0&677.993&687&6786&786&
-5764.99\\ 0&85.9223&78678&677.999&678&674.935\\ \end{bmatrix}\quad \begin{matri
-x} \\ \quad E_2-\left(1.01911e-10\right)E_1 \quad \rightarrow \quad E_2\\ \quad
- E_3-\left(9.99743e-08\right)E_1 \quad \rightarrow \quad E_3\\ \quad E_4-\left(
-9.87077e-09\right)E_1 \quad \rightarrow \quad E_4\\ \quad E_5-\left(1.14533e-07
-\right)E_1 \quad \rightarrow \quad E_5\\ \end{matrix} \\ \vspace{0.5cm} \\ \til
-de{A}^{(3)}= \begin{bmatrix}[rrrrr|r] 6.86877e+10&678686&7686&7878&67&567576\\ 
-0&678&678&67867&8&567\\ 0&0&-7999.93&-868584&-34.3945&-6690.27\\ 0&0&9.00655&-6
-1080.3&778&5198\\ 0&0&78592.1&-7922.72&676.986&603.08\\ \end{bmatrix}\quad \beg
-in{matrix} \\ \\ \quad E_3-\left(12.7993\right)E_2 \quad \rightarrow \quad E_3\
-\ \quad E_4-\left(0.99999\right)E_2 \quad \rightarrow \quad E_4\\ \quad E_5-\le
-ft(0.126729\right)E_2 \quad \rightarrow \quad E_5\\ \end{matrix} \\ \vspace{0.5
-cm} \\ \tilde{A}^{(4)}= \begin{bmatrix}[rrrrr|r] 6.86877e+10&678686&7686&7878&6
-7&567576\\ 0&678&678&67867&8&567\\ 0&0&-7999.93&-868584&-34.3945&-6690.27\\ 0&0
-&0&-62058.2&777.961&5190.47\\ 0&0&0&-8.54097e+06&339.091&-65122.7\\ \end{bmatri
-x}\quad \begin{matrix} \\ \\ \\ \quad E_4-\left(-0.00112583\right)E_3 \quad \ri
-ghtarrow \quad E_4\\ \quad E_5-\left(-9.82409\right)E_3 \quad \rightarrow \quad
- E_5\\ \end{matrix} \\ \vspace{0.5cm} \\ \tilde{A}^{(5)}= \begin{bmatrix}[rrrrr
-|r] 6.86877e+10&678686&7686&7878&67&567576\\ 0&678&678&67867&8&567\\ 0&0&-7999.
-93&-868584&-34.3945&-6690.27\\ 0&0&0&-62058.2&777.961&5190.47\\ 0&0&0&0&-106730
-&-779478\\ \end{bmatrix}\quad \begin{matrix} \\ \\ \\ \\ \quad E_5-\left(137.62
-8\right)E_4 \quad \rightarrow \quad E_5\\ \end{matrix} } \def\gausstable{\begin
-{tabular}{c|c|c|c|c} $a_0$&$a_1$&$a_2$&$a_3$&$a_4$\\ \hline 8.13971e-06&0.01229
-57&-0.0544382&0.00791469&7.30324 \end{tabular} } \input{gauss.tex}
+**\def\gausssel{\begin{alignedat}{7} 6.87678e+08a_0&+576a_1&+8468a_2&+4844a_3&+
+565448a_4&+58644a_5&\;&=&\;5.67568e+08\\ 5a_0&+8654a_1&+658a_2&+5a_3&+586a_4&+4
+a_5&\;&=&\;568567\\ 84568a_0&+46a_1&+8.46585e+06a_2&+54a_3&+64a_4&+6584a_5&\;&=
+&\;5588\\ 56a_0&+4a_1&+864a_2&+65a_3&+456a_4&+486a_5&\;&=&\;6.85676e+07\\ 46a_0
+&+4568a_1&+4568a_2&+4586a_3&+456a_4&+456a_5&\;&=&\;675\\ 46a_0&+456a_1&+4658a_2
+& &+456a_4&+4865a_5&\;&=&\;7 \end{alignedat} } \def\gaussmatrices{\tilde{A}^{(1
+)}= \begin{bmatrix}[rrrrrr|r] 6.87678e+08&576&8468&4844&565448&58644&5.67568e+0
+8\\ 5&8654&658&5&586&4&568567\\ 84568&46&8.46585e+06&54&64&6584&5588\\ 56&4&864
+&65&456&486&6.85676e+07\\ 46&4568&4568&4586&456&456&675\\ 46&456&4658&0&456&486
+5&7\\ \end{bmatrix}\quad \begin{matrix} \\ \\ \\ \\ \\ \\ \end{matrix} \\ \vspa
+ce{0.5cm} \\ \tilde{A}^{(2)}= \begin{bmatrix}[rrrrrr|r] 6.87678e+08&576&8468&48
+44&565448&58644&5.67568e+08\\ 0&8654&658&4.99996&585.996&3.99957&568563\\ 0&45.
+9292&8.46584e+06&53.4043&-5.53658&6576.79&-64209.2\\ 0&3.99995&863.999&64.9996&
+455.954&485.995&6.85675e+07\\ 0&4568&4568&4586&455.962&455.996&637.034\\ 0&456&
+4658&-0.000324024&455.962&4865&-30.9656\\ \end{bmatrix}\quad \begin{matrix} \\ 
+\quad E_2-\left(7.27084e-09\right)E_1 \quad \rightarrow \quad E_2\\ \quad E_3-\
+left(0.000122976\right)E_1 \quad \rightarrow \quad E_3\\ \quad E_4-\left(8.1433
+4e-08\right)E_1 \quad \rightarrow \quad E_4\\ \quad E_5-\left(6.68917e-08\right
+)E_1 \quad \rightarrow \quad E_5\\ \quad E_6-\left(6.68917e-08\right)E_1 \quad 
+\rightarrow \quad E_6\\ \end{matrix} \\ \vspace{0.5cm} \\ \tilde{A}^{(3)}= \beg
+in{bmatrix}[rrrrrr|r] 6.87678e+08&576&8468&4844&565448&58644&5.67568e+08\\ 0&86
+54&658&4.99996&585.996&3.99957&568563\\ 0&0&8.46584e+06&53.3778&-8.64662&6576.7
+7&-67226.8\\ 0&0&863.695&64.9973&455.683&485.993&6.85673e+07\\ 0&0&4220.68&4583
+.36&146.645&453.885&-299478\\ 0&0&4623.33&-0.263784&425.085&4864.79&-29989.9\\ 
+\end{bmatrix}\quad \begin{matrix} \\ \\ \quad E_3-\left(0.00530728\right)E_2 \q
+uad \rightarrow \quad E_3\\ \quad E_4-\left(0.000462209\right)E_2 \quad \righta
+rrow \quad E_4\\ \quad E_5-\left(0.527848\right)E_2 \quad \rightarrow \quad E_5
+\\ \quad E_6-\left(0.0526924\right)E_2 \quad \rightarrow \quad E_6\\ \end{matri
+x} \\ \vspace{0.5cm} \\ \tilde{A}^{(4)}= \begin{bmatrix}[rrrrrr|r] 6.87678e+08&
+576&8468&4844&565448&58644&5.67568e+08\\ 0&8654&658&4.99996&585.996&3.99957&568
+563\\ 0&0&8.46584e+06&53.3778&-8.64662&6576.77&-67226.8\\ 0&0&0&64.9918&455.684
+&485.322&6.85673e+07\\ 0&0&0&4583.33&146.65&450.606&-299444\\ 0&0&0&-0.292935&4
+25.089&4861.19&-29953.2\\ \end{bmatrix}\quad \begin{matrix} \\ \\ \\ \quad E_4-
+\left(0.000102021\right)E_3 \quad \rightarrow \quad E_4\\ \quad E_5-\left(0.000
+498554\right)E_3 \quad \rightarrow \quad E_5\\ \quad E_6-\left(0.000546116\righ
+t)E_3 \quad \rightarrow \quad E_6\\ \end{matrix} \\ \vspace{0.5cm} \\ \tilde{A}
+^{(5)}= \begin{bmatrix}[rrrrrr|r] 6.87678e+08&576&8468&4844&565448&58644&5.6756
+8e+08\\ 0&8654&658&4.99996&585.996&3.99957&568563\\ 0&0&8.46584e+06&53.3778&-8.
+64662&6576.77&-67226.8\\ 0&0&0&64.9918&455.684&485.322&6.85673e+07\\ 0&0&0&0&-3
+1988.9&-33775.1&-4.83578e+09\\ 0&0&0&0&427.143&4863.38&279097\\ \end{bmatrix}\q
+uad \begin{matrix} \\ \\ \\ \\ \quad E_5-\left(70.5217\right)E_4 \quad \rightar
+row \quad E_5\\ \quad E_6-\left(-0.00450725\right)E_4 \quad \rightarrow \quad E
+_6\\ \end{matrix} \\ \vspace{0.5cm} \\ \tilde{A}^{(6)}= \begin{bmatrix}[rrrrrr|
+r] 6.87678e+08&576&8468&4844&565448&58644&5.67568e+08\\ 0&8654&658&4.99996&585.
+996&3.99957&568563\\ 0&0&8.46584e+06&53.3778&-8.64662&6576.77&-67226.8\\ 0&0&0&
+64.9918&455.684&485.322&6.85673e+07\\ 0&0&0&0&-31988.9&-33775.1&-4.83578e+09\\ 
+0&0&0&0&0&4412.39&-6.42923e+07\\ \end{bmatrix}\quad \begin{matrix} \\ \\ \\ \\ 
+\\ \quad E_6-\left(-0.0133528\right)E_5 \quad \rightarrow \quad E_6\\ \end{matr
+ix} } \def\gausstable{\begin{tabular}{c|c|c|c|c|c} $a_0$&$a_1$&$a_2$&$a_3$&$a_4
+$&$a_5$\\ \hline -134.846&-11204.2&11.5067&-3961.94&166555&-14570.9 \end{tabula
+r} } \input{gauss.tex}
 (./gauss.tex (./article.cls
 Document Class: article 2014/09/29 v1.4h Standard LaTeX document class
 (./size10.clo
@@ -269,23 +287,48 @@ Underfull \hbox (badness 10000) in paragraph at lines 50--51
 
  []
 
+
+Overfull \hbox (73.20819pt too wide) in paragraph at lines 57--80
+[] \OT1/cmr/m/n/10 = []   [][] 
+ []
+
+
+Overfull \hbox (38.55196pt too wide) in paragraph at lines 57--80
+[] \OT1/cmr/m/n/10 = []   [][] 
+ []
+
+
+Overfull \hbox (38.55196pt too wide) in paragraph at lines 57--80
+[] \OT1/cmr/m/n/10 = []   [][] 
+ []
+
+
+Overfull \hbox (44.10753pt too wide) in paragraph at lines 57--80
+[] \OT1/cmr/m/n/10 = []   [][] 
+ []
+
+
+Overfull \hbox (39.10751pt too wide) in paragraph at lines 57--80
+[] \OT1/cmr/m/n/10 = []   [][] 
+ []
+
 [1
 
-{pdftex.map} <./logo.jpg>] (./gauss.aux) ) 
+{pdftex.map} <./logo.jpg>] [2] (./gauss.aux) ) 
 Here is how much of TeX's memory you used:
  2353 strings out of 493013
  28970 string characters out of 6136993
- 120547 words of memory out of 5000000
+ 130691 words of memory out of 5000000
  5891 multiletter control sequences out of 15000+600000
  6837 words of font info for 25 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 41i,9n,32p,2820b,348s stack positions out of 5000i,500n,10000p,200000b,80000s
-<./cmbx10.pfb><./cmbx12.pfb><./cmex10
-.pfb><./cmmi10.pfb><./cmr10.pfb><./cmr12.pfb><./cmr7.pfb><./cmsy10.pfb>
-Output written on gauss.pdf (1 page, 99031 bytes).
+ 41i,9n,32p,4198b,348s stack positions out of 5000i,500n,10000p,200000b,80000s
+<./cmbx10.pfb><./cmbx12.pfb><./cm
+ex10.pfb><./cmmi10.pfb><./cmr10.pfb><./cmr12.pfb><./cmr7.pfb><./cmsy10.pfb>
+Output written on gauss.pdf (2 pages, 101102 bytes).
 PDF statistics:
- 41 PDF objects out of 1000 (max. 8388607)
- 28 compressed objects within 1 object stream
+ 44 PDF objects out of 1000 (max. 8388607)
+ 30 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  6 words of extra memory for PDF output out of 10000 (max. 10000000)
 
