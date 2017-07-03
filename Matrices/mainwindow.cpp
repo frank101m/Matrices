@@ -1481,7 +1481,55 @@ void MainWindow::on_action1_Matriz_triggered()
 
 void MainWindow::on_action2_Matrices_triggered()
 {
-    //dos matrices
+	Matrix a = Matrix(ui->tableWidget->rowCount(), ui->tableWidget->columnCount());
+	for (int i = 0; i < ui->tableWidget->rowCount(); i++) {
+		for (int j = 0; j < ui->tableWidget->columnCount(); j++) {
+			QLineEdit *ql = (QLineEdit*)ui->tableWidget->cellWidget(i, j);
+			a.set(i, j, ql->text().toDouble());
+		}
+	}
+
+	Matrix b = Matrix(ui->tableWidget_2->rowCount(), ui->tableWidget_2->columnCount());
+	for (int i = 0; i < ui->tableWidget_2->rowCount(); i++) {
+		for (int j = 0; j < ui->tableWidget_2->columnCount(); j++) {
+			QLineEdit *ql = (QLineEdit*)ui->tableWidget_2->cellWidget(i, j);
+			b.set(i, j, ql->text().toDouble());
+		}
+	}
+
+	Report matricesReport(5);
+
+	matricesReport.addBMatrix(Report::DEF_OP_MATRIX_A, a);
+	matricesReport.addBMatrix(Report::DEF_OP_MATRIX_B, b);
+
+	if (a.getRowsCount() == b.getRowsCount() && a.getColumnsCount() == b.getColumnsCount()) {
+		matricesReport.addBMatrix(Report::DEF_OP_MATRIX_A_P_B, a + b);
+		matricesReport.addBMatrix(Report::DEF_OP_MATRIX_A_M_B, a - b);
+	}
+	else {
+		matricesReport.addDefinition(Report::DEF_OP_MATRIX_A_P_B, std::string("\\not\\exists"));
+		matricesReport.addDefinition(Report::DEF_OP_MATRIX_A_M_B, std::string("\\not\\exists"));
+	}
+
+	if (a.getColumnsCount() == b.getRowsCount()) {
+		matricesReport.addBMatrix(Report::DEF_OP_MATRIX_A_X_B, a * b);
+	}
+	else {
+		matricesReport.addDefinition(Report::DEF_OP_MATRIX_A_X_B, std::string("\\not\\exists"));
+	}
+
+	if (b.getColumnsCount() == a.getRowsCount()) {
+		matricesReport.addBMatrix(Report::DEF_OP_MATRIX_B_X_A, b * a);
+	}
+	else {
+		matricesReport.addDefinition(Report::DEF_OP_MATRIX_B_X_A, std::string("\\not\\exists"));
+	}
+
+	std::ostringstream reportBodyEnd;
+	reportBodyEnd << matricesReport.getReportBody();
+	reportBodyEnd << std::endl;
+	reportBodyEnd << "\\input{ops2.tex}";
+	generateReport(reportBodyEnd.str());
 }
 
 void MainWindow::generateReport(const std::string & body)

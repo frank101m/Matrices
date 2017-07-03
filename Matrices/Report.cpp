@@ -26,6 +26,12 @@ const std::string Report::DEF_OP_MATRIX_DET_A = "\\def\\opmatrixdetA{";
 const std::string Report::DEF_OP_VAL_DET_A = "\\def\\opvaldetA{";
 const std::string Report::DEF_OP_MATRIX_INV_A = "\\def\\opmatrixinvA{";
 
+const std::string Report::DEF_OP_MATRIX_B = "\\def\\opmatrixB{";
+const std::string Report::DEF_OP_MATRIX_A_P_B = "\\def\\opmatrixAPB{";
+const std::string Report::DEF_OP_MATRIX_A_M_B = "\\def\\opmatrixAMB{";
+const std::string Report::DEF_OP_MATRIX_A_X_B = "\\def\\opmatrixAXB{";
+const std::string Report::DEF_OP_MATRIX_B_X_A = "\\def\\opmatrixBXA{";
+
 const std::string Report::DEF_JACOBI_TABLES_PRE = "\\def\\jacobitables{";
 const std::string Report::DEF_JACOBI_TABLES_POST = "}";
 const std::string Report::DEF_JACOBI_SEL = "\\def\\jacobisel{";
