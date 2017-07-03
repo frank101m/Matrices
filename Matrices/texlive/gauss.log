@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/W32TeX) (preloaded format=pdflatex 2016.11.2)  3 JUL 2017 07:22
 entering extended mode
  restricted \write18 enabled.
@@ -7,6 +8,26 @@ entering extended mode
 d{bmatrix}\quad \begin{matrix} \\ \\ \end{matrix} } \def\errormsg{ 1} \def\gaus
 stable{\begin{tabular}{c|c} $a_0$&$a_1$\\ \hline -nan(ind)&-nan(ind) \end{tabul
 ar} } \input{gauss.tex} -interaction=nonstopmode
+=======
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.11.2)  3 JUL 2017 07:21
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**\def\gausssel{\begin{alignedat}{4} 0.45a_0&+1.32a_1&+5a_2&\;&=&\;56.32\\ 2.56
+a_0&+0.809a_1&+0.005a_2&\;&=&\;90.5\\ 162a_0&+146a_1&+0.023a_2&\;&=&\;31.6 \end
+{alignedat} } \def\gaussmatrices{\tilde{A}^{(1)}= \begin{bmatrix}[rrr|r] 0.45&1
+.32&5&56.32\\ 2.56&0.809&0.005&90.5\\ 162&146&0.023&31.6\\ \end{bmatrix}\quad \
+begin{matrix} \\ \\ \\ \end{matrix} \\ \vspace{0.5cm} \\ \tilde{A}^{(2)}= \begi
+n{bmatrix}[rrr|r] 0.45&1.32&5&56.32\\ 0&-6.70033&-28.4394&-229.898\\ 0&-329.2&-
+1799.98&-20243.6\\ \end{bmatrix}\quad \begin{matrix} \\ \quad E_2-\left(5.68889
+\right)E_1 \quad \rightarrow \quad E_2\\ \quad E_3-\left(360\right)E_1 \quad \r
+ightarrow \quad E_3\\ \end{matrix} \\ \vspace{0.5cm} \\ \tilde{A}^{(3)}= \begin
+{bmatrix}[rrr|r] 0.45&1.32&5&56.32\\ 0&-6.70033&-28.4394&-229.898\\ 0&0&-402.69
+4&-8948.27\\ \end{bmatrix}\quad \begin{matrix} \\ \\ \quad E_3-\left(49.1319\ri
+ght)E_2 \quad \rightarrow \quad E_3\\ \end{matrix} } \def\gausstable{\begin{tab
+ular}{c|c|c} $a_0$&$a_1$&$a_2$\\ \hline 54.2708&-60.0053&22.221 \end{tabular} }
+ \input{gauss.tex}
+>>>>>>> Stashed changes
 (./gauss.tex (./article.cls
 Document Class: article 2014/09/29 v1.4h Standard LaTeX document class
 (./size10.clo
@@ -245,6 +266,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 50--51
 
 {pdftex.map} <./logo.jpg>] (./gauss.aux) ) 
 Here is how much of TeX's memory you used:
+<<<<<<< Updated upstream
  2352 strings out of 493013
  28952 string characters out of 6136993
  102819 words of memory out of 5000000
@@ -255,9 +277,21 @@ Here is how much of TeX's memory you used:
 <./cmbx10.pfb><./cmbx12.pfb><./cmex10
 .pfb><./cmmi10.pfb><./cmr10.pfb><./cmr12.pfb><./cmr7.pfb>
 Output written on gauss.pdf (1 page, 85681 bytes).
+=======
+ 2353 strings out of 493013
+ 28970 string characters out of 6136993
+ 108349 words of memory out of 5000000
+ 5891 multiletter control sequences out of 15000+600000
+ 6837 words of font info for 25 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 41i,9n,32p,1271b,348s stack positions out of 5000i,500n,10000p,200000b,80000s
+<./cmbx10.pfb><./cmbx12.pfb><./cmex10
+.pfb><./cmmi10.pfb><./cmr10.pfb><./cmr12.pfb><./cmr7.pfb><./cmsy10.pfb>
+Output written on gauss.pdf (1 page, 97102 bytes).
+>>>>>>> Stashed changes
 PDF statistics:
- 37 PDF objects out of 1000 (max. 8388607)
- 25 compressed objects within 1 object stream
+ 41 PDF objects out of 1000 (max. 8388607)
+ 28 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  6 words of extra memory for PDF output out of 10000 (max. 10000000)
 
