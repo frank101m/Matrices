@@ -60,6 +60,10 @@ private slots:
 
     void on_actionManual_triggered();
 
+    void on_action1_Matriz_triggered();
+
+    void on_action2_Matrices_triggered();
+
 private:
     QWebEngineView *webDisplay;
     QWebEngineView *webDisplay2;
@@ -78,6 +82,7 @@ private:
 	void setUpVarsValidation();
     void setTableValidatorV();
     void clearWebDisplay2();
+	void generateReport(const std::string &body);
 
 };
 

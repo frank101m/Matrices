@@ -240,8 +240,6 @@ Matrix Matrix::inverse(){
 
     if(detGauss(this) != 0){
 
-
-
     double ratio, a;
     int i, j, k;
 

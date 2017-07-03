@@ -71,3 +71,6 @@ CMakeLists.txt.user*
 /x64/Release/MatrixTest.log
 /MatrixTest/x64/Debug
 /MatrixTest/Debug
+/Matrices/texlive/ops1.pdf
+/Matrices/texlive/ops1.log
+/Matrices/texlive/ops1.aux

@@ -478,6 +478,8 @@ void MainWindow::clearWebDisplay2(){
     webDisplay->page()->runJavaScript(js);
 }
 
+
+
 void MainWindow::renderResult(Matrix a, Matrix b, Matrix c, int code, double d){
 
     QString js = "document.body.innerHTML = '"
@@ -1427,4 +1429,84 @@ void MainWindow::on_actionManual_triggered()
     h->setUrl(QUrl("qrc:///html/index.htm"));
     h->setWindowFlags(Qt::Window);
     h->show();
+}
+
+void MainWindow::on_action1_Matriz_triggered()
+{
+
+	Matrix a = Matrix(ui->tableWidget->rowCount(), ui->tableWidget->columnCount());
+	for (int i = 0; i < ui->tableWidget->rowCount(); i++) {
+		for (int j = 0; j < ui->tableWidget->columnCount(); j++) {
+			QLineEdit *ql = (QLineEdit*)ui->tableWidget->cellWidget(i, j);
+			a.set(i, j, ql->text().toDouble());
+		}
+	}
+
+	Matrix at = a.transpose();
+	double adet = 0.0;
+	std::ostringstream adet_stream;
+
+	adet_stream << adet;
+
+	Report singleMatrixReport(5);
+
+	singleMatrixReport.addBMatrix(Report::DEF_OP_MATRIX_A, a);
+	singleMatrixReport.addBMatrix(Report::DEF_OP_MATRIX_AT, at);
+	singleMatrixReport.addVMatrix(Report::DEF_OP_MATRIX_DET_A, a);
+
+	if (a.getColumnsCount() == a.getRowsCount()) {
+		adet = a.detGauss(&a);
+		singleMatrixReport.addVMatrix(Report::DEF_OP_MATRIX_DET_A, a);
+	} else {
+		adet = 0.0;
+		singleMatrixReport.addDefinition(Report::DEF_OP_VAL_DET_A, std::string("\\not\\exists"));
+	}
+
+	if (adet != 0.0) {
+		double adet = a.detGauss(&a);
+		Matrix ainv = a.inverse();
+		singleMatrixReport.addBMatrix(Report::DEF_OP_MATRIX_INV_A, ainv);
+	} else {
+		singleMatrixReport.addDefinition(Report::DEF_OP_MATRIX_INV_A, std::string("\\not\\exists"));
+	}
+
+	std::ostringstream reportBodyEnd;
+	reportBodyEnd << singleMatrixReport.getReportBody();
+	reportBodyEnd << std::endl;
+	reportBodyEnd << "\\input{ops1.tex}";
+	generateReport(reportBodyEnd.str());
+
+}
+
+void MainWindow::on_action2_Matrices_triggered()
+{
+    //dos matrices
+}
+
+void MainWindow::generateReport(const std::string & body)
+{
+	QProcess process;
+	QMessageBox pathMsg;
+
+#ifdef _WIN32
+	OutputDebugStringA(body.c_str());
+	QString file = QCoreApplication::applicationDirPath() + "/" + "texlive/pdflatex.exe " + QString::fromStdString(body) + " -interaction=nonstopmode";
+#endif // 
+
+
+	process.setWorkingDirectory(QDir::currentPath().append(QDir::separator()).append("texlive"));
+	process.start(file);
+
+	if (!process.waitForStarted()) {
+		pathMsg.setText(file + " : " + process.errorString());
+	}
+	else {
+		pathMsg.setText(process.readAll());
+	}
+
+	if (process.waitForFinished()) {
+		pathMsg.setText(process.readAll());
+	}
+
+	pathMsg.exec();
 }
