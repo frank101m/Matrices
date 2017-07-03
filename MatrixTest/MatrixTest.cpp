@@ -128,7 +128,7 @@ int main()
 	Matrix gaussReduc = LinearSolver::getGaussianElimination(gaussTest,CO, vars, r);
 	Matrix Xvec = LinearSolver::getBackSubstitution(gaussReduc, vars, r);
 
-	std::cout << r.getReportBody() << std::endl;
+	std::cout << r.generateGaussTable(vars,Xvec) << std::endl;
 
 	return 0;
 }

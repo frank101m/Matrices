@@ -1589,6 +1589,28 @@ void MainWindow::on_actionJacobi_triggered()
 
 void MainWindow::on_actionNormas_vectoriales_triggered()
 {
-    //normas
-    int sa;
+	Matrix v = Matrix(ui->tableWidget_3->rowCount(), ui->tableWidget_3->columnCount());
+	for (int i = 0; i < ui->tableWidget_3->rowCount(); i++) {
+		for (int j = 0; j < ui->tableWidget_3->columnCount(); j++) {
+			QLineEdit *ql = (QLineEdit*)ui->tableWidget_3->cellWidget(i, j);
+			v.set(i, j, ql->text().toDouble());
+		}
+	}
+
+	Report normsReport(12);
+
+	normsReport.addBMatrix(Report::DEF_NORM_INPUT_VEC, v);
+	std::ostringstream eucNormStream;
+	eucNormStream << v.eucNorm();
+	normsReport.addDefinition(Report::DEF_NORM_EUC, eucNormStream.str());
+	
+	std::ostringstream infNormStream;
+	infNormStream << v.infNorm();
+	normsReport.addDefinition(Report::DEF_NORM_INF,infNormStream.str());
+
+	std::ostringstream reportBodyEnd;
+	reportBodyEnd << normsReport.getReportBody();
+	reportBodyEnd << std::endl;
+	reportBodyEnd << "\\input{norms.tex}";
+	generateReport(reportBodyEnd.str());
 }

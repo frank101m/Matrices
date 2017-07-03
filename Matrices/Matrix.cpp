@@ -98,7 +98,7 @@ double Matrix::eucNorm(){
     double norm = 0;
     for(int i = 0; i < rowsCount; i++)
         norm += at(i, 0)*at(i, 0);
-    return sqrt(norm);
+    return std::sqrt(norm);
 }
 
 
@@ -240,6 +240,7 @@ Matrix Matrix::inverse(){
 
     if(detGauss(this) != 0){
 
+
     double ratio, a;
     int i, j, k;
 
@@ -301,8 +302,6 @@ Matrix Matrix::inverse(){
             }
         }
     }
-
-
 
     return inv;
 

@@ -32,6 +32,11 @@ const std::string Report::DEF_OP_MATRIX_A_M_B = "\\def\\opmatrixAMB{";
 const std::string Report::DEF_OP_MATRIX_A_X_B = "\\def\\opmatrixAXB{";
 const std::string Report::DEF_OP_MATRIX_B_X_A = "\\def\\opmatrixBXA{";
 
+//Normas vectoriales
+const std::string Report::DEF_NORM_EUC = "\\def\\eucnorm{";
+const std::string Report::DEF_NORM_INF = "\\def\\infnorm{";
+const std::string Report::DEF_NORM_INPUT_VEC = "\\def\\inputvec{";
+
 const std::string Report::DEF_JACOBI_TABLES_PRE = "\\def\\jacobitables{";
 const std::string Report::DEF_JACOBI_TABLES_POST = "}";
 const std::string Report::DEF_JACOBI_SEL = "\\def\\jacobisel{";

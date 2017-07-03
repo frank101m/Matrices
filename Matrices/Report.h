@@ -58,6 +58,11 @@ public:
 	static const std::string DEF_OP_MATRIX_A_X_B;
 	static const std::string DEF_OP_MATRIX_B_X_A;
 
+	//Para las normas vectoriales
+	static const std::string DEF_NORM_EUC;
+	static const std::string DEF_NORM_INF;
+	static const std::string DEF_NORM_INPUT_VEC;
+
 	//Para los reportes de sistemas de ecuaciones lineales
 
 	//Metodo de jacobi

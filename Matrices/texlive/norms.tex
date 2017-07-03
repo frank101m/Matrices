@@ -1,0 +1,63 @@
+\documentclass{article}
+
+\usepackage[margin=0.5in]{geometry}
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\usepackage{amsmath}
+
+\newsavebox{\fmbox}
+\newenvironment{fmpage}[1]
+{\begin{lrbox}{\fmbox}\begin{minipage}{#1}}
+{\end{minipage}\end{lrbox}\fbox{\usebox{\fmbox}}}
+
+\begin{document}
+
+
+\begin{center}
+\begin{minipage}{\linewidth}
+\vspace{-0.5cm}
+\begin{fmpage}{\linewidth}
+\vspace{0.5cm}
+\begin{wrapfigure}{r}{0.15\textwidth}
+\vspace{-1.0cm}
+
+\centering
+\includegraphics[width=0.1\textwidth]{logo}
+\end{wrapfigure}
+\LARGE{\textbf {Normas vectoriales}}
+
+\vspace{0.5cm}
+\large{Universidad Centroamericana ``Jos\'e Sime\'on Ca\~nas"} \\
+\large{An\'alisis num\'erico}
+\vspace{0.5cm}
+\end{fmpage}
+\vspace{1cm}
+\end{minipage}
+\end{center}
+
+
+\large{Dado el vector columna $\vec{\mathbf{v}}$}
+\[
+\vec{\mathbf{v}}=
+\inputvec
+\]
+
+\begin{enumerate}
+\item \large{Norma vectorial euclidiana $||\mathbf{v}||_2$}
+\[
+||\mathbf{v}||_2 = \sqrt{ \sum_{i}^{n} v_i^2}
+\]
+\[
+||\mathbf{v}||_2 = \eucnorm
+\]
+
+\item \large{Norma vectorial infinita $||\mathbf{v}||_{\infty}$}
+\[
+||\mathbf{v}||_{\infty} = \max_{i \in \{1,\hdots,n\}} |v_i|
+\]
+\[
+||\mathbf{v}||_{\infty} = \infnorm
+\]
+\end{enumerate}
+
+\end{document}
