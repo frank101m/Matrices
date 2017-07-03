@@ -1428,3 +1428,13 @@ void MainWindow::on_actionManual_triggered()
     h->setWindowFlags(Qt::Window);
     h->show();
 }
+
+void MainWindow::on_action1_Matriz_triggered()
+{
+    //una matriz
+}
+
+void MainWindow::on_action2_Matrices_triggered()
+{
+    //dos matrices
+}
