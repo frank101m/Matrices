@@ -1446,7 +1446,6 @@ void MainWindow::on_action1_Matriz_triggered()
 	double adet = 0.0;
 	std::ostringstream adet_stream;
 
-	adet_stream << adet;
 
 	Report singleMatrixReport(5);
 
@@ -1457,6 +1456,8 @@ void MainWindow::on_action1_Matriz_triggered()
 	if (a.getColumnsCount() == a.getRowsCount()) {
 		adet = a.detGauss(&a);
 		singleMatrixReport.addVMatrix(Report::DEF_OP_MATRIX_DET_A, a);
+		adet_stream << adet;
+		singleMatrixReport.addDefinition(Report::DEF_OP_VAL_DET_A, adet_stream.str());
 	} else {
 		adet = 0.0;
 		singleMatrixReport.addDefinition(Report::DEF_OP_VAL_DET_A, std::string("\\not\\exists"));
