@@ -1560,7 +1560,7 @@ void MainWindow::on_action1_Matriz_triggered()
 	reportBodyEnd << singleMatrixReport.getReportBody();
 	reportBodyEnd << std::endl;
 	reportBodyEnd << "\\input{ops1.tex}";
-	generateReport(reportBodyEnd.str());
+	generateReport(reportBodyEnd.str(), std::string("ops1"));
 
 }
 
@@ -1614,10 +1614,10 @@ void MainWindow::on_action2_Matrices_triggered()
 	reportBodyEnd << matricesReport.getReportBody();
 	reportBodyEnd << std::endl;
 	reportBodyEnd << "\\input{ops2.tex}";
-	generateReport(reportBodyEnd.str());
+	generateReport(reportBodyEnd.str(), std::string("ops2"));
 }
 
-void MainWindow::generateReport(const std::string & bodyOrig)
+void MainWindow::generateReport(const std::string & bodyOrig, const std::string &tag)
 {
 	QProcess process;
 	QMessageBox pathMsg;
@@ -1629,22 +1629,28 @@ void MainWindow::generateReport(const std::string & bodyOrig)
 	time(&rawtime);
 	timeinfo = localtime(&rawtime);
 
-	strftime(buffer, sizeof(buffer), "%d-%m-%Y_%I-%M-%S", timeinfo);
+	strftime(buffer, sizeof(buffer), "_%d-%m-%Y_%I-%M-%S", timeinfo);
 	std::string str(buffer);
 
 	std::ostringstream bodyStream;
 	bodyStream << bodyOrig;
 	std::string body = bodyStream.str();
 #ifdef _WIN32
-	OutputDebugStringA(body.c_str());
-	QString file = QCoreApplication::applicationDirPath() + "/" + "texlive/pdflatex.exe " +
-		QString::fromStdString(body) + " -interaction=nonstopmode -output-dir=" + 
-		QDir::currentPath().append(QDir::separator()).append("reports");
+	QString cpReportCommand = "./cp ./texlive/" + QString::fromStdString(tag) +".pdf ./reports/" + QString::fromStdString(tag) + QString::fromStdString(str) + ".pdf";
+	QString openReportCommand = "cmd /Q /C start .\\reports\\" + QString::fromStdString(tag) + QString::fromStdString(str) + ".pdf";
+	OutputDebugStringA(openReportCommand.toStdString().c_str());
+	QString file = QCoreApplication::applicationDirPath() + "/" + "texlive/pdflatex.exe " + QString::fromStdString(body) + " -interaction=nonstopmode";
 
 #elif __linux__
     QString file = "./pdflatex -interaction=nonstopmode "+ QString::fromStdString(body);
 #endif // 
 
+
+	QProcess cpReport;
+	QProcess openReport;
+
+	cpReport.setWorkingDirectory(QDir::currentPath());
+	openReport.setWorkingDirectory(QDir::currentPath());
 
 	process.setWorkingDirectory(QDir::currentPath().append(QDir::separator()).append("texlive"));
 	process.start(file);
@@ -1657,7 +1663,15 @@ void MainWindow::generateReport(const std::string & bodyOrig)
 	}
 
 	if (process.waitForFinished()) {
-		pathMsg.setText(process.readAll());
+		pathMsg.setText("Reporte generado");
+		cpReport.start(cpReportCommand);
+
+		if (cpReport.waitForFinished()) {
+			openReport.start(openReportCommand);
+		}
+	}
+	else {
+		pathMsg.setText("Error al generar reporte");
 	}
 
 	pathMsg.exec();
@@ -1716,7 +1730,7 @@ void MainWindow::on_actionGauss_triggered()
 	reportBodyEnd << gaussReport.getReportBody();
 	reportBodyEnd << std::endl;
 	reportBodyEnd << "\\input{gauss.tex}";
-	generateReport(reportBodyEnd.str());
+	generateReport(reportBodyEnd.str(), std::string("gauss"));
 }
 
 void MainWindow::on_actionJacobi_triggered()
@@ -1764,7 +1778,7 @@ void MainWindow::on_actionJacobi_triggered()
 	reportBodyEnd << jacobiReport.getReportBody();
 	reportBodyEnd << std::endl;
 	reportBodyEnd << "\\input{jacobi.tex}";
-	generateReport(reportBodyEnd.str());
+	generateReport(reportBodyEnd.str(), std::string("jacobi"));
 }
 
 void MainWindow::on_actionNormas_vectoriales_triggered()
@@ -1792,5 +1806,5 @@ void MainWindow::on_actionNormas_vectoriales_triggered()
 	reportBodyEnd << normsReport.getReportBody();
 	reportBodyEnd << std::endl;
 	reportBodyEnd << "\\input{norms.tex}";
-	generateReport(reportBodyEnd.str());
+	generateReport(reportBodyEnd.str(), std::string("norms"));
 }

@@ -1,12 +1,12 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.11.2)  2 JUL 2017 23:45
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/W32TeX) (preloaded format=pdflatex 2016.11.2)  3 JUL 2017 07:22
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **\def\gausssel{\begin{alignedat}{3} & &\;&=&\;0\\ & &\;&=&\;0 \end{alignedat} 
 } \def\gaussmatrices{\tilde{A}^{(1)}= \begin{bmatrix}[rr|r] 0&0&0\\ 0&0&0\\ \en
 d{bmatrix}\quad \begin{matrix} \\ \\ \end{matrix} } \def\errormsg{ 1} \def\gaus
-stable{\begin{tabular}{c|c} $a_0$&$a_1$\\ \hline -nan&-nan \end{tabular} } \inp
-ut{gauss.tex}
+stable{\begin{tabular}{c|c} $a_0$&$a_1$\\ \hline -nan(ind)&-nan(ind) \end{tabul
+ar} } \input{gauss.tex} -interaction=nonstopmode
 (./gauss.tex (./article.cls
 Document Class: article 2014/09/29 v1.4h Standard LaTeX document class
 (./size10.clo
@@ -246,15 +246,15 @@ Underfull \hbox (badness 10000) in paragraph at lines 50--51
 {pdftex.map} <./logo.jpg>] (./gauss.aux) ) 
 Here is how much of TeX's memory you used:
  2352 strings out of 493013
- 28945 string characters out of 6136993
- 102809 words of memory out of 5000000
+ 28952 string characters out of 6136993
+ 102819 words of memory out of 5000000
  5890 multiletter control sequences out of 15000+600000
  6232 words of font info for 23 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 41i,9n,32p,555b,348s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 41i,9n,32p,590b,348s stack positions out of 5000i,500n,10000p,200000b,80000s
 <./cmbx10.pfb><./cmbx12.pfb><./cmex10
 .pfb><./cmmi10.pfb><./cmr10.pfb><./cmr12.pfb><./cmr7.pfb>
-Output written on gauss.pdf (1 page, 85674 bytes).
+Output written on gauss.pdf (1 page, 85681 bytes).
 PDF statistics:
  37 PDF objects out of 1000 (max. 8388607)
  25 compressed objects within 1 object stream

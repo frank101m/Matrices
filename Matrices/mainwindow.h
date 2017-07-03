@@ -98,7 +98,7 @@ private:
     void setTableValidatorV();
     void clearWebDisplay2();
     void clearWebDisplay3();
-	void generateReport(const std::string &body);
+	void generateReport(const std::string &body, const std::string &tag);
     void renderJacobi(Matrix);
     void renderGauss(Matrix);
 
