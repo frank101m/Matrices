@@ -308,63 +308,74 @@ void MainWindow::on_pushButton_6_clicked()
 
 	pathMsg.exec();
 #elif __linux__
-	QProcess process;
-	QMessageBox pathMsg;
-
-
-
+    QProcess process;
+    QMessageBox pathMsg;
     QTableWidget *augMatrixTable = ui->augMatrix;
 
     int n = augMatrixTable->rowCount();
-    int m = augMatrixTable->columnCount();
 
     QLineEdit *tempLineEdit;
 
-    Matrix aug(n, m);
-    Report testReport(10);
+    Matrix A(n, n);
+    Matrix C(n, 1);
+
+    Report testReport(6);
 
     for (int i = 0; i < n; i++) {
-        for (int j = 0; j < m; j++) {
+        for (int j = 0; j < n; j++) {
             tempLineEdit = (QLineEdit*) augMatrixTable->cellWidget(i, j);
-            aug.set(i, j, tempLineEdit->text().toDouble());
+            A.set(i, j, tempLineEdit->text().toDouble());
         }
+    }
+
+    for (int i = 0; i < n; i++) {
+        tempLineEdit = (QLineEdit*) ui->tableWidget_4->cellWidget(i, 0);
+        C.set(i, 0, tempLineEdit->text().toDouble());
     }
 
     std::vector<std::string> vars;
 
-    vars.push_back("a_1");
-    vars.push_back("a_2");
-    vars.push_back("a_3");
-    vars.push_back("a_4");
+    for (int i = 0; i < n; i++) {
+        std::ostringstream tempVar;
+        tempVar << "a_";
+        tempVar << i;
+
+        vars.push_back(tempVar.str());
+    }
+
+    Matrix res = LinearSolver::getGaussianElimination(A, C, vars, testReport);
+    Matrix Xvec = LinearSolver::getBackSubstitution(res, vars, testReport);
 
     std::ostringstream body;
-    body << "\"\\def\\reportbody{";
-    body << testReport.generateAugmentedMatrixElement(vars, aug);
-    //Matrix augEl = aug.getGaussianElimination();
-    //body << testReport.generateAugmentedMatrixElement(vars, augEl);
-    body << "}";
-    body << "\\input{matrixtest.tex}\"";
+    body << testReport.getReportBody();
+    body << std::endl;
+    body << "\\input{gauss.tex}\"";
 
 
+    std::cout << body.str() << std::endl;
 
+//    OutputDebugStringA(body.str().c_str());
+
+    //QString file = QCoreApplication::applicationDirPath() + "/" + "texlive/pdflatex.exe " + QString::fromStdString(body.str()) + " -interaction=nonstopmode";
     QString file = "./pdflatex -interaction=nonstopmode "+ QString::fromStdString(body.str());
+    //pathMsg.setText(QString::fromStdString(body.str()));
 
-	process.setWorkingDirectory(QDir::currentPath().append(QDir::separator()).append("texlive"));
-	process.start(file);
+    process.setWorkingDirectory(QDir::currentPath().append(QDir::separator()).append("texlive"));
+    process.start(file);
+
+    if (!process.waitForStarted()) {
+        pathMsg.setText(file + " : " + process.errorString());
+    }
+    else {
+        pathMsg.setText(process.readAll());
+    }
+
+    if (process.waitForFinished()) {
+        pathMsg.setText(process.readAll());
+    }
 
 
-	if (!process.waitForStarted()) {
-		pathMsg.setText(file + " : " + process.errorString());
-	}
-	else {
-		pathMsg.setText("Iniciado");
-	}
-
-	if (process.waitForFinished()) {
-		pathMsg.setText(process.readAll());
-	}
-
-	pathMsg.exec();
+    pathMsg.exec();
 
 #endif*/
 }
@@ -1057,52 +1068,7 @@ void MainWindow::on_acceptVars_clicked()
 
 }
 
-void MainWindow::on_lineEditVars_editingFinished()
-{
-    if(ui->augMatrix->rowCount() == ui->augMatrix->columnCount()){
 
-    std::vector<std::string> vars;
-    Matrix g =  Matrix(ui->augMatrix->rowCount(), ui->augMatrix->columnCount());
-    Matrix c = Matrix(g.getRowsCount(), g.getColumnsCount());
-    Matrix o = Matrix(g.getRowsCount(), g.getColumnsCount());
-
-
-    for(int i = 0; i < g.getRowsCount(); i++){
-        for(int j = 0; j < g.getColumnsCount(); j++){
-            QLineEdit *ql = (QLineEdit*) ui->augMatrix->cellWidget(i, j);
-            g.set(i, j, ql->text().toDouble());
-        }
-
-        vars.push_back("a_"+std::to_string(i));
-
-        QLineEdit *ql = (QLineEdit*) ui->tableWidget_4->cellWidget(i, 0);
-        c.set(i, 0, ql->text().toDouble());
-
-        QLineEdit *ql2 = (QLineEdit*) ui->tableWidget_5->cellWidget(i, 0);
-        o.set(i, 0, ql2->text().toDouble());
-    }
-
-
-    Report r = Report(1);
-
-    Matrix res = LinearSolver::getJacobiMethod(g, c, o, 0.0001, 10, vars, r);
-
-    QString msag = "";
-    for(int i = 0; i < res.getRowsCount(); i++){
-        for(int j = 0; j < res.getColumnsCount(); j++){
-            msag+= QString::number(res.at(i, j)) + ", ";
-        }
-        msag +="\n";
-    }
-
-    QMessageBox msg;
-    msg.setText(msag);
-    msg.exec();
-
-}
-    //filling matrix:
-
-}
 void MainWindow::on_pushButton_7_clicked()
 {
 
@@ -1359,4 +1325,106 @@ void MainWindow::on_pushButton_15_clicked()
 
     this->renderResult2(a, normEuc, 0);
 
+}
+
+void MainWindow::on_pushButton_17_clicked()
+{
+    if(ui->augMatrix->rowCount() == ui->augMatrix->columnCount()){
+
+    std::vector<std::string> vars;
+    Matrix g =  Matrix(ui->augMatrix->rowCount(), ui->augMatrix->columnCount());
+    Matrix c = Matrix(g.getRowsCount(), g.getColumnsCount());
+    Matrix o = Matrix(g.getRowsCount(), g.getColumnsCount());
+
+
+    for(int i = 0; i < g.getRowsCount(); i++){
+        for(int j = 0; j < g.getColumnsCount(); j++){
+            QLineEdit *ql = (QLineEdit*) ui->augMatrix->cellWidget(i, j);
+            g.set(i, j, ql->text().toDouble());
+        }
+
+        vars.push_back("a_"+std::to_string(i));
+
+        QLineEdit *ql = (QLineEdit*) ui->tableWidget_4->cellWidget(i, 0);
+        c.set(i, 0, ql->text().toDouble());
+
+        QLineEdit *ql2 = (QLineEdit*) ui->tableWidget_5->cellWidget(i, 0);
+        o.set(i, 0, ql2->text().toDouble());
+    }
+
+
+    Report r = Report(1);
+
+    Matrix res = LinearSolver::getJacobiMethod(g, c, o, 0.0001, 10, vars, r);
+
+    QString msag = "";
+    for(int i = 0; i < res.getRowsCount(); i++){
+        for(int j = 0; j < res.getColumnsCount(); j++){
+            msag+= QString::number(res.at(i, j)) + ", ";
+        }
+        msag +="\n";
+    }
+
+    QMessageBox msg;
+    msg.setText(msag);
+    msg.exec();
+
+}
+    //filling matrix:
+
+}
+
+void MainWindow::on_pushButton_16_clicked()
+{
+    if(ui->augMatrix->rowCount() == ui->augMatrix->columnCount()){
+
+    std::vector<std::string> vars;
+    Matrix g =  Matrix(ui->augMatrix->rowCount(), ui->augMatrix->columnCount());
+    Matrix c = Matrix(g.getRowsCount(), g.getColumnsCount());
+    Matrix o = Matrix(g.getRowsCount(), g.getColumnsCount());
+
+
+    for(int i = 0; i < g.getRowsCount(); i++){
+        for(int j = 0; j < g.getColumnsCount(); j++){
+            QLineEdit *ql = (QLineEdit*) ui->augMatrix->cellWidget(i, j);
+            g.set(i, j, ql->text().toDouble());
+        }
+
+        vars.push_back("a_"+std::to_string(i));
+
+        QLineEdit *ql = (QLineEdit*) ui->tableWidget_4->cellWidget(i, 0);
+        c.set(i, 0, ql->text().toDouble());
+
+        QLineEdit *ql2 = (QLineEdit*) ui->tableWidget_5->cellWidget(i, 0);
+        o.set(i, 0, ql2->text().toDouble());
+    }
+
+
+    Report r = Report(1);
+
+    //Matrix res = LinearSolver::getJacobiMethod(g, c, o, 0.0001, 10, vars, r);
+
+    Matrix res = LinearSolver::getGaussianElimination(g, c, vars,r);
+
+    QString msag = "";
+    for(int i = 0; i < res.getRowsCount(); i++){
+        for(int j = 0; j < res.getColumnsCount(); j++){
+            msag+= QString::number(res.at(i, j)) + ", ";
+        }
+        msag +="\n";
+    }
+
+    QMessageBox msg;
+    msg.setText(msag);
+    msg.exec();
+
+}
+}
+
+void MainWindow::on_actionManual_triggered()
+{
+     h = new QWebEngineView;
+    h->setUrl(QUrl("qrc:///html/index.htm"));
+    h->setWindowFlags(Qt::Window);
+    h->show();
 }

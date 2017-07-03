@@ -33,9 +33,10 @@ class Ui_MainWindow
 {
 public:
     QAction *actionSalir;
-    QAction *actionGenerar_reporte;
     QAction *actionResultado;
     QAction *actionManual;
+    QAction *action1_Matriz;
+    QAction *action2_Matrices;
     QWidget *widget;
     QVBoxLayout *verticalLayout_2;
     QVBoxLayout *mainLayout;
@@ -96,12 +97,14 @@ public:
     QPushButton *pushButton_6;
     QSpinBox *spinnerRowCount;
     QPushButton *applyMatrixRange;
-    QPushButton *acceptVars;
+    QPushButton *pushButton_17;
     QPushButton *pushButton_16;
     QVBoxLayout *verticalLayout_7;
     QHBoxLayout *horizontalLayout_9;
     QMenuBar *menuBar;
     QMenu *menuArchivo;
+    QMenu *menuGenerar_reporte;
+    QMenu *menuOperaciones_basicas;
     QMenu *menuVer;
     QMenu *menuAyuda;
 
@@ -112,12 +115,14 @@ public:
         MainWindow->resize(716, 600);
         actionSalir = new QAction(MainWindow);
         actionSalir->setObjectName(QStringLiteral("actionSalir"));
-        actionGenerar_reporte = new QAction(MainWindow);
-        actionGenerar_reporte->setObjectName(QStringLiteral("actionGenerar_reporte"));
         actionResultado = new QAction(MainWindow);
         actionResultado->setObjectName(QStringLiteral("actionResultado"));
         actionManual = new QAction(MainWindow);
         actionManual->setObjectName(QStringLiteral("actionManual"));
+        action1_Matriz = new QAction(MainWindow);
+        action1_Matriz->setObjectName(QStringLiteral("action1_Matriz"));
+        action2_Matrices = new QAction(MainWindow);
+        action2_Matrices->setObjectName(QStringLiteral("action2_Matrices"));
         widget = new QWidget(MainWindow);
         widget->setObjectName(QStringLiteral("widget"));
         verticalLayout_2 = new QVBoxLayout(widget);
@@ -542,10 +547,10 @@ public:
 
         horizontalLayout_10->addWidget(applyMatrixRange);
 
-        acceptVars = new QPushButton(tab);
-        acceptVars->setObjectName(QStringLiteral("acceptVars"));
+        pushButton_17 = new QPushButton(tab);
+        pushButton_17->setObjectName(QStringLiteral("pushButton_17"));
 
-        horizontalLayout_10->addWidget(acceptVars);
+        horizontalLayout_10->addWidget(pushButton_17);
 
         pushButton_16 = new QPushButton(tab);
         pushButton_16->setObjectName(QStringLiteral("pushButton_16"));
@@ -583,6 +588,10 @@ public:
         menuBar->setGeometry(QRect(0, 0, 716, 19));
         menuArchivo = new QMenu(menuBar);
         menuArchivo->setObjectName(QStringLiteral("menuArchivo"));
+        menuGenerar_reporte = new QMenu(menuArchivo);
+        menuGenerar_reporte->setObjectName(QStringLiteral("menuGenerar_reporte"));
+        menuOperaciones_basicas = new QMenu(menuGenerar_reporte);
+        menuOperaciones_basicas->setObjectName(QStringLiteral("menuOperaciones_basicas"));
         menuVer = new QMenu(menuBar);
         menuVer->setObjectName(QStringLiteral("menuVer"));
         menuAyuda = new QMenu(menuBar);
@@ -592,15 +601,18 @@ public:
         menuBar->addAction(menuArchivo->menuAction());
         menuBar->addAction(menuVer->menuAction());
         menuBar->addAction(menuAyuda->menuAction());
-        menuArchivo->addAction(actionGenerar_reporte);
+        menuArchivo->addAction(menuGenerar_reporte->menuAction());
         menuArchivo->addSeparator();
         menuArchivo->addAction(actionSalir);
+        menuGenerar_reporte->addAction(menuOperaciones_basicas->menuAction());
+        menuOperaciones_basicas->addAction(action1_Matriz);
+        menuOperaciones_basicas->addAction(action2_Matrices);
         menuVer->addAction(actionResultado);
         menuAyuda->addAction(actionManual);
 
         retranslateUi(MainWindow);
 
-        mainTabWidget->setCurrentIndex(2);
+        mainTabWidget->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -613,15 +625,13 @@ public:
 #ifndef QT_NO_SHORTCUT
         actionSalir->setShortcut(QApplication::translate("MainWindow", "Ctrl+Q", Q_NULLPTR));
 #endif // QT_NO_SHORTCUT
-        actionGenerar_reporte->setText(QApplication::translate("MainWindow", "Generar reporte", Q_NULLPTR));
-#ifndef QT_NO_SHORTCUT
-        actionGenerar_reporte->setShortcut(QApplication::translate("MainWindow", "Ctrl+S", Q_NULLPTR));
-#endif // QT_NO_SHORTCUT
         actionResultado->setText(QApplication::translate("MainWindow", "Resultado", Q_NULLPTR));
         actionManual->setText(QApplication::translate("MainWindow", "Manual", Q_NULLPTR));
 #ifndef QT_NO_SHORTCUT
         actionManual->setShortcut(QApplication::translate("MainWindow", "F1", Q_NULLPTR));
 #endif // QT_NO_SHORTCUT
+        action1_Matriz->setText(QApplication::translate("MainWindow", "1 Matriz", Q_NULLPTR));
+        action2_Matrices->setText(QApplication::translate("MainWindow", "2 Matrices", Q_NULLPTR));
         label->setText(QApplication::translate("MainWindow", "Matriz A", Q_NULLPTR));
         label_2->setText(QApplication::translate("MainWindow", "Matriz B", Q_NULLPTR));
         pushButton->setText(QApplication::translate("MainWindow", "Generar matriz A", Q_NULLPTR));
@@ -680,10 +690,12 @@ public:
         ___qtablewidgetitem15->setText(QApplication::translate("MainWindow", "2", Q_NULLPTR));
         pushButton_6->setText(QApplication::translate("MainWindow", "Generar pdf", Q_NULLPTR));
         applyMatrixRange->setText(QApplication::translate("MainWindow", "Establecer n\303\272mero de variables", Q_NULLPTR));
-        acceptVars->setText(QApplication::translate("MainWindow", "Jacobi", Q_NULLPTR));
-        pushButton_16->setText(QApplication::translate("MainWindow", "PushButton", Q_NULLPTR));
+        pushButton_17->setText(QApplication::translate("MainWindow", "Jacobi", Q_NULLPTR));
+        pushButton_16->setText(QApplication::translate("MainWindow", "Gauss", Q_NULLPTR));
         mainTabWidget->setTabText(mainTabWidget->indexOf(tab), QApplication::translate("MainWindow", "Resolucion de sistemas de ecuaciones", Q_NULLPTR));
         menuArchivo->setTitle(QApplication::translate("MainWindow", "Archivo", Q_NULLPTR));
+        menuGenerar_reporte->setTitle(QApplication::translate("MainWindow", "Generar reporte", Q_NULLPTR));
+        menuOperaciones_basicas->setTitle(QApplication::translate("MainWindow", "Operaciones basicas", Q_NULLPTR));
         menuVer->setTitle(QApplication::translate("MainWindow", "Ver", Q_NULLPTR));
         menuAyuda->setTitle(QApplication::translate("MainWindow", "Ayuda", Q_NULLPTR));
     } // retranslateUi

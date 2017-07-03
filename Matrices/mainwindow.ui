@@ -29,7 +29,7 @@
          <enum>QTabWidget::Rounded</enum>
         </property>
         <property name="currentIndex">
-         <number>2</number>
+         <number>0</number>
         </property>
         <widget class="QWidget" name="basicMatrixOperations">
          <attribute name="title">
@@ -620,7 +620,7 @@
                </widget>
               </item>
               <item>
-               <widget class="QPushButton" name="acceptVars">
+               <widget class="QPushButton" name="pushButton_17">
                 <property name="text">
                  <string>Jacobi</string>
                 </property>
@@ -629,7 +629,7 @@
               <item>
                <widget class="QPushButton" name="pushButton_16">
                 <property name="text">
-                 <string>PushButton</string>
+                 <string>Gauss</string>
                 </property>
                </widget>
               </item>
@@ -665,7 +665,20 @@
     <property name="title">
      <string>Archivo</string>
     </property>
-    <addaction name="actionGenerar_reporte"/>
+    <widget class="QMenu" name="menuGenerar_reporte">
+     <property name="title">
+      <string>Generar reporte</string>
+     </property>
+     <widget class="QMenu" name="menuOperaciones_basicas">
+      <property name="title">
+       <string>Operaciones basicas</string>
+      </property>
+      <addaction name="action1_Matriz"/>
+      <addaction name="action2_Matrices"/>
+     </widget>
+     <addaction name="menuOperaciones_basicas"/>
+    </widget>
+    <addaction name="menuGenerar_reporte"/>
     <addaction name="separator"/>
     <addaction name="actionSalir"/>
    </widget>
@@ -693,14 +706,6 @@
     <string>Ctrl+Q</string>
    </property>
   </action>
-  <action name="actionGenerar_reporte">
-   <property name="text">
-    <string>Generar reporte</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+S</string>
-   </property>
-  </action>
   <action name="actionResultado">
    <property name="text">
     <string>Resultado</string>
@@ -712,6 +717,16 @@
    </property>
    <property name="shortcut">
     <string>F1</string>
+   </property>
+  </action>
+  <action name="action1_Matriz">
+   <property name="text">
+    <string>1 Matriz</string>
+   </property>
+  </action>
+  <action name="action2_Matrices">
+   <property name="text">
+    <string>2 Matrices</string>
    </property>
   </action>
  </widget>

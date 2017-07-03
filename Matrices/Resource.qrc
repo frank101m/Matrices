@@ -32,5 +32,9 @@
         <file>katex/KaTeX_Size4-Regular.woff2</file>
         <file>html/katex.htm</file>
         <file>html/m1.htm</file>
+        <file>html/index.htm</file>
+        <file>html/Imagen1.png</file>
+        <file>html/Imagen2.png</file>
+        <file>html/Imagen3.png</file>
     </qresource>
 </RCC>

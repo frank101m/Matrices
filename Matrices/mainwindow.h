@@ -35,7 +35,6 @@ private slots:
     void on_actionSalir_triggered();
 	void on_applyMatrixRange_clicked();
 	void on_acceptVars_clicked();
-	void on_lineEditVars_editingFinished();
 
     void on_pushButton_7_clicked();
 
@@ -55,10 +54,18 @@ private slots:
 
     void on_pushButton_15_clicked();
 
+    void on_pushButton_17_clicked();
+
+    void on_pushButton_16_clicked();
+
+    void on_actionManual_triggered();
+
 private:
     QWebEngineView *webDisplay;
     QWebEngineView *webDisplay2;
     QWebEngineView *webDisplay3;
+    QWebEngineView *h;
+
 
     Ui::MainWindow *ui;
     void setTableValidatorA();
