@@ -1514,3 +1514,27 @@ void MainWindow::generateReport(const std::string & body)
 
 	pathMsg.exec();
 }
+
+void MainWindow::on_actionInfinita_triggered()
+{
+    //norma infinita
+    int i;
+}
+
+void MainWindow::on_actionEuclideana_triggered()
+{
+    //norma euclideana
+    int j;
+}
+
+void MainWindow::on_actionGauss_triggered()
+{
+    //SEL Gauss
+    int k;
+}
+
+void MainWindow::on_actionJacobi_triggered()
+{
+    //SEL Jacobi
+    int m;
+}
