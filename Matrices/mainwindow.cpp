@@ -1577,8 +1577,46 @@ void MainWindow::on_actionEuclideana_triggered()
 
 void MainWindow::on_actionGauss_triggered()
 {
-    //SEL Gauss
-    int k;
+	Report gaussReport(6);
+	QTableWidget *augMatrixTable = ui->augMatrix;
+
+	int n = augMatrixTable->rowCount();
+
+	Matrix A(n, n);
+	Matrix C(n, 1);
+
+	QLineEdit *tempLineEdit;
+
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < n; j++) {
+			tempLineEdit = (QLineEdit*)augMatrixTable->cellWidget(i, j);
+			A.set(i, j, tempLineEdit->text().toDouble());
+		}
+	}
+
+	for (int i = 0; i < n; i++) {
+		tempLineEdit = (QLineEdit*)ui->tableWidget_4->cellWidget(i, 0);
+		C.set(i, 0, tempLineEdit->text().toDouble());
+	}
+
+	std::vector<std::string> vars;
+
+	for (int i = 0; i < n; i++) {
+		std::ostringstream tempVar;
+		tempVar << "a_";
+		tempVar << i;
+
+		vars.push_back(tempVar.str());
+	};
+
+	Matrix gaussRec = LinearSolver::getGaussianElimination(A,C,vars,gaussReport);
+	Matrix Xvec = LinearSolver::getBackSubstitution(gaussRec,vars,gaussReport);
+
+	std::ostringstream reportBodyEnd;
+	reportBodyEnd << gaussReport.getReportBody();
+	reportBodyEnd << std::endl;
+	reportBodyEnd << "\\input{gauss.tex}";
+	generateReport(reportBodyEnd.str());
 }
 
 void MainWindow::on_actionJacobi_triggered()
