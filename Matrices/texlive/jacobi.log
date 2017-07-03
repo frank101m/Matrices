@@ -1,15 +1,33 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/W32TeX) (preloaded format=pdflatex 2016.11.2)  3 JUL 2017 14:06
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.11.2)  3 JUL 2017 14:04
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**\def\jacobisel{\begin{alignedat}{3} 556a_0&+6a_1&\;&=&\;9878\\ 5a_0&+98a_1&\;
-&=&\;1452 \end{alignedat} } \def\jacobimatrixA{ \begin{bmatrix} 556&6\\ 5&98 \e
-nd{bmatrix}} \def\jacobimatrixT{ \begin{bmatrix} 0&-0.0107914\\ -0.0510204&0 \e
-nd{bmatrix}} \def\jacobimatrixC{ \begin{bmatrix} 17.7662\\ 14.8163 \end{bmatrix
-}} \def\jacobimatrixXO{ \begin{bmatrix} 0\\ 0 \end{bmatrix}} \def\jacobitables{
- \begin{tabular}{c|c|c|c|c|c} \hline $k$ &1&2&3&4&5\\ \hline $a_0^{(k)}$ &0&17.
-7662&17.6063&17.6161&17.616\\ \hline $a_1^{(k)}$ &0&14.8163&13.9099&13.918&13.9
-175\\ \hline \end{tabular} } \input{jacobi.tex} -interaction=nonstopmode
+**\def\jacobisel{\begin{alignedat}{3} & &\;&=&\;0\\ & &\;&=&\;0 \end{alignedat}
+ } \def\jacobimatrixA{ \begin{bmatrix} 0&0\\ 0&0 \end{bmatrix}} \def\jacobimatr
+ixT{ \begin{bmatrix} 0&-nan\\ -nan&0 \end{bmatrix}} \def\jacobimatrixC{ \begin{
+bmatrix} -nan\\ -nan \end{bmatrix}} \def\jacobimatrixXO{ \begin{bmatrix} 0\\ 0 
+\end{bmatrix}} \def\jacobitables{ \begin{tabular}{c|c|c|c|c|c|c|c} \hline $k$ &
+1&2&3&4&5&6&7\\ \hline $a_0^{(k)}$ &0&-nan&-nan&-nan&-nan&-nan&-nan\\ \hline $a
+_1^{(k)}$ &0&-nan&-nan&-nan&-nan&-nan&-nan\\ \hline \end{tabular} \\ \vspace{0.
+5cm} \begin{tabular}{c|c|c|c|c|c|c|c} \hline $k$ &8&9&10&11&12&13&14\\ \hline $
+a_0^{(k)}$ &-nan&-nan&-nan&-nan&-nan&-nan&-nan\\ \hline $a_1^{(k)}$ &-nan&-nan&
+-nan&-nan&-nan&-nan&-nan\\ \hline \end{tabular} \\ \vspace{0.5cm} \begin{tabula
+r}{c|c|c|c|c|c|c|c} \hline $k$ &15&16&17&18&19&20&21\\ \hline $a_0^{(k)}$ &-nan
+&-nan&-nan&-nan&-nan&-nan&-nan\\ \hline $a_1^{(k)}$ &-nan&-nan&-nan&-nan&-nan&-
+nan&-nan\\ \hline \end{tabular} \\ \vspace{0.5cm} \begin{tabular}{c|c|c|c|c|c|c
+|c} \hline $k$ &22&23&24&25&26&27&28\\ \hline $a_0^{(k)}$ &-nan&-nan&-nan&-nan&
+-nan&-nan&-nan\\ \hline $a_1^{(k)}$ &-nan&-nan&-nan&-nan&-nan&-nan&-nan\\ \hlin
+e \end{tabular} \\ \vspace{0.5cm} \begin{tabular}{c|c|c|c|c|c|c|c} \hline $k$ &
+29&30&31&32&33&34&35\\ \hline $a_0^{(k)}$ &-nan&-nan&-nan&-nan&-nan&-nan&-nan\\
+ \hline $a_1^{(k)}$ &-nan&-nan&-nan&-nan&-nan&-nan&-nan\\ \hline \end{tabular} 
+\\ \vspace{0.5cm} \begin{tabular}{c|c|c|c|c|c|c|c} \hline $k$ &36&37&38&39&40&4
+1&42\\ \hline $a_0^{(k)}$ &-nan&-nan&-nan&-nan&-nan&-nan&-nan\\ \hline $a_1^{(k
+)}$ &-nan&-nan&-nan&-nan&-nan&-nan&-nan\\ \hline \end{tabular} \\ \vspace{0.5cm
+} \begin{tabular}{c|c|c|c|c|c|c|c} \hline $k$ &43&44&45&46&47&48&49\\ \hline $a
+_0^{(k)}$ &-nan&-nan&-nan&-nan&-nan&-nan&-nan\\ \hline $a_1^{(k)}$ &-nan&-nan&-
+nan&-nan&-nan&-nan&-nan\\ \hline \end{tabular} \\ \vspace{0.5cm} \begin{tabular
+}{c|c|c} \hline $k$ &50&51\\ \hline $a_0^{(k)}$ &-nan&-nan\\ \hline $a_1^{(k)}$
+ &-nan&-nan\\ \hline \end{tabular} } \input{jacobi.tex}
 (./jacobi.tex (./article.cls
 Document Class: article 2014/09/29 v1.4h Standard LaTeX document class
 (./size10.clo
@@ -239,16 +257,16 @@ Overfull \hbox (6.79999pt too wide) in paragraph at lines 31--33
 {pdftex.map} <./logo.jpg>] (./jacobi.aux) ) 
 Here is how much of TeX's memory you used:
  2350 strings out of 493013
- 28959 string characters out of 6136993
- 104967 words of memory out of 5000000
+ 28952 string characters out of 6136993
+ 117103 words of memory out of 5000000
  5888 multiletter control sequences out of 15000+600000
  6232 words of font info for 23 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 41i,9n,32p,851b,348s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 41i,9n,32p,2256b,348s stack positions out of 5000i,500n,10000p,200000b,80000s
 <./cmbx10.pfb><./cmbx12.pfb><./cmex1
 0.pfb><./cmmi10.pfb><./cmmi7.pfb><./cmr10.pfb><./cmr12.pfb><./cmr7.pfb><./cmsy1
 0.pfb><./cmsy7.pfb>
-Output written on jacobi.pdf (1 page, 109512 bytes).
+Output written on jacobi.pdf (1 page, 111253 bytes).
 PDF statistics:
  49 PDF objects out of 1000 (max. 8388607)
  34 compressed objects within 1 object stream
