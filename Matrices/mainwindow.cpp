@@ -6,6 +6,7 @@
 #include <iostream>
 #include <stdarg.h>
 #include <ctime>
+#include "dialog.h"
 
 //Partes numericas
 #include "LinearSolver.h"
@@ -1045,10 +1046,12 @@ void MainWindow::on_actionResultado_triggered()
     if(webDisplay->isHidden()){
         webDisplay->show();
         webDisplay2->show();
+        webDisplay3->show();
     }
     else{
         webDisplay->hide();
         webDisplay2->hide();
+        webDisplay3->hide();
     }
 }
 
@@ -1330,9 +1333,20 @@ void MainWindow::on_pushButton_15_clicked()
 
 }
 
+
+
 void MainWindow::on_pushButton_17_clicked()
 {
     if(ui->augMatrix->rowCount() == ui->augMatrix->columnCount()){
+
+     int *a = new int;
+     double *b = new double;
+
+     Dialog *d = new Dialog(this, a, b);
+     d->exec();
+
+     max = *a;
+     tol = *b;
 
     std::vector<std::string> vars;
     Matrix g =  Matrix(ui->augMatrix->rowCount(), ui->augMatrix->columnCount());
@@ -1356,9 +1370,9 @@ void MainWindow::on_pushButton_17_clicked()
     }
 
 
-    Report r = Report(1);
+    Report r = Report(6);
 
-    Matrix res = LinearSolver::getJacobiMethod(g, c, o, 0.0001, 10, vars, r);
+    Matrix res = LinearSolver::getJacobiMethod(g, c, o, tol, max, vars, r);
 
     QString msag = "";
     for(int i = 0; i < res.getRowsCount(); i++){
@@ -1368,13 +1382,52 @@ void MainWindow::on_pushButton_17_clicked()
         msag +="\n";
     }
 
-    QMessageBox msg;
-    msg.setText(msag);
-    msg.exec();
+    //QMessageBox msg;
+    //msg.setText(msag);
+    //msg.exec();
+    clearWebDisplay3();
+    renderJacobi(res);
+
 
 }
     //filling matrix:
 
+}
+
+void MainWindow::renderJacobi(Matrix a){
+    QString js = "document.body.innerHTML = ' ';";
+    webDisplay3->page()->runJavaScript(js);
+
+    js = "var tex = document.createElement('tex');";
+    webDisplay3->page()->runJavaScript(js);
+
+    js ="var content = document.createTextNode('";
+
+    for(int i = 0; i < a.getRowsCount(); i++){
+        if(i < a.getRowsCount()-1)
+            js+=" a_"+QString::number(i)+" = "+QString::number(a.at(i, 0))+", ";
+        else{
+            js+=" a_"+QString::number(i)+" = "+QString::number(a.at(i, 0));
+        }
+    }
+    js+="');";
+    webDisplay3->page()->runJavaScript(js);
+    js ="tex.appendChild(content);";
+    webDisplay3->page()->runJavaScript(js);
+    js = "document.body.appendChild(tex);";
+    webDisplay3->page()->runJavaScript(js);
+    js = "var txlist = document.getElementsByTagName('tex');";
+    webDisplay3->page()->runJavaScript(js);
+    js = "for (var i = 0; i < txlist.length; i++) { var tx = txlist[i]; var txtext = tx.textContent; katex.render(txtext, tx, { displayMode: true }); }";
+    webDisplay3->page()->runJavaScript(js);
+
+
+}
+
+void MainWindow::clearWebDisplay3(){
+    QString js = "document.body.innerHTML = ' ';";
+    //->page()->runJavaScript(js);
+    webDisplay3->page()->runJavaScript(js);
 }
 
 void MainWindow::on_pushButton_16_clicked()
@@ -1403,11 +1456,11 @@ void MainWindow::on_pushButton_16_clicked()
     }
 
 
-    Report r = Report(1);
+    Report r = Report(6);
 
-    //Matrix res = LinearSolver::getJacobiMethod(g, c, o, 0.0001, 10, vars, r);
 
-    Matrix res = LinearSolver::getGaussianElimination(g, c, vars,r);
+    Matrix pre = LinearSolver::getGaussianElimination(g, c, vars,r);
+    Matrix res = LinearSolver::getBackSubstitution(pre, vars, r);
 
     QString msag = "";
     for(int i = 0; i < res.getRowsCount(); i++){
@@ -1417,11 +1470,42 @@ void MainWindow::on_pushButton_16_clicked()
         msag +="\n";
     }
 
-    QMessageBox msg;
+    /*QMessageBox msg;
     msg.setText(msag);
-    msg.exec();
+    msg.exec();*/
+    clearWebDisplay3();
+    renderGauss(res);
 
 }
+}
+
+void MainWindow::renderGauss(Matrix a){
+    QString js = "document.body.innerHTML = ' ';";
+    webDisplay3->page()->runJavaScript(js);
+
+    js = "var tex = document.createElement('tex');";
+    webDisplay3->page()->runJavaScript(js);
+
+    js ="var content = document.createTextNode('";
+
+    for(int i = 0; i < a.getColumnsCount(); i++){
+        if(i < a.getColumnsCount()-1)
+            js+=" a_"+QString::number(i)+" = "+QString::number(a.at(0, i))+", ";
+        else{
+            js+=" a_"+QString::number(i)+" = "+QString::number(a.at(0, i));
+        }
+    }
+    js+="');";
+    webDisplay3->page()->runJavaScript(js);
+    js ="tex.appendChild(content);";
+    webDisplay3->page()->runJavaScript(js);
+    js = "document.body.appendChild(tex);";
+    webDisplay3->page()->runJavaScript(js);
+    js = "var txlist = document.getElementsByTagName('tex');";
+    webDisplay3->page()->runJavaScript(js);
+    js = "for (var i = 0; i < txlist.length; i++) { var tx = txlist[i]; var txtext = tx.textContent; katex.render(txtext, tx, { displayMode: true }); }";
+    webDisplay3->page()->runJavaScript(js);
+
 }
 
 void MainWindow::on_actionManual_triggered()

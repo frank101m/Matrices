@@ -101,7 +101,6 @@ public:
     QTableWidget *tableWidget_5;
     QVBoxLayout *verticalLayout_8;
     QHBoxLayout *horizontalLayout_10;
-    QPushButton *pushButton_6;
     QSpinBox *spinnerRowCount;
     QPushButton *applyMatrixRange;
     QPushButton *pushButton_17;
@@ -579,11 +578,6 @@ public:
         horizontalLayout_10 = new QHBoxLayout();
         horizontalLayout_10->setSpacing(6);
         horizontalLayout_10->setObjectName(QStringLiteral("horizontalLayout_10"));
-        pushButton_6 = new QPushButton(tab);
-        pushButton_6->setObjectName(QStringLiteral("pushButton_6"));
-
-        horizontalLayout_10->addWidget(pushButton_6);
-
         spinnerRowCount = new QSpinBox(tab);
         spinnerRowCount->setObjectName(QStringLiteral("spinnerRowCount"));
         spinnerRowCount->setMinimum(2);
@@ -667,7 +661,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        mainTabWidget->setCurrentIndex(1);
+        mainTabWidget->setCurrentIndex(2);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -749,7 +743,6 @@ public:
         ___qtablewidgetitem14->setText(QApplication::translate("MainWindow", "1", Q_NULLPTR));
         QTableWidgetItem *___qtablewidgetitem15 = tableWidget_5->verticalHeaderItem(1);
         ___qtablewidgetitem15->setText(QApplication::translate("MainWindow", "2", Q_NULLPTR));
-        pushButton_6->setText(QApplication::translate("MainWindow", "Generar pdf", Q_NULLPTR));
         applyMatrixRange->setText(QApplication::translate("MainWindow", "Establecer n\303\272mero de variables", Q_NULLPTR));
         pushButton_17->setText(QApplication::translate("MainWindow", "Jacobi", Q_NULLPTR));
         pushButton_16->setText(QApplication::translate("MainWindow", "Gauss", Q_NULLPTR));

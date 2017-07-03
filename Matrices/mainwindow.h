@@ -5,6 +5,8 @@
 #include <QMainWindow>
 #include <QLineEdit>
 #include <Matrix.h>
+#include <QObject>
+
 
 namespace Ui {
 class MainWindow;
@@ -16,11 +18,14 @@ class MainWindow : public QMainWindow
 
 public:
     explicit MainWindow(QWidget *parent = 0);
-
+    int max;
+    double tol;
     ~MainWindow();
 
 
 private slots:
+
+
     void on_pushButton_clicked();
     void on_pushButton_2_clicked();
     void on_pushButton_3_clicked();
@@ -92,7 +97,10 @@ private:
 	void setUpVarsValidation();
     void setTableValidatorV();
     void clearWebDisplay2();
+    void clearWebDisplay3();
 	void generateReport(const std::string &body);
+    void renderJacobi(Matrix);
+    void renderGauss(Matrix);
 
 };
 

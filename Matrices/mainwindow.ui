@@ -29,7 +29,7 @@
          <enum>QTabWidget::Rounded</enum>
         </property>
         <property name="currentIndex">
-         <number>1</number>
+         <number>2</number>
         </property>
         <widget class="QWidget" name="basicMatrixOperations">
          <attribute name="title">
@@ -668,13 +668,6 @@
            <layout class="QVBoxLayout" name="verticalLayout_8">
             <item>
              <layout class="QHBoxLayout" name="horizontalLayout_10">
-              <item>
-               <widget class="QPushButton" name="pushButton_6">
-                <property name="text">
-                 <string>Generar pdf</string>
-                </property>
-               </widget>
-              </item>
               <item>
                <widget class="QSpinBox" name="spinnerRowCount">
                 <property name="minimum">

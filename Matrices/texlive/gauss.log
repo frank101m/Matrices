@@ -1,22 +1,12 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/W32TeX) (preloaded format=pdflatex 2016.11.2)  2 JUL 2017 21:51
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.11.2)  2 JUL 2017 23:45
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**\def\gausssel{\begin{alignedat}{4} 3.333a_0&+15920a_1&-10.333a_2&\;&=&\;15913
-\\ 2.222a_0&+16.71a_1&+9.612a_2&\;&=&\;28.544\\ 1.5611a_0&+5.1791a_1&+1.6852a_2
-&\;&=&\;8.4254 \end{alignedat} } \def\gaussmatrices{\tilde{A}^{(1)}= \begin{bma
-trix}[rrr|r] 3.333&15920&-10.333&15913\\ 2.222&16.71&9.612&28.544\\ 1.5611&5.17
-91&1.6852&8.4254\\ \end{bmatrix}\quad \begin{matrix} \\ \\ \\ \end{matrix} \\ \
-vspace{0.5cm} \\ \tilde{A}^{(2)}= \begin{bmatrix}[rrr|r] 3.333&15920&-10.333&15
-913\\ 0&-10596.6&16.5007&-10580.1\\ 0&-7451.38&6.52494&-7444.86\\ \end{bmatrix}
-\quad \begin{matrix} \\ \quad E_2-\left(0.666667\right)E_1 \quad \rightarrow \q
-uad E_2\\ \quad E_3-\left(0.468377\right)E_1 \quad \rightarrow \quad E_3\\ \end
-{matrix} \\ \vspace{0.5cm} \\ \tilde{A}^{(3)}= \begin{bmatrix}[rrr|r] 3.333&159
-20&-10.333&15913\\ 0&-10596.6&16.5007&-10580.1\\ 0&0&-5.07807&-5.07807\\ \end{b
-matrix}\quad \begin{matrix} \\ \\ \quad E_3-\left(0.703184\right)E_2 \quad \rig
-htarrow \quad E_3\\ \end{matrix} } \def\gausstable{\begin{tabular}{c|c|c} $a_0$
-&$a_1$&$a_2$\\ \hline 1&1&1 \end{tabular} } \input{gauss.tex} -interaction=nons
-topmode
+**\def\gausssel{\begin{alignedat}{3} & &\;&=&\;0\\ & &\;&=&\;0 \end{alignedat} 
+} \def\gaussmatrices{\tilde{A}^{(1)}= \begin{bmatrix}[rr|r] 0&0&0\\ 0&0&0\\ \en
+d{bmatrix}\quad \begin{matrix} \\ \\ \end{matrix} } \def\errormsg{ 1} \def\gaus
+stable{\begin{tabular}{c|c} $a_0$&$a_1$\\ \hline -nan&-nan \end{tabular} } \inp
+ut{gauss.tex}
 (./gauss.tex (./article.cls
 Document Class: article 2014/09/29 v1.4h Standard LaTeX document class
 (./size10.clo
@@ -255,19 +245,19 @@ Underfull \hbox (badness 10000) in paragraph at lines 50--51
 
 {pdftex.map} <./logo.jpg>] (./gauss.aux) ) 
 Here is how much of TeX's memory you used:
- 2353 strings out of 493013
- 28977 string characters out of 6136993
- 108392 words of memory out of 5000000
- 5891 multiletter control sequences out of 15000+600000
- 6837 words of font info for 25 fonts, out of 8000000 for 9000
+ 2352 strings out of 493013
+ 28945 string characters out of 6136993
+ 102809 words of memory out of 5000000
+ 5890 multiletter control sequences out of 15000+600000
+ 6232 words of font info for 23 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 41i,9n,32p,1339b,348s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 41i,9n,32p,555b,348s stack positions out of 5000i,500n,10000p,200000b,80000s
 <./cmbx10.pfb><./cmbx12.pfb><./cmex10
-.pfb><./cmmi10.pfb><./cmr10.pfb><./cmr12.pfb><./cmr7.pfb><./cmsy10.pfb>
-Output written on gauss.pdf (1 page, 97027 bytes).
+.pfb><./cmmi10.pfb><./cmr10.pfb><./cmr12.pfb><./cmr7.pfb>
+Output written on gauss.pdf (1 page, 85674 bytes).
 PDF statistics:
- 41 PDF objects out of 1000 (max. 8388607)
- 28 compressed objects within 1 object stream
+ 37 PDF objects out of 1000 (max. 8388607)
+ 25 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  6 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -28,15 +28,18 @@ SOURCES += \
         mainwindow.cpp \
         Matrix.cpp \
         Report.cpp \
-        LinearSolver.cpp
+        LinearSolver.cpp \
+    dialog.cpp
 
 HEADERS += \
         mainwindow.h \
         Matrix.h \
         Report.h \
-        LinearSolver.h
+        LinearSolver.h \
+    dialog.h
 FORMS += \
-        mainwindow.ui
+        mainwindow.ui \
+    dialog.ui
 
 RESOURCES += \
     Resource.qrc
