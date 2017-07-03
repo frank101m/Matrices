@@ -88,6 +88,10 @@ public:
     QWidget *tab;
     QVBoxLayout *verticalLayout_10;
     QVBoxLayout *verticalLayout_9;
+    QHBoxLayout *horizontalLayout_8;
+    QLabel *label_6;
+    QLabel *label_4;
+    QLabel *label_5;
     QHBoxLayout *horizontalLayout_12;
     QTableWidget *augMatrix;
     QTableWidget *tableWidget_4;
@@ -468,6 +472,41 @@ public:
 
         verticalLayout_10->addLayout(verticalLayout_9);
 
+        horizontalLayout_8 = new QHBoxLayout();
+        horizontalLayout_8->setSpacing(6);
+        horizontalLayout_8->setObjectName(QStringLiteral("horizontalLayout_8"));
+        label_6 = new QLabel(tab);
+        label_6->setObjectName(QStringLiteral("label_6"));
+        QSizePolicy sizePolicy4(QSizePolicy::Expanding, QSizePolicy::Preferred);
+        sizePolicy4.setHorizontalStretch(0);
+        sizePolicy4.setVerticalStretch(0);
+        sizePolicy4.setHeightForWidth(label_6->sizePolicy().hasHeightForWidth());
+        label_6->setSizePolicy(sizePolicy4);
+        label_6->setMinimumSize(QSize(256, 0));
+
+        horizontalLayout_8->addWidget(label_6);
+
+        label_4 = new QLabel(tab);
+        label_4->setObjectName(QStringLiteral("label_4"));
+        sizePolicy4.setHeightForWidth(label_4->sizePolicy().hasHeightForWidth());
+        label_4->setSizePolicy(sizePolicy4);
+        label_4->setMinimumSize(QSize(120, 0));
+        label_4->setMaximumSize(QSize(120, 16777215));
+
+        horizontalLayout_8->addWidget(label_4);
+
+        label_5 = new QLabel(tab);
+        label_5->setObjectName(QStringLiteral("label_5"));
+        sizePolicy4.setHeightForWidth(label_5->sizePolicy().hasHeightForWidth());
+        label_5->setSizePolicy(sizePolicy4);
+        label_5->setMinimumSize(QSize(120, 0));
+        label_5->setMaximumSize(QSize(120, 16777215));
+
+        horizontalLayout_8->addWidget(label_5);
+
+
+        verticalLayout_10->addLayout(horizontalLayout_8);
+
         horizontalLayout_12 = new QHBoxLayout();
         horizontalLayout_12->setSpacing(6);
         horizontalLayout_12->setObjectName(QStringLiteral("horizontalLayout_12"));
@@ -612,7 +651,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        mainTabWidget->setCurrentIndex(0);
+        mainTabWidget->setCurrentIndex(2);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -671,6 +710,9 @@ public:
         QTableWidgetItem *___qtablewidgetitem9 = tableWidget_3->verticalHeaderItem(0);
         ___qtablewidgetitem9->setText(QApplication::translate("MainWindow", "1", Q_NULLPTR));
         mainTabWidget->setTabText(mainTabWidget->indexOf(tab_2), QApplication::translate("MainWindow", "Normas vectoriales", Q_NULLPTR));
+        label_6->setText(QApplication::translate("MainWindow", "Matriz de coeficientes", Q_NULLPTR));
+        label_4->setText(QApplication::translate("MainWindow", "Igualaci\303\263n", Q_NULLPTR));
+        label_5->setText(QApplication::translate("MainWindow", "Aproximaci\303\263n inicial", Q_NULLPTR));
         QTableWidgetItem *___qtablewidgetitem10 = tableWidget_4->horizontalHeaderItem(0);
         ___qtablewidgetitem10->setText(QApplication::translate("MainWindow", "1", Q_NULLPTR));
         QTableWidgetItem *___qtablewidgetitem11 = tableWidget_4->verticalHeaderItem(0);
