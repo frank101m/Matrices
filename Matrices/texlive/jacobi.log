@@ -1,66 +1,71 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/W32TeX) (preloaded format=pdflatex 2016.11.2)  3 JUL 2017 07:19
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/W32TeX) (preloaded format=pdflatex 2016.11.2)  3 JUL 2017 08:19
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**\def\jacobisel{\begin{alignedat}{3} & &\;&=&\;0\\ & &\;&=&\;0 \end{alignedat}
- } \def\jacobimatrixA{ \begin{bmatrix} 0&0\\ 0&0 \end{bmatrix}} \def\jacobimatr
-ixT{ \begin{bmatrix} 0&-nan(ind)\\ -nan(ind)&0 \end{bmatrix}} \def\jacobimatrix
-C{ \begin{bmatrix} -nan(ind)\\ -nan(ind) \end{bmatrix}} \def\jacobimatrixXO{ \b
-egin{bmatrix} 0\\ 0 \end{bmatrix}} \def\jacobitables{ \begin{tabular}{c|c|c|c|c
-|c|c|c} \hline $k$ &1&2&3&4&5&6&7\\ \hline $a_0^{(k)}$ &0&-nan(ind)&-nan(ind)&-
-nan(ind)&-nan(ind)&-nan(ind)&-nan(ind)\\ \hline $a_1^{(k)}$ &0&-nan(ind)&-nan(i
-nd)&-nan(ind)&-nan(ind)&-nan(ind)&-nan(ind)\\ \hline \end{tabular} \\ \vspace{0
-.5cm} \begin{tabular}{c|c|c|c|c|c|c|c} \hline $k$ &8&9&10&11&12&13&14\\ \hline 
-$a_0^{(k)}$ &-nan(ind)&-nan(ind)&-nan(ind)&-nan(ind)&-nan(ind)&-nan(ind)&-nan(i
-nd)\\ \hline $a_1^{(k)}$ &-nan(ind)&-nan(ind)&-nan(ind)&-nan(ind)&-nan(ind)&-na
-n(ind)&-nan(ind)\\ \hline \end{tabular} \\ \vspace{0.5cm} \begin{tabular}{c|c|c
-|c|c|c|c|c} \hline $k$ &15&16&17&18&19&20&21\\ \hline $a_0^{(k)}$ &-nan(ind)&-n
-an(ind)&-nan(ind)&-nan(ind)&-nan(ind)&-nan(ind)&-nan(ind)\\ \hline $a_1^{(k)}$ 
-&-nan(ind)&-nan(ind)&-nan(ind)&-nan(ind)&-nan(ind)&-nan(ind)&-nan(ind)\\ \hline
- \end{tabular} \\ \vspace{0.5cm} \begin{tabular}{c|c|c|c|c|c|c|c} \hline $k$ &2
-2&23&24&25&26&27&28\\ \hline $a_0^{(k)}$ &-nan(ind)&-nan(ind)&-nan(ind)&-nan(in
-d)&-nan(ind)&-nan(ind)&-nan(ind)\\ \hline $a_1^{(k)}$ &-nan(ind)&-nan(ind)&-nan
-(ind)&-nan(ind)&-nan(ind)&-nan(ind)&-nan(ind)\\ \hline \end{tabular} \\ \vspace
-{0.5cm} \begin{tabular}{c|c|c|c|c|c|c|c} \hline $k$ &29&30&31&32&33&34&35\\ \hl
-ine $a_0^{(k)}$ &-nan(ind)&-nan(ind)&-nan(ind)&-nan(ind)&-nan(ind)&-nan(ind)&-n
-an(ind)\\ \hline $a_1^{(k)}$ &-nan(ind)&-nan(ind)&-nan(ind)&-nan(ind)&-nan(ind)
-&-nan(ind)&-nan(ind)\\ \hline \end{tabular} \\ \vspace{0.5cm} \begin{tabular}{c
-|c|c|c|c|c|c|c} \hline $k$ &36&37&38&39&40&41&42\\ \hline $a_0^{(k)}$ &-nan(ind
-)&-nan(ind)&-nan(ind)&-nan(ind)&-nan(ind)&-nan(ind)&-nan(ind)\\ \hline $a_1^{(k
-)}$ &-nan(ind)&-nan(ind)&-nan(ind)&-nan(ind)&-nan(ind)&-nan(ind)&-nan(ind)\\ \h
-line \end{tabular} \\ \vspace{0.5cm} \begin{tabular}{c|c|c|c|c|c|c|c} \hline $k
-$ &43&44&45&46&47&48&49\\ \hline $a_0^{(k)}$ &-nan(ind)&-nan(ind)&-nan(ind)&-na
-n(ind)&-nan(ind)&-nan(ind)&-nan(ind)\\ \hline $a_1^{(k)}$ &-nan(ind)&-nan(ind)&
--nan(ind)&-nan(ind)&-nan(ind)&-nan(ind)&-nan(ind)\\ \hline \end{tabular} \\ \vs
-pace{0.5cm} \begin{tabular}{c|c|c|c|c|c|c|c} \hline $k$ &50&51&52&53&54&55&56\\
- \hline $a_0^{(k)}$ &-nan(ind)&-nan(ind)&-nan(ind)&-nan(ind)&-nan(ind)&-nan(ind
-)&-nan(ind)\\ \hline $a_1^{(k)}$ &-nan(ind)&-nan(ind)&-nan(ind)&-nan(ind)&-nan(
-ind)&-nan(ind)&-nan(ind)\\ \hline \end{tabular} \\ \vspace{0.5cm} \begin{tabula
-r}{c|c|c|c|c|c|c|c} \hline $k$ &57&58&59&60&61&62&63\\ \hline $a_0^{(k)}$ &-nan
-(ind)&-nan(ind)&-nan(ind)&-nan(ind)&-nan(ind)&-nan(ind)&-nan(ind)\\ \hline $a_1
-^{(k)}$ &-nan(ind)&-nan(ind)&-nan(ind)&-nan(ind)&-nan(ind)&-nan(ind)&-nan(ind)\
-\ \hline \end{tabular} \\ \vspace{0.5cm} \begin{tabular}{c|c|c|c|c|c|c|c} \hlin
-e $k$ &64&65&66&67&68&69&70\\ \hline $a_0^{(k)}$ &-nan(ind)&-nan(ind)&-nan(ind)
-&-nan(ind)&-nan(ind)&-nan(ind)&-nan(ind)\\ \hline $a_1^{(k)}$ &-nan(ind)&-nan(i
-nd)&-nan(ind)&-nan(ind)&-nan(ind)&-nan(ind)&-nan(ind)\\ \hline \end{tabular} \\
- \vspace{0.5cm} \begin{tabular}{c|c|c|c|c|c|c|c} \hline $k$ &71&72&73&74&75&76&
-77\\ \hline $a_0^{(k)}$ &-nan(ind)&-nan(ind)&-nan(ind)&-nan(ind)&-nan(ind)&-nan
-(ind)&-nan(ind)\\ \hline $a_1^{(k)}$ &-nan(ind)&-nan(ind)&-nan(ind)&-nan(ind)&-
-nan(ind)&-nan(ind)&-nan(ind)\\ \hline \end{tabular} \\ \vspace{0.5cm} \begin{ta
-bular}{c|c|c|c|c|c|c|c} \hline $k$ &78&79&80&81&82&83&84\\ \hline $a_0^{(k)}$ &
--nan(ind)&-nan(ind)&-nan(ind)&-nan(ind)&-nan(ind)&-nan(ind)&-nan(ind)\\ \hline 
-$a_1^{(k)}$ &-nan(ind)&-nan(ind)&-nan(ind)&-nan(ind)&-nan(ind)&-nan(ind)&-nan(i
-nd)\\ \hline \end{tabular} \\ \vspace{0.5cm} \begin{tabular}{c|c|c|c|c|c|c|c} \
-hline $k$ &85&86&87&88&89&90&91\\ \hline $a_0^{(k)}$ &-nan(ind)&-nan(ind)&-nan(
-ind)&-nan(ind)&-nan(ind)&-nan(ind)&-nan(ind)\\ \hline $a_1^{(k)}$ &-nan(ind)&-n
-an(ind)&-nan(ind)&-nan(ind)&-nan(ind)&-nan(ind)&-nan(ind)\\ \hline \end{tabular
-} \\ \vspace{0.5cm} \begin{tabular}{c|c|c|c|c|c|c|c} \hline $k$ &92&93&94&95&96
-&97&98\\ \hline $a_0^{(k)}$ &-nan(ind)&-nan(ind)&-nan(ind)&-nan(ind)&-nan(ind)&
--nan(ind)&-nan(ind)\\ \hline $a_1^{(k)}$ &-nan(ind)&-nan(ind)&-nan(ind)&-nan(in
-d)&-nan(ind)&-nan(ind)&-nan(ind)\\ \hline \end{tabular} \\ \vspace{0.5cm} \begi
-n{tabular}{c|c|c|c} \hline $k$ &99&100&101\\ \hline $a_0^{(k)}$ &-nan(ind)&-nan
-(ind)&-nan(ind)\\ \hline $a_1^{(k)}$ &-nan(ind)&-nan(ind)&-nan(ind)\\ \hline \e
-nd{tabular} } \input{jacobi.tex} -interaction=nonstopmode
+**\def\jacobisel{\begin{alignedat}{3} 7a_0&+8a_1&\;&=&\;2\\ 74a_0&+a_1&\;&=&\;4
+ \end{alignedat} } \def\jacobimatrixA{ \begin{bmatrix} 7&8\\ 74&1 \end{bmatrix}
+} \def\jacobimatrixT{ \begin{bmatrix} 0&-1.14286\\ -74&0 \end{bmatrix}} \def\ja
+cobimatrixC{ \begin{bmatrix} 0.285714\\ 4 \end{bmatrix}} \def\jacobimatrixXO{ \
+begin{bmatrix} 0\\ 0 \end{bmatrix}} \def\jacobitables{ \begin{tabular}{c|c|c|c|
+c|c|c|c} \hline $k$ &1&2&3&4&5&6&7\\ \hline $a_0^{(k)}$ &0&0.285714&-4.28571&19
+.8776&-366.735&1676.79&-31019.6\\ \hline $a_1^{(k)}$ &0&4&-17.1429&321.143&-146
+6.94&27142.4&-124078\\ \hline \end{tabular} \\ \vspace{0.5cm} \begin{tabular}{c
+|c|c|c|c|c|c|c} \hline $k$ &8&9&10&11&12&13&14\\ \hline $a_0^{(k)}$ &141804&-2.
+62337e+06&1.19926e+07&-2.21862e+08&1.01423e+09&-1.87632e+10&8.57747e+10\\ \hlin
+e $a_1^{(k)}$ &2.29545e+06&-1.04935e+07&1.9413e+08&-8.8745e+08&1.64178e+10&-7.5
+0529e+10&1.38848e+12\\ \hline \end{tabular} \\ \vspace{0.5cm} \begin{tabular}{c
+|c|c|c|c|c|c|c} \hline $k$ &15&16&17&18&19&20&21\\ \hline $a_0^{(k)}$ &-1.58683
+e+12&7.25409e+12&-1.34201e+14&6.13489e+14&-1.13495e+16&5.18836e+16&-9.59847e+17
+\\ \hline $a_1^{(k)}$ &-6.34733e+12&1.17426e+14&-5.36803e+14&9.93085e+15&-4.539
+82e+16&8.39866e+17&-3.83939e+18\\ \hline \end{tabular} \\ \vspace{0.5cm} \begin
+{tabular}{c|c|c|c|c|c|c|c} \hline $k$ &22&23&24&25&26&27&28\\ \hline $a_0^{(k)}
+$ &4.38787e+18&-8.11756e+19&3.71089e+20&-6.86514e+21&3.13835e+22&-5.80595e+23&2
+.65415e+24\\ \hline $a_1^{(k)}$ &7.10287e+19&-3.24703e+20&6.007e+21&-2.74606e+2
+2&5.0802e+23&-2.32238e+24&4.2964e+25\\ \hline \end{tabular} \\ \vspace{0.5cm} \
+begin{tabular}{c|c|c|c|c|c|c|c} \hline $k$ &29&30&31&32&33&34&35\\ \hline $a_0^
+{(k)}$ &-4.91017e+25&2.24465e+26&-4.1526e+27&1.89833e+28&-3.51192e+29&1.60545e+
+30&-2.97008e+31\\ \hline $a_1^{(k)}$ &-1.96407e+26&3.63353e+27&-1.66104e+28&3.0
+7293e+29&-1.40477e+30&2.59882e+31&-1.18803e+32\\ \hline \end{tabular} \\ \vspac
+e{0.5cm} \begin{tabular}{c|c|c|c|c|c|c|c} \hline $k$ &36&37&38&39&40&41&42\\ \h
+line $a_0^{(k)}$ &1.35775e+32&-2.51184e+33&1.14827e+34&-2.1243e+35&9.71107e+35&
+-1.79655e+37&8.21279e+37\\ \hline $a_1^{(k)}$ &2.19786e+33&-1.00473e+34&1.85876
+e+35&-8.49718e+35&1.57198e+37&-7.18619e+37&1.32945e+39\\ \hline \end{tabular} \
+\ \vspace{0.5cm} \begin{tabular}{c|c|c|c|c|c|c|c} \hline $k$ &43&44&45&46&47&48
+&49\\ \hline $a_0^{(k)}$ &-1.51937e+39&6.94567e+39&-1.28495e+41&5.87405e+41&-1.
+0867e+43&4.96777e+43&-9.19038e+44\\ \hline $a_1^{(k)}$ &-6.07746e+39&1.12433e+4
+1&-5.1398e+41&9.50863e+42&-4.3468e+43&8.04158e+44&-3.67615e+45\\ \hline \end{ta
+bular} \\ \vspace{0.5cm} \begin{tabular}{c|c|c|c|c|c|c|c} \hline $k$ &50&51&52&
+53&54&55&56\\ \hline $a_0^{(k)}$ &4.20132e+45&-7.77243e+46&3.55311e+47&-6.57326
+e+48&3.00492e+49&-5.5591e+50&2.5413e+51\\ \hline $a_1^{(k)}$ &6.80088e+46&-3.10
+897e+47&5.7516e+48&-2.6293e+49&4.86421e+50&-2.22364e+51&4.11373e+52\\ \hline \e
+nd{tabular} \\ \vspace{0.5cm} \begin{tabular}{c|c|c|c|c|c|c|c} \hline $k$ &57&5
+8&59&60&61&62&63\\ \hline $a_0^{(k)}$ &-4.70141e+52&2.14922e+53&-3.97605e+54&1.
+81762e+55&-3.3626e+56&1.53719e+57&-2.8438e+58\\ \hline $a_1^{(k)}$ &-1.88056e+5
+3&3.47904e+54&-1.59042e+55&2.94228e+56&-1.34504e+57&2.48833e+58&-1.13752e+59\\ 
+\hline \end{tabular} \\ \vspace{0.5cm} \begin{tabular}{c|c|c|c|c|c|c|c} \hline 
+$k$ &64&65&66&67&68&69&70\\ \hline $a_0^{(k)}$ &1.30002e+59&-2.40504e+60&1.0994
+5e+61&-2.03398e+62&9.29819e+62&-1.72016e+64&7.86361e+64\\ \hline $a_1^{(k)}$ &2
+.10441e+60&-9.62017e+60&1.77973e+62&-8.13591e+62&1.50514e+64&-6.88066e+64&1.272
+92e+66\\ \hline \end{tabular} \\ \vspace{0.5cm} \begin{tabular}{c|c|c|c|c|c|c|c
+} \hline $k$ &71&72&73&74&75&76&77\\ \hline $a_0^{(k)}$ &-1.45477e+66&6.65037e+
+66&-1.23032e+68&5.62431e+68&-1.0405e+70&4.75656e+70&-8.79964e+71\\ \hline $a_1^
+{(k)}$ &-5.81907e+66&1.07653e+68&-4.92127e+68&9.10435e+69&-4.16199e+70&7.69968e
++71&-3.51985e+72\\ \hline \end{tabular} \\ \vspace{0.5cm} \begin{tabular}{c|c|c
+|c|c|c|c|c} \hline $k$ &78&79&80&81&82&83&84\\ \hline $a_0^{(k)}$ &4.02269e+72&
+-7.44198e+73&3.40205e+74&-6.29379e+75&2.87716e+76&-5.32275e+77&2.43326e+78\\ \h
+line $a_1^{(k)}$ &6.51173e+73&-2.97679e+74&5.50706e+75&-2.51751e+76&4.6574e+77&
+-2.1291e+78&3.93883e+79\\ \hline \end{tabular} \\ \vspace{0.5cm} \begin{tabular
+}{c|c|c|c|c|c|c|c} \hline $k$ &85&86&87&88&89&90&91\\ \hline $a_0^{(k)}$ &-4.50
+152e+79&2.05784e+80&-3.807e+81&1.74034e+82&-3.21964e+83&1.47183e+84&-2.72289e+8
+5\\ \hline $a_1^{(k)}$ &-1.80061e+80&3.33113e+81&-1.5228e+82&2.81718e+83&-1.287
+85e+84&2.38253e+85&-1.08916e+86\\ \hline \end{tabular} \\ \vspace{0.5cm} \begin
+{tabular}{c|c|c|c|c|c|c|c} \hline $k$ &92&93&94&95&96&97&98\\ \hline $a_0^{(k)}
+$ &1.24475e+86&-2.30279e+87&1.0527e+88&-1.9475e+89&8.90286e+89&-1.64703e+91&7.5
+2928e+91\\ \hline $a_1^{(k)}$ &2.01494e+87&-9.21115e+87&1.70406e+89&-7.79e+89&1
+.44115e+91&-6.58812e+91&1.2188e+93\\ \hline \end{tabular} \\ \vspace{0.5cm} \be
+gin{tabular}{c|c|c|c} \hline $k$ &99&100&101\\ \hline $a_0^{(k)}$ &-1.39292e+93
+&6.36762e+93&-1.17801e+95\\ \hline $a_1^{(k)}$ &-5.57167e+93&1.03076e+95&-4.712
+04e+95\\ \hline \end{tabular} } \input{jacobi.tex} -interaction=nonstopmode
 (./jacobi.tex (./article.cls
 Document Class: article 2014/09/29 v1.4h Standard LaTeX document class
 (./size10.clo
@@ -291,15 +296,15 @@ Overfull \hbox (6.79999pt too wide) in paragraph at lines 31--33
 Here is how much of TeX's memory you used:
  2350 strings out of 493013
  28959 string characters out of 6136993
- 121393 words of memory out of 5000000
+ 121806 words of memory out of 5000000
  5888 multiletter control sequences out of 15000+600000
  6232 words of font info for 23 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 41i,9n,32p,4865b,348s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 41i,9n,32p,5278b,348s stack positions out of 5000i,500n,10000p,200000b,80000s
 <./cmbx10.pfb><./cmbx12.pfb><./c
 mex10.pfb><./cmmi10.pfb><./cmmi7.pfb><./cmr10.pfb><./cmr12.pfb><./cmr7.pfb><./c
 msy10.pfb><./cmsy7.pfb>
-Output written on jacobi.pdf (2 pages, 114093 bytes).
+Output written on jacobi.pdf (2 pages, 115016 bytes).
 PDF statistics:
  52 PDF objects out of 1000 (max. 8388607)
  36 compressed objects within 1 object stream

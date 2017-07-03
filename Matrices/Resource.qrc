@@ -36,5 +36,8 @@
         <file>html/Imagen1.png</file>
         <file>html/Imagen2.png</file>
         <file>html/Imagen3.png</file>
+        <file>html/Guia1.png</file>
+        <file>html/Guia2.png</file>
+        <file>html/Guia3.png</file>
     </qresource>
 </RCC>
