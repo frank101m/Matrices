@@ -1492,6 +1492,9 @@ void MainWindow::generateReport(const std::string & body)
 #ifdef _WIN32
 	OutputDebugStringA(body.c_str());
 	QString file = QCoreApplication::applicationDirPath() + "/" + "texlive/pdflatex.exe " + QString::fromStdString(body) + " -interaction=nonstopmode";
+
+#elif __linux__
+    QString file = "./pdflatex -interaction=nonstopmode "+ QString::fromStdString(body);
 #endif // 
 
 
